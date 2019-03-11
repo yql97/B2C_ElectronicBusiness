@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			.tabs-mod-tabs-nav {
+				position: absolute;
+				left: 20px;
+				z-index: 50;
+			}
+
+			.tabs-mod-tabs-nav li {
+				float: left;
+				width: 130px;
+				height: 27px;
+				margin-right: 3px;
+				padding-top: 8px;
+				line-height: 21px;
+				text-align: center;
+				background: url( //assets.alicdn.com/app/trade/img/tabview_bg.gif) 0 6px no-repeat;
+					background-position-x: 0px;
+				background-position-y: 6px;
+				cursor: pointer;
+			}
+
+			.tabs-mod-tabs-nav li a {
+				display: block;
+				width: 130px;
+				font-weight: 700;
+				font-size: 14px;
+				color: #333;
+			}
+
+			.tabs-mod-tabs-panels {
+				position: relative;
+				top: 29px;
+				overflow: hidden;
+				margin-bottom: 40px;
+				padding: 10px 20px;
+				border: 1px solid #AEC7E5;
+			}
+
+			.order-panel-mod-item-detail {
+				width: 910px;
+				font-size: 12px;
+			}
+
+			.address-memo-mod-address-note dl {
+				line-height: 30px;
+			}
+
+			.address-memo-mod-address-note .address-memo-mod-an-box dt {
+				float: left;
+				width: 78px;
+				font-weight: 700;
+			}
+
+			.address-memo-mod-address-note .address-memo-mod dd {
+				padding-left: 80px;
+				margin-bottom: 4px;
+				word-wrap: break-word;
+			}
+
+			.order-panel-mod-item-detail hr {
+				color: #D1D7DC;
+				background-color: #D1D7DC;
+				border: none;
+				height: 1px;
+				margin: 10px 0 5px;
+			}
+
+			.concat-info-mod-concat-info h3 {
+				font-size: 12px;
+			}
+
+			.concat-info-mod-concat-info table {
+				margin-left: 50px;
+			}
+
+			.concat-info-mod-concat-info .concat-info-mod-label {
+				float: left;
+				width: 85px;
+				text-align: right;
+			}
+
+			.concat-info-mod-concat-info .concat-info-mod-content {
+				float: left;
+				width: 195px;
+			}
+
+			.misc-info-mod-misc-info {
+				border-collapse: collapse;
+				border-spacing: 0;
+				line-height: 30px;
+				padding-left: 37px;
+			}
+
+			.misc-info-mod-misc-info .misc-info-mod-nv {
+				float: left;
+				width: 282px;
+			}
+
+			.misc-info-mod-misc-info .misc-info-mod-label {
+				float: left;
+				width: 100px;
+				text-align: right;
+			}
+
+			.misc-info-mod-misc-info .misc-info-mod-content {
+				float: left;
+				width: 182px;
+			}
+
+			.misc-info-mod-misc-info .misc-info-mod-label {
+				float: left;
+				width: 100px;
+				text-align: right;
+			}
+
+			.misc-info-mod-misc-info .misc-info-mod-content-1i {
+				float: left;
+				width: 182px;
+			}
+
+			.order-info-mod-order-info {
+				padding-top: 10px;
+			}
+
+			.order-info-mod-order-info table {
+				border-spacing: 0;
+				border-collapse: collapse;
+				border: 1px solid #ddd;
+				text-align: center;
+				line-height: 130%;
+			}
+
+			.order-info-mod-order-info table th {
+				background-color: #e8f2ff;
+				color: #404040;
+				padding: 8px 10px;
+				font-weight: 400;
+				word-wrap: break-word;
+				text-align: center;
+			}
+
+			.order-info-mod-order-info table td {
+				padding: 8px 5px;
+				vertical-align: middle;
+				border: 1px solid #ddd;
+				line-height: 150%;
+			}
+
+			.item-mod-item .item-mod-pic-info {
+				float: left;
+				margin-right: 5px;
+			}
+
+			.item-mod-item .item-mod-pic-info> a {
+				width: 50px;
+				height: 50px;
+				vertical-align: middle;
+				text-align: center;
+			}
+
+			.item-mod-item .item-mod-text-info {
+				margin-left: 55px;
+				line-height: 18px;
+				text-align: left;
+				color: gray;
+			}
+
+			.item-mod-item .item-mod-icons {
+				padding-top: 5px;
+			}
+
+			.pay-info-mod__pay-info___29esu {
+				padding: 0 14px 0 8px;
+			}
+
+			.pay-info-mod-pay-info .pay-info-mod-get-money {
+				float: right;
+				padding-top: 15px;
+				line-height: 23px;
+				text-align: right;
+				margin-right: 5px;
+			}
+
+			.pay-info-mod-pay-info span.pay-info-mod-name {
+				width: 250px;
+				text-align: right;
+			}
+
+			.pay-info-mod-pay-info .pay-info-mod-get-money strong {
+				font-weight: 700;
+				font-size: 16px;
+				color: #f50;
+			}
+
+			/**123456**/
+			#content {
+				width: 990px;
+				margin: 0 auto 10px auto;
+				color: #333;
+			}
+
+			.tb-path {
+				line-height: 24px;
+				margin: 0 auto 10px auto;
+				width: 990px;
+			}
+
+			.order-detail {
+				border: 1px solid #e2e2e2;
+				width: 990px;
+				margin: 0 auto;
+				font: 12px/1.5 tahoma, arial, "Hiragino Sans GB", simsun, sans-serif;
+				color: #333;
+			}
+
+			.order-detail .detail-title {
+				font-size: 16px;
+				background-color: #f7f7f7;
+				height: 38px;
+				line-height: 38px;
+				border-bottom: 1px solid #e2e2e2;
+			}
+
+			.order-detail .detail-title .indent {
+				text-indent: 88px;
+				display: block;
+			}
+
+			.detail-panel .panel-package {
+				background-color: #f3f3f3;
+				margin-bottom: 32px;
+				position: relative;
+				border-radius: 3px;
+			}
+
+			.detail-panel .panel-package .package-title {
+				margin: 0;
+				padding: 14px 0 14px 20px;
+				position: relative;
+			}
+
+			.complain-box {
+				position: absolute;
+				right: 10px;
+				top: 15px;
+				font-size: 14px;
+			}
+
+			.package-status {
+				padding: 18px 0 0 0;
+			}
+
+			.package-cainiao {
+				margin-left: 40px;
+				margin-right: 12px;
+				padding-bottom: 16px;
+				padding-top: 16px;
+				border-top: 1px solid #e7e7e7;
+				line-height: 24px;
+				color: #333;
+			}
+
+			.package-cainiao .cainiao-content {
+				padding-left: 170px;
+			}
+
+			.panel-order {
+				padding: 20px 0;
+				line-height: 24px;
+				border-top: 1px solid #e7e7e7;
+				font-size: 12px;
+			}
+
+			.panel-order .label {
+				margin-left: 10px;
+			}
+
+			.panel-order .em {
+				font-weight: 700;
+				margin-right: 10px;
+			}
+
+			.panel-order .order-list {
+				list-style: none;
+				margin: 0;
+				margin-top: 0px;
+				padding: 0;
+				margin-top: 15px;
+				overflow: hidden;
+				zoom: 1;
+			}
+
+			.panel-order .order-list li {
+				float: left;
+				margin-right: 40px;
+			}
+
+			.panel-order .order-list .pic {
+				overflow: hidden;
+				display: block;
+				border: 1px solid #eee;
+				width: 59px;
+				height: 59px;
+				line-height: 59px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="cover">
+				<div class="site-nav">
+					<div class="site-nav-bd">
+						<ul class="site-nav-bd-l">
+							<li>
+								<div class="site-nav-menu-hd">
+									<span class="site-nav-region">中国大陆</span>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-user"> <a></a>
+									</div>
+								</div>
+							</li>
+							<li>
+							</li>
+						</ul>
+						<ul class="site-nav-bd-r">
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>首页</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>我的足迹</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a id="mc-menu-hd">
+										<span>购物车</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>收藏夹</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>个人中心</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<ul class="tabs-mod-tabs-nav">
+				<li class="tabs-mod-current"><a href="javascript:;">订单信息</a></li>
+			</ul>
+			<div class="tabs-mod-tabs-panels">
+				<div style="display:block;">
+					<div class="order-panel-mod-item-detail">
+						<div class="address-memo-mod-address-note">
+							<div>
+								<dl class="address-memo-mod-an-box">
+									<dt>收货地址：</dt>
+									<dd>岳秋林，18703622974，河南省 郑州市 新郑市 城关乡 官刘庄东侧社区(居易新城社区:8号楼，1层西户) ，451150</dd>
+								</dl>
+								<dl class="address-memo-mod-an-box"><dt>新收货地址：</dt>
+									<dd>岳秋林，18703622974，河南省 郑州市 新郑市 城关乡 官刘庄东侧社区(居易新城社区:8号楼，1层西户)，451150</dd>
+								</dl>
+								<dl class="address-memo-mod-an-box" style="display:block;"><dt></dt>
+									<dd></dd>
+								</dl>
+								<dl class="address-memo-mod-an-box"><dt>运送方式：</dt>
+									<dd>快递</dd>
+								</dl>
+								<dl class="address-memo-mod-an-box"></dl>
+								<dl class="address-memo-mod-an-box"></dl>
+							</div>
+							<div><span></span></div>
+						</div>
+						<hr>
+						<div>
+							<div class="concat-info-mod-concat-info">
+								<div>
+									<h3>卖家信息</h3>
+									<table>
+										<tbody>
+											<tr>
+												<td><label class="concat-info-mod-label">昵称：</label>
+													<span title="点此可以直接和卖家交流，或相互交流网购体验，还支持语音视频噢。">
+														<span>佳宇科技2015</span></span></td>
+												<td><label class="concat-info-mod-label">真实姓名：</label><span class="concat-info-mod-content"><span>赖**</span><span>&nbsp;</span><span></span></span></td>
+												<td><label class="concat-info-mod-label">城市：</label><span class="concat-info-mod-content">广东
+														深圳</span></td>
+											</tr>
+											<tr>
+												<td><label class="concat-info-mod-label">联系电话：</label><span class="concat-info-mod-content">18938929447</span></td>
+												<td><label class="concat-info-mod-label">邮件：</label><span class="concat-info-mod-content"><span>3***</span><span>&nbsp;</span>
+													</span></td>
+												<td><label class="concat-info-mod-label">支&nbsp;付&nbsp;宝：</label><span class="concat-info-mod-content">3***</span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<hr>
+						</div>
+						<div class="order-info-container-mod-order-info-container">
+							<h3>订单信息</h3>
+							<div class="misc-info-mod-misc-info">
+								<div class="misc-info-mod-misc-box"></div>
+								<div class="misc-info-mod-misc-box"><span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">订单编号:</span><span
+										 class="misc-info-mod-content"><span>307984832399734320</span>
+										</span></span><span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">支付宝交易号:</span><span
+										 class="misc-info-mod-content-1i"><span>2018122722001111650533738822</span></span></span>
+									<span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">创建时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
+												16:46:05</span></span></span><span class="misc-info-mod-nv">
+										<span class="misc-info-mod-label">发货时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
+												20:12:43</span></span></span><span class="misc-info-mod-nv">
+										<span class="misc-info-mod-label">付款时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
+												16:46:20</span></span></span><span class="misc-info-mod-nv">
+										<span class="misc-info-mod-label">成交时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-30
+												11:54:56</span></span></span></div>
+							</div>
+							<div class="order-info-mod-order-info">
+								<table>
+									<tbody>
+										<tr>
+											<th>宝贝</th>
+											<th>宝贝属性</th>
+											<th>状态</th>
+											<th>单价</th>
+											<th>数量</th>
+											<th>优惠</th>
+											<th>商品总价</th>
+										</tr>
+										<tr class="order-item">
+											<td class="item-mod-item">
+												<div class="item-mod-pic-info"><a href="//trade.taobao.com/trade/detail/tradeSnap.htm?trade_id=307984832399734320"
+													 target="_blank" rel="noopener noreferrer" title="商品图片"><img src="//img.alicdn.com/imgextra/i3/2488378564/O1CN012D8MMXxj6WMkwiZ_!!2488378564.jpg_sum.jpg"
+														 alt="查看宝贝详情"></a></div>
+												<div class="item-mod-text-info">
+													<div class="desc">
+														<div class="name"><a href="//trade.taobao.com/trade/detail/tradeSnap.htm?trade_id=307984832399734320"
+															 target="_blank" rel="noopener noreferrer">送蓝牙耳机Meizu/魅族
+																魅蓝Note6全网通4G 双摄八核5.5大屏幕手机</a></div>
+													</div>
+												</div>
+											</td>
+											<td class="sku-mod-sku">
+												<div><span class="sku-mod-namevalue"><span class="">机身颜色：</span><span class=""><span>曜石黑</span></span></span><span
+													 class="sku-mod-namevalue"><span class="">套餐类型：</span><span class=""><span>官方标配</span></span></span><span
+													 class="sku-mod-namevalue"><span class="">存储容量：</span><span class=""><span>32GB</span></span></span><span
+													 class="sku-mod-namevalue"><span class="">版本类型：</span><span class=""><span>中国大陆</span></span></span></div>
+											</td>
+											<td>
+												<div><span>已确认收货</span></div>
+											</td>
+											<td><span>1075.00</span></td>
+											<td>1</td>
+											<td class="promotion-mod-promotion">
+												<div><span>卖家促销:省
+														336.00 元</span></div>
+											</td>
+											<td>
+												<div>
+													<div><span>739.00</span></div>
+													<div></div>
+													<div><span>(快递:
+															0.00)</span></div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="pay-info-mod-pay-info">
+							<div class="pay-info-mod-get-money">
+								<div class="pay-info-mod-fee-wrapper">
+									<div class="pay-info-mod-right"></div>
+									<div class="pay-info-mod-left"><span class="pay-info-mod-name"><span>订单总金额</span><span>：</span></span><span
+										 class="pay-info-mod-value"><strong>739.00</strong><span> 元</span></span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="tb-path clearfix">
+				<div class="fleft">
+					您的位置：<a href="https://www.taobao.com/">首页</a> &gt; <a href="https://i.taobao.com/my_taobao.htm">我的淘宝</a> &gt; <a
+					 href="https://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm">已买到的宝贝</a> &gt; <em class="lightText">物流详情</em>
+				</div>
+			</div>
+			<!-- tms 1863309-->
+			<div class="order-detail">
+				<div class="detail-title">
+					<span class="indent">包裹信息</span>
+				</div>
+				<div class="detail-complaint" id="complaintDiv"></div>
+				<div class="detail-content">
+					<div id="progressbar" class="cainiao">
+						<ul class="progressbar-cainiao cainiao-progressbar-wms">
+							<li class="step-1-done" data-spm-anchor-id="a2d00.7723416.0.i2.28d7781b9mWleE"></li>
+							<li class="step-2-done"></li>
+							<li class="step-3-done"></li>
+							<li class="step-4-done"></li>
+							<li class="last step-5-current">
+								<div class="arrow"></div>
+							</li>
+						</ul>
+						<div style="display:none" class="guoguo guoguo-step-5"><img src="//img.alicdn.com/tps/TB1d4h1IpXXXXciXpXXXXXXXXXX.gif"></div>
+					</div>
+					<div class="detail-panel">
+						<div class="panel-package">
+							<div class="package-title">
+								<div class="complain-box">
+								</div>
+								<h3 class="title-text">
+									已签收
+								</h3>
+							</div>
+							<div class="package-status">
+								<div class="status-box" id="status_list">
+									<ul id="J_listtext2" class="status-list">
+										<li><span class="date">2019-01-08</span><span class="week">周二</span><span class="time">10:10:05</span><span
+											 class="text">仓库已接单</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">13:23:15</span><span
+											 class="text">包裹已出库</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">13:32:14</span><span
+											 class="text">包裹正在等待揽收</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">14:04:55</span><span
+											 class="text">【石家庄市】您的包裹已由物流公司揽收</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">15:58:40</span><span
+											 class="text">【石家庄市】快件已从石家庄市场部发出，准备发往石家庄</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">18:36:03</span><span
+											 class="text">【石家庄市】您的包裹已到达【石家庄】</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">20:43:01</span><span
+											 class="text">【石家庄市】包裹已从【石家庄】发出，准备发往【郑州市】</span></li>
+										<li><span class="date">2019-01-09</span><span class="week">周三</span><span class="time">10:36:36</span><span
+											 class="text">【郑州市】您的包裹已到达【豫北中转】</span></li>
+										<li><span class="date hidden">2019-01-09</span><span class="week hidden">周三</span><span class="time">12:58:49</span><span
+											 class="text">【郑州市】包裹已从【郑州中转】发出，准备发往【郑州市】</span></li>
+										<li><span class="date">2019-01-10</span><span class="week">周四</span><span class="time">06:33:17</span><span
+											 class="text">【郑州市】您的包裹已到达【郑州新郑】，准备分配派送员</span></li>
+										<li><span class="date hidden">2019-01-10</span><span class="week hidden">周四</span><span class="time">09:06:55</span><span
+											 class="text">【郑州市】配送员城关乡李冬 15237112030正为您派送，感谢您的耐心等待</span></li>
+										<li><span class="date hidden">2019-01-10</span><span class="week hidden">周四</span><span class="time">10:15:06</span><span
+											 class="text">[菜鸟驿站]您的快件已暂存至郑州新郑城关乡西关电厂路口店菜鸟驿站，请凭取货码及时领取。如有疑问请联系<em>15538380990</em></span></li>
+										<li class="latest"><span class="date hidden">2019-01-10</span><span class="week hidden">周四</span><span class="time">13:11:02</span><span
+											 class="text">您的包裹已签收，期待下次为您服务</span></li>
+									</ul>
+									<ul id="J_listtext1" style="display:none" class="status-list">
+										<li><span class="date">2019-01-08</span><span class="week">周二</span><span class="time">10:10:05</span><span
+											 class="text">OMS转入成功</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">13:23:15</span><span
+											 class="text">包裹已出库</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">13:32:14</span><span
+											 class="text">等待揽收中</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">14:04:55</span><span
+											 class="text">[石家庄市]石家庄市场部的阿里天北马保会[13315194426]已揽收</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">15:58:40</span><span
+											 class="text">[石家庄市]快件离开石家庄市场部已发往石家庄</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">18:36:03</span><span
+											 class="text">[石家庄市]快件已到达石家庄</span></li>
+										<li><span class="date hidden">2019-01-08</span><span class="week hidden">周二</span><span class="time">20:43:01</span><span
+											 class="text">[石家庄市]快件离开石家庄已发往郑州中转</span></li>
+										<li><span class="date">2019-01-09</span><span class="week">周三</span><span class="time">10:36:36</span><span
+											 class="text">[郑州市]快件已到达豫北中转</span></li>
+										<li><span class="date hidden">2019-01-09</span><span class="week hidden">周三</span><span class="time">12:58:49</span><span
+											 class="text">[郑州市]快件离开郑州中转已发往郑州新郑</span></li>
+										<li><span class="date">2019-01-10</span><span class="week">周四</span><span class="time">06:33:17</span><span
+											 class="text">[郑州市]快件已到达郑州新郑</span></li>
+										<li><span class="date hidden">2019-01-10</span><span class="week hidden">周四</span><span class="time">09:06:55</span><span
+											 class="text">[郑州市]郑州新郑的城关乡李冬[15237112030]正在派件</span></li>
+										<li><span class="date hidden">2019-01-10</span><span class="week hidden">周四</span><span class="time">10:15:06</span><span
+											 class="text">您的快件已暂存至郑州新郑城关乡西关电厂路口店菜鸟驿站，请凭取货码及时领取。如有疑问请联系<em>15538380990</em></span></li>
+										<li class="latest"><span class="date hidden">2019-01-10</span><span class="week hidden">周四</span><span class="time">13:11:02</span><span
+											 class="text">您已在郑州新郑城关乡西关电厂路口店完成取件，感谢使用菜鸟驿站，期待再次为您服务。</span></li>
+									</ul>
+								</div>
+							</div>
+							<div class="package-cainiao">
+								<div class="cainiao-logo"></div>
+								<div class="cainiao-content">
+									<p>郑州新郑城关乡西关电厂路口店</p>
+									<p>
+									</p>
+									<p>代收站点：<em>郑州新郑城关乡西关电厂路口店</em>
+										取货密码：<em>2-2-4003</em>
+										<p>营业时间：<em>周一至周日08点30分到19点00分</em></p>
+										<p>站点电话：15538380990</p>
+										<p>详细地址：河南省郑州市新郑市城关乡西关电厂红绿灯路口东北角市场A区9号门面房
+											<a target="_blank" href="https://www.cainiao.com/markets/cnwww/userhelpdoc?spm=a220l.1.a22011.23.Dtgp4U">
+												代收货服务介绍
+											</a>
+										</p>
+								</div>
+							</div>
+						</div>
+						<div class="panel-order ">
+							<div class="info">
+								<div class="order-row">
+									<label class="label">运单号码：</label>
+									<span class="em">
+										75122456748811
+									</span>
+									<label class="label">物流编号：</label>
+									<span class="em">
+										LBX0321022705389450
+									</span>
+									<label class="label">物流公司：</label>
+									<span class="em">
+										中通快递
+									</span>
+									<label class="label">客服电话：</label>
+									<span class="em">
+										95311
+									</span>
+								</div>
+								<div class="order-row">
+									<label class="label">卖家昵称：</label>
+									<span class="em">
+										阿里健康大药房
+									</span>
+									<span class="ww-light ww-large" data-display="inline" data-nick="阿里健康大药房"><a href="https://amos.alicdn.com/getcid.aw?v=3&amp;groupid=0&amp;s=1&amp;charset=utf-8&amp;uid=%E9%98%BF%E9%87%8C%E5%81%A5%E5%BA%B7%E5%A4%A7%E8%8D%AF%E6%88%BF&amp;site=cntaobao&amp;fromid=cntaobao%BB%D4%BB%CD%B5%C4%D4%C0%D7%D3"
+										 target="_blank" class="ww-inline ww-online" title="点此可以直接和卖家交流选好的宝贝，或相互交流网购体验，还支持语音视频噢。"><span>旺旺在线</span></a></span>
+								</div>
+								<div class="order-row row-address">
+									<label class="label">发货地址：</label>
+									<span class="address">
+										河北省石家庄市河北省石家庄高新区恒山街196号 <span class="em">50000</span> <span class="em">退货组</span> <span class="em">020-32033893</span>
+									</span>
+								</div>
+								<div class="order-row row-address">
+									<label class="label">收货地址：</label>
+									<span class="address">
+										河南省郑州市新郑市 城关乡 城关乡官刘庄东侧社区 <span class="em">451150</span> <span class="em">岳秋*</span> <span class="em">187****2974</span>
+									</span>
+								</div>
+								<ul class="order-list">
+									<li>
+										<div class="pic">
+											<a target="_blank" href="https://trade.taobao.com//trade/detail/trade_snap.htm?trade_id=262605676018734320">
+												<img src="./物流详情-理想生活上天猫_files/TB1OLVUobSYBuNjSspfXXcZCpXa_!!0-item_pic.jpg_sum.jpg" alt="买6盒送润喉糖】九芝堂六味地黄丸360粒肾虚遗精补肾六位地黄丸">
+											</a>
+										</div>
+										<span class="text">69.00 x 1</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="Footer" style="min-height: 150px">
+			<div class="footer">
+				<div class="footer-hd">
+					<p>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">阿里云计算</a>
+						<b>|</b>
+					</p>
+				</div>
+				<div class="footer-bd">
+					<p>
+						<a href="">关于本站</a>
+						<a href="">合作伙伴</a>
+						<a href="">营销中心</a>
+						<a href="">廉正举报</a>
+						<a href="">联系客服</a>
+						<a href="">开放平台</a>
+						<a href="">诚征英才</a>
+						<a href="">联系我们</a>
+						<a href="">网站地图</a>
+						<a href="">法律声明</a>
+						<a href="">隐私权政策</a>
+					</p>
+					<p style="clear: left;">
+						<em>© 2019 Maimai.com 版权所有</em>
+						<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+						<b>|</b>
+						<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+						<b>|</b>
+						<span>信息网络传播视听节目许可证：1109364号</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

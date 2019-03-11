@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<style>
+			.banner {
+				width:1000px;
+				height:600px;
+				margin-top: 13px;
+				border: 1px solid #000000;
+			}
+
+			.banner_1 {
+				width: 1000px;
+				height:600px;
+				float: left;
+			}
+
+			#slide {
+				right: 10px;
+				z-index: 2;
+				position: absolute;
+				top: 480px;
+				left: 205px;
+			}
+            #banner a img {
+				float: left;
+			}
+			.red_red {
+				background: red;
+			}
+
+			#slide span {
+				width: 22px;
+				height: 22px;
+				line-height: 22px;
+				display: inline-block;
+				margin: 0 1px;
+				background: #999;
+				text-align: center;
+				color: white;
+				border-radius: 12px;
+				cursor: pointer;
+			}
+			
+			      * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        nav {
+            width: 750px;
+            height: 170px;
+            border: 1px solid red;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        
+        ul {
+            width: 200%;
+            height: 100%;
+            animation: picmove 15s linear  infinite forwards;
+        }
+        
+        @keyframes picmove {
+            from {
+                transform: translate(0);
+            }
+            to {
+                transform: translate(-250px);
+            }
+			animation-play-state: paused;
+        }
+        
+        img {
+            width: 250px;
+            height: 170px;
+            float: left;
+        }
+        
+        ul:hover {
+            animation-play-state: paused;
+        }
+		</style>
+	</head>
+	<body>
+		<div class="banner">
+			<script type="text/javascript">
+					/**
+			*自动切换动画图片
+			*/
+			var min = 0;
+			var max = 3;
+			function adAutoChange() {
+				 if (min == max) {
+					 min = 0;
+				 } else {
+					 min++;
+				 }
+				 adChange();
+			}
+			/**
+			*手动切换图片
+			*/
+			function adChange() {
+				 $("#banner a:eq(" + min + ")").show().siblings("a").hide();
+				 $("#banner #slide span:eq(" + min + ")").css("background","red").siblings().css("background","#999");
+			}
+			
+			//#banner的事件加载
+			$(function () {
+				 //显示第一个图片，其他隐藏。数字一背景颜色变为红色。
+				 $("#banner a:not(':first')").hide();
+				 $("#banner #slide span:first").css("background","red");
+				 setInterval("adAutoChange()", "3000"); //自动切换数字和图片
+			
+				 //当鼠标移动到数字对应切换到对应图片
+				 $("#banner #slide span").mousemove(function () {
+					 min = $(this).text() - 1;
+					 adChange();
+				 });
+			});
+				</script>
+		<div class="banner_1">
+			<div id="banner">
+				<a href="#" >
+					<img src="../public/images/example-slide-2.jpg" />
+				</a>
+				<a href="#">
+					<img src="../public/images/example-slide-1.jpg" />
+				</a>
+				<a href="#">
+					<img src="../public/images/example-slide-3.jpg" />
+				</a>
+				<a href="#">
+					<img src="../public/images/example-slide-4.jpg" />
+				</a>
+				<div id="slide">
+					<span>1</span>
+					<span>2</span>
+					<span>3</span>
+					<span>4</span>
+				</div>
+			</div>
+		</div>
+		</div>
+		  <nav>
+        <ul>
+            <li><img src="../public/images/example-slide-1.jpg" /></li>
+            <li><img src="../public/images/example-slide-2.jpg" /></li>
+            <li><img src="../public/images/example-slide-3.jpg" /></li>
+            <li><img src="../public/images/example-slide-4.jpg" /></li>
+        </ul>
+    </nav>
+		<div id="Footer" style="min-height: 150px">
+			<div class="footer">
+				<div class="footer-hd">
+					<p>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">阿里云计算</a>
+						<b>|</b>
+					</p>
+				</div>
+				<div class="footer-bd">
+					<p>
+						<a href="">关于本站</a>
+						<a href="">合作伙伴</a>
+						<a href="">营销中心</a>
+						<a href="">廉正举报</a>
+						<a href="">联系客服</a>
+						<a href="">开放平台</a>
+						<a href="">诚征英才</a>
+						<a href="">联系我们</a>
+						<a href="">网站地图</a>
+						<a href="">法律声明</a>
+						<a href="">隐私权政策</a>
+					</p>
+					<p style="clear: left;">
+						<em>© 2019 Maimai.com 版权所有</em>
+						<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+						<b>|</b>
+						<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+						<b>|</b>
+						<span>信息网络传播视听节目许可证：1109364号</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

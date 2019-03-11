@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>订单结算</title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			ol{
+				margin: 0;
+				padding: 0;
+			}
+			a {
+    color: #36c;
+    cursor: pointer;
+		font-size: 12px;
+}
+.order-stepbar{
+	position: relative;
+	margin-left: 0;
+}
+		/*	.order-stepbar .buy-logo {
+    padding: 26px 0 12px;
+    display: inline-block;
+     }
+		 .order-stepbar .buy-logo a {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 170px;
+    height: 35px;
+    font-size: 35px;
+    color: #fff;
+}*/
+		 .order-stepbar .tb-stepbar {
+			 margin-left: 0;
+    /*position: absolute;
+    top: 40px;
+    left: 0;*/
+}
+.order-stepbar .tb-stepbar .stepbar-first {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.order-stepbar .tb-stepbar .stepbar-current {
+    background-color: #f40;
+    color: #fff;
+}
+.order-stepbar .tb-stepbar .stepbar-last {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-image: none;
+}
+.order-stepbar .tb-stepbar li {
+    width: 158px;
+    height: 23px;
+    font-size: 14px;
+    position: relative;
+		margin-left: 0;
+   /* float: left;*/
+   /* background: url(//img.alicdn.com/tps/i2/TB1kJUdGFXXXXcyaXXX08VS7pXX-176-1320.png) 100% -1040px no-repeat #e4e4e4;*/
+    color: #404040;
+    font-weight: 700;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.order-address {
+    margin: 23px 0 40px;
+		font-size: 14px;
+}
+.order-address .order-address-wrap h3 {
+    border-bottom: 2px solid #f1f1f1;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.order-address .order-address-wrap .manage-address {
+    float: right;
+    font-size: 12px;
+    font-weight: 400;
+}
+.order-address .order-address-wrap .address-list li.selected {
+    border-color: #f40;
+    background-color: #fff0e8;
+    margin: 5px 0 7px;
+    line-height: 32px;
+    box-shadow: 5px 5px 0 #f3f3f3;
+}
+.order-address .order-address-wrap .address-list li {
+    position: relative;
+    line-height: 25px;
+    padding-left: 92px;
+    border: 1px solid #fff;
+}
+.order-address .order-address-wrap .address-list li .marker-tip {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    color: #f40;
+    font-weight: 700;
+}
+.order-address .order-address-wrap .address-list li label {
+    color: #3c3c3c;
+    vertical-align: baseline;
+}
+.order-address .order-address-wrap .address-list li .modify {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    margin-left: 10px;
+}
+.order-address .order-address-wrap .address-list li .addressBox {
+    margin-left: 10px;
+}
+.order-address .order-address-wrap .address-list li input {
+    position: absolute;
+    top: 6px;
+    left: 75px;
+}
+.order-address .order-address-wrap .btn-bar {
+    margin-top: 5px;
+}
+.order-address .order-address-wrap .btn-bar .newAddrBtn {
+    margin-left: 103px;
+    background: url(//img.alicdn.com/tps/i2/TB1kJUdGFXXXXcyaXXX08VS7pXX-176-1320.png) -28px -70px no-repeat;
+    width: 90px;
+    height: 25px;
+    display: inline-block;
+    font-size: 0;
+    text-indent: -99px;
+    vertical-align: text-top;
+}
+.order-confirmOrder h2 {
+    line-height: 25px;
+    color: #333;
+    font-weight: 700;
+    font-size: 14px;
+}
+.order-orderDesc .buy-th {
+    margin-top: 15px;
+    color: #6C6C6C;
+}
+.order-orderDesc .buy-td {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-bottom: 3px solid #b2d1ff;
+    font-size: 12px;
+    vertical-align: bottom;
+		margin-left: 0;
+}
+.order-order {
+    border-bottom: 1px dotted #80b2ff;
+}
+.order-orderInfo {
+    position: relative;
+    padding-bottom: 5px;
+    margin-top: 25px;
+    border-bottom: 1px dotted #80b2ff;
+    height: 22px;
+}
+.order-orderInfo .shopIcon {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+    margin-right: 6px;
+    position: relative;
+    top: 1px;
+}
+.order-orderInfo .shop-seller {
+    margin-left: 60px;
+}
+.order-item {
+    border-bottom: 1px dotted #ddd;
+    background-color: #fbfcff;
+}
+.order-itemInfo {
+	  width:69%;
+    display: inline-block;
+    vertical-align: top;
+}
+.order-itemInfo .info-detail {
+    width:54%;
+    padding: 10px 0 10px 10px;
+}
+.order-itemInfo .info-cell {
+    display: inline-block;
+    margin-right: 1px;
+}
+.order-itemInfo .info-img {
+    display: block;
+    width: 50px;
+    height: 50px;
+}
+.order-itemInfo .info-title {
+    color: #3c3c3c;
+    width:250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+.order-itemInfo .info-sku {
+    color: #6c6c6c;
+    width:21%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 0;
+}
+.order-itemInfo .info-price{
+    width: 21%;
+    padding: 10px 0;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+ .order-quantity {
+    width:15%;
+    padding: 10px 0;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+.order-quantity .operate.grey {
+    color: #ccc;
+    border-color: #ccc;
+}
+.order-quantity .operate {
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    border: 1px solid #9DC1E4;
+    cursor: pointer;
+    line-height: 24px;
+}
+.order-quantity .amount {
+    text-align: center;
+    display: inline-block;
+    width: 42px;
+    border: 1px solid #9DC1E4;
+    border-left: none;
+    border-right: none;
+    line-height: 24px;
+    height: 24px;
+}
+.order-quantity .operate {
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    border: 1px solid #9DC1E4;
+    cursor: pointer;
+    line-height: 24px;
+}
+.order-itemPay {
+    padding: 10px 0;
+    width:15%;
+}
+.order-itemPay {
+    vertical-align: top;
+    text-align: right;
+    display: inline-block;
+}
+.order-itemPay .simple-price {
+    font-weight: 700;
+    color: #f40;
+    padding-right: 10px;
+}
+.order-item .seperator {
+    background-color: #fff;
+    width: 100%;
+    height: 1px;
+    float: left;
+}
+.order-orderExt {
+    background-color: #f2f7ff;
+    border-bottom: 1px solid #fff;
+		display: block;
+}
+.order-extUser {
+    display: inline-block;
+    width:40%;
+    vertical-align: top;
+}
+
+.order-memo {
+    position: relative;
+    padding: 10px;
+    border-top: 1px solid #fff;
+}
+.order-memo .memo-name {
+    vertical-align: top;
+    display: inline-block;
+		font-size: 14px;
+}
+.order-memo .memo-detail {
+    display: inline-block;
+}
+.order-memo .memo-detail .memo-input {
+    vertical-align: top;
+    width: 270px;
+    resize: none;
+    height: 18px;
+    line-height: 18px;
+    text-indent: 4px;
+    border: 1px solid #ccc;
+    outline: 0;
+    overflow: auto;
+		font-size:100%;
+		font: 12px/1.5 tahoma,arial,"\5b8b\4f53";
+}
+.order-extInfo {
+    width:58%;
+    margin-left: -1px;
+    border-left: 1px solid #fff;
+		display: inline-block;
+    vertical-align: top;
+}
+.order-deliveryMethod {
+    border-top: 1px solid #fff;
+    padding: 10px 0;
+		display: block;
+}
+.order-deliveryMethod .delivery-title {
+    float: left;
+    vertical-align: top;
+    text-align: right;
+    width:40%;
+}
+.order-deliveryMethod .delivery-select {
+    float: left;
+    width:60%;
+}
+.order-deliveryMethod .delivery-select .select-item .select-info {
+    margin-left:15px;
+    width:60%;
+    display: block;
+}
+.order-deliveryMethod .delivery-select .select-item>div {
+    float: left;
+}
+.order-deliveryMethod .delivery-select .select-item .select-info label {
+    margin-right: 4px;
+}
+.order-deliveryMethod .delivery-select .select-item .select-price {
+    width:35%;
+    text-align: right;
+    color: #f40;
+    font: 700 12px tahoma;
+}
+.orderPay {
+    text-align: right;
+    color: #333;
+		    background-color: #f2f7ff;
+    padding: 3px 10px 3px 0;
+    height: 45px;
+    line-height: 45px;
+}
+.orderPay .price {
+    font-family: verdana,arial;
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: bolder;
+    vertical-align: middle;
+		color: #f40;
+}
+.order-payInfo {
+    text-align: right;
+    margin-top: 15px;
+}
+.order-payInfo .payInfo-wrapper {
+    display: inline-block;
+    border: 1px solid #f40;
+}
+.order-payInfo .payInfo-wrapper .payInfo-shadow {
+    border: 3px solid #fff0e8;
+    min-width: 230px;
+    padding: 10px 10px 10px 20px;
+}
+.order-realPay .realPay-title {
+    font-weight: 700;
+    color: #333;
+}
+.order-realPay .order-price {
+    font-size: 26px;
+    margin-right: 4px;
+    color: #999;
+		font-family: verdana,arial;
+}
+.order-realPay .realPay-price {
+    color: #f40;
+    font: 700 26px tahoma;
+}
+.order-confirmAddr {
+    line-height: 1.6;
+    margin-top: 10px;
+}
+.order-confirmAddr .confirmAddr-title {
+    font-weight: 700;
+    color: #333;
+}
+ .order-submitOrder {
+    text-align: right;
+    margin-top: -1px;
+}
+ .order-submitOrder .wrapper {
+    display: inline-block;
+    padding: 0 0 5px 5px;
+}
+.order-submitOrder .go-btn {
+    display: inline-block;
+    width: 182px;
+    height: 39px;
+    position: relative;
+    vertical-align: middle;
+    line-height: 39px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    background: #f40;
+    color: #fff;
+}
+		</style>
+	</head>
+	<body>
+		<div class="cover">
+			<div class="site-nav">
+				<div class="site-nav-bd">
+					<ul class="site-nav-bd-l">
+						<li>
+							<div class="site-nav-menu-hd">
+								<span class="site-nav-region">中国大陆</span>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-user"> <a></a>
+								</div>
+							</div>
+						</li>
+						<li>
+						</li>
+					</ul>
+					<ul class="site-nav-bd-r">
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>首页</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>我的足迹</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a id="mc-menu-hd">
+									<span>购物车</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>收藏夹</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>个人中心</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div style="width: 990px;margin: auto;">
+			<div class="order-stepbar">
+				<!--<h1 class="buy-logo"><a href="//www.taobao.com" target="_top" title="淘宝网"><i></i>
+						<span>淘宝网</span></a></h1>-->
+				<ol class="tb-stepbar">
+					<li class="stepbar-4 stepbar-first stepbar-current">1. 确认订单信息</li>
+					<!--<li class="stepbar-4">2. 付款到支付宝</li>
+					<li class="stepbar-4">3. 确认收货</li>
+					<li class="stepbar-4 stepbar-last">4. 双方互评</li>-->
+				</ol>
+			</div>
+			<div class="order-address">
+				<div class="order-address-wrap">
+					<h3><span>确认收货地址</span><span class="manage-address"><a href="//member1.taobao.com/member/fresh/deliver_address.htm"
+							 target="_blank" title="管理我的收货地址">管理收货地址</a></span></h3>
+					<ul class="address-list">
+						<li class="address-wrap selected" style="font-weight: 700;">
+							<div class="addressBox">
+								<div><span class="marker-tip">寄送至</span></div><label class="addressInfo">
+									<input type="radio" name="address">
+									<span class="user-address"><span>浙江省
+											杭州市 江干区 下沙街道 </span><span>浙江水利水电学院/杭州下沙高教园学林街583号</span><span>（</span><span>岳秋林</span><span> 收）</span><em>18069863726</em></span><span
+									 class="tips"><em class="default">默认地址</em></span>
+									<a class="modify" href="javascript:void(0);">修改本地址</a></label>
+							</div>
+						</li>
+						<li class="address-wrap">
+							<div class="addressBox"><label class="addressInfo"><input type="radio" name="address">
+									<span class="user-address"><span>江苏省
+											南京市 玄武区 锁金村街道 </span><span>南京市玄武区锁金村街道龙蟠路159号南京林业大学</span><span>（</span>
+										<span>岳玉娇</span><span> 收）</span><em>18751957115</em></span><span class="tips">
+										<a class="set-default" href="javascript:void(0);">设置为默认收货地址</a></span></label></div>
+						</li>
+						<li class="address-wrap">
+							<div class="addressBox"><label class="addressInfo"><input type="radio" name="address"><span class="user-address">
+										<span>河南省
+											郑州市 新郑市 城关乡 </span><span>官刘庄东侧社区(居易新城社区:8号楼，1层西户)</span><span>（</span>
+										<span>岳秋林</span><span> 收）</span><em>18703622974</em></span><span class="tips">
+										<a class="set-default" href="javascript:void(0);">设置为默认收货地址</a></span></label></div>
+						</li>
+					</ul>
+					<div class="btn-bar"><a class="newAddrBtn">使用新地址</a></div>
+				</div>
+			</div>
+			<div class="order-orderDesc">
+				<h2 class="buy-th-title">确认订单信息</h2>
+				<div class="buy-th">
+					<div class="buy-td" style="width:38%;">店铺宝贝</div>
+					<div class="buy-td" style="width:15%;">商品属性</div>
+					<div class="buy-td" style="width: 15%;">单价</div>
+					<div class="buy-td" style="width: 15%;">数量</div>
+					<div class="buy-td" style="width: 15%;">小计</div>
+				</div>
+			</div>
+			<div class="order-order">
+				<div class="order-orderInfo">
+					<img src="//img.alicdn.com/tps/i2/TB1wopUHVXXXXXyXpXXAAT2HVXX-63-63.png" class="shopIcon"><span class="shop-name">店铺:&nbsp;</span><a
+					 target="_blank">酷美包包</a><span class="shop-seller">
+						<span>卖家:&nbsp;</span><a target="_blank">单车恋人_3</a></span></div>
+				<div class="order-item order-item-column-4">
+					<div class="order-itemInfo">
+						<div class="info-detail info-cell">
+							<div class="info-cell"><a class="info-img" href="//item.taobao.com/item.htm?id=522057938823" target="_blank"><img
+									 class="info-img" src="//img.alicdn.com/imgextra/i1/51435673/TB2fal_fpXXXXaYXXXXXXXXXXXX_!!51435673.jpg_100x100q90.jpg"></a></div>
+							<div class="info-cell info-msg"><a href="//item.taobao.com/item.htm?id=522057938823" class="info-title" target="_blank">
+									男士休闲旅行软皮双肩包韩版街头潮学生书包牛皮运动男包时尚背包</a>
+							</div>
+						</div>
+						<div class="info-sku info-cell">
+							<p><span class="hd"><span>颜色分类</span><span>：</span></span><span class="bd">黑色</span></p>
+						</div>
+						<div class="info-price info-cell">708.00</div>
+					</div>
+					<div class="order-quantity" id="quantity_b9dcce618c274f584161f8406c54dcc3">
+						<div class="quantity-inner"><span class="operate left grey">-</span><input class="amount" value="1" pattern=""><span
+							 class="operate right">+</span></div><span></span><span></span>
+					</div>
+					<div class="order-itemPay"><span class="simple-price">188.00</span></div>
+					<div class="order-orderExt">
+						<div class="order-extUser">
+							<div class="order-memo"><label class="memo-name">给卖家留言：</label>
+								<div class="memo-detail"><textarea class="text-area-input memo-input" placeholder="选填:填写内容已和卖家协商确认"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="order-extInfo">
+							<div class="order-deliveryMethod">
+								<div class="delivery-title">运送方式:</div>
+								<div class="delivery-select">
+									<div class="select-item">
+										<div class="select-info">
+											<div class="delivery-box">
+												<label>普通配送</label><span>快递
+													免邮</span>
+											</div>
+										</div>
+										<div class="select-price">0.00</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="orderPay"><span>店铺合计</span><span>(含运费)</span><span class="price g_price"><span>￥</span><em class="style-middle-bold-red J_ShopTotal">188.00</em></span></div>
+				</div>
+				<div class="order-payInfo" id="payInfo_1" data-reactid=".0.$confirmOrder_1.$payInfo_1">
+					<div class="payInfo-wrapper" data-reactid=".0.$confirmOrder_1.$payInfo_1.0">
+						<div class="payInfo-shadow" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0">
+							<div class="order-realPay" id="realPay_1" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1">
+								<div data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2"><span class="realPay-title" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2.0">实付款：</span><span
+									 class="order-price" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2.1">￥</span><span class="realPay-price"
+									 data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2.2">188.00</span></div>
+							</div>
+							<div class="order-confirmAddr" id="confirmAddr_1" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1">
+								<div class="confirmAddr-addr" title="江干区下沙街道 浙江水利水电学院/杭州下沙高教园学林街583号" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr"><span
+									 class="confirmAddr-title" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.0">寄送至：</span><span
+									 class="confirmAddr-addr-bd" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1"><span
+										 class="prov" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.0">浙江省</span><span
+										 class="city" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.1">杭州市</span><span
+										 class="dist" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.3">江干区</span><span
+										 class="town" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.4">下沙街道</span><span
+										 class="street" data-street="浙江水利水电学院/杭州下沙高教园学林街583号" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.5">浙江水利水电学院/杭州下沙高教园学林街583号</span></span></div>
+								<div class="confirmAddr-addr-user" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user"><span
+									 class="confirmAddr-title" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.0">收货人：</span><span
+									 class="confirmAddr-addr-bd" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.1"><span
+										 data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.1.0">岳秋林</span><span data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.1.1">18069863726</span></span></div>
+							</div>
+							<div data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmEticket_1"></div>
+							<div class="order-confirmAddr" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.1"></div>
+						</div>
+					</div>
+				</div>
+				<div class="order-submitOrder" id="submitOrder_1" data-reactid=".0.$confirmOrder_1.$submitOrder_1">
+					<div class="wrapper" data-reactid=".0.$confirmOrder_1.$submitOrder_1.0"><a role="button" title="提交订单" class="go-btn"
+						 data-reactid=".0.$confirmOrder_1.$submitOrder_1.0.3">提交订单</a></div>
+				</div>
+			</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+	</body>
+</html>

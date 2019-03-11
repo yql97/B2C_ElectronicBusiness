@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			.main{
+				width: 100%;
+			}
+			.main-wrap{
+				display: block;
+			}
+			#main-nav {
+    background-color: #f40;
+    border-color: #f40;
+}
+#main-nav .main-nav-con {
+    width: 1190px;
+    margin: 0 auto;
+    height: 67px;
+    position: relative;
+    min-height: 52px;
+}
+#main-nav #taobao-logo {
+    float: left;
+    margin-right: 67px;
+    margin-top: 22px;
+}
+#main-nav .main-nav-menu {
+    margin-top: 20px;
+		    float: right;
+    height: 32px;
+}
+#main-nav .same-banner-form_input {
+    border: 0;
+    box-shadow: 1px 1px 4px #ddd inset;
+    padding-left: 5px;
+    height: 27px;
+    box-sizing: border-box;
+    width: 241px;
+    outline: 0;
+    float: left;
+}
+ #main-nav .same-banner-form_coll {
+    border: 0;
+    border-left: 1px solid #dedede;
+    width: 70px;
+    height: 27px;
+    background-color: #f5f5f5;
+    color: #666;
+    outline: 0;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0;
+}
+.module-wrap {
+    font-family: "Microsoft YaHei",SimSun,'\5b8b\4f53',sans-serif;
+    background-color: #f7f7f7;
+    -webkit-font-smoothing: antialiased;
+}
+.module-wrap .bath-wrap {
+    background-color: #fff;
+    width: 100%;
+    border-bottom: 1px solid #DFDFDF;
+    z-index: 10000;
+}
+.module-wrap .bath-wrap .bath-del {
+    width: 1190px;
+    margin: 0 auto;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    color: #3c3c3c;
+    position: relative;
+}
+.module-wrap .bath-wrap .bath-del .hover-wrap {
+       display: block;
+    float: right;
+    width: 83px;
+    height: 50px;
+    line-height: 50px;
+    padding-left:17px;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+}
+.module-wrap .bath-wrap .bath-del .hover-wrap:hover{
+	   color: #fff;
+    background-color: #999;
+}
+.module-wrap .reds-list {
+    width: 1056px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 19px;
+}
+.module-wrap .item-list {
+    width:100%;
+    overflow: hidden;
+}
+.module-wrap .item-box {
+    width: 195px;
+    height: 335px;
+    float: left;
+    margin: 0 0 10px 16px;
+}
+.module-wrap .goods-date {
+	  width: 100%;
+    position: relative;
+    height: 45px;
+    line-height: 45px;
+    color: #666;
+		margin-left: 15px;
+}
+.module-wrap .item {
+    width: 195px;
+    height: 348px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.module-wrap .goods-date .date {
+    position: relative;
+    top: 3px;
+    right: 16px;
+    padding-left: 16px;
+    z-index: 2;
+    zoom: 1;
+    padding-right: 16px;
+    line-height: 17px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+.module-wrap .goods-date s.line {
+    position: absolute;
+    top: 23px;
+    width:100%;
+    left: -16px;
+    height: 1px;
+    line-height: 1px;
+    background: #ccc;
+}
+.module-wrap .goods-date .date .month-lite {
+    font-size: 30px;
+    font-weight: 700;
+}
+.module-wrap .goods-date .date .day-lite {
+    font-size: 30px;
+    font-weight: 700;
+}
+.module-wrap .goods-date .date .date-desc {
+    font-size: 16px;
+    font-weight: 700;
+}
+.module-wrap .goods-date .date .count {
+    color: #333;
+    vertical-align: 0;
+}
+.module-wrap .img-box {
+    position: relative;
+    width: 195px;
+    height: 195px;
+    display: block;
+    overflow: hidden;
+    font-size: 0;
+    text-align: center;
+    background-color: #fff;
+}
+.module-wrap .item {
+    width: 195px;
+    height: 348px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.module-wrap .img-box img {
+    width: 195px;
+    height: 195px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.module-wrap .item-box .icon-content {
+    display: none;
+    height: 44px;
+    width: 44px;
+    background: rgba(0,0,0,.6);
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    z-index: 2;
+    cursor: pointer;
+}
+.module-wrap .item-info {
+    padding: 10px;
+    background-color: #fff;
+}
+.module-wrap .item-info .price-box .price-new {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F40;
+}
+ .module-wrap .item-info .price-box .price-old {
+    color: #b0b0b0;
+    font-weight: 400;
+    text-decoration: line-through;
+    margin-left: 5px;
+}
+.module-wrap .item-info .title {
+    font-size: 13px;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 2px;
+    color: #999;
+}
+		</style>
+	</head>
+	<body>
+		<div class="cover">
+			<div class="site-nav">
+				<div class="site-nav-bd">
+					<ul class="site-nav-bd-l">
+						<li>
+							<div class="site-nav-menu-hd">
+								<span class="site-nav-region">中国大陆</span>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-user"> <a></a>
+								</div>
+							</div>
+						</li>
+						<li>
+						</li>
+					</ul>
+					<ul class="site-nav-bd-r">
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>首页</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>我的足迹</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a id="mc-menu-hd">
+									<span>购物车</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>收藏夹</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>个人中心</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="main-wrap">
+				<div id="main-nav">
+					<div class="main-nav-con">
+						<h1 id="taobao-logo">浏览历史
+						</h1>
+						<div class="main-nav-menu">
+							<input class="J_FormInput same-banner-form_input" type="text" placeholder="请输入要搜索的词">
+							<button class="J_FormButton same-banner-form_coll" type="submit">搜 索</button>
+						</div>
+					</div>
+				</div>
+				<div class="module-wrap">
+					<div class="fix-area">
+						<div class="bath-wrap">
+							<div class="bath-del">
+								<div class="hover-wrap">批量删除
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="reds-list">
+						<div class="line-mask"></div>
+						<div class="item-list J_redsList">
+                <div class="goods-date">
+									<span class="date J_date">
+										<i class="month-lite">02</i>.
+										<i class="day-lite">11<del class="del J_del" data-date="2019-02-11" style="display: none;">删除当天</del> </i>
+										<i class="date-desc">前天</i>
+										<i class="count">4</i>件宝贝
+									</span>
+									<s class="line"></s>
+								</div>
+							<div class="item-box J_goods" data-date="2019-02-13" data-count="3" data-uniqueid="1549987200000_567375779930">
+								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=567375779930&amp;last_time=1550044768"
+									 target="_blank">
+										<img alt="" src="//img.alicdn.com/bao/uploaded/i4/62003509/O1CN0118lnMx1bnAHvuHxJi_!!62003509.jpg_200x200q90.jpg_.webp">
+									</a><a class="icon-content J_icon" data-uniqueid="1549987200000_567375779930" data-date="2019-02-13" style="display: none;">
+										<span class="iconfont icon-lajitongshanchu"></span>
+									</a>
+									<div class="del-content J_area" style="display: none;">
+
+									</div>
+								</div>
+								<div class="item-info">
+									<div class="price-box">
+										<span class="price-new"><i>¥</i>19.9</span>
+										<span class="price-old">¥19.89</span>
+									</div>
+									<div class="title">
+										班服定制纯棉短袖T恤装diy工作服订做同学聚会衣服文化衫印字logo
+									</div>
+								</div>
+							</div>
+							<div class="item-box J_goods" data-date="2019-02-12" data-count="2" data-uniqueid="1549900800000_565094755199">
+								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=565094755199&amp;last_time=1549961596"
+									 target="_blank">
+										<img alt="" src="//img.alicdn.com/bao/uploaded/i3/613968296/O1CN012B9cEJzkLvRAUl4_!!0-item_pic.jpg_200x200q90.jpg_.webp">
+
+									</a><a class="icon-content J_icon" data-uniqueid="1549900800000_565094755199" data-date="2019-02-12" style="display: none;">
+										<span class="iconfont icon-lajitongshanchu"></span>
+									</a>
+									<div class="del-content J_area" style="display: none;">
+
+									</div>
+								</div>
+								<div class="item-info">
+									<div class="price-box">
+										<span class="price-new"><i>¥</i>299</span>
+										<span class="price-old">¥499.0</span>
+									</div>
+									<div class="title">
+										李宁运动套装男士新款训练系列长袖茄克长裤防泼水运动服
+									</div>
+								</div>
+							</div>
+							<div class="item-box J_goods" data-date="2019-02-13" data-count="3" data-uniqueid="1549987200000_567074881943">
+								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=567074881943&amp;last_time=1550044741"
+									 target="_blank">
+										<img alt="" src="//img.alicdn.com/bao/uploaded/i4/2361868183/O1CN016XWEDq2AJrUMvnfOA_!!0-item_pic.jpg_200x200q90.jpg_.webp">
+									</a><a class="icon-content J_icon" data-uniqueid="1549987200000_567074881943" data-date="2019-02-13" style="display: none;">
+										<span class="iconfont icon-lajitongshanchu"></span>
+									</a>
+									<div class="del-content J_area" style="display: none;">
+									</div>
+								</div>
+								<div class="item-info">
+									<div class="price-box">
+										<span class="price-new"><i>¥</i>26</span>
+										<span class="price-old">¥51.0</span>
+									</div>
+									<div class="title">
+										纯棉班服广告文化衫订做工作衣服同学聚会T恤定制diy印字LOGO短袖
+									</div>
+								</div>
+							</div>
+							<div class="item-box J_goods" data-date="2019-02-13" data-count="3" data-uniqueid="1549987200000_43590451756">
+								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=43590451756&amp;last_time=1550043719"
+									 target="_blank">
+										<img alt="" src="//img.alicdn.com/bao/uploaded/i2/729513733/O1CN01Ib0Z5U1dRkzLiDftU_!!0-item_pic.jpg_200x200q90.jpg_.webp">
+									</a><a class="icon-content J_icon" data-uniqueid="1549987200000_43590451756" data-date="2019-02-13" style="display: none;">
+										<span class="iconfont icon-lajitongshanchu"></span>
+									</a>
+									<div class="del-content J_area" style="display: none;">
+									</div>
+								</div>
+								<div class="item-info">
+									<div class="price-box">
+										<span class="price-new"><i>¥</i>148</span>
+										<span class="price-old">¥158.0</span>
+									</div>
+									<div class="title">
+										全聚德烤鸭北京烤鸭中华老字号北京特产百年经典烤鸭礼盒
+									</div>
+								</div>
+							</div>
+							<div class="item-box J_goods" data-date="2019-02-12" data-count="2" data-uniqueid="1549900800000_565094755199">
+								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=565094755199&amp;last_time=1549961596"
+									 target="_blank">
+										<img alt="" src="//img.alicdn.com/bao/uploaded/i3/613968296/O1CN012B9cEJzkLvRAUl4_!!0-item_pic.jpg_200x200q90.jpg_.webp">
+									</a><a class="icon-content J_icon" data-uniqueid="1549900800000_565094755199" data-date="2019-02-12" style="display: none;">
+										<span class="iconfont icon-lajitongshanchu"></span>
+									</a>
+									<div class="del-content J_area" style="display: none;">
+									</div>
+								</div>
+								<div class="item-info">
+									<div class="price-box">
+										<span class="price-new"><i>¥</i>299</span>
+										<span class="price-old">¥499.0</span>
+									</div>
+									<div class="title">
+										李宁运动套装男士新款训练系列长袖茄克长裤防泼水运动服
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="Footer" style="min-height: 150px">
+			<div class="footer">
+				<div class="footer-hd">
+					<p>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">阿里云计算</a>
+						<b>|</b>
+					</p>
+				</div>
+				<div class="footer-bd">
+					<p>
+						<a href="">关于本站</a>
+						<a href="">合作伙伴</a>
+						<a href="">营销中心</a>
+						<a href="">廉正举报</a>
+						<a href="">联系客服</a>
+						<a href="">开放平台</a>
+						<a href="">诚征英才</a>
+						<a href="">联系我们</a>
+						<a href="">网站地图</a>
+						<a href="">法律声明</a>
+						<a href="">隐私权政策</a>
+					</p>
+					<p style="clear: left;">
+						<em>© 2019 Maimai.com 版权所有</em>
+						<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+						<b>|</b>
+						<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+						<b>|</b>
+						<span>信息网络传播视听节目许可证：1109364号</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

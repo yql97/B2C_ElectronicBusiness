@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心</title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			ul {
+				list-style: none;
+			}
+			ul li {
+				float: left;
+			}
+			dl {
+				display: block;
+				-webkit-margin-before: 1em;
+				-webkit-margin-after: 1em;
+				-webkit-margin-start: 0px;
+				-webkit-margin-end: 0px;
+			}
+			a {
+				text-indent: none;
+				text-decoration: none;
+				cursor: pointer;
+			}
+			.mt-header {
+				width: 100%;
+				height: 36px;
+				background: #ff4401;
+				padding: 12px 0;
+				margin: 0;
+				z-index: 5;
+				border-bottom: 1px #e7e7e7 solid;
+			}
+			.mt-nav {
+				float: right;
+				width: 80%;
+				height: 100%;
+				margin: 0 10%;
+				border: 1px solid #0033CC;
+			}
+			.mt-nav ul {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			.mt-nav ul li {
+				margin-right: 100px;
+				float: left;
+				cursor: pointer;
+				z-index: 1;
+				height: 100%;
+				border: 1px solid #000000;
+			}
+			.mt-nav ul li a {
+				font-size: 18px;
+				line-height: 18px;
+				text-decoration: none;
+				display: block;
+				text-align: center;
+				margin: 6px 10px;
+				color: white;
+			}
+
+			.mt-nav ul li a:hover {
+				color: gold;
+			}
+
+			.container {
+				width: 80%;
+				margin: 0 10%;
+				height: auto;
+				min-height: 900px;
+			}
+
+			.col-sub {
+				width: 10%;
+				float: left;
+				/*background: #0033CC;*/
+			}
+
+			.grid-c2 {
+				float: right;
+				width: 90%;
+				margin: 0;
+				padding: 0;
+				height: auto;
+			}
+
+			.col-main {
+				border: 1px solid #c4d5e0;
+				margin-top: 20px;
+			}
+
+			.main-wrap {
+				background: #fff;
+				padding: 10px;
+				min-height: 800px;
+			}
+
+			.mt-menu-tree {
+				font-size: 12px;
+				padding-left: 3px;
+				overflow: inherit;
+				margin-top: -5px;
+			}
+
+			.mt-menu-tree dl {
+				margin: 0;
+				padding: 0;
+				/*border: 1px solid #000000;*/
+			}
+
+			.mt-menu-tree dl dt {
+				width: 100%;
+				font-size: 15px;
+				line-height: 28px;
+				margin: 5px 10px 1px 0;
+				color: #f40;
+				margin-bottom: 5px;
+			}
+      .mt-menu-tree dl dd{
+				width: 100%;
+				margin-left: 0px;
+				height: 28px;
+			}
+			.mt-menu-tree dl dd a {
+				display: block;
+				overflow: hidden;
+				text-decoration: none;
+				line-height: 28px;
+				color: #000;
+				height: 28px;
+				cursor: pointer;
+				
+			}
+			.mt-menu-tree dl dd a:hover {
+			color: #f40;
+		/*	text-decoration: underline;*/
+			}
+
+			.detail-info {
+				padding: 0 20px;
+			}
+
+			.info-title {
+				padding: 12px 0 0 20px;
+				line-height: 30px;
+				font-weight: 700;
+				border-top: 1px solid #D5E5F4;
+				margin-top: -1px;
+				zoom: 1;
+				position: relative;
+			}
+
+			.detail-info dd {
+				padding: 0 20px 14px;
+			}
+
+			.detail-info dd .account-info {
+				width: 100%;
+				padding-top: 5px;
+				padding-left: 16px;
+				line-height: 22px;
+				height: 80px;
+			}
+
+			.account-info li {
+				width: 100%;
+			}
+
+			.account-info li span {
+				color: #000;
+				line-height: 22px;
+				font-size: 12px;
+			}
+
+			.a_style {
+				color: #36c;
+			}
+
+			.a_style:hover {
+				color: #f40;
+			}
+
+			.zhx-anquan-page .zhx-anquan {
+				float: left;
+				width: 345px;
+				height: 28px;
+				font-size: 12px;
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fwOf9DBCP.png) center right no-repeat;
+					background-size: 252px 12px;
+				line-height: 28px;
+			}
+
+			.zhx-anquan-page .higher {
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fza4eGci5.png) center right no-repeat;
+					background-size: 252px 12px;
+			}
+
+			.zhx-anquan-page .middle {
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzcA5LFXx.png) center right no-repeat;
+					background-size: 252px 12px;
+			}
+
+			.zhx-anquan-page .low {
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzdCpLFsr.png) center right no-repeat;
+					background-size: 252px 12px;
+			}
+
+			.zhx-anquan-page .zhx-anquan-level-high {
+				color: #94c324;
+				margin-left: 6px;
+				margin-right: 15px;
+			}
+
+			.zhx-anquan-page .zhx-anquan-level-middle {
+				color: #fe9b00;
+				margin-left: 6px;
+				margin-right: 15px;
+			}
+
+			.zhx-anquan-page .zhx-anquan-level-low {
+				color: #ff3600;
+				margin-left: 6px;
+				margin-right: 15px;
+			}
+
+			.zhx-anquan-page .ui-poptip {
+				color: #DB7C22;
+				z-index: 101;
+				font-size: 12px;
+				line-height: 1.5;
+				zoom: 1;
+			}
+
+			.zhx-anquan-page .ui-poptip-container {
+				position: relative;
+				background-color: #ffffcc;
+				border: 1px solid #ffc662;
+				border-radius: 2px;
+				padding: 5px 15px;
+				zoom: 1;
+				_display: inline;
+			}
+
+			.zhx-anquan-page .ui-poptip-arrow-10 {
+				left: -6px;
+				top: 8px;
+			}
+
+			.zhx-anquan-page .ui-poptip-arrow {
+				position: absolute;
+				z-index: 10;
+			}
+
+
+			.zhx-anquan-page .ui-poptip-arrow em, .ui-poptip-arrow span {
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-color: transparent;
+				_border-color: tomato;
+				_filter: chroma(color=tomato);
+				border-style: solid;
+				overflow: hidden;
+				top: 0;
+				left: 0;
+			}
+
+			.zhx-anquan-page .ui-poptip-arrow-10 em {
+				top: 0;
+				left: -1px;
+				border-right-color: #ffbb76;
+				border-width: 6px 6px 6px 0;
+			}
+
+			.zhx-anquan-page .ui-poptip-arrow-10 span {
+				border-right-color: #ffffcc;
+				border-width: 6px 6px 6px 0;
+			}
+
+			.zhx-anquan-page .ui-poptip:after, .ui-poptip-shadow:after, .ui-poptip-container:after {
+				visibility: hidden;
+				display: block;
+				font-size: 0;
+				content: " ";
+				clear: both;
+				height: 0;
+			}
+
+			.zhx-anquan-page .ui-poptip-content {
+				display: inline;
+			}
+
+			.zhx-anquan-page .zhx-anquan-poptip {
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzWGP1BTZ.png) center left no-repeat;
+					_background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fwj9Yia7R.png) center left no-repeat;
+					background-size: 16px 18px;
+				display: inline-block;
+				padding-left: 33px;
+				margin-left: 12px;
+				*zoom: 1;
+				*display: inline;
+			}
+
+			.zhx-anquan-page .higher-logo {
+
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzv7o8MS5.png) center left no-repeat;
+					_background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzsuNZBq1.png) center left no-repeat;
+					background-size: 16px 18px;
+			}
+
+			.zhx-anquan-page .middle-logo {
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzwRZScO5.png) center left no-repeat;
+					_background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzsLivIp3.png) center left no-repeat;
+					background-size: 16px 18px;
+			}
+
+			.zhx-anquan-page .low-logo {
+				background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3g04SwSVYz.png) center left no-repeat;
+					_background: url(https: //i.alipayobjects.com/i/ecmng/png/201410/3fzriBr4jd.png) center left no-repeat;
+					background-size: 16px 18px;
+			}
+
+			.zhx-anquan-page .zhx-text {
+				color: #1379de;
+				text-decoration: none;
+				font-size: 12px;
+				line-height: 1.5;
+			}
+
+			.zhx-anquan-page .zhx-text:hover {
+				cursor: pointer;
+				color: #be831b;
+				text-decoration: underline;
+			}
+
+			.zhx-anquan-page .ui-poptip-content {
+				color: #636363;
+			}
+
+			.zhx-anquan-page .zhx-bill {
+				padding: 5px 0px;
+			}
+
+			.zhx-anquan-page .zhx-anquan-area {
+				margin-left: 50px;
+			}
+
+			.safe-info .item {
+				padding: 12px 0 12px 16px;
+				clear: both;
+				vertical-align: middle;
+				border-top: 1px dashed #e1e1e1;
+			}
+
+			.safe-info .state {
+				width: 104px;
+			}
+
+			.safe-info div {
+				float: left;
+				line-height: 22px;
+			}
+
+			.safe-info .title {
+				width: 110px;
+				text-align: left;
+			}
+
+			.safe-info .state {
+				display: block;
+				height: 20px;
+			}
+
+			.safe-info {
+				color: #000;
+				line-height: 22px;
+				font-size: 12px;
+			}
+
+			.safe-info .supply {
+				text-align: left;
+				width: 354px;
+				color: #666;
+			}
+
+			.safe-info em {
+				color: #000;
+				font-style: normal;
+				font-weight: 400;
+			}
+
+			.safe-info .operate {
+				width: 80px;
+				font-weight: 700;
+				text-align: center;
+			}
+		.upload_div {
+			  position: relative;
+				display: inline-block;
+				border: 1px solid #000000;
+				top:60px;
+    }
+
+    .upload_btn {
+        width: 100px;
+        height: 36px;
+        background: #2178fc;
+        color: #fff;
+        text-align: center;
+        line-height: 36px;
+    }
+
+    .file_input {
+        width: 200px;/*因为file-input在部分浏览器中会自带一个输入框，需要双击才可以点击上传,放大后将其定位到div外面就好啦*/
+        height: 36px;
+        position: absolute;
+        left: -100px;
+        top: 0;
+        z-index:1;
+        -moz-opacity: 0;
+        -ms-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0;  /*css属性——opcity不透明度，取值0-1*/
+        filter: alpha(opacity=0); /*兼容IE8及以下--filter属性是IE特有的，它还有很多其它滤镜效果，而filter: alpha(opacity=0); 兼容IE8及以下的IE浏览器(如果你的电脑IE是8以下的版本，使用某些效果是可能会有一个允许ActiveX的提示,注意点一下就ok啦)*/
+        cursor: pointer;
+				}
+				select {
+					border: none;
+					outline: none;
+					width: 100%;
+					height: 100%;
+					color: #666;
+					font-size:12px;
+    /*border: solid 1px #999;
+		border-radius: 5px;
+		outline: none;
+		padding-left: 60px;
+		width:100px;
+		height: 40px;
+		line-height: 40px;*/
+		/*padding-left:5px;*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+   background: url("/public/images/arrow.png") no-repeat scroll right center transparent;
+  /* padding-right: 14px;*/
+ }
+  select::-ms-expand { display: none; }
+	  .select-div{
+                border-radius: 5px;
+                /*box-shadow: 0 0 5px #ccc;*/
+								border: solid 1px #999;
+								position: relative;
+								border-radius: 5px;
+							/*	padding-left: 60px;*/
+								width:auto;
+								height: 25px;
+								line-height: 25px;
+            }	
+		 select option[selected]{
+            font-weight:bold
+        }
+       select option:nth-child(even) {
+            background-color:#A7DAEF;
+        }
+        select option{
+           /* color:#EA5400;*/
+					 color: #666;
+					 font-size:12px;
+						-moz-appearance:none; 
+            -webkit-appearance:none;
+						 appearance:none;
+        }				
+	.btn{
+    border-style: solid;
+    background-color: #5584ff;
+    border-color: transparent;
+		border-radius: 3px;
+    padding: 0 12px;
+    height: 28px;
+    line-height: 26px;
+    font-size: 12px;
+    border-width: 1px;
+		color: #fff;
+}		
+    .personal-info-form p{
+			margin:20px 0;
+			
+		}
+		.personal-info-form p label{
+			width: 80px;
+			text-align: right;
+			margin-right: 20px;
+		}
+	.table table{
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 100%;
+		background: #fff;
+	}
+	.table table th{
+		background: #ebecf0;
+		color: #333;
+		text-align: left;
+		font-weight: 400;
+		border: 1px solid #dcdee3;
+		text-align: left;
+		padding: 12px 16px;
+		font-size: 12px;
+		line-height: 16px;
+	}
+	.table table td{
+		padding: 0;
+    border: 1px solid #dcdee3;
+	}
+	.table table td div{
+		padding: 12px 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+		font-size: 12px;
+		line-height: 16px;
+	}
+	input{
+    border:1px solid #ccc;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    vertical-align: middle;
+    background-color: transparent;
+    color: #333;
+		height: 26px;
+    line-height: 26px;
+    padding: 0 8px;
+    font-size: 12px;
+		border-radius: 3px;
+	}
+	textarea{
+		resize: none;
+    outline: none;
+    word-wrap: break-word;
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+		width: 336px;
+    height: 48px;
+    border: 1px solid #c4c6cf;
+    border-radius: 3px;
+    vertical-align: top;
+    -webkit-user-select: text;
+    -webkit-user-drag: auto;
+    padding: 8px;
+    font-size: 12px;
+	}
+	.head {
+    font-size: 14px;
+    color: #014d7f;
+    background-color: #f3f8fe;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+.head .h-text {
+    padding-left: 10px;
+}
+.headTips .ht-type {
+    display: inline-block;
+    width: auto;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    margin-right: 5px;
+    color: #ff5000;
+		font-size: 12px;
+}
+.country-bar{
+	  margin-top: 20px;
+	  width: 50%;
+	  height: 31px;
+    background: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    font-size: 12px;
+		line-height: 30px;
+}
+.country-bar-info{
+	  color: #9b9b9b;
+    margin: 0 15px;
+    display: inline-block;
+}
+.address-div-text{
+	   display: block;
+	   width:75px;
+	   font-size: 12px;
+		 color: #666;
+		 line-height: 30px;
+		 float: left;
+		 margin-right: 10px;
+		 text-align: right;
+}
+.personal-div-input{
+	padding: 5px;
+	border: 1px solid #cecece;
+	width: 320px;
+}
+.personal-info-div{
+	 color: #666;
+}
+.m-userinfo {
+   /* border: 1px solid #e4eaee;*/
+    margin-bottom: 23px;
+    font-size: 12px;
+    color: #4b4b4b;
+    position: relative;
+    z-index: 3;
+}
+.s-bar {
+    font-family: tahoma,arial,'Hiragino Sans GB','Microsoft YaHei',\5b8b\4f53,sans-serif;
+    vertical-align: middle;
+    color: #546d7e;
+   /* padding:5px 0;*/
+    background: #f5f8fa;
+    border-bottom: 1px solid #e4eaee;
+    line-height: 23px;
+		font-size: 12px;
+		height:80px;
+		width: 100%;
+}
+ .s-baseinfo {
+    float: left;
+    width: 20%;
+		padding: 0;
+		margin: 10px auto;
+}
+.s-edit-mask {
+    line-height: 1;
+   /* padding-top:32px;*/
+    display: none;
+    width: 100%;
+    height: 34px;
+    position: absolute;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    opacity: .6;
+    filter: alpha(opacity=60);
+}
+.s-avatar {
+    float: left;
+    display: block;
+    width:60px;
+    height:60px;
+    margin-right: 13px;
+    margin-left: 12px;
+    position: relative;
+    border: 2px solid #FFF;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.s-avatar img{
+   border-radius: 50%;
+    width:60px;
+    height:60px;
+}
+.s-name {
+		width: 120px;
+    display: block;
+    color: #000;
+		margin-left: 100px;
+		margin-top:20px;
+		text-align: left;
+		font-size:14px;
+}
+.s-my-stuffs {
+    float: right;
+    width:80%;
+    /*margin-top: 9px;*/
+		/*border: 1px solid #000000;*/
+		margin:25px auto;
+		padding: 0;
+}
+.s-my-stuffs li{
+	 /*border: 1px solid #000000;*/
+	 margin-right: 50px;
+}
+.s-my-stuffs .i-trigger {
+    cursor: pointer;
+    position: relative;
+    /*display: block;*/
+    color: #546d7e;
+    text-align: center;
+		width: 150px;
+		font-size:14px;
+		padding-right:10px;
+}
+.s-my-stuffs  span {
+	 /* display: block;*/
+	  text-align: center;
+		padding-right:10px;
+}
+ .account_num {
+	line-height: 24px;
+	font-size: 22px;
+	font-weight: 700;
+	color: #333;
+}
+.s-my-counts ul {
+    height: 52px;
+    overflow: hidden;
+}
+.s-my-counts li {
+    width: 20%;
+    float: left;
+}
+.s-my-counts li a {
+	  width: 60px;
+    zoom: 1;
+    padding: 17px 0;
+    vertical-align: middle;
+    display: block;
+    color: #4b4b4b;
+    text-align:left;
+		font-size: 14px;
+		position: absolute;
+}
+
+.s-my-counts li a:hover{
+	color:#f40;
+}
+
+.mt {
+    padding: 0 20px;
+    height: 55px;
+    line-height: 55px;
+    border-bottom: 1px solid #f0f3ef;
+    overflow: visible;
+}
+.m-block{
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+.m-block ul {
+    /*padding:20px;*/
+    height: 60px;
+}
+.m-block ul li {
+	  width: 20%;
+	  float: left;
+    height: 60px;
+    line-height: 30px;
+    font-size: 14px;
+}
+.m-block ul li a:hover{
+	color:#f40;
+}
+.m-block ul li .text{
+	  width: 60px;
+		padding: 17px 0;
+}
+.num{
+	position: relative;
+	display: block;
+	text-align: center;
+	width:16px;
+	height:16px;
+	top:10px;
+	left:40px;
+	color: white;
+	background: red;
+	border-radius: 50%;
+}
+.number{
+	display: block;
+}
+.message {
+    color: #3C3C3C;
+    overflow: hidden;
+    background: #FFF;
+	/*	border: 1px solid #000000;*/
+}
+.message .sub-menu {
+		margin: 0;
+		padding: 0;
+}
+.message .sub-menu h3 {
+    font-size: 14px;
+    line-height: 30px;
+		color: #3C3C3C;
+		display: block;
+}
+.message .sub-menu ul{
+	margin: 0;
+	padding: 0;
+}
+.message .sub-menu ul li {
+    margin-bottom: 1px;
+    font-size: 13px;
+		height:30px;
+		width: 100%;
+}
+.list-a {
+    height: 28px;
+    line-height: 28px;
+    padding-left: 13px;
+    color: #3C3C3C;
+    text-decoration: none;
+    overflow: hidden;
+}
+.list-a:hover{
+	  color: #f40;
+ }
+ .main h2 a {
+    height: 27px;
+    line-height: 27px;
+    font-size: 27px;
+    font-family: 'microsoft yahei';
+    font-weight: 400;
+    color: #3C3C3C;
+    text-decoration: none;
+		width: 110px;
+		background-position: 0 0;
+}
+.msg_item {
+    position: relative;
+    border-bottom: 1px solid #E9E9E9;
+    padding-bottom: 10px;
+}
+.list h3 {
+    line-height: 24px;
+    padding-left: 8px;
+    font-size: 15px;
+    color: #3C3C3C;
+    margin: 25px 0;
+}
+.msg_item_app-intro {
+    font-weight: 400;
+}
+.main h2 .info_count {
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #999;
+    vertical-align: super;
+}
+.msg_item_main {
+    padding-left: 130px;
+    position: relative;
+    min-height: 120px;
+    line-height: 21px;
+    color: #666;
+}
+.msg_item_avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.msg_item_title a{
+    font-weight: 400;
+		font-size: 12px;
+		color: #666;
+		text-align: left;
+}
+.msg_item_info a{
+	line-height: 21px;
+	font-size: 12px;
+	color: #666;
+	text-align: left;
+}
+.msg_item_extra {
+    line-height: 38px;
+    color: #9A9A9A;
+		font-size: 12px;
+}
+.msg_item_extra a {
+    color: #FFAA8B;
+}
+.pages {
+    text-align: center;
+    margin-top: 20px;
+}
+.pages span {
+    display: inline-block;
+    height: 23px;
+    line-height: 22px;
+    padding: 0 9px;
+    border: 1px solid #CCC;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #3C3C3C;
+		font-size: 12px;
+}
+.pages a, .message .pages span {
+    display: inline-block;
+    height: 23px;
+    line-height: 22px;
+    padding: 0 9px;
+    border: 1px solid #CCC;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background: #F40;
+    color: #FFF!important;
+    border-color: #F40!important;
+		margin-right: 5px;
+		font-size: 12px;
+}
+		</style>
+	</head>
+	<body>
+		<div id="vuebody" style="width: auto;height: auto;">
+			<div class="cover">
+				<div class="site-nav">
+					<div class="site-nav-bd">
+						<ul class="site-nav-bd-l">
+							<li>
+								<div class="site-nav-menu-hd">
+									<span class="site-nav-region">中国大陆</span>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-user"> <a></a>
+									</div>
+								</div>
+							</li>
+							<li>
+							</li>
+						</ul>
+						<ul class="site-nav-bd-r">
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>首页</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>我的足迹</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a id="mc-menu-hd">
+										<span>购物车</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>收藏夹</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>个人中心</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="mt-header">
+				<div class="mt-nav">
+					<ul>
+						<li>
+							<div style="width: 200px; height: 100%;">
+								<a>logo</a></div>
+						</li>
+						<li>
+							<a v-on:click="change_top_status(0)">首页</a>
+						</li>
+						<li>
+							<a class="mt-nav-parent" v-on:click="change_top_status(1)">消息</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="container">
+				<div class="col-sub">
+					<div class="mt-menu" v-if="top_status==0">
+						<div class="mt-avatar">
+							<div class="mt-avatar-box" id="J_MtAvatarBox">
+								<a class="mt-user-avatar" href="https://i.taobao.com/u//front.htm?tracelog=snshomeside" target="_blank">
+									<img src="%E6%B7%98%E5%AE%9D%E7%BD%91_files/getAvatar.jpg"></a>
+							</div>
+						</div>
+						<div class="mt-menu-tree">
+							<dl>
+								<dt>全部功能</dt>
+								<dd><a v-on:click="change_left_status(0)">个人资料</a></dd>
+								<dd><a v-on:click="change_left_status(1)">账户安全</a></dd>
+								<dd><a>我的钱包</a> </dd>
+								<dd><a>我的购物车</a> </dd>
+								<dd><a>我的订单</a></dd>
+								<dd><a v-on:click="change_left_status(2)">收货地址</a></dd>
+								<dd><a>浏览历史</a></dd>
+								<dd><a>我的收藏</a></dd>
+								<dd><a>评价管理</a></dd>
+							</dl>
+						</div>
+					</div>
+					<div class="message" v-if="top_status==1">
+						<div class="sub-menu">
+							<h3>服务消息</h3>
+							<ul style="height: 25px;">
+								<li><a class="list-a" href=""> 淘宝物流</a></li>
+							</ul>
+							<h3>互动消息</h3>
+							<ul style="height:175px;">
+								<li><a class="list-a" href=""> 评论</a></li>
+								<li><a class="list-a" href=""> 私信</a></li>
+								<li><a class="list-a" href=""> 提到我</a></li>
+								<li><a class="list-a" href=""> 互动提醒</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="grid-c2">
+					<div class="col-main">
+						<div class="main-wrap">
+							<div class="main" v-if="top_status==1&&left_status==4">
+								<h2>
+									<a href="#">服务消息</a><span class="info_count">共<b class="count">1</b>条</span></h2>
+								<div class="J_List list">
+									<div class="J_Msg_Item msg_item msg_item_1100111">
+										<h3 class="msg_item_head"><span>淘宝物流：</span>
+											<span class="msg_item_app-intro">你购买的宝贝有新的动态</span>
+										</h3>
+										<div class="msg_item_main"> <a class="msg_item_avatar" href="" target="_blank">
+												<img width="120" height="120" src="" /> </a>
+											<h4 class="msg_item_title"> <a href="" target="_blank">订单号：26260567601****320</a> </h4>
+											<p class="msg_item_info"><a href="" target="_blank">卖家已经发货</a></p>
+										</div>
+										<div class="msg_item_extra"> <span class="msg_item_date">半个月前</span>
+											<span class="msg_item_origin">来自<a href="" target="_blank">淘宝物流</a></span>
+										</div>
+									</div>
+								</div>
+								<div class="pages">
+									<div class="page"><span class="page-preview">上一页</span><a href="javascript:;" class="page-num page-current">1</a><span
+										 class="page-next">下一页</span></div>
+								</div>
+							</div>
+							<div class="m-userinfo" v-if="left_status==3">
+								<div class="s-userbar s-bar">
+									<div class="s-baseinfo">
+										<a target="_blank" class="s-avatar">
+											<img src="//wwc.alicdn.com/avatar/getAvatar.do?userId=2602732043&amp;width=160&amp;height=160&amp;type=sns">
+										</a>
+										<div class="s-name">
+											<a data-spm="d4912005" target="_blank">辉煌的岳子</a>
+										</div>
+									</div>
+									<ul class="s-my-stuffs">
+										<li>
+											<a target="_blank" class="i-trigger">我的余额</a>
+											<span class="account_num">55125<label style="font-size: 12px;">￥</label></span>
+											<a>充值</a>
+										</li>
+										<li>
+											<a target="_blank" class="i-trigger">我的银行卡</a>
+											<span class="account_num">5<label style="font-size: 12px;">张</label></span>
+											<span><a>绑定银行卡</a><span>
+										</li>
+										<li>
+											<a target="_blank" style="margin-top: 10px;">我的收货地址</a>
+											<span class="account_num">5<label style="font-size: 12px;">个</label></span>
+											<span><a>添加收获地址</a><span>
+										</li>
+									</ul>
+								</div>
+								<div class="mt">
+									<h3>我的订单</h3>
+								</div>
+								<div class="s-my-counts">
+									<ul>
+										<li>
+											<a target="_blank"><span>待付款</span></a>
+											<label class="num">2</label>
+										</li>
+										<li>
+											<a target="_blank"><span>待发货</span></a>
+											<label class="num">2</label>
+										</li>
+										<li>
+											<a target="_blank"><span>待收货</span></a>
+											<label class="num">2</label>
+										</li>
+										<li>
+											<a target="_blank"><span>待评价</span></a>
+											<label class="num">2</label>
+										</li>
+										<li>
+											<a target="_blank"><span>退款</span></a>
+											<label></label>
+										</li>
+									</ul>
+								</div>
+								<div class="m-block">
+									<div class="mt">
+										<h3>我的收藏</h3>
+									</div>
+									<div class="mc">
+										<ul>
+											<li><a target="_blank">
+													<span class="text">商品收藏</span></a>
+												<label class="number">1</label>
+											</li>
+											<li><a target="_blank">
+													<span class="text">店铺收藏</span></a>
+												<label class="number">1</label></li>
+										</ul>
+									</div>
+								</div>
+								<div class="m-block">
+									<div class="mt">
+										<h3>我的评价</h3>
+									</div>
+									<div class="mc">
+										<ul>
+											<li><a target="_blank">
+													<span class="text">全部评价</span></a>
+												<label class="number">1</label>
+											</li>
+											<li><a target="_blank">
+													<span class="text">好评</span></a>
+												<label class="number">1</label>
+											</li>
+											<li><a target="_blank">
+													<span class="text">差评</span></a>
+												<label class="number">1</label></li>
+										</ul>
+									</div>
+								</div>
+								<div class="m-block">
+									<div class="mt">
+										<h3>我的浏览历史</h3>
+									</div>
+									<div class="mc">
+										<ul>
+											<li><a target="_blank">
+													<span class="text">商品浏览</span></a>
+												<label class="number">1</label>
+											</li>
+											<li><a target="_blank">
+													<span class="text">店铺浏览</span></a>
+												<label class="number">1</label></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="account-security" v-if="left_status==1">
+								账户安全
+								<dl class="detail-info">
+									<dt class="info-title">您的基础信息</dt>
+									<dd>
+										<ul class="account-info">
+											<li>
+												<span style="float: left;width: 75px;">会员名</span>
+												<span style="float: left;width: 150px;">辉煌的岳子</span>
+											</li>
+											<li>
+												<span style="float: left;width: 75px;">登&nbsp;录&nbsp;邮&nbsp;箱：</span>
+												<span style="float: left;width: 150px;">
+													您尚未设置登录邮箱</span>
+												<span><a class="a_style">
+														更改邮箱&nbsp;&nbsp;</a></span>
+											</li>
+											<li>
+												<span style="float: left;width: 75px;">绑&nbsp;定&nbsp;手&nbsp;机：</span>
+												<span style="float: left;width:150px;">
+													187****2974
+												</span>
+												<span>
+													<a style="text-decoration:none;" class="a_style">
+														修改手机&nbsp;&nbsp;</a>
+												</span>
+											</li>
+										</ul>
+									</dd>
+
+									<dt class="info-title">您的安全服务</dt><br>
+									<dd>
+										<div class="zhx-anquan-page">
+											<div class="zhx-anquan-area">
+												<div class="zhx-anquan  middle ">安全等级：
+													<span class="zhx-anquan-level-middle">中</span>
+												</div>
+												<div class="zhx-anquan-poptip  middle-logo ">
+													<div class="ui-poptip">
+														<div class=" zhx-bill">
+															<div class="ui-poptip-content">
+																完成
+																<a class="zhx-text" href="">密保设置</a>
+																，提升账户安全。
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</dd>
+									<dd>
+										<ul class="safe-info">
+											<li class="item identity">
+												<div class="state">
+													已完成
+												</div>
+												<div class="title"><em>身&nbsp;份&nbsp;认&nbsp;证</em></div>
+												<div class="supply">用于提升账号的安全性和信任级别。认证后的有卖家记录的账号不能修改认证信息。</div>
+												<div class="operate">
+													<a title="查看" href="">查看</a>
+												</div>
+											</li>
+											<li class="item password ">
+												<div class="state">
+													已设置
+												</div>
+												<div class="title"><em>登&nbsp;录&nbsp;密&nbsp;码</em></div>
+												<div class="supply">安全性高的密码可以使账号更安全。建议您定期更换密码，且设置一个包含数字和字母，并长度超过6位以上的密码。</div>
+												<div class="operate">
+													<a title="修改" href="">修改</a>
+												</div>
+											</li>
+											<li class="item question">
+												<div class="state">
+													<span class="alert">未设置</span>
+												</div>
+												<div class="title"><em>绑&nbsp;定&nbsp;邮&nbsp;箱</em></div>
+												<div class="supply">是您找回登录密码的方式之一。建议您设置一个容易记住，
+													且最不容易被他人获取的问题及答案，更有效保障您的密码安全。</div>
+												<div class="operate">
+													<a title="设置" href="">设置</a>
+												</div>
+											</li>
+											<li class="item phonebind ">
+												<div class="state">
+													已绑定
+												</div>
+												<div class="title"><em>绑&nbsp;定&nbsp;手&nbsp;机</em></div>
+												<div class="supply">绑定手机后，您即可享受淘宝丰富的手机服务，如手机找回密码等。</div>
+												<div class="operate">
+													<a title="修改" href="" style="text-decoration:none;">修改</a>
+												</div>
+											</li>
+											<li class="item phonebind ">
+												<div class="state">
+													未设置
+												</div>
+												<div class="title"><em>支&nbsp;付&nbsp;密&nbsp;码</em></div>
+												<div class="supply">设置支付密码，可以有效保证您的资产安全。</div>
+												<div class="operate">
+													<a title="修改" style="text-decoration:none;" href="">设置</a>
+												</div>
+											</li>
+										</ul>
+									</dd>
+								</dl>
+							</div>
+							<div class="personal-info-div" v-if="left_status==0">
+								<h2>个人资料</h2>
+								<div class="personal-info-content">
+									<div class="personal-info-help">
+										亲爱的<b>987456</b>，填写真实的资料，有助于好友找到你哦。
+									</div>
+									<div class="personal-info-form">
+										<p>
+											<div style="float:left;width:80px;margin-right: 20px;text-align: right;">当前头像：</div>
+											<span style="display: inline-block;width: 100px;height: 100px;border: 1px solid #000000;">
+												<img src=""></span>
+											<div class="upload_div">
+												<div class="upload_btn">点击上传</div>
+												<input type="file" class="file_input">
+											</div>
+										</p>
+										<p><label style="float: left;">昵称：</label>
+											<input type="text" maxlength="25" class="personal-div-input" />
+											<p style="line-height: 12px;font-size:12px;color:#999;padding-left: 6em;margin-bottom: 10px;margin-left: 20px;">
+												<span>*昵称填写须知：与淘宝业务或卖家品牌冲突的昵称，淘宝将有可能收回</span></p>
+										</p>
+										<p>
+											<label style="float: left;">真实姓名：</label>
+											<input type="text" maxlength="6" class="personal-div-input" />
+										</p>
+										<p>
+											<label style="float: left;">性别：</label>
+											<label><input type="radio" name="sex" id="" value="" checked="checked" style="margin-right: 3px;" />男</label>
+											<label><input type="radio" name="sex" id="" value="" />女</label>
+										</p>
+										<p><label style="float: left;margin-bottom:20px;">生日：</label>
+											<div class="select-div" style="float: left;margin-bottom:20px;"><select style="font-size: 13px;color: #666;width: 60px;">
+													<option>年</option>
+												</select></div>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="font-size: 13px;color: #666;width: 60px;">
+													<option>月</option>
+												</select>
+											</div>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="font-size: 13px;color: #666;width: 60px;">
+													<option>日</option>
+												</select>
+											</div>
+										</p>
+										<p style="clear: left;"><label style="float: left;margin-bottom:20px;">居住地：</label>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="width: 60px;">
+													<option>省</option>
+												</select>
+											</div>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="width: 60px;">
+													<option>市</option>
+												</select>
+											</div>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="width: 60px;">
+													<option>区</option>
+												</select>
+											</div>
+										</p>
+										<p style="clear: left;"><label style="float: left;margin-bottom:20px;">家乡：</label>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="width: 60px;">
+													<option>省</option>
+													<option>区</option>
+													<option>区</option>
+													<option>区</option>
+												</select>
+											</div>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="width: 60px;">
+													<option>市</option>
+												</select>
+											</div>
+											<div class="select-div" style="float: left;margin-bottom:20px;">
+												<select style="width: 60px;">
+													<option>区</option>
+												</select>
+											</div>
+										</p>
+									</div>
+									<button style=" clear: left;
+									 display: block;
+									 margin-left: 100px;
+    color: #fff;
+    padding: 0 11px;
+    background-position: 100% -320px;
+    border: 0;
+    cursor: pointer;
+    line-height: 22px;
+		background-color: orangered;
+		">保存</button>
+								</div>
+							</div>
+							<div v-if="left_status==2">
+								<div class="head"><span class="h-text">收货地址</span></div>
+								<div class="headTips"><span class="ht-type">新增收货地址</span></div>
+								<div class="country-bar">
+									<span class="country-bar-info">当前配送至</span>
+								</div>
+								<div style="margin-top: 20px;float: left;margin-bottom: 20px;">
+									<span class="address-div-text">地址信息:</span>
+									<div class="select-div" style="width: 110px;float: left;margin-right:8px;">
+										<select>
+											<option selected="selected">省</option>
+											<option selected="selected">区</option>
+											<option selected="selected">区</option>
+											<option selected="selected">区</option>
+										</select>
+									</div>
+									<div class="select-div" style="width: 110px;float: left;margin-right:8px;">
+										<select>
+											<option selected="selected">市</option>
+										</select>
+									</div>
+									<div class="select-div" style="width: 110px;float: left;">
+										<select>
+											<option selected="selected">区</option>
+										</select>
+									</div>
+								</div>
+								<div style="clear: left;">
+									<span class="address-div-text">详细地址:</span>
+									<textarea class="cndzk-entrance-associate-area-textarea" rows="2" cols="20" placeholder="请输入详细地址信息，如道路、门牌号、小区、楼栋号、单元等信息"></textarea>
+								</div>
+								<div style="margin-top: 20px;">
+									<span class="address-div-text">邮政编码:</span>
+									<span><input name="post" placeholder="请填写邮编" style="width:335px;" value=""></span>
+								</div>
+								<div style="margin-top: 20px;">
+									<span class="address-div-text">收货人姓名:</span>
+									<span><input name="post" placeholder="请填写邮编" style="width:335px;" value=""></span>
+								</div>
+								<div style="margin-top: 20px;">
+									<span class="address-div-text">电话号码:</span>
+									<span><input name="post" placeholder="请填写邮编" style="width:335px;" value=""></span>
+								</div>
+								<div style="margin-top: 20px;margin-left:100px;">
+									<input type="checkbox" style="width:10px;" />
+									<span style="    font-size: 12px;
+    vertical-align: middle;
+    margin: 0;
+    margin-left: 4px;
+    line-height: 1;">设置为默认收货地址</span>
+								</div>
+								<div style="margin-top: 20px;margin-left: 100px;">
+									<button class="btn" role="button">保存</button>
+								</div>
+								<div class="table" style="margin-top: 20px;">
+									<table style="">
+										<tr>
+											<th style="">收货人</th>
+											<th>所在地区</th>
+											<th>详细地址</th>
+											<th>邮编</th>
+											<th>电话/手机</th>
+											<th>操作</th>
+											<th>是否默认</th>
+										</tr>
+										<tr>
+											<td>
+												<div>95565245</div>
+											</td>
+											<td>
+												<div>8541552254</div>
+											</td>
+											<td>
+												<div>55455</div>
+											</td>
+											<td>
+												<div>55555221</div>
+											</td>
+											<td>
+												<div>54562445</div>
+											</td>
+											<td>
+												<div><a>修改</a><span style="width: 20px;display:inline-block;text-align: center;">|</span><a>删除</a></div>
+											</td>
+											<td>
+												<div><a>设为默认</a></div>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#vuebody',
+			data: {
+				top_status: 0,
+				left_status: 3
+			},
+			created: function() {
+				console.log(this.top_status);
+			},
+			methods: {
+				change_left_status: function(status) {
+					this.left_status = status;
+				},
+				change_top_status: function(status) {
+					this.top_status = status;
+					if (this.top_status == 0) {
+						this.left_status = 3;
+					} else if (this.top_status == 1) {
+						this.left_status = 4;
+					}
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script type="text/javascript" src="../public/js/jQuery3.2.1.js"></script>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			#sk{
+				border:1px solid #000000;
+				height: 275px;
+				margin-top: 30px;
+				margin-bottom: 30px;
+			}
+			.sk_innr{
+				background: #fff;
+				overflow: hidden;
+				margin: 0 auto;
+				width: 1190px;
+			}
+			.sk_hd{
+				float: left;
+				position: relative;
+				width: 190px;
+				height: 275px;
+				background: #e83632;
+				color: #fff;
+			}
+			.sk_title{
+				position: absolute;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				top: 42px;
+				font-size: 34px;
+			}
+			.sk_desc{
+				position: absolute;
+				left: 0;
+				width: 100%;
+				text-align: center;
+				top: 170px;
+				font-size: 16px;
+			}
+			.sk_cd{
+				position: absolute;
+				top: 212px;
+				left: 30px;
+				height: 40px;
+			}
+			.cd_item{
+				position: relative;
+				float: left;
+				width: 40px; 
+				height: 40px; 
+			    text-align: center;
+				background-color: #2f3430;
+				margin-right: 5px;	
+			}
+			.cd_item_text{
+				position: relative;
+				line-height: 40px;
+				font-weight: bold;
+				font-size:20px;
+				text-align: center;
+			}
+			.sk_list{
+				position: relative;
+				float: left;
+				width: 998px;
+				/*border-right: solid 1px #f0f0f0;*/
+				height: 275px;
+				overflow: hidden;
+				border: 1px solid #000000;
+			}
+			.sk_list_inner{
+				position: relative;
+				width:100%;
+				height: 275px;
+			}
+			.slider_control{
+				position: absolute;
+				top: 50%;
+				-moz-border-radius: 0;
+				border-radius: 0;
+				width: 20px;
+				height: 40px;
+				line-height: 40px;
+				background-color: #d9d9d9;
+				background-color: rgba(0,0,0,.15);
+				margin-top: -20px;
+				font-size: 20px;
+				z-index: 2;
+				border: none;
+				outline: none;
+				-webkit-transition: background-color .2s ease;
+				-o-transition: background-color ease .2s;
+				-moz-transition: background-color ease .2s;
+				transition: background-color .2s ease;
+			}
+			.slider_item{
+				float: left;
+				width: 200px;
+				position: relative;
+				height: 275px;
+			}
+			.slide_item_sk{
+				position: relative;
+				display: block;
+				width: 190px;
+				height: 275px;
+				text-align: center;
+				margin: auto;  
+				color: #666;
+				text-decoration: none;
+			}
+			.slider_item_img{
+				position: absolute;
+				width: 140px;
+				height: 140px;
+				left: 50%;
+				margin-left: -70px;
+				top: 40px;
+			}
+			.slider_item_name{
+				position: absolute;
+				top: 190px;
+				left: 0;
+				width: 160px;
+				padding: 0 15px;
+				line-height: 30px;
+				-o-text-overflow: ellipsis;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+			.slider_item_price{
+				position: absolute;
+				left: 15px;
+				top: 230px;
+				width: 160px;
+				height: 20px;
+				padding: 1px;
+				background: #e6382f;
+				line-height: 20px;
+			}
+			.new_sk_price{
+				float: left;
+				width: 80px;
+				height: 20px;
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+				font-weight: bold;
+			}
+			.order_sk_price{
+				float: left;
+				width: 80px;
+				height: 20px;
+				background: #fff;
+				text-align: center;
+				color: #b7bcb8;
+				font-size: 12px;
+				text-decoration: line-through;
+			}
+			.sk_ico {
+			position: absolute;
+			left: 86px;
+			top: 116px;
+			display: block;
+			width: 20px;
+			height: 33px;
+			background-image: url(/public/images/seckill.png);
+			background-position: -35px -25px;
+			}
+			.slider_control:hover {
+			color: #fff;
+			background-color: #999;
+			background-color: rgba(0,0,0,.4);
+			}
+			.shell-title h3:before {
+			content: "";
+			position: relative;
+			float: left;
+			top: 2px;
+			width: 4px;
+			height: 16px;
+			background: #ff242d;
+			background: linear-gradient(to bottom, #ff7436, #ff0000);
+			margin-right: 7px;
+			}
+
+.wrap-fixed .top {
+    z-index: 1001;
+    position: fixed;
+    _position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    padding: 7px 0;
+    background:ghostwhite;
+    overflow: visible;
+    -webkit-box-shadow: rgba(0,0,0,.1),0,1px,5px;
+    -moz-box-shadow: rgba(0,0,0,.1),0,1px,5px;
+    box-shadow: rgba(0,0,0,.1),0,1px,5px;
+}
+/*.wrap-fixed .search-bd .search-triggers li {
+    line-height: 38px;
+    height: 38px;
+    float: left;
+    color: #3C3C3C;
+    background-color: #f4f4f4!important;
+    width:54px;
+}*/
+.wrap-fixed .search-bd  .search-panel .search-triggers li{
+	   line-height: 38px;
+	   height: 38px;
+	   color: #3C3C3C;
+	   background-color: #f4f4f4!important;
+	   width:54px;
+}
+.wrap-fixed .search-bd .search-panel .search-button {
+    /*position: absolute;
+    right: 0;
+    top: 10;
+    z-index: 100;*/
+    width: 74px;
+    height: 40px;
+	/*border: 1px solid #000000;*/
+    overflow: hidden;
+    text-align: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.top {
+    background-color: #FFF;
+    padding-top: 24px;
+    height: 97px;
+}
+ .top-wrap {
+    width: 1190px;
+    margin: 0 auto;
+    position: relative;
+}
+.tbh-logo {
+    float: left;
+    width: 190px;
+}
+.tb-pass {
+    background-color: transparent;
+}
+.logo {
+    width: 190px;
+    height: 80px;
+    float: left;
+    margin-top: 8px;
+}
+.tbh-search {
+    background-color: transparent;
+	margin-left: 258px;
+    margin-right: 302px;
+}
+.search-wrap {
+    position: relative;
+}
+.search-bd {
+    z-index: 30;
+    position: relative;
+    transform: translateZ(0);
+}
+.search-ft {
+    position: relative;
+    float: left\9;
+    padding: 5px 41px 0 0;
+    height: 20px;
+    overflow: hidden;
+    _width: 600px;
+}
+.search-bd .search-triggers {
+    height: 22px;
+    margin-left: 17px;
+}
+.search-bd .search-triggers .selected {
+    color: #FFF;
+    font-weight: 700;
+    background-image: -webkit-linear-gradient(left,#ff9000 0,#ff5000 100%);
+    background-image: -o-linear-gradient(left,#ff9000 0,#ff5000 100%);
+    background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff9000', endColorstr='#ffff5000', GradientType=1);
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.search-bd .search-triggers li {
+    color: #F40;
+    text-align: center;
+    float: left;
+    width: 36px;
+    height: 22px;
+    line-height: 22px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+.search-bd .search-panel .search-button {
+    position: absolute;
+    right: 0;
+    top: 10;
+    z-index: 100;
+    width: 74px;
+    height: 40px;
+	/*border: 1px solid #000000;*/
+    overflow: hidden;
+    text-align: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.search-bd .search-panel .search-common-panel {
+    margin-right: 74px;
+    border: 2px solid #ff5000;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-right: none;
+    overflow: hidden;
+    height: 36px;
+}
+.search-bd .search-panel .search-button .btn-search {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFF;
+    background-color: #FF4200;
+    cursor: pointer;
+    height: 100%;
+    border: none;
+    width: 100%;
+}
+.search-bd .search-panel .search-common-panel label {
+    z-index: 2;
+    position: absolute;
+    top: 11px;
+    left: 34px;
+    color: #9C9C9C;
+    cursor: text;
+    touch-action: none;
+    -ms-touch-action: none;
+    pointer-events: none;
+    -ms-pointer-events: none;
+    -webkit-user-select: none;
+}
+.search-bd .search-panel .search-common-panel .search-combobox-input-wrap {
+    height: 36px;
+    overflow: hidden;
+    width: 472px;
+}
+.search-bd .search-panel .search-common-panel #q {
+    padding: 6px 0;
+    text-indent: 10px;
+    height: 24px;
+    line-height: 24px;
+    width: 472px;
+    border: none;
+    outline: 0;
+    background: #FFF;
+}
+.search-combobox-input {
+    line-height: 18px;
+    height: 18px;
+    overflow-y: visible;
+    font-size: 100%;
+}
+.tb-bg {
+    background-image: -webkit-linear-gradient(left,#ff9000 0,#ff5000 100%);
+    background-image: -o-linear-gradient(left,#ff9000 0,#ff5000 100%);
+    background-image: linear-gradient(to right,#ff9000 0,#ff5000 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff9000', endColorstr='#ffff5000', GradientType=1);
+}
+ .nav {
+    width: 1190px;
+    margin: 0 auto;
+	height: 30px;
+    line-height: 30px;
+    position: relative;
+    color: #fff;
+}
+.nav h2 {
+    float: left;
+    width: 190px;
+    text-align: center;
+    font-size: 16px;
+    background: #ff5000;
+}
+.screen-outer {
+    width: 1190px;
+    margin: 0 auto;
+    height: 400px;/*398*/
+}
+.main {
+    float: left;
+    width:100%;
+    height:100%;
+    clear: left;
+	margin: 0;
+	padding: 0;
+}
+.tbh-service {
+    float: left;
+    width: 190px;
+		height: 100%;
+}
+.service {
+    height: 400px;/*398*/
+    position: relative;
+    font-size: 14px;
+    color: #fff;
+    width: 190px;
+		height: 100%;
+}
+.service-bd {
+    border: 1px solid #ff5000;
+    border-top: none;
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+.service-bd li {
+    overflow: hidden;
+    line-height: 32px;
+    height: 32px;
+    padding-left: 25px;
+    padding-right: 19px;
+    position: relative;
+    font-size: 14px;
+    font-weight: 400;
+    width: 145px;
+    color: #666;
+}
+.a-all {
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+.col-right {
+    float: right;
+    width: 290px;
+    height: 100%;
+    margin-top: 10px;
+	border: 1px solid ##0F0000;
+}
+.tbh-member {
+    background-size: 290px 145px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.member {
+    padding: 3px 0 10px 0;
+    height: 132px;
+    padding-right: inherit;
+    text-align: center;
+    background-repeat: no-repeat;
+}
+.member-bd {
+    position: relative;
+    height: 91px;
+}
+.member-ft {
+    height: 40px;
+    overflow: hidden;
+    margin-top: 2px;
+    padding-left: 15px;
+}
+.member-logout {
+    height: 25px;
+    margin-top: 8px;
+}
+.member-logout .btn-login {
+    width: 92px;
+}
+
+.member-logout a {
+    float: left;
+    line-height: 25px;
+    width: 75px;
+    margin-right: 7px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 1px;
+    background-image: -webkit-linear-gradient(left,#ff5000 0,#ff6f06 100%);
+    background-image: -o-linear-gradient(left,#ff5000 0,#ff6f06 100%);
+    background-image: linear-gradient(to right,#ff5000 0,#ff6f06 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffff5000', endColorstr='#ffff6f06', GradientType=1);
+    -webkit-border-radius: 4px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 4px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    font-size: 14px;
+    font-weight: 700;
+}
+.member-bd .member-nick-info {
+    display: block;
+    line-height: 17px;
+    height: 17px;
+}
+.member .member-nick {
+    font-weight: 400;
+}
+.layer{
+	width: 1190px;
+	margin: 0 auto;
+	height: auto;
+}
+.J_Module {
+    min-height: 0;
+    background-color: #FFF;
+	width: 100%;
+}
+.shell-content{
+width: 100%;
+height: 352px;
+}
+.shell-item{
+	float: left;
+    width: 237px;
+  border-top: 1px solid #f4f4f4;
+	border-left:1px solid #f4f4f4;
+	height: 352px;
+}
+.J_Module h3{
+	position: relative;
+	height: 22px;
+	line-height: 22px;
+	margin: 17px 18px;
+	font-size: 20px;
+	color: #ff242d;
+	top: 10px;
+}
+.J_Module h3:before {
+   content: "";
+   position: relative;
+   float: left;
+   top: 2px;
+   width: 4px;
+   height: 16px;
+   background: #ff242d;
+   background: linear-gradient(to bottom, #ff7436, #ff0000);
+   margin-right: 7px;
+}
+.shell-item a{
+	display: block;
+	width: 197px;
+	height: 312px;
+  margin: 20px;
+	cursor: pointer;
+	text-decoration: none;
+}
+.shell-img{
+  width: 197px;
+  height: 197px;
+	border: 1px solid #000000;
+	margin:0px;
+}
+.shell-text1{
+	display: block;
+  height: 40px;
+  line-height: 20px;
+  overflow: hidden;
+  margin: 8px 0;
+  color: #666;
+  font-size: 14px;
+	cursor: pointer;
+}
+.shell-text1 span{
+	background-color: green;
+	font-size:12px ;
+	color: white;
+	border-radius:3px;
+}
+.shell-text2{
+color: #999;
+    height: 18px;
+    margin-bottom: 17px;
+}
+.shell-text3{
+	color: #ff5000;
+	    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+}
+	    #slides .slidesjs-navigation {
+	      margin-top:5px;
+	    }
+	
+	    a.slidesjs-next{
+				background-image: url(/public/images/btns-next-prev.png);
+				background-repeat: no-repeat;
+				display:block;
+				width:12px;
+				height:18px;
+				text-indent: -9999px;
+				position: absolute;
+				right:0;
+				top:50%;
+				z-index: 999;
+			}
+	    a.slidesjs-previous{
+				background-image: url(/public/images/btns-next-prev.png);
+				background-repeat: no-repeat;
+				display:block;
+				width:12px;
+				height:18px;
+				text-indent: -9999px;
+				position: absolute;
+				left:0;
+				top:50%;
+				z-index:999;
+			}
+	    a.slidesjs-next {
+	      margin-right:10px;
+	      background-position: -12px 0;
+	    }
+	
+	    a:hover.slidesjs-next {
+	      background-position: -12px -18px;
+	    }
+	
+	    a.slidesjs-previous {
+	      background-position: 0 0;
+	    }
+	
+	    a:hover.slidesjs-previous {
+	      background-position: 0 -18px;
+	    }
+	    .slidesjs-pagination {
+	   /* margin: 7px 0 0;
+	      float: right;*/
+	      list-style: none;
+				position: absolute;
+				top:95%;
+				left:45%;
+				z-index: 999;
+	    }
+	
+	    .slidesjs-pagination li {
+	      float: left;
+	      margin: 0 1px;
+	    }
+	
+	    .slidesjs-pagination li a {
+	      display: block;
+	      width: 13px;
+	      height: 0;
+	      padding-top: 13px;
+	      background-image: url(/public/images/pagination.png);
+	      background-position: 0 0;
+	      float: left;
+	      overflow: hidden;
+	    }
+	
+	    .slidesjs-pagination li a.active,
+	    .slidesjs-pagination li a:hover.active {
+	      background-position: 0 -13px
+	    }
+	
+	    .slidesjs-pagination li a:hover {
+	      background-position: 0 -26px
+	    }
+	
+	    #slides a:link,
+	    #slides a:visited {
+	      color: #333
+	    }
+	
+	    #slides a:hover,
+	    #slides a:active {
+	      color: #9e2020
+	    }
+	
+	    .navbar {
+	      overflow: hidden
+	    }
+			
+    .container {
+			width:100%;
+      margin: 0 auto;
+    }
+    .type_list p{
+		height: 104px;
+    overflow: hidden;
+    padding-bottom: 33px;
+    line-height: 26px;
+    }
+		.type_list p a{
+			color: #666;
+			display: inline-block;
+			margin-right: 12px;
+			white-space: nowrap;
+			cursor: pointer;
+			text-decoration: none;
+		}
+		.a-all:hover{
+			color:#FF5000;
+			background-color: #ffe4dc;
+		}
+</style>
+	</head>
+	<body>
+		<div id="indexbody" style="width:100%;height:100%;color: #3C3C3C;
+    background-color: #f4f4f4;">
+			<div class="cover">
+				<div class="site-nav">
+					<div class="site-nav-bd">
+						<ul class="site-nav-bd-l">
+							<li>
+								<div class="site-nav-menu-hd">
+									<span class="site-nav-region" id="ip_position">中国大陆</span>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<div class="site-nav-sign" style="display: none;"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-user"> <a>123</a>
+									</div>
+								</div>
+							</li>
+							<li>
+							</li>
+						</ul>
+						<ul class="site-nav-bd-r">
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>首页</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>我的足迹</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a id="mc-menu-hd">
+										<span>购物车</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>收藏夹</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>个人中心</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="top">
+
+				<div class="top-wrap ">
+					<div class="tbh-logo tb-pass">
+						<div class="logo" style="border: 1px solid #000000;">
+							<h1>
+								<a href="" role="img" class="logo-bd ">淘宝网</a>
+							</h1>
+							<h2><a class="" href="">淘宝网</a></h2>
+						</div>
+					</div>
+					<div class="tbh-search">
+						<div class="search-wrap">
+							<div class="search-bd">
+								<div class="search-triggers">
+									<ul style="list-style: none;">
+										<li class="selected ">宝贝</li>
+										<li>店铺</li>
+									</ul>
+									<div class="search-tab-icon"><i><em></em><span></span></i></div>
+								</div>
+								<div class="search-panel">
+									<form name="search" method="post">
+										<div class="search-button">
+											<button class="btn-search" type="submit">搜索
+											</button></div>
+										<div class="search-common-panel">
+											<div class="search-combobox">
+												<div class="search-combobox-input-wrap">
+													<input id="q" class="search-combobox-input">
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!---->
+			<div class="wrap-fixed" id="top-div" style="display: none;">
+				<div class="top">
+					<div class="top-wrap">
+						<div class="tbh-logo">
+							<div class="logo"></div>
+						</div>
+						<div class="search-wrap" style="width: 100%;">
+							<div class="search-bd">
+								<div class="search-panel">
+									<div class="search-triggers" style="float:left;left:0;">
+										<ul style="list-style: none;">
+											<li class="selected">宝贝</li>
+											<li>店铺</li>
+										</ul>
+									</div>
+									<form name="search" method="post">
+										<div class="search-button" style="float:right;">
+											<button class="btn-search" type="submit">搜索
+											</button></div>
+										<div class="search-common-panel" style="float: right; width:66%;right:74px;">
+											<div class="search-combobox">
+												<div class="search-combobox-input-wrap">
+													<input id="q" class="search-combobox-input" style="background: ghostwhite;">
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tb-pass  tb-bg ">
+				<div class="nav">
+					<h2>商品分类</h2>
+				</div>
+			</div>
+			<div class="screen-outer" style="border: 1px solid #000000;">
+				<div class="main">
+					<div style="float: left; width: 900px;height: 100%;">
+						<div class="tbh-service">
+							<div class="service">
+								<ul class="service-bd">
+									<li class="a-all" v-for="item in list" @mouseover="show_typediv()" @mouseout="hide_typediv()">
+										<a>学习</a> /
+										<a>卡券</a> /
+										<a>本地服务</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="type_div" style="width:708px;height: 100%;border:1px solid #000000;position: relative;overflow: hidden; float: left;display: none;">
+							<div style="margin-right:18px;margin-left:20px;margin-top:10px;">
+								<div v-for="item in list3" style="width:670px;height:120px;margin-bottom:10px; border: 1px solid #0033CC;">
+									<h2 style="position: relative;height: 36px;line-height: 36px;font-size: 16px;color: #333;">{{item}}标题</h2>
+									<div class="type_list" style="width: 100%;height: 100%;">
+										<p>
+											<a>963</a>
+											<a>852</a>
+											<a>741</a>
+											<a>159</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="slides_div" style="width:708px;height: 100%;border:1px solid #000000;position: relative;overflow: hidden; float: left;">
+							<div class="container">
+								<div id="slides">
+									<img src="/public/images/example-slide-1.jpg">
+									<img src="/public/images/example-slide-2.jpg">
+									<img src="/public/images/example-slide-3.jpg">
+									<img src="/public/images/example-slide-4.jpg">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-right" style="">
+						<div class="tbh-member">
+							<div class="member-bd">
+								<span class="member-nick-info">
+									<img src="" width="60px" height="60px" />
+									Hi! <strong class="member-nick">你好</strong>
+								</span>
+							</div>
+							<div class="member-ft">
+								<div class="member-logout">
+									<a class="btn-login">登录</a>
+									<a>注册</a>
+								</div>
+							</div>
+						</div>
+						<div>
+							<h1 style="background-color: orangered;">通知公告</h1>
+							<ul>
+								<li><a>12334</a></li>
+								<li><a>12334</a></li>
+								<li><a>12334</a></li>
+								<li><a>12334</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="sk" class="layer" style="height: 275px;border:1px solid #000000;">
+				<div class="sk_innr">
+					<div class="sk_hd">
+						<a style="text-decoration:none;display: block;width: 100%;height: 100%;color: #fff;">
+							<div class="sk_title">限时秒杀</div>
+							<i class="sk_ico"></i>
+							<div class="sk_desc">距离本场结束还剩</div>
+							<div class="sk_cd">
+								<div class="cd_item">
+									<span class="cd_item_text">00</span>
+								</div>
+								<div class="cd_item">
+									<span class="cd_item_text">00</span>
+								</div>
+								<div class="cd_item">
+									<span class="cd_item_text">00</span>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div style="float: left;">
+						<div class="sk_list">
+							<div class="sk_list_inner">
+								<button class="slider_control" style="left:0;">《</button>
+								<div class="slider_list">
+									<div class="slider_item" v-for="item in list1">
+										<a class="slide_item_sk">
+											<div class="slider_item_img"><img></div>
+											<p class="slider_item_name">9996545</p>
+											<div class="slider_item_price">
+												<span class="new_sk_price">666</span>
+												<span class="order_sk_price">999</span>
+											</div>
+										</a>
+									</div>
+								</div>
+								<button class="slider_control" style="right: 0;">》</button>
+							</div>
+						</div>
+						<!--<div style="position: relative;float: left;width: 180px;height: 260px;padding: 8px 10px 7px;"></div>-->
+					</div>
+				</div>
+			</div>
+			<div class="layer" style="min-height:747px;">
+				<div class="J_Module">
+					<h3>热卖单品</h3>
+					<div class="shell-content" v-for="item2 in list2">
+						<div class="shell-item" v-for="item1 in list1">
+							<a>
+								<div class="shell-img"></div>
+								<div class="shell-text1"><span>包邮</span>{{item2}}{{item1}}</div>
+								<div class="shell-text2">评价&emsp;<em>{{item1}}</em>&emsp;收藏&emsp;<em>{{item2}}</em></div>
+								<div class="shell-text3"><span style="float: left;font-style: normal;">￥<span style="font-size: 22px;">{{item1}}</span>
+									</span><span style="float: right;color: #999;display: block;margin-top: 3px;">月销{{item1}}笔</span></div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layer" style="min-height:747;margin-top:20px;">
+				<div class="layer-inner ">
+					<div class="J_Module">
+						<h3>猜你喜欢</h3>
+						<div class="shell-content" v-for="item2 in list2">
+							<div class="shell-item" v-for="item1 in list1">
+								<a>
+									<div class="shell-img"></div>
+									<div class="shell-text1" style="height: 44px;">
+										<h4><span>包邮</span>{{item2}}{{item1}}</h4>
+									</div>
+									<div class="shell-text3" style="height: 24px;margin-top: 24px;line-height: 24px;"><span style="float: left;font-style: normal;">￥<span
+											 style="font-size: 22px;">{{item1}}</span>
+										</span><span style="float: right;color: #999;display: block;margin-top: 3px;">月销{{item1}}笔</span></div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/public/js/jquery.slides.min.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#indexbody',
+			data: {
+				list: [0, 1, 2, 3, 4, 5],
+				list1: [0, 1, 2, 3, 4],
+				list2: [0, 1],
+				list3: [1, 2, 3]
+			},
+			created: {},
+			methods: {
+				show_typediv: function() {
+					$("#slides_div").css("display", "none");
+					$("#type_div").css("display", "block");
+				},
+				hide_typediv: function() {
+					$("#type_div").css("display", "none");
+					$("#slides_div").css("display", "block");
+				}
+			},
+			updated: function() {},
+			mounted() {},
+			computed: {}
+		});
+		$(function() {
+			$('#slides').slidesjs({
+				width: 708,
+				height: 398, //322
+				play: {
+					active: true,
+					auto: true,
+					interval: 3000,
+					swap: true
+				}
+			});
+			window.onscroll = function() {
+				var t = document.documentElement.scrollTop || document.body.scrollTop;
+				var top_div = document.getElementById("top-div");
+				if (t >= 150) {
+					top_div.style.display = "block";
+				} else {
+					top_div.style.display = "none";
+				}
+			}
+		});
+	</script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?ak=PlhFWpA02aoURjAOpnWcRGqw7AI8EEyO&v=2.0&services=false"></script>
+	 <script type="text/javascript"> 
+	  var map; 
+	  var gpsPoint; 
+	  var baiduPoint; 
+	 var gpsAddress; 
+	 var baiduAddress; 
+	  var x;
+	 var y;
+	  function getLocation() { 
+	//根据IP获取城市 
+	 var myCity = new BMap.LocalCity(); 
+	 myCity.get(getCityByIP); 
+	 
+	 //获取GPS坐标 
+	 if (navigator.geolocation) { 
+	 navigator.geolocation.getCurrentPosition(showMap, handleError, { enableHighAccuracy: true, maximumAge: 1000 }); 
+	 } else { 
+	 //alert("您的浏览器不支持使用HTML5来获取地理位置服务"); 
+	 console.log("您的浏览器不支持使用HTML5来获取地理位置服务");
+	 } 
+	 } 
+	 //根据IP获取城市 
+	 function getCityByIP(rs) { 
+	 var cityName = rs.name; 
+	 //alert("根据IP定位您所在的城市为:" + cityName); 
+	 $("#ip_position").text(cityName);
+	 } 
+	 
+	 function handleError(value) { 
+	 switch (value.code) { 
+	 case 1: 
+	 console.log("位置服务被拒绝");
+	// alert("位置服务被拒绝"); 
+	 break; 
+	 case 2: 
+	 console.log("暂时获取不到位置信息");
+	// alert("暂时获取不到位置信息"); 
+	 break; 
+	 case 3: 
+	 console.log("获取信息超时");
+	// alert("获取信息超时"); 
+	 break; 
+	 case 4: 
+	 console.log("未知错误");
+	// alert("未知错误"); 
+	 break; 
+	 } 
+	 } 
+	 function init() { 
+	 getLocation(); 
+	 } 
+	 window.onload = init; 
+	</script>
+</html>

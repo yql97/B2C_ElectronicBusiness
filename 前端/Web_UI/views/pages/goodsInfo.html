@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>商品页</title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			#page{
+				margin: 0 auto;
+			}
+			#page #content {
+    background-color: #fff;
+     }
+     .tm-detail-meta {
+    width:1190px;
+    position: relative;
+    z-index: 100;
+    min-height: 600px;
+		margin:0 auto;
+      }
+		.tb-property {
+    float: left;
+    width: 100%;
+}
+ .tb-wrap {
+    margin: 0 0 0 460px;
+    color: #666;
+    padding: 0 0 10px;
+}
+.tb-detail-hd {
+    padding: 20px 10px 12px;
+    color: #000;
+}
+ .tm-fcs-panel {
+    background-color: #e9e9e9;
+    background-repeat: no-repeat;
+    backgroung-position: left 0;
+    position: relative;
+    left: 0;
+    z-index: 10;
+    font: 12px/1.5 "Microsoft Yahei",tahoma,arial;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-right: 20px;
+}
+.tm-price-panel {
+    position: static;
+    color: #333;
+    padding-left: 0;
+}
+ .tm-fcs-panel dl dt.tb-metatit {
+    color: #999;
+    font-size: 12px;
+    text-align: left;
+    float: left;
+    width: 69px;
+    margin: 0 0 0 8px;
+}
+ .tm-fcs-panel dl dd {
+    color: #333;
+    margin-left: 70px;
+    font-family: Arial;
+}
+.tm-price-panel .tm-price {
+    text-decoration: line-through;
+    font-size: 14px;
+}
+.tm-fcs-panel dl dt.tb-metatit {
+    color: #999;
+    font-size: 12px;
+    text-align: left;
+    float: left;
+    width: 69px;
+    margin: 0 0 0 8px;
+}
+.tm-promo-panel .tm-promo-price {
+    line-height: 24px;
+    font-size: 12px;
+    position: relative;
+}
+.tm-promo-price .tm-yen {
+    vertical-align: middle;
+    color: #FF0036;
+    font-size: 18px;
+    font-family: Arial;
+    -webkit-font-smoothing: antialiased;
+}
+.tm-promo-price .tm-price {
+    vertical-align: middle;
+    font-size: 30px;
+    color: #FF0036;
+    font-weight: bolder;
+    font-family: Arial;
+    -webkit-font-smoothing: antialiased;
+}
+.tm-ind-panel {
+    border: 1px dotted #c9c9c9;
+    border-width: 1px 0;
+    margin: -1px 20px 0 0;
+    padding: 10px 0;
+    position: relative;
+    overflow: hidden;
+    clear: both;
+    display: flex;
+}
+.tm-ind-item {
+    float: left;
+    width: 33%;
+    text-align: center;
+    position: relative;
+    left: -1px;
+    border-left: 1px solid #e5dfda;
+    flex: 1;
+    line-height: 16px;
+}
+.tm-ind-item .tm-label{
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    color: #999;
+}
+.tm-ind-panel .tm-count {
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    color: #FF0036;
+    font-weight: 700;
+    margin-left: 3px;
+}
+.tb-key {
+    margin: 0 20px 24px 10px;
+}
+.tb-skin {
+    padding: 10px 0;
+}
+.tb-sku {
+    padding: 5px 0 12px;
+    position: relative;
+}
+ .tb-wrap .tb-metatit {
+    text-align: left;
+    float: left;
+    width: 66px;
+		color: #838383;
+}
+.tm-delivery-panel .tb-postAge .tb-postAge-info {
+    color: #333;
+    padding: 0 5px 0 0;
+    position: relative;
+    display: inline-block;
+}
+.tm-sale-prop dt {
+    margin-top: 6px;
+}
+  .tb-prop {
+  }
+.tb-prop dd {
+    width: 420px;
+    float: left;
+}
+.tm-sale-prop li {
+    line-height: 28px;
+}
+.tb-prop li {
+    float: left;
+    position: relative;
+    margin: 0 4px 4px 0;
+    vertical-align: middle;
+    padding: 1px;
+}
+.tb-prop li a {
+    float: left;
+    background-color: #fff;
+    white-space: nowrap;
+    width: auto!important;
+    min-width: 10px;
+    padding: 0 9px;
+    text-align: center;
+    border: 1px solid #b8b7bd;
+    color: #000;
+    text-decoration: none;
+}
+ .tb-metatit {
+    text-align: left;
+    float: left;
+    width: 66px;
+		font-size: 12px;
+}
+#content .tb-amount dd {
+    height: 35px;
+    line-height: 31px;
+    color: #878787;
+}
+.tb-action {
+    clear: both;
+    padding: 10px 0 0 66px;
+    margin: 10px 0 0;
+}
+.tb-btn-sku {
+    margin-right: 10px;
+    float: left;
+}
+ .tb-btn-sku a {
+    margin-right: 0;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 178px;
+    background-color: #ffeded;
+    border: 1px solid #FF0036;
+    color: #FF0036;
+    font-family: 'Microsoft Yahei';
+		height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+}
+ .tb-btn-basket {
+    margin-right: 1px;
+}
+.tb-btn-basket a{
+    background-color: #ff0036;
+    border: 1px solid #ff0036;
+    color: #fff;
+}
+.tb-text {
+    font-size: 12px;
+    margin: 0;
+    height: 26px;
+    border: 1px solid #a7a6ac;
+    width: 36px;
+    background-position: -406px -41px;
+    color: #666;
+}
+.tb-amount-widget .mui-amount-increase {
+    width: 16px;
+    height: 12px;
+    overflow: hidden;
+    border: 1px solid #a7a6ab;
+    display: block;
+    font-family: tm-detail-font!important;
+    line-height: 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.tb-amount-widget .mui-amount-decrease{
+    width: 16px;
+    height: 12px;
+    overflow: hidden;
+    border: 1px solid #a7a6ab;
+    display: block;
+    font-family: tm-detail-font!important;
+    line-height: 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.tm-ser {
+	  margin: 20px 0;
+    padding-bottom: 20px;
+    position: relative;
+}
+.tm-ser dl {
+	margin: 0;
+	/*border: 1px solid #000000;*/
+}
+.tm-ser dl dt{
+/*	border: 1px solid #0033CC;*/
+	padding-top: 5px;
+}
+.tm-ser .tm-laysku-dd {
+    margin-left: 66px;
+    width: auto;
+    float: none;
+}
+.tm-ser .tb-serPromise li {
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+.tm-ser .tb-serPromise a {
+    display: inline-block;
+    padding: 0 2px 0 0;
+    margin: 0 10px 0 0;
+    color: #666;
+    white-space: nowrap;
+		font-size: 12px;
+}
+.tb-gallery {
+    margin-left: -100%;
+    float: left;
+    width: 460px;
+    position: relative;
+}
+.tb-gallery .tb-booth {
+    position: relative;
+    display: table;
+    table-layout: fixed;
+    z-index: 1;
+    width: 420px;
+    height: 420px;
+    margin: 20px auto 0;
+}
+.tb-gallery .tb-booth a {
+    width: 418px;
+    height: 418px;
+    border: 1px solid rgba(0,0,0,.05); 
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.tb-gallery .tb-booth a img {
+    vertical-align: middle;
+    max-width: 100%;
+    max-height: 100%;
+}
+.tb-gallery .tb-thumb {
+    text-align: center;
+    margin-left: -16px;
+    white-space: nowrap;
+    position: relative;
+    transition: left .2s cubic-bezier(0,0,.25,1);
+    font-size: 0;
+}
+.tb-gallery .tb-thumb li {
+    display: inline-block;
+    margin: 0 0 0 16px;
+    padding-top: 22px;
+}
+.tb-gallery .tb-thumb a {
+    float: left;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
+.tb-gallery .tb-thumb img {
+    position: relative;
+    max-width: 60px;
+    max-height: 60px;
+}
+.tb-gallery .tm-action {
+    padding: 38px 40px 25px;
+    color: #999;
+		font-size: 12px;
+}
+.tb-gallery .tm-action a {
+    color: #999;
+}
+.tb-gallery .tm-action .iShare {
+    text-decoration: none;
+    float: left;
+    margin-right: 2em;
+}
+
+.rate-score {
+    width: 75px;
+    text-align: center;
+    padding: 0px 20px;
+    border-right: 1px dotted rgb(221, 221, 221);
+		display: inline-block;
+    vertical-align: top;
+}
+.rate-score h4 {
+    color: rgb(64, 64, 64);
+    font-size: 12px;
+    font-weight: 100;
+}
+.rate-score strong {
+    color: rgb(255, 102, 0);
+    font-family: arial;
+    font-size: 32px;
+    line-height: 32px;
+    margin: 0px 2px;
+}
+.rate-score p {
+    padding-top: 1px;
+    padding-left: 7px;
+    text-align: left;
+}
+.rate-tag-box {
+    width:1050px;
+		display: inline-block;
+    vertical-align: top;
+		height: 70px;
+		margin-left:18px;
+}
+.rate-tag-list {
+	    position: relative;
+			display: inline-block;
+      vertical-align: top;
+}
+.rate-toolbar {
+    background: #EFEFEF;
+    border: 1px solid #c8c8c8;
+    height: 24px;
+    line-height: 24px;
+    padding: 5px 10px;
+    text-align: right;
+}
+.rate-toolbar .rate-filter {
+    float: left;
+    overflow: hidden;
+    padding-left: 2px;
+}
+.rate-toolbar .rate-filter input {
+    margin-right: 3px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.rate-toolbar .rate-filter label {
+    padding-right: 5px;
+    display: inline-block;
+}
+.rate-toolbar .rate-chat-btn {
+    float: left;
+    padding-left: 2px;
+    position: relative;
+}
+.rate-grid .tm-col-master {
+    width:60%;
+    padding-right: 30px;
+}
+.rate-grid td {
+    padding: 16px 7px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.rate-grid .col-meta {
+    width:25%;
+    color: #999;
+}
+.tm-m-photos-thumb {
+    margin: 10px 0;
+    list-style-type: none;
+    height: 40px;
+}
+.tm-m-photos-thumb li {
+    float: left;
+    border: 2px solid #f2f2f2;
+    padding: 2px;
+    margin-right: 8px;
+    position: relative;
+    transition: border-color .2s ease-out;
+}
+.tm-m-photo-viewer {
+    position: relative;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 2px;
+    float: left;
+    overflow: hidden;
+}
+.rate-grid .tm-rate-reply {
+    color: #AF874D;
+    margin-top: 8px;
+		word-wrap: break-word;
+    word-break: break-all;
+    line-height: 19px;
+    overflow: hidden;
+}
+.rate-grid .tm-rate-date {
+    color: #ccc;
+}
+.rate-paginator {
+    margin-top: 20px;
+    text-align: right;
+    padding: 20px 0 10px;
+    margin-right: 30px;
+}
+.rate-page span {
+    display: inline-block;
+    vertical-align: top;
+    height: 27px;
+    line-height: 27px;
+    padding: 5px 14px;
+    border: 1px solid #e5e5e5;
+    border-width: 1px 1px 1px 0;
+    font-size: 14px;
+}
+.rate-page a {
+    display: inline-block;
+    vertical-align: top;
+    height: 27px;
+    line-height: 27px;
+    padding: 5px 14px;
+    border: 1px solid #e5e5e5;
+    border-width: 1px 1px 1px 1px;
+    color: #2953a6;
+    font-size: 14px;
+}
+#attributes .attributes-list {
+    clear: both;
+    border: 1px solid #e6e6e6;
+    border-top: none;
+    margin-bottom: 10px;
+}
+
+#J_BrandAttr {
+    padding: 8px 20px 10px;
+    border-top: 1px solid #e6e6e6;
+    height: 40px;
+    line-height: 40px;
+}
+#J_BrandAttr .name {
+    color: #666;
+    float: left;
+    margin-right: 15px;
+}
+#J_BrandAttr .name b {
+    color: #333;
+    font-weight: 400;
+}
+#content .attr-list-hd {
+    padding: 5px 20px;
+    line-height: 22px;
+    color: #999;
+}
+#attributes .attributes-list ul {
+	  width: 788px;
+		height: 187px;
+    padding: 0 20px 18px;
+    text-indent: 0;
+    border-top: 1px solid #fff;
+}
+#attributes .attributes-list li {
+    display: inline;
+    float: left;
+    width: 220px;
+    height: 18px;
+    overflow: hidden;
+    margin: 10px 15px 0 0;
+    line-height: 18px;
+    vertical-align: top;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #666;
+}
+.col-main {
+    float: left;
+    width: 100%;
+    min-height: 1px;
+}
+.col-main #mainwrap {
+    width:1190px;
+		border: 1px solid #dfdfdf;
+		margin: 0 auto;
+}
+#J_TabBar {
+    width: 100%;
+    position: relative;
+    height: 48px;
+}
+#J_TabBar .tm-selected {
+    position: relative;
+    border-top: 2px solid #FF0036;
+    height: 47px;
+    margin: -1px 0 0 -1px;
+    z-index: 1;
+    padding: 0;
+}
+#J_TabBar li {
+    float: left;
+    line-height: 48px;
+    display: block;
+    cursor: pointer;
+}
+#J_TabBar .tm-selected a {
+    font-weight: 700;
+    display: block;
+    height: 100%;
+    line-height: 46px;
+    color: #FF0036;
+    border-left: 1px solid #cfbfb1;
+		border-right: 1px solid #cfbfb1;
+}
+#J_TabBar a {
+    border-right: 1px dotted #d2d2d2;
+    color: #333;
+    padding: 0 20px;
+}
+ .choose-amount {
+    width: 58px;
+    height: 44px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    position: relative;
+    margin-right: 10px;
+    float: left;
+}
+ .choose-amount input {
+    display: block;
+    width: 43px;
+    height: 42px;
+    line-height: 42px;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    border: none;
+    border: 0;
+    text-align: center;
+}
+.choose-amount a {
+    display: block;
+    width: 15px;
+    text-align: center;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    background: #f1f1f1;
+    color: #666;
+    position: absolute;
+    right: -1px;
+    border: 1px solid #ccc;
+}
+.choose-amount a.btn-add {
+    top: -1px;
+}
+.choose-amount a.btn-reduce {
+    bottom: -1px;
+}
+.choose-amount a.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+		</style>
+	</head>
+	<body>
+		<div id="vuebody" style="width: auto;height: auto;">
+			<div class="cover">
+				<div class="site-nav">
+					<div class="site-nav-bd">
+						<ul class="site-nav-bd-l">
+							<li>
+								<div class="site-nav-menu-hd">
+									<span class="site-nav-region">中国大陆</span>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-user"> <a></a>
+									</div>
+								</div>
+							</li>
+							<li>
+							</li>
+						</ul>
+						<ul class="site-nav-bd-r">
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>首页</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>我的足迹</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a id="mc-menu-hd">
+										<span>购物车</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>收藏夹</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>个人中心</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="page">
+				<div id="content">
+					<div class="tm-detail-meta">
+						<div class="tb-property">
+							<div class="tb-wrap">
+								<div class="tb-detail-hd">
+									<h1>
+										安踏童鞋男童鞋运动鞋2019秋冬季新款儿童篮球鞋男官网中大童鞋子
+									</h1>
+									<!--<p class="newp">
+											官方旗舰 爆款热卖
+										</p>-->
+								</div>
+								<!--引入normalBasic-->
+								<div class="tm-fcs-panel">
+									<dl class="tm-price-panel" id="J_StrPriceModBox">
+										<dt class="tb-metatit">价格</dt>
+										<dd><em class="tm-yen">¥</em> <span class="tm-price">299.00-319.00</span></dd>
+									</dl>
+									<dl class="tm-promo-panel tm-promo-cur" id="J_PromoPrice" data-label="促销价"><dt class="tb-metatit">促销价</dt>
+										<dd>
+											<div class="tm-promo-price"> <em class="tm-yen">¥</em> <span class="tm-price">199.00-219.00</span>
+												&nbsp;&nbsp; </div>
+											<p> </p>
+										</dd>
+									</dl>
+									<dl class="tm-shopPromo-panel"></dl>
+								</div>
+								<div class="tb-meta">
+									<dl class="tm-delivery-panel" id="J_RSPostageCont"><dt class="tb-metatit">运费</dt>
+										<dd>
+											<div class="tb-postAge"><span class="tb-deliveryAdd" id="J_deliveryAdd">福建泉州</span>至
+												<!--<span id="J_AddrSelectTrigger" class="mui_addr_tri"><span role="button" tabindex="0" aria-haspopup="true"
+														 data-code="411700" class="mui_addr_tri_1">驻马店<i class="mui_addr_icon"></i></span></span>-->
+												<div class="tb-postAge-info">
+													<p> <span>快递: 0.00 </span> </p>
+												</div>
+											</div>
+										</dd>
+									</dl>
+								</div>
+								<ul class="tm-ind-panel">
+									<li class="tm-ind-item tm-ind-sellCount" data-label="月销量">
+										<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">5028</span></div>
+									</li>
+									<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3" id="J_ItemRates">
+										<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">18595</span></div>
+									</li>
+								</ul>
+								<div class="tb-key">
+									<div class="tb-skin">
+										<div class="tb-sku">
+											<dl class="tb-prop ">
+												<dt class="tb-metatit">尺码</dt>
+												<dd>
+													<ul data-property="尺码">
+
+														<li data-value="20549:662626364">
+															<a href="#" role="button" tabindex="0">
+																<span>33</span>
+															</a>
+														</li>
+														<li data-value="20549:147478970">
+															<a href="#" role="button" tabindex="0">
+																<span>34</span>
+															</a>
+														</li>
+														<li data-value="20549:296172561">
+															<a href="#" role="button" tabindex="0">
+																<span>35</span>
+															</a>
+														</li>
+														<li data-value="20549:59280855">
+															<a href="#" role="button" tabindex="0">
+																<span>36</span>
+															</a>
+														</li>
+														<li data-value="20549:72380707">
+															<a href="#" role="button" tabindex="0">
+																<span>37</span>
+															</a>
+														</li>
+														<li data-value="20549:103189693">
+															<a href="#" role="button" tabindex="0">
+																<span>38</span>
+															</a>
+														</li>
+														<li data-value="20549:418624880">
+															<a href="#" role="button" tabindex="0">
+																<span>39</span>
+															</a>
+														</li>
+														<li data-value="20549:229418985">
+															<a href="#" role="button" tabindex="0">
+																<span>40</span>
+															</a>
+														</li>
+														<li data-value="20549:28390">
+															<a href="#" role="button" tabindex="0">
+																<span>41</span>
+															</a>
+														</li>
+													</ul>
+												</dd>
+											</dl>
+											<dl class="tb-prop" style="clear:left">
+												<dt class="tb-metatit">颜色分类</dt>
+												<dd>
+													<ul data-property="颜色分类" class="tm-clear J_TSaleProp tb-img     ">
+														<li>
+															<a href="#" style="width: 38px;height: 38px;">
+																<!--<span>黑/大红/安踏白-4131-2</span>-->
+															</a>
+														</li>
+														<li>
+															<a style="width: 38px;height: 38px;">
+																<!--<span>黑/大红/安踏白-4131-2</span>-->
+															</a>
+														</li>
+														<li>
+															<a style="width: 38px;height: 38px;">
+																<!--<span>黑/大红/安踏白-4131-2</span>-->
+															</a>
+														</li>
+														<li>
+															<a style="width: 38px;height: 38px;">
+																<!--<span>黑/大红/安踏白-4131-2</span>-->
+															</a>
+														</li>
+													</ul>
+												</dd>
+											</dl>
+											<dl class="tb-amount" style="clear: left;">
+												<dt class="tb-metatit">数量</dt>
+												<dd id="J_Amount">
+								          <span>
+													<div class="choose-amount ">
+															<input class="text buy-num" onkeyup="setAmount.modify('#buy-num');" id="buy-num" value="1" data-max="200">
+															<a class="btn-reduce disabled" onclick="setAmount.reduce('#buy-num')" href="#none" data-disabled="1">-</a>
+															<a class="btn-add" onclick="setAmount.add('#buy-num')" href="#none" data-disabled="1">+</a>
+													</div>
+													<span class="mui-amount-unit">件</span>
+													<em id="J_EmStock" class="tb-hidden" style="display: inline;">库存25472件</em>
+													<span id="J_StockTips">
+													</span></span>
+												</dd>
+											</dl>
+											<div class="tb-action">
+												<div class="tb-btn-buy tb-btn-sku">
+													<a href="#">立即购买</a>
+												</div>
+												<div class="tb-btn-basket tb-btn-sku"><a href="#">加入购物车</a></div>
+											</div>
+										</div>
+									</div>
+									<div class="tm-ser">
+										<dl class="tm-clear">
+											<dt class="tb-metatit">服务承诺</dt>
+											<dd class="tm-laysku-dd">
+												<ul class="tb-serPromise">
+													<li><a href="//www.tmall.com/wow/portal/act/bzj" title="该商品由中国人保承保正品保证险" target="_blank">正品保证</a></li>
+													<li><a href="//vip.tmall.com/vip/privilege.htm?spm=3.1000588.0.141.2a0ae8&amp;priv=speed" title="极速退款是为诚信会员提供的退款退货流程的专享特权，额度是根据每个用户当前的信誉评级情况而定"
+														 target="_blank">极速退款</a></li>
+													<li><a href="//service.tmall.com/support/tmall/knowledge-1121473.htm?spm=0.0.0.0.asbDA1" title="卖家为您购买的商品投保退货运费险（保单生效以下单显示为准）"
+														 target="_blank">赠运费险</a></li>
+													<li><a href="//pages.tmall.com/wow/seller/act/seven-day" title="七天无理由退换" target="_blank">七天无理由退换</a></li>
+												</ul>
+											</dd>
+										</dl>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tb-gallery">
+							<div class="tb-booth">
+								<a href="javascript:void(0);">
+									<img id="J_ImgBooth" alt="安踏童鞋男童鞋运动鞋2019秋冬季新款儿童篮球鞋男官网中大童鞋子" src="https://img.alicdn.com/imgextra/i1/1745656365/O1CN019d8tGe1wtDSEUfPuT_!!0-item_pic.jpg_430x430q90.jpg">
+								</a>
+							</div>
+							<div class="tb-thumb-warp ">
+								<!--<a class="tb-thumb-left"><</a>-->
+								<div class="tb-thumb-content">
+									<ul class="tb-thumb">
+										<li class="tb-selected">
+											<a href="#"><img src="//img.alicdn.com/imgextra/i1/1745656365/O1CN019d8tGe1wtDSEUfPuT_!!0-item_pic.jpg_60x60q90.jpg"
+												 alt="商品预览图"></a>
+										</li>
+										<li class="">
+											<a href="#"><img src="//img.alicdn.com/imgextra/i1/1745656365/O1CN015jOlfg1wtDRwdnApI_!!0-item_pic.jpg_60x60q90.jpg"
+												 alt="商品预览图"></a>
+										</li>
+										<li class="">
+											<a href="#"><img src="//img.alicdn.com/imgextra/i4/1745656365/O1CN01yaJ1qs1wtDS3nWjeZ_!!1745656365.jpg_60x60q90.jpg"
+												 alt="商品预览图"></a>
+										</li>
+										<li class="">
+											<a href="#"><img src="//img.alicdn.com/imgextra/i3/1745656365/O1CN018bnIpJ1wtDSBUDhJQ_!!1745656365.jpg_60x60q90.jpg"
+												 alt="商品预览图"></a>
+										</li>
+										<li class="">
+											<a href="#"><img src="//img.alicdn.com/imgextra/i2/1745656365/O1CN01qYXykP1wtDS1Ewa1w_!!0-item_pic.jpg_60x60q90.jpg"
+												 alt="商品预览图"></a>
+										</li>
+									</ul>
+								</div>
+								<!--<a class="tb-thumb-right">></a>-->
+							</div>
+							<p class="tm-action">
+								<span style="float: right;"><a href="" target="_blank">举报</a></span>
+								<a href="javascript:;" class="favorite"><span>收藏商品</span></a>
+								<span>（58641人气）</span>
+							</p>
+						</div>
+					</div>
+					<div id="bd" class="">
+						<div class="grid-s5m0">
+							<div class="col-main">
+								<div id="mainwrap" class="main-wrap">
+									<div id="J_TabBarBox" style="width:100%;border: 1px solid #dfdfdf;">
+										<ul id="J_TabBar" class="tabbar">
+											<li class="tm-selected"><a v-on:click="change_goodsInfo_status(0)">商品详情</a></li>
+											<li><a v-on:click="change_goodsInfo_status(1)">
+													累计评价 <em class="J_ReviewsCount" style="display: inline;">138</em></a></li>
+										</ul>
+									</div>
+									<div id="attributes" class="attributes" v-if="goodsInfo_status==0">
+										<div class="attributes-list" id="J_AttrList">
+											<div class="tm-clear tb-hidden tm_brandAttr" id="J_BrandAttr" style="display: block;">
+												<div class="name">品牌名称：<b class="J_EbrandLogo" target="_blank" href="//brand.tmall.com/brandInfo.htm?brandId=3424764&amp;type=0&amp;scm=1048.1.1.4">ANTA/安踏</b></div>
+											</div>
+											<p class="attr-list-hd tm-clear"><em>产品参数：</em></p>
+											<ul id="J_AttrUL">
+												<li id="J_attrBrandName" title="&nbsp;ANTA/安踏">品牌:&nbsp;ANTA/安踏</li>
+												<li title="&nbsp;7岁&nbsp;8岁&nbsp;9岁&nbsp;10岁&nbsp;11岁&nbsp;12岁&nbsp;13岁&nbsp;14岁">适用年龄:&nbsp;7岁&nbsp;8岁&nbsp;9岁&nbsp;10岁&nbsp;11岁&nbsp;12岁&nbsp;13岁&nbsp;14岁</li>
+												<li title="&nbsp;其他">面料:&nbsp;其他</li>
+												<li title="&nbsp;其他">图案:&nbsp;其他</li>
+												<li title="&nbsp;休闲">风格:&nbsp;休闲</li>
+												<li title="&nbsp;中性">适用性别:&nbsp;中性</li>
+												<li title="&nbsp;官方图片">模特实拍:&nbsp;官方图片</li>
+												<li title="&nbsp;套头">衣门襟:&nbsp;套头</li>
+												<li title="&nbsp;2件">件数:&nbsp;2件</li>
+												<li title="&nbsp;无">是否带帽子:&nbsp;无</li>
+												<li title="&nbsp;【中大童】宫蓝色/明月蓝-1&nbsp;【中大童】枫叶红/明月蓝-2&nbsp;【中大童】梦幻黑/梦幻黑-3&nbsp;【中大童女款】淡雅紫/BC04浅花灰-4&nbsp;【中大童】BC04浅花灰/梦幻黑-5&nbsp;【中大童女款】克粉色/梦幻黑-6&nbsp;【小童男款】宫蓝色/梦幻黑-3&nbsp;【小童男款】绵糖白/梦幻黑-1&nbsp;【小童男款】枫叶红/明月蓝-2&nbsp;【小童女款】清爽紫/梦幻黑-4&nbsp;【小童女款】BC04浅花灰/克粉色-5">颜色分类:&nbsp;【中大童】宫蓝色/明月蓝-1&nbsp;【中大童】枫叶红/明月蓝-2&nbsp;【中大童】梦幻黑/梦幻黑-3&nbsp;【中大童女款】淡雅紫/BC04浅花灰-4&nbsp;【中大童】BC04浅花灰/梦幻黑-5&nbsp;【中大童女款】克粉色/梦幻黑-6&nbsp;【小童男款】宫蓝色/梦幻黑-3&nbsp;【小童男款】绵糖白/梦幻黑-1&nbsp;【小童男款】枫叶红/明月蓝-2&nbsp;【小童女款】清爽紫/梦幻黑-4&nbsp;【小童女款】BC04浅花灰/克粉色-5</li>
+												<li title="&nbsp;长袖+裤子">组合形式:&nbsp;长袖+裤子</li>
+												<li title="&nbsp;A37918791">货号:&nbsp;A37918791</li>
+												<li title="&nbsp;101cm&nbsp;110cm&nbsp;120cm&nbsp;130cm&nbsp;140cm&nbsp;150cm&nbsp;160cm&nbsp;165cm&nbsp;170cm">参考身高:&nbsp;101cm&nbsp;110cm&nbsp;120cm&nbsp;130cm&nbsp;140cm&nbsp;150cm&nbsp;160cm&nbsp;165cm&nbsp;170cm</li>
+												<li title="&nbsp;春秋">适用季节:&nbsp;春秋</li>
+												<li title="&nbsp;2019年春季">上市年份季节:&nbsp;2019年春季</li>
+												<li title="&nbsp;常规">厚薄:&nbsp;常规</li>
+												<li title="&nbsp;棉92% 聚酯纤维8%">材质成分:&nbsp;棉92% 聚酯纤维8%</li>
+
+												<!-- 健字号相关-->
+											</ul>
+
+										</div>
+									</div>
+									<div id="J_DcTopRightWrap" v-if="goodsInfo_status==0">
+										<div id="J_DcTopRight" class="J_DcAsyn tb-shop">
+											<div class="J_TModule">
+												<div class="skin-box tb-module tshop-pbsm tshop-pbsm-shop-self-defined">
+													<s class="skin-box-tp"><b></b></s>
+													<div class="skin-box-bd">
+														<span>
+															<a href="//antakids.tmall.com/category-1427828655.htm?spm=a220o.1000855.0.0.58d54a8aCWKCLK&amp;
+														search=y&amp;catName=19%B4%BA%BC%BE%D0%C2%C6%B7%CD%C6%BC%F6&amp;scene=taobao_shop"
+															 target="_blank"><img src="//gdp.alicdn.com/imgextra/i2/1745656365/O1CN01XvszOX1wtDSFg3xiJ_!!1745656365.jpg"
+																 class="img-ks-lazyload"></a>
+														</span>
+													</div>
+													<s class="skin-box-bt"><b></b></s>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="description" v-if="goodsInfo_status==0">
+										<h4 class="hd">商品详情</h4>
+										<div class="content ke-post" style="height: auto;"><img class="desc_anchor img-ks-lazyload" id="desc-module-1"
+											 src="https://assets.alicdn.com/kissy/1.0.0/build/imglazyload/spaceball.gif">
+											<img class="desc_anchor img-ks-lazyload" id="desc-module-2" src="https://assets.alicdn.com/kissy/1.0.0/build/imglazyload/spaceball.gif">
+											<p><img src="https://img.alicdn.com/imgextra/i3/1745656365/O1CN01xrzDQR1wtDRP55ukP_!!1745656365.jpg" align="absmiddle"
+												 class="img-ks-lazyload"><br> </p>
+											<img class="desc_anchor img-ks-lazyload" id="desc-module-3" src="https://assets.alicdn.com/kissy/1.0.0/build/imglazyload/spaceball.gif">
+											<p><img src="https://img.alicdn.com/imgextra/i2/1745656365/O1CN01Rh8wXu1wtDRSpWMJ3_!!1745656365.jpg" align="absmiddle"
+												 class="img-ks-lazyload"><br> </p>
+											<img class="desc_anchor img-ks-lazyload" id="desc-module-4" src="https://assets.alicdn.com/kissy/1.0.0/build/imglazyload/spaceball.gif">
+										</div>
+									</div>
+									<div id="J_Detail" style="margin: 0;padding:0;" v-if="goodsInfo_status==1">
+										<div id="J_Reviews">
+											<!--<h4 class="hd">累计评价 <em class="J_ReviewsCount" style="display: inline;">138</em></h4>-->
+											<div class="tm-rate">
+												<div style="display: block;">
+													<div class="rate-score" style="">
+														<h4>与描述相符</h4><strong>4.9</strong>
+														<p><span class="score-value-no score-value-4d9"><em></em></span></p>
+													</div>
+													<div class="rate-tag-box">
+														<div class="rate-tag-list">
+															<div class="rate-tag-inner"><span class="tag-posi"><a id="ratetag2971_10120a" href="#" data-posi="1"
+																	 data-id="10120">态度不错(4)<s></s></a></span></div>
+														</div>
+													</div>
+												</div>
+												<div class="rate-compose"></div>
+												<div class="rate-subject"></div>
+												<div class="rate-charts"></div>
+												<div class="rate-toolbar"><span class="rate-filter"><input class="rate-list-all rate-radio-group" type="radio"
+														 name="radiogrounp" checked="">
+														<label>全部</label><input class="rate-list-append rate-radio-group" type="radio" name="radiogrounp"><label>追评
+															(2)</label>
+														<input class="rate-list-picture rate-radio-group" type="radio" name="radiogrounp">
+														<label for="J_RateWithPicture1549800018732">图片 (6)</label></span>
+													</span></div>
+												<div class="rate-grid">
+													<table>
+														<tbody>
+															<tr>
+																<td class="tm-col-master">
+																	<div class="tm-rate-premiere">
+																		<div class="tm-rate-tag">
+																			<div class="tm-rate-title">初次评价:</div>
+																			<div class="tm-rate-date">01.26</div>
+																		</div>
+																		<div class="tm-rate-content">
+																			<div class="tm-rate-fulltxt">此用户没有填写评论!</div>
+																			<div class="tm-m-photos">
+																				<ul class="tm-m-photos-thumb"> </ul>
+																				<div class="tm-m-photo-viewer" style="width:0px;height:0px;display:none;"> <img src=""> <a class="tm-m-photo-viewer-navleft"><i
+																						 class="tm-m-photo-viewer-navicon"></i></a> <a class="tm-m-photo-viewer-navright"><i class="tm-m-photo-viewer-navicon"></i></a></div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="tm-rate-append">
+																		<div class="tm-rate-tag">
+																			<div class="tm-rate-title"><span class="tm-rate-daydiff">收货15天后追加：</span></div>
+																			<div class="tm-rate-date"></div>
+																		</div>
+																		<div class="tm-rate-content">
+																			<div class="tm-rate-fulltxt">这个衣服是非常钟意的，穿上也帅气，洗了之后才穿，内搭一件白衬衫，晚上给孩子换衣服，白衬衫都被染成红衬衫了，还好没贴肤穿</div>
+																			<div class="tm-m-photos">
+																				<ul class="tm-m-photos-thumb"> </ul>
+																				<div class="tm-m-photo-viewer" style="width:0px;height:0px;display:none;"> <img src=""> <a class="tm-m-photo-viewer-navleft"><i
+																						 class="tm-m-photo-viewer-navicon"></i></a> <a class="tm-m-photo-viewer-navright"><i class="tm-m-photo-viewer-navicon"></i></a></div>
+																			</div>
+																		</div><s></s>
+																	</div>
+																</td>
+																<td class="col-meta">
+																	<div class="rate-sku">
+																		<p title="颜色分类:【中大童】枫叶红/明月蓝-2"><span>颜色分类：</span>【中大童】枫叶红/明月蓝-2</p>
+																		<p title="参考身高:140cm"><span>参考身高：</span>140cm</p>
+																	</div>
+																	<div class="rate-user-profile">
+																		<p title=""></p>
+																	</div>
+																</td>
+																<td class="col-author">
+																	<div class="rate-user-info">曹<span>***</span>6<span>（匿名）</span></div>
+																</td>
+															</tr>
+															<tr>
+																<td class="tm-col-master">
+																	<div class="tm-rate-content">
+																		<div class="tm-rate-fulltxt">儿子155，52公斤穿上合适。</div>
+																		<div class="tm-m-photos">
+																			<ul class="tm-m-photos-thumb"> </ul>
+																			<div class="tm-m-photo-viewer" style="width:0px;height:0px;display:none;"> <img src=""> <a class="tm-m-photo-viewer-navleft"><i
+																					 class="tm-m-photo-viewer-navicon"></i></a> <a class="tm-m-photo-viewer-navright"><i class="tm-m-photo-viewer-navicon"></i></a></div>
+																		</div>
+																	</div>
+																	<div class="tm-rate-date">02.04</div>
+																	<div class="tm-rate-reply">
+																		<div class="tm-rate-fulltxt">解释：相对两相知，清如水兮明如镜，寸心澈而映，相信您可以感受到我们的真诚与努力，感谢您一直以来的支持。——【anta安踏童装旗舰店】</div>
+																	</div>
+																</td>
+																<td class="col-meta">
+																	<div class="rate-sku">
+																		<p title="颜色分类:【中大童】枫叶红/明月蓝-2"><span>颜色分类：</span>【中大童】枫叶红/明月蓝-2</p>
+																		<p title="参考身高:170cm"><span>参考身高：</span>170cm</p>
+																	</div>
+																	<div class="rate-user-profile">
+																		<p title=""></p>
+																	</div>
+																</td>
+																<td class="col-author">
+																	<div class="rate-user-info">w<span>***</span>g<span>（匿名）</span></div>
+																	<div class="rate-user-grade">
+																		<p class="gold-user">超级会员</p>
+																	</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="tm-col-master">
+																	<div class="tm-rate-content">
+																		<div class="tm-rate-fulltxt">买了好多次了，挺好</div>
+																		<div class="tm-m-photos">
+																			<ul class="tm-m-photos-thumb"> </ul>
+																			<div class="tm-m-photo-viewer" style="width:0px;height:0px;display:none;"> <img src=""> <a class="tm-m-photo-viewer-navleft"><i
+																					 class="tm-m-photo-viewer-navicon"></i></a> <a class="tm-m-photo-viewer-navright"><i class="tm-m-photo-viewer-navicon"></i></a></div>
+																		</div>
+																	</div>
+																	<div class="tm-rate-date">01.26</div>
+																	<div class="tm-rate-reply">
+																		<div class="tm-rate-fulltxt">解释：以亲亲之悦，满ANTA KIDS
+																			之情，乐哉乐哉。得此美言甚是欢喜，如沐春风在心间！您的一个好评，一个简单的喜欢，一句真挚的肯定都会让我们的内心充满着力量，感谢您一直以来的支持。——【anta安踏童装旗舰店】</div>
+																	</div>
+																</td>
+																<td class="col-meta">
+																	<div class="rate-sku">
+																		<p title="颜色分类:【中大童】宫蓝色/明月蓝-1"><span>颜色分类：</span>【中大童】宫蓝色/明月蓝-1</p>
+																		<p title="参考身高:165cm"><span>参考身高：</span>165cm</p>
+																	</div>
+																	<div class="rate-user-profile">
+																		<p title=""></p>
+																	</div>
+																</td>
+																<td class="col-author">
+																	<div class="rate-user-info">z<span>***</span>r<span>（匿名）</span></div>
+																</td>
+															</tr>
+															<tr>
+																<td class="tm-col-master">
+																	<div class="tm-rate-content">
+																		<div class="tm-rate-fulltxt">不错，买了好几年了</div>
+																		<div class="tm-m-photos">
+																			<ul class="tm-m-photos-thumb"> </ul>
+																			<div class="tm-m-photo-viewer" style="width:0px;height:0px;display:none;"> <img src=""> <a class="tm-m-photo-viewer-navleft"><i
+																					 class="tm-m-photo-viewer-navicon"></i></a> <a class="tm-m-photo-viewer-navright"><i class="tm-m-photo-viewer-navicon"></i></a></div>
+																		</div>
+																	</div>
+																	<div class="tm-rate-date">01.26</div>
+																	<div class="tm-rate-reply">
+																		<div class="tm-rate-fulltxt">解释：相对两相知，清如水兮明如镜，寸心澈而映，相信您可以感受到我们的真诚与努力，感谢您一直以来的支持。——【anta安踏童装旗舰店】</div>
+																	</div>
+																</td>
+																<td class="col-meta">
+																	<div class="rate-sku">
+																		<p title="颜色分类:【中大童】梦幻黑/梦幻黑-3"><span>颜色分类：</span>【中大童】梦幻黑/梦幻黑-3</p>
+																		<p title="参考身高:165cm"><span>参考身高：</span>165cm</p>
+																	</div>
+																	<div class="rate-user-profile">
+																		<p title=""></p>
+																	</div>
+																</td>
+																<td class="col-author">
+																	<div class="rate-user-info">z<span>***</span>r<span>（匿名）</span></div>
+																</td>
+															</tr>
+
+
+															<tr>
+																<td class="tm-col-master">
+																	<div class="tm-rate-content">
+																		<div class="tm-rate-fulltxt">一次买了两套，质量很好，只是有一套买小了，又申请退款拍了另一款。客服服务态度很好，很耐心解答问题。以后买衣服就找你们家了。</div>
+																		<div class="tm-m-photos">
+																			<ul class="tm-m-photos-thumb"> </ul>
+																			<div class="tm-m-photo-viewer" style="width:0px;height:0px;display:none;"> <img src=""> <a class="tm-m-photo-viewer-navleft"><i
+																					 class="tm-m-photo-viewer-navicon"></i></a> <a class="tm-m-photo-viewer-navright"><i class="tm-m-photo-viewer-navicon"></i></a></div>
+																		</div>
+																	</div>
+																	<div class="tm-rate-date">01.19</div>
+																</td>
+																<td class="col-meta">
+																	<div class="rate-sku">
+																		<p title="颜色分类:【中大童】宫蓝色/明月蓝-1"><span>颜色分类：</span>【中大童】宫蓝色/明月蓝-1</p>
+																		<p title="参考身高:170cm"><span>参考身高：</span>170cm</p>
+																	</div>
+																	<div class="rate-user-profile">
+																		<p title=""></p>
+																	</div>
+																</td>
+																<td class="col-author">
+																	<div class="rate-user-info">t<span>***</span>4<span>（匿名）</span></div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="rate-page">
+													<div class="rate-paginator"><a class="rate-page-prev">&lt;&lt;上一页</a><span>1</span><a href="?page=2">2</a><a
+														 href="?page=3">3</a><a data-page="2" href="?page=2">下一页&gt;&gt;</a></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#vuebody',
+			data: {
+				goodsInfo_status: 0
+			},
+			created: function() {
+				console.log(this.goodsInfo_status);
+			},
+			methods: {
+				change_goodsInfo_status: function(status) {
+					this.goodsInfo_status = status;
+					console.log(this.goodsInfo_status);
+				}
+			}
+		})
+	</script>
+</html>

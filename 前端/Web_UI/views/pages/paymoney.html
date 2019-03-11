@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			.order-ext{
+				
+			}
+			.sub-th{
+				
+			}
+			.main-container {
+			 border-top: 3px solid #a6a6a6;
+       border-bottom: 3px solid #a6a6a6;
+       padding: 20px;
+      }
+			.row-container {
+    padding: 4px 4px 3px;
+    position: relative;
+    margin-bottom: 1px;
+    border-bottom: 1px solid #e6e6e6;
+   }
+	 .row-container-focus{
+    border-color: #85a1d4;
+		padding: 0;
+    border: 4px solid #cad6ef;
+    }
+		.row-basic {
+    height: 52px;
+    width: 100%;
+    line-height: 52px;
+    cursor: pointer;
+    }
+		.channel-label {
+    display: block;
+    height: 100%;
+    width: 100%;
+    }
+		.row-extra {
+    border-top: 1px solid #c9d6f4;
+    padding: 0 15px 0 50px;
+    background-color: #e9f0fe;
+    float: left;
+    width: 837px;
+   }
+	 .pay-amount {
+    float: left;
+    margin-right: 17px;
+    margin-left: 5px;
+    min-width: 150px;
+    text-align: right;
+    padding: 10px 0;
+    height: 32px;
+    line-height: 32px;
+}
+.channel-bank .channel-name {
+    width: 135px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 15px;
+}
+.row-basic .card-number {
+    width: 65px;
+    float: left;
+    min-height: 20px;
+}
+.row-basic .card-type {
+    min-width: 88px;
+    float: left;
+}
+.row-basic .card-info {
+    max-width: 300px;
+    height: 22px;
+    overflow: hidden;
+}
+.row-container .channel-input {
+   /* position: absolute;
+    left:0px;
+    top: 24px;*/
+		margin-top: 24px;
+		margin-left:24px;
+		float: left;
+}
+	 .ui-button-lblue{
+    color: #fff;
+    border: 1px solid #0ae;
+    background-color: #0ae;
+		text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 700;
+    border-radius: 2px;
+    padding: 0 20px;
+    background-image: none;
+		display: inline-block;
+		height: 32px;
+    }
+		.ui-form-item {
+    padding-left: 0;
+    padding-bottom: 15px;
+    }
+	 .ui-label {
+    display: block;
+    margin-left: 0;
+    padding-bottom: 5px;
+    text-align: left;
+		width:170px;
+		padding-top: 3px;
+		font-size: 14px;
+		float: left;
+}
+.sixDigitPassword {
+    cursor: text;
+    background: #fff;
+    outline: none;
+    padding: 8px 0;
+    height: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+		position: absolute;
+		left: 0;
+		box-sizing: content-box;	
+		float: left;
+}
+.sixDigitPassword i {
+    float: left;
+    display: block;
+    padding: 4px 0;
+    height: 7px;
+    border-left: 1px solid #cccccc;
+}
+.alieditContainer {
+    display:block;
+    width: 184px;
+    height: 24px;
+    position: relative;
+		vertical-align: bottom;
+		float: left;
+}
+.edit-link a {
+    line-height: 24px;
+		color: #0ae;
+}
+		</style>
+	</head>
+	<body>
+		<div class="cover">
+			<div class="site-nav">
+				<div class="site-nav-bd">
+					<ul class="site-nav-bd-l">
+						<li>
+							<div class="site-nav-menu-hd">
+								<span class="site-nav-region">中国大陆</span>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-user"> <a></a>
+								</div>
+							</div>
+						</li>
+						<li>
+						</li>
+					</ul>
+					<ul class="site-nav-bd-r">
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>首页</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>我的足迹</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a id="mc-menu-hd">
+									<span>购物车</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>收藏夹</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>个人中心</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div style="margin: 0 auto;width: 950px;margin-bottom: 20px;">
+			<div class="order-ext">
+				<table>
+					<tbody>
+						<tr>
+							<th class="sub-th">交易号：</th>
+							<td>2019021122001111651026735239</td>
+						</tr>
+						<tr>
+							<th class="sub-th">卖家昵称：</th>
+							<td>采青小城</td>
+						</tr>
+						<tr>
+							<th class="sub-th">商品名称：</th>
+							<td>
+								<ul>
+									<li>
+										花花公子长袖t恤青年圆领卫衣体2018秋冬季保暖男装加绒加厚上衣T
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th class="sub-th">交易金额：</th>
+							<td>109.00元</td>
+						</tr>
+						<tr>
+							<th class="sub-th">购买时间：</th>
+							<td>2019年02月11日 19:47:42</td>
+						</tr>
+						<tr>
+							<th class="sub-th">交易类型：</th>
+							<td class="type">
+								<span>在线交易</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<div  class="main-container">
+			<div>
+				<div>
+					<ul class="saved-card-list" id="J_SavecardList">
+						<li class="row-container">
+							<div class="row-basic fn-clear">
+								<input class="channel-input" id="comm907-4" name="apiCode" type="radio"><label class="channel-label" for="comm907-4"><span
+									 class="pay-amount">
+										<span class="amount"><span data-reactid=".0.2.$4.$/=10.0.0.0.0">支付</span><em class="amount-font-R16">109.00</em>
+											<span> 元</span></span></span><span class="channel-tit channel-icon icon banklogo-COMM_s"></span><span class="channel-name"
+									 title="交通银行">交通银行</span><span class="card-number">**1828</span>
+									<span class="card-type">储蓄卡 | 快捷</span><span class="card-info"></span></label></div>
+						</li>
+						<li class="channel-bank row-container fn-clear">
+							<div class="row-basic fn-clear">
+								<input class="channel-input" id="comm907-4" name="apiCode" type="radio">
+								<label class="channel-label" for="icbc906-5"><span class="pay-amount"><span class="amount fn-hide">
+											<span>支付</span><em class="amount-font-R16">109.00</em><span> 元</span></span></span><span class="channel-tit channel-icon icon banklogo-ICBC_s"></span><span
+									 class="channel-name" title="中国工商银行">中国工商银行</span><span class="card-number">**6880
+									</span><span class="card-type">储蓄卡 | 快捷</span><span class="card-info"></span></label></div>
+						</li>
+						<li class="channel-bank row-container fn-clear">
+							<div class="row-basic fn-clear">
+								<input class="channel-input" id="comm907-4" name="apiCode" type="radio">
+								<label class="channel-label" for="hnrcunucc907-6"><span class="pay-amount"><span class="amount fn-hide"><span>支付</span><em
+											 class="amount-font-R16">109.00</em><span> 元</span></span></span><span class="channel-tit channel-icon icon banklogo-HNRCU_s"></span><span
+									 class="channel-name" title="河南省农村信用社">河南省农村信用社</span><span class="card-number">**1151</span><span class="card-type">储蓄卡
+										| 快捷</span><span class="card-info"></span></label></div>
+						</li>
+						<li class="channel-balance row-container fn-clear row-container-disabled">
+							<div class="row-basic fn-clear">
+								<input class="channel-input" id="comm907-4" name="apiCode" type="radio">
+								<label class="channel-label"><span class="channel-tit channel-icon icon icon-gray banklogo-BALANCE_s"></span><span
+									 class="fn-mr-20"><span class="channel-name">账户余额</span><em>0
+											元</em></span><span class="pay-amount"><span class="amount fn-hide"><span>支付</span><em class="amount-font-R16">109.00</em><span>
+												元</span></span><span>金额不足，可先充值</span></span></label></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="ui-securitycore J-securitycoreMain">
+				<div class="edit-section">
+					<div class="ui-form-item">
+						<label class="ui-label">
+							支付宝支付密码：
+						</label>
+						<span class="alieditContainer">
+							<input type="password" class="sixDigitPassword">
+							<div class="sixDigitPassword" tabindex="0" style="width: 180px;">
+								<i class="" style="width: 29px; border-color: transparent;">
+									<b style="visibility: hidden;"></b></i><i style="width: 29px;"><b style="visibility: hidden;"></b></i>
+								<i style="width: 29px;"><b style="visibility: hidden;"></b></i><i style="width: 29px;">
+									<b style="visibility: hidden;"></b></i><i style="width: 29px;"><b style="visibility: hidden;"></b></i>
+								<i style="width: 29px;"><b style="visibility: hidden;"></b></i>
+							</div>
+						</span>
+						<span class="edit-link">
+							<a target="_blank" href="https://lab.alipay.com/user/passwordfind/index.htm?type=P" seed="sc_edit_forgetPwd">忘记密码？</a>
+						</span>
+						<div class="ui-form-explain">
+							<p id="J_edit_prompt_default" class="">
+								请输入6位数字支付密码
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="J-rcSubmit">
+				<div class="ui-fm-item ui-fm-action j-submit" data-reactid=".1"><input class="ui-button-lblue" type="submit" value="确认付款">
+				</div>
+				</form>
+			</div>
+			</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+	</body>
+</html>

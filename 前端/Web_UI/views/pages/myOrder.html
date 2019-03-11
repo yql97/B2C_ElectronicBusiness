@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			.index{
+    background-color: #fff;
+}
+.nav-mod-tabs {
+    margin-top: 22px;
+    margin-bottom: 22px;
+	position: relative;
+	border-bottom: 2px solid #e8e8e8;
+}
+.tabs-mod-main {
+    position: relative;
+    bottom: -2px;
+}
+.tabs-mod-tab{
+    display: inline-block;
+    position: relative;
+    border-bottom: 2px solid #e8e8e8;
+    cursor: pointer;
+    margin-right: 1px\0;
+}
+.nav-mod-tab {
+    display: inline-block;
+    line-height: 1;
+    padding: 0 20px 12px;
+    font-size: 16px;
+}
+.nav-mod-text{
+    font-weight: 700;
+    font-family: Microsoft YaHei;
+}
+.nav-mod-count{
+    margin-left: 5px;
+    color: #ff6000;
+    font-weight: 400;
+}
+.tabs-mod-sep{
+    background-color: #e8e8e8;
+    width: 1px;
+    height: 14px;
+    top: 2px;
+    right: 0;
+    font-size: 0;
+    color: #e8e8e8;
+    position: absolute;
+}
+.tabs-mod-minors{
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+}
+.table-head-mod-table{
+    margin: 10px 0;
+    background-color: #f5f5f5;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+	width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #3c3c3c;
+    table-layout: fixed;
+}
+.bought-wrapper-mod-closed .bought-wrapper-mod-head {
+    background: #f1f1f1;
+}
+.index-mod__order-container{
+    margin: 10px 0;
+}
+.bought-wrapper-mod-trade-order.bought-wrapper-mod-closed{
+    border: 1px solid #ececec;
+}
+.bought-table-mod-table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #3c3c3c;
+    table-layout: fixed;
+}
+.bought-wrapper-mod-checkbox-label {
+    margin-left: 20px;
+}
+.bought-wrapper-mod-table td {
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    text-align: center;
+	border-color: #ececec;
+}
+.bought-wrapper-mod-table .bought-wrapper-mod-thead-operations-container{
+    padding-right: 20px;
+    text-align: right;
+}
+.bought-table-mod-table p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+.ml-mod-media {
+    float: left;
+}
+.bought-table-mod-table a {
+    color: #3c3c3c;
+    text-decoration: none;
+    word-break: break-all;
+}
+.pagination-prev {
+    border: 1px solid #d9d9d9;
+    font-size: 18px;
+	box-sizing: border-box;
+    color: #666;
+    list-style: none;
+    min-width: 35px;
+    height: 35px;
+    line-height: 35px;
+    float: left;
+    text-align: center;
+}
+.pagination-disabled a {
+    color: #ccc;
+}
+.pagination-item {
+    box-sizing: border-box;
+    cursor: pointer;
+    min-width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    list-style: none;
+    float: left;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    margin-right: 2px;
+}
+.pagination-jump-next{
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #666;
+    font-size: 10px;
+    list-style: none;
+    min-width: 35px;
+    height: 35px;
+    line-height: 35px;
+    float: left;
+    text-align: center;
+}
+.pagination-item-active {
+    background-color: #ff4401;
+    border-color: #ff4401;
+}
+.pagination-next{
+	box-sizing: border-box;
+	cursor: pointer;
+	color: #666;
+	list-style: none;
+	min-width: 35px;
+	height: 35px;
+	line-height: 35px;
+	float: left;
+	text-align: center;
+	    margin-left: 5px;
+		border: 1px solid #d9d9d9;
+    font-size: 18px;
+}
+ 
+ .pagination-prev {
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #666;
+    list-style: none;
+    min-width: 35px;
+    height: 35px;
+    line-height: 35px;
+    float: left;
+    text-align: center;
+}
+.pagination-options {
+    float: left;
+    margin-left: 15px;
+}
+.pagination-options-quick-jumper {
+    box-sizing: border-box;
+    float: left;
+    margin-left: 16px;
+    height: 35px;
+    line-height: 35px;
+}
+.pagination-options-quick-jumper input {
+    margin: 0 8px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    outline: none;
+    padding: 3px 12px;
+    width: 50px;
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+	    position: relative;
+    display: inline-block;
+    cursor: text;
+    font-size: 12px;
+    color: #333;
+    background-image: none;
+    transition: border .2s cubic-bezier(.645,.045,.355,1),background .2s cubic-bezier(.645,.045,.355,1),box-shadow .2s cubic-bezier(.645,.045,.355,1);
+}
+.pagination-options-go {
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #e6e7eb;
+    background-color: #fff;
+    text-decoration: none;
+    transition: none;
+    padding: 0 12px;
+    display: inline-block;
+    margin-left: 8px;
+    font-family: Arial;
+    color: #666;
+    list-style: none;
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+}
+.pagination-jump-next:after, .pagination-jump-prev:after {
+    content: "\2022\2022\2022";
+    display: block;
+    letter-spacing: 2px;
+    color: #ccc;
+    font-size: 12px;
+    margin-top: 1px;
+}
+
+    </style>
+	</head>
+	<body>
+		<div class="cover">
+			<div class="site-nav">
+				<div class="site-nav-bd">
+					<ul class="site-nav-bd-l">
+						<li>
+							<div class="site-nav-menu-hd">
+								<span class="site-nav-region">中国大陆</span>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-user"> <a></a>
+								</div>
+							</div>
+						</li>
+						<li>
+						</li>
+					</ul>
+					<ul class="site-nav-bd-r">
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>首页</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>我的足迹</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a id="mc-menu-hd">
+									<span>购物车</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>收藏夹</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>个人中心</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="main" style="margin:0 auto;min-height: 600px;width: 80%;">
+			<div id="tp-bought-root" class="index">
+				<div class="nav-mod-tabs">
+					<div class="tabs-mod-main">
+						<div class="tabs-mod-tab">
+							<span class="nav-mod-tab"><span class="nav-mod-text">所有订单</span>
+								<span class="nav-mod-count"></span></span>
+							<span class="tabs-mod-sep">|</span></div>
+						<div class="tabs-mod-tab">
+							<span class="nav-mod-tab"><span class="nav-mod-text">待付款</span><span class="nav-mod-count"></span></span>
+							<span class="tabs-mod-sep">|</span></div>
+						<div class="tabs-mod-tab"><span class="nav-mod-tab"><span class="nav-mod-text">待发货</span><span class="nav-mod-count"></span></span><span
+							 class="tabs-mod-sep">|</span></div>
+						<div class="tabs-mod-tab"><span class="nav-mod-tab"><span class="nav-mod-text">待收货</span><span class="nav-mod-count"></span></span><span
+							 class="tabs-mod-sep">|</span></div>
+						<div class="tabs-mod-tab tabs-mod__selected___2DHDY"><span class="nav-mod-tab"><span class="nav-mod-text">待评价</span><span
+								 class="nav-mod-count">4</span></span><span class="tabs-mod-sep">|</span></div>
+					</div>
+					<div class="tabs-mod-minors">
+						<div class="tabs-mod-tab"><span id="recycleTab" class="nav-mod-tab nav-mod-recycle">
+								<img class="nav-mod-img" src="//img.alicdn.com/tps/i4/TB1G5QqIFXXXXbvXFXXcmA2.FXX-11-12.png" alt="订单回收站"><span
+								 class="nav-mod-text">订单回收站</span></span></div>
+					</div>
+				</div>
+				<table class="bought-table-mod-table table-head-mod-table">
+					<tbody>
+						<tr>
+							<th style="width:35%;">宝贝</th>
+							<th style="width: 10%;">单价</th>
+							<th style="width:10%;">数量</th>
+							<th style="width: 15%;">实付款</th>
+							<th style="width:15%;"><span class="field-select-mod-select trade-select table-head-mod-status 
+							rc-select rc-select-enabled"><span
+									 class="rc-select-selection rc-select-selection--single"><span class="rc-select-selection-rendered">
+											<span>交易状态</span></span><span class="rc-select-arrow" tabindex="-1" style="outline:none;"><b></b></span></span></span></th>
+							<th style="width: 15%;">交易操作</th>
+						</tr>
+					</tbody>
+				</table>
+				<div class="index-mod-order-container">
+					<div class="bought-wrapper-mod-trade-order bought-wrapper-mod-closed">
+						<table class="bought-table-mod-table bought-wrapper-mod-table">
+							<tbody class="bought-wrapper-mod-head">
+								<tr>
+									<td style="width: 30%;">
+										<label class="bought-wrapper-mod-checkbox-label"><span class="bought-wrapper-mod-checkbox">
+												<input type="checkbox"></span><span class="bought-wrapper-mod-create-time">2019-02-10</span></label><span>
+											<span>订单号</span><span>: </span><span>273509772200734320</span></span></td>
+									<td colspan="2" style="width: 30%" class="bought-wrapper-mod-seller-container"><span class="seller-mod-container"><img
+											 src="//gtd.alicdn.com/tps/i2/TB1aJQKFVXXXXamXFXXEDhGGXXX-32-32.png" class="seller-mod-icon">
+											<a href="//store.taobao.com/shop/view_shop.htm?user_number_id=814074396" class="seller-mod-name" title="君宝话费充值专营店"
+											 target="_blank" rel="noopener noreferrer">君宝话费充值专营店</a></span></td>
+									<td colspan="3" style="width: 40%;" class="bought-wrapper-mod-thead-operations-container">
+										<a href="###" class="bought-wrapper-mod-th-operation always-visible" title="删除订单" target="_blank" rel="noopener noreferrer"
+										 action="a7" id="delOrder"><i style="height:17px;width:1px;padding-left:17px;overflow:hidden;vertical-align:middle;font-size:0px;display:inline-block;visibility:visible;background:url(//img.alicdn.com/tps/i1/TB1heyGFVXXXXXpXXXXR3Ey7pXX-550-260.png) no-repeat -239px -176px;"></i></a></td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<td>
+										<div class="ml-mod-container production-mod-production suborder-mod-production">
+											<div class="ml-mod-media" style="width:80px;"><a href="//buy.taobao.com/auction/buy_now.jhtml?item_id_num=15034360642&amp;quantity=1"
+												 class="production-mod-pic" target="_blank"><img src="//img.alicdn.com/imgextra/i4/T1s_mgXdRiXXbr5z78_100959.jpg_80x80.jpg"><span>
+													</span></a></div>
+											<div style="margin-left:90px;">
+												<p><a href="//buy.taobao.com/auction/buy_now.jhtml?item_id_num=15034360642&amp;quantity=1" target="_blank"><span></span><span
+														 style="line-height:16px;">浙江电信20元手机充值
+															快充 即时到帐 自动充值 支持固话充值</span><span>
+														</span></a><span></span><span></span></p>
+												<p><a href="//www.taobao.com/go/act/315/xfzbz_rsms.php?ad_id=&amp;am_id=130011830696bce9eda3&amp;cm_id=&amp;pm_id="
+													 title="如实描述" type="3" style="margin-right:8px;" target="_blank">
+														<img src="//img.alicdn.com/tps/TB1PDB6IVXXXXaVaXXXXXXXXXXX.png"></a>
+													<a href="//www.tmall.com/wow/portal/act/bzj?spm=a220o.1000855.0.0.qUbfVM" title="正品保证" type="3" style="margin-right:8px;"
+													 target="_blank"><img src="//img.alicdn.com/tps/i2/T1SyeXFpliXXaSQP_X-16-16.png"></a></p>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="price-mod-price">
+											<p><span>￥</span><span>20.00</span></p>
+										</div>
+									</td>
+									<td>
+										<div>
+											<p>1</p>
+										</div>
+									</td>
+									<td>
+										<div>
+											<div class="price-mod-price">
+												<p><strong><span>￥</span><span>20.00</span></strong></p>
+											</div>
+											<p style="color:#6c6c6c;font-family:verdana;"><span></span><span>(自动充值)</span><span></span><span></span></p>
+											<div style="font-family:verdana;">
+												<div></div>
+											</div>
+											<p><a href="http://www.taobao.com/m?sprefer=symj28" title="手机订单" style="margin-right:5px;" target="_blank"><img
+													 src="//img.alicdn.com/tps/i1/T1xRBqXdNAXXXXXXXX-46-16.png"></a></p>
+										</div>
+									</td>
+									<td>
+										<div>
+											<p style="margin-bottom:3px;"><span class="text-mod-link">充值成功</span></p>
+											<div>
+												<p style="margin-bottom:3px;"><a href="//buyertrade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=273509772200734320"
+													 class="text-mod-link text-mod-hover" target="_blank" rel="noopener noreferrer" id="viewDetail">订单详情</a></p>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div>
+											<p style="margin-bottom:3px;"><a href="//rate.taobao.com/remarkSeller.jhtml?spm=a1z09.2.0.0.74a22e8dylfJSe&amp;tradeID=273509772200734320&amp;returnURL=https://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm"
+												 class="button-mod-button button-mod-default button-mod-button" target="_blank" id="rateOrder">评价</a></p>
+											<p style="margin-bottom:3px;"><span class="text-mod-link text-mod-hover" action="a1">再次购买</span></p>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row-mod-row">
+					<div style="float:left;">
+						<div class="batch-mod-container"></div>
+					</div>
+					<div style="float:right;">
+						<ul class="pagination " unselectable="unselectable">
+							<li title="上一页" class="pagination-disabled pagination-prev"><a>
+									<</a> </li> <li title="1" class="pagination-item pagination-item-1 pagination-item-active"><a>1</a></li>
+							<li title="2" class="pagination-item pagination-item-2"><a>2</a></li>
+							<li title="3" class="pagination-item pagination-item-3"><a>3</a></li>
+							<li title="4" class="pagination-item pagination-item-4"><a>4</a></li>
+							<li title="5" class="pagination-item pagination-item-5"><a>5</a></li>
+							<li title="向后 5 页" class="pagination-jump-next"><a></a></li>
+							<li title="24" class="pagination-item pagination-item-24"><a>24</a></li>
+							<li title="下一页" class="pagination-next"><a>></a></li>
+							<div class="pagination-options">
+								<div title="Quick jump to page" class="pagination-options-quick-jumper">
+									<span>跳至</span><input type="text" value="1"><span>页</span>
+									<span class="pagination-options-go">跳转</span></div>
+							</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="Footer" style="min-height: 150px">
+			<div class="footer">
+				<div class="footer-hd">
+					<p>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">阿里云计算</a>
+						<b>|</b>
+					</p>
+				</div>
+				<div class="footer-bd">
+					<p>
+						<a href="">关于本站</a>
+						<a href="">合作伙伴</a>
+						<a href="">营销中心</a>
+						<a href="">廉正举报</a>
+						<a href="">联系客服</a>
+						<a href="">开放平台</a>
+						<a href="">诚征英才</a>
+						<a href="">联系我们</a>
+						<a href="">网站地图</a>
+						<a href="">法律声明</a>
+						<a href="">隐私权政策</a>
+					</p>
+					<p style="clear: left;">
+						<em>© 2019 Maimai.com 版权所有</em>
+						<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+						<b>|</b>
+						<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+						<b>|</b>
+						<span>信息网络传播视听节目许可证：1109364号</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>购物车</title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			.w {
+    width: 990px;
+    margin: 0 auto;
+		padding: 10px 0 0;
+		height: auto;
+}
+.header {
+    padding: 20px 0 40px;
+    height: 35px;
+		width: 990px;
+    margin: 0 auto;
+}
+.logo{
+    width: 140px;
+    height: 35px;
+    font-size: 35px;
+    line-height: 35px;
+    color: #f50;
+    position: relative;
+    display: inline-block;
+}
+.cart-search {
+    float: right;
+    border: 2px solid #c91623;
+    background: #c91623;
+    height: 35px;
+    overflow: hidden;
+}
+.cart-search .itxt {
+    border: 0;
+    height:29px;
+    line-height: 18px;
+    width: 280px;
+    padding: 3px 5px;
+    outline: 0;
+}
+.cart-search .button {
+    display: inline-block;
+    vertical-align: top;
+    width: 48px;
+    height: 35px;
+    background: #c91623;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    -webkit-appearance: none;
+		margin: 0;
+    padding: 0;
+    border: 0;
+		cursor: pointer;
+}
+.cart {
+    min-height: 400px;
+}
+.cart-main {
+    min-height: 210px;
+}
+.cart-main .cart-thead {
+    display: inline-block;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 0 10px;
+    padding: 5px 0;
+    background: #f3f3f3;
+    border: 1px solid #e9e9e9;
+    border-top: 0;
+    position: relative;
+}
+.cart-main .cart-thead .t-checkbox {
+    height: 18px;
+    line-height: 18px;
+    padding-top: 7px;
+    width: 122px;
+    padding-left: 11px;
+}
+.cart-checkbox {
+    position: relative;
+    z-index: 3;
+    float: left;
+    margin-right: 5px;
+		padding: 0;
+		margin: 0;
+}
+.cart-main .jdcheckbox {
+    float: none;
+    position: relative;
+    z-index: 5;
+    vertical-align: middle;
+    padding: 0;
+}
+.cart-main .cart-thead .column {
+    float: left;
+}
+.shop {
+    position: relative;
+    height: 38px;
+    background: #fff;
+    overflow: hidden;
+}
+.shop-info {
+    position: relative;
+    z-index: 2;
+    line-height: 38px;
+  /*  padding-left: 15px;*/
+}
+.order-content {
+    border: 1px solid #ccc;
+		min-height:120px;
+}
+.bundle-hd {
+    height: 28px;
+    padding-top: 9px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.item-content {
+	margin: 0;
+	padding: 0;
+}
+.item-content .td {
+    float: left;
+    min-height: 119px;
+		margin: 0;
+		padding: 0;
+}
+.order-content .bundle-last {
+    border-bottom: 0;
+}
+.td-inner {
+    padding-top: 20px;
+}
+.item-content .item-pic {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #eee;
+    float: left;
+    overflow: hidden;
+    /*background: #fff url(//gtd.alicdn.com/tps/i3/T1b1m3XkVpXXXXXXXX-32-32.gif) no-repeat 50% 50%;*/
+}
+.item-content .item-title {
+    font-size: 12px;
+    display: block;
+    height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+		color:#333;
+}
+.p-props-new {
+    width: 130px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 15px 0 0; 
+}
+.props-txt {
+    width: 130px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: default;
+		font-size: 12px;
+		    margin: 0 5px 0 15px;
+    color: #9c9c9c;
+}
+.price-content {
+    padding: 8px 0 0 10px;
+    line-height: 1;
+    width: 74px;
+}
+.price-line {
+    padding: 0 0 4px 0;
+		font-size: 12px;
+}
+.price-original {
+    color: #9c9c9c;
+    text-decoration: line-through;
+    font-family: Verdana,Tahoma,arial;
+}
+.price-now {
+    color: #3c3c3c;
+    font-weight: 700;
+    font-family: Verdana,Tahoma,arial;
+}
+.quantity-form {
+    position: relative;
+    overflow: hidden;
+    height: 22px;
+    width: 80px;
+}
+.minus{
+	  float: left;
+	  cursor: default;
+    color: #e9e9e9;
+		border: 1px solid #cacbcb;
+    border-right: 0;
+    height: 18px;
+    line-height: 18px;
+    padding: 1px 0;
+    width: 16px;
+    text-align: center;
+    color: #666;
+    margin: 0;
+    background: #fff;
+}
+.item-content .itxt {
+    position: absolute;
+    left: 17px;
+    top: 0;
+    border: 1px solid #cacbcb;
+    width: 42px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    padding: 1px;
+    margin: 0;
+    font-size: 12px;
+    font-family: verdana;
+    color: #333;
+    -webkit-appearance: none;
+}
+.increment {
+    float: right;
+    border: 1px solid #cacbcb;
+    border-left: 0;
+    color: #666;
+    height: 18px;
+    line-height: 18px;
+    padding: 1px 0;
+    width: 16px;
+    text-align: center;
+    margin: 0;
+    background: #fff;
+}
+.float-bar-holder {
+    position: relative;
+		width: 100%;
+    height: 50px;
+}
+.float-bar{
+    width: 990px;
+    margin: 0 auto;
+}
+.float-bar-wrapper {
+    height: 50px;
+    overflow: hidden;
+		background: #e5e5e5;
+}
+.float-bar .select-all {
+    float: left;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 5px;
+		font-size:12px;
+}
+.float-bar .operations {
+    float: left;
+    line-height: 50px;
+    height: 50px;
+}
+.float-bar .operations a {
+    margin-left: 25px;
+    float: left;
+		font-size:12px;
+		color: #3c3c3c;
+}
+.float-bar-right {
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 4;
+    padding-left: 20px;
+		background: #e5e5e5;
+		font-size: 12px;
+}
+.float-bar .amount-sum{
+    height: 48px;
+    color: #3c3c3c;
+		float: left;
+		margin-right: 50px;
+}
+.float-bar .pipe {
+    float: left;
+    margin: 0 10px 0 18px;
+    width: 1px;
+    height: 12px;
+}
+.float-bar .check-cod {
+    float: left;
+    margin-right: 10px;
+    padding-left: 10px;
+    line-height: 48px;
+    color: #666;
+}
+.float-bar .txt {
+    line-height: 48px;
+		float: left;
+		cursor: pointer;
+}
+.amount-sum em {
+    line-height: 50px;
+    padding: 0 5px;
+		color: #f40;
+    font-weight: 700;
+    font-size: 18px;
+		float: left;
+		    font-style: normal;
+}
+ .float-bar .price-sum {
+    height: 48px;
+    color: #3c3c3c;
+		float: left;
+    line-height: 48px;
+}
+.float-bar .price-sum .price {
+    color: #f40;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 48px;
+    font-family: Arial;
+    vertical-align: middle;
+		float: left;
+}
+.float-bar .price-sum .price em {
+    font-weight: 700;
+    font-size: 22px;
+    padding: 0 3px;
+		    font-style: normal;
+}
+.btn-area{
+	float: left;
+}
+.float-bar .submit-btn-disabled:link{
+    background: #B0B0B0;
+    color: #fff;
+    border-left: 1px solid #e7e7e7;
+    width: 119px;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+.float-bar .submit-btn {
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    background: #f40;
+    text-align: center;
+    font-family: 'Lantinghei SC','Microsoft Yahei';
+    font-size: 20px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+	</head>
+	<body>
+		<div class="cover">
+			<div class="site-nav">
+				<div class="site-nav-bd">
+					<ul class="site-nav-bd-l">
+						<li>
+							<div class="site-nav-menu-hd">
+								<span class="site-nav-region">中国大陆</span>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-user"> <a></a>
+								</div>
+							</div>
+						</li>
+						<li>
+						</li>
+					</ul>
+					<ul class="site-nav-bd-r">
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>首页</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>我的足迹</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a id="mc-menu-hd">
+									<span>购物车</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>收藏夹</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>个人中心</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="w">
+			<div class="header" style="border: 1px solid #000000;">
+				<div id="logo-div" style="border: 1px solid #000000;width: 20%;float: left;height:38px; ">
+					<a href="http://www.jd.com/" class="logo">购物车</a>
+				</div>
+				<div class="cart-search">
+					<div class="form">
+						<input id="key" type="text" class="itxt" style="color: rgb(153, 153, 153);">
+						<input type="button" class="button" value="搜索">
+					</div>
+				</div>
+			</div>
+			<div class="cart-content">
+				<div class="cart">
+					<div id="J_CartMain" class="cart-main">
+						<!--<div class="cart-table-th">
+							<div class="wp">
+								<div class="th th-chk">
+									<div id="J_SelectAll1" class="select-all J_SelectAll">
+										<div class="cart-checkbox"><input class="J_CheckBoxShop" id="J_SelectAllCbx1" type="checkbox" name="select-all"
+											 value="true"><label for="J_SelectAllCbx1">勾选购物车内所有商品</label></div>&nbsp;&nbsp;全选
+									</div>
+								</div>
+								<div class="th th-item">
+									<div class="td-inner">商品信息</div>
+								</div>
+								<div class="th th-info">
+									<div class="td-inner">&nbsp;</div>
+								</div>
+								<div class="th th-price">
+									<div class="td-inner">单价</div>
+								</div>
+								<div class="th th-amount">
+									<div class="td-inner">数量</div>
+								</div>
+								<div class="th th-sum">
+									<div class="td-inner">金额</div>
+								</div>
+								<div class="th th-op">
+									<div class="td-inner">操作</div>
+								</div>
+								<div class="th th-vil hidden">
+									<div class="td-inner">购买客户信息</div>
+								</div>
+							</div>
+						</div>-->
+						<div class="cart-thead">
+							<!-- 我的冰箱 -->
+							<div class="column t-checkbox">
+								<div class="cart-checkbox">
+									<input type="checkbox" class="jdcheckbox">
+								</div>
+								全选
+							</div>
+							<div class="column" style="width:100px ;">商品</div>
+							<div class="column" style="width:100px ;"></div>
+							<div class="column" style="width:100px ;">单价</div>
+							<div class="column" style="width:100px ;">数量</div>
+							<div class="column" style="width:100px ;">小计</div>
+							<div class="column" style="width:100px ;">操作</div>
+						</div>
+						<div>
+							<div style="height: auto;">
+								<div style="margin-bottom: 15px;">
+									<div class="shop">
+										<div class="shop-info">
+											<div class="cart-checkbox">
+												<input class="jdcheckbox" type="checkbox" style="margin-left: 16px;"></div>
+											&nbsp;&nbsp;<span class="shop-icon icon-B"></span>
+											店铺：<a href="" target="_blank" class="J_MakePoint">李宁集团官方折扣</a>
+										</div>
+									</div>
+									<div class="order-content">
+										<div>
+											<div class="bundle  bundle-last ">
+												<div class="bundle-main">
+													<div>
+														<div class="item-holder">
+															<div style="background: #fCfCfC;border-bottom: none;">
+																<ul class="item-content">
+																	<li class="td" style="width:45px;">
+																		<div class="td-inner">
+																			<div class="cart-checkbox"><input class="jdcheckbox" style="margin-left:15px;" type="checkbox"></div>
+																		</div>
+																	</li>
+																	<li class="td" style="width: 302px;">
+																		<div class="td-inner">
+																			<div class="item-pic J_ItemPic img-loaded"><a href="" target="_blank">
+																					<img src="https://img.alicdn.com/bao/uploaded/i3/613968296/TB2su3tc4TpK1RjSZFMXXbG_VXa_!!613968296.jpg_80x80.jpg"
+																					 class="itempic J_ItemImg"></a></div>
+																			<div class="item-info">
+																				<div class="item-basic-info"> <a href="//detail.tmall.com/item.htm?id=565094755199" target="_blank"
+																					 class="item-title J_MakePoint" data-point="tbcart.8.11">【活动价】
+																						李宁运动套装男士新款训练系列长袖茄克长裤防泼水冬季运动服</a>
+																				</div>
+																			</div>
+																		</div>
+																	</li>
+																	<li class="td" style="width: 172px;padding-right: 20px;">
+																		<div class="p-props-new">
+																			<p class="props-txt" tabindex="0">颜色分类：公牛红/标准黑</p>
+																			<p class="props-txt" tabindex="0">尺码：L</p>
+																		</div>
+																	</li>
+																	<li class="td" style="width: 120px;">
+																		<div class="td-inner">
+																			<div class="item-price">
+																				<div class="price-content">
+																					<div class="price-line"><em class="price-original">￥499.00</em></div>
+																					<div class="price-line"><em class="price-now" tabindex="0">￥278.00</em></div>
+																				</div>
+																			</div>
+																		</div>
+																	</li>
+																	<li class="td" style="width:120px;">
+																		<div class="td-inner">
+																			<div class="quantity-form">
+																				<a href="#" class="minus">-</a><input type="text" value="1" class="itxt" data-max="5" data-now="1"
+																				 autocomplete="off"><a href="#" class="increment">+</a></div>
+																		</div>
+																	</li>
+																	<li class="td" style="width: 105px;">
+																		<div class="td-inner"><em tabindex="0" style="color: #f40;font-weight: 700;text-align: -webkit-match-parent;">￥278.00</em>
+																		</div>
+																	</li>
+																	<li class="td" style="width: 84px;padding: 0 0 0 15px;">
+																		<div class="td-inner"><a title="移入收藏夹" href="#" style="font-size: 12px;color: #666;display: block;">移入收藏夹</a>
+																			<a href="javascript:;" style="font-size: 12px;color: #666;display: block;">删除</a>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="float-bar-holder">
+										<div class="float-bar" style="position: static;">
+											<div class="float-bar-wrapper">
+												<div class="select-all">
+													<div class="cart-checkbox"><input class="jdcheckbox" type="checkbox" value="true"></div>&nbsp;全选
+												</div>
+												<div class="operations"><a href="#" hidefocus="true" class="J_DeleteSelected">删除</a><a href="#" hidefocus="true"
+													 class="J_ClearInvalid hidden">清除失效宝贝</a><a href="#" hidefocus="true" class="J_BatchFav">移入收藏夹</a>
+													</div>
+												<div class="float-bar-right">
+													<div id="J_ShowSelectedItems" class="amount-sum"><span class="txt">已选商品</span>
+													<em id="J_SelectedItemsCount">0</em><span
+														 class="txt">件</span>
+													</div>
+													<div class="price-sum"><span class="txt">合计（不含运费）：</span><strong class="price"><em id="J_Total"><span
+																 class="total-symbol">&nbsp;</span>0.00</em></strong></div>
+													<div class="btn-area"><a href="javascript:void(0)" id="J_Go" class="submit-btn submit-btn-disabled"
+														 aria-label="请注意如果没有选择宝贝，将无法结算"><span>结&nbsp;算</span><b></b></a></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="Footer" style="min-height: 150px">
+			<div class="footer">
+				<div class="footer-hd">
+					<p>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">阿里云计算</a>
+						<b>|</b>
+					</p>
+				</div>
+				<div class="footer-bd">
+					<p>
+						<a href="">关于本站</a>
+						<a href="">合作伙伴</a>
+						<a href="">营销中心</a>
+						<a href="">廉正举报</a>
+						<a href="">联系客服</a>
+						<a href="">开放平台</a>
+						<a href="">诚征英才</a>
+						<a href="">联系我们</a>
+						<a href="">网站地图</a>
+						<a href="">法律声明</a>
+						<a href="">隐私权政策</a>
+					</p>
+					<p style="clear: left;">
+						<em>© 2019 Maimai.com 版权所有</em>
+						<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+						<b>|</b>
+						<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+						<b>|</b>
+						<span>信息网络传播视听节目许可证：1109364号</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

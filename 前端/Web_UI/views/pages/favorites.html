@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			#page {
+				width: 100%;
+				height: auto;
+				min-height: 800px;
+				margin: 0;
+				padding: 0;
+			}
+
+			#fav-tab {
+				width: 100%;
+				height: 60px;
+				background-color: #F40;
+				margin-bottom: 10px;
+				position: relative;
+				z-index: 100;
+			}
+
+			#fav-tab-bd {
+				width: 1190px;
+				height: 100%;
+				margin: 0 auto;
+				font-family: "Microsoft Yahei";
+			}
+
+			#fav-tab-bd .fav-logo {
+				display: block;
+				float: left;
+				width: 200px;
+				text-decoration: none;
+				height: 60px;
+				line-height: 60px;
+				color: #FFF;
+			}
+
+			.item-a-active {
+				display: block;
+				float: left;
+				height: 60px;
+				line-height: 60px;
+				text-decoration: none;
+				padding: 0 25px;
+				text-align: center;
+				color: #fff;
+				font-size: 16px;
+				background-color: #de3b00;
+			}
+
+			.item-a {
+				display: block;
+				float: left;
+				height: 60px;
+				line-height: 60px;
+				text-decoration: none;
+				padding: 0 25px;
+				text-align: center;
+				color: #fff;
+				font-size: 16px;
+			}
+
+			.mercury-cont {
+				width: 1190px;
+				margin: 0 auto;
+			}
+
+			.fav-floatbar {
+				margin-bottom: 10px;
+				position: relative;
+				z-index: 50;
+				height: 48px;
+			}
+
+			.fav-bar-float {
+				height: 46px;
+				line-height: 46px;
+				border-bottom: #e5e5e5 2px solid;
+			}
+
+			.fav-select {
+				float: left;
+				display: block;
+				/* border: 1px solid #000000;*/
+			}
+
+			.fav-sel-select {
+				padding-right: 40px;
+				position: relative;
+				color: #f40;
+				border-bottom: #ff4200 2px solid;
+			}
+
+			.fav-sel-link {
+				padding: 0 20px;
+				font-size: 14px;
+				display: block;
+				text-decoration: none;
+			}
+
+			.fav-sel-item {
+				float: left;
+				margin: 0;
+				padding: 0;
+				line-height: 46px;
+			}
+
+			.fav-floatbar .fav-tools {
+				float: right;
+				margin-right: 50px;
+				padding-top: 7px;
+				line-height: 29px;
+				margin-left: 10px;
+			}
+
+			.fav-tool-showbtn {
+				width: 68px;
+				height: 27px;
+				line-height: 27px;
+				border: #dcdcdc 1px solid;
+				text-align: center;
+				display: inline-block;
+				color: #6c6c6c;
+				text-decoration: none;
+				cursor: pointer;
+				margin-right: 0;
+				font-size: 12px;
+			}
+
+			.fav-tool-showbtn:hover {
+				border: 1px solid #f40;
+				color: #f40;
+			}
+			.img-item-list{
+				width: 100%;
+				height: 800px;
+			}
+			.fav-item {
+				display: list-item;
+      height: 226px;
+      float: left;
+      text-align: center;
+      position: relative;
+      margin-bottom: 14px;
+			border: 1px solid #000000;
+      }
+		 .g-i-item {
+     width: 150px;
+     margin-right: 23px;
+     }
+		 .fav-item .img-controller-box {
+    border: #eee 1px solid;
+    margin-bottom: 11px;
+    height: 148px;
+    overflow: hidden;
+    position: relative;
+		display: block;
+     }
+		 .img-controller-img-box{
+			 display: block;
+			 height: 148px;
+			 width: 148px;
+		 }
+		 .fav-item .img-controller-img-link {
+     width: 148px;
+     height: 148px;
+     display: block;
+     line-height: 145px;
+     }
+		 .img-item-title-link {
+			 display: inline;
+       color: #3c3c3c;
+		   text-align: center;
+			 font-size: 12px;
+		 }
+		 .img-item-title {
+			 display: block;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+		text-align: center;
+    }
+		.fav-item .price-container {
+    word-wrap: break-word;
+    word-break: normal;
+    height: 23px;
+    line-height: 23px;
+    overflow: hidden;
+    }
+		.g_price-box div {
+    display: inline;
+    color: #6c6c6c;
+    }
+		.g_price-original {
+    text-decoration: line-through;
+    white-space: nowrap;
+    color: #9c9c9c;
+    font-weight: 400;
+    }
+		.g_price{
+			font-size: 12px;
+		}
+		.g_price strong {
+    color: #f40;
+    font-weight: 700;
+    font-family: verdana,arial;
+    }
+	 .fav-tool-list {
+    display: block;
+    white-space: nowrap;
+		height: 29px;
+    line-height: 29px;
+    }
+		.fav-tool-item {
+    display: inline-block;
+    margin-right: 20px;
+    cursor: pointer;
+    color: #6c6c6c;
+    line-height: 29px;
+    }
+		.fav-tool-hidebtn{
+    width: 68px;
+    height: 27px;
+    line-height: 27px;
+    border: #dcdcdc 1px solid;
+    text-align: center;
+    display: inline-block;
+    color: #6c6c6c;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 0;
+   }
+	 .fav-shop {
+    border-bottom: #e5e5e5 1px solid;
+    padding-top: 20px;
+    position: relative;
+		height: 226px;
+    }
+		.fav-shop .shop-card {
+    float: left;
+    position: relative;
+    }
+		.g-sl-l-item {
+    width: 250px;
+    margin-right: 30px;
+    }
+    .fav-shop .item-list-box {
+    float: left;
+    width: 890px;
+		position: relative;
+     }
+		.fav-shop .item-list-ul {
+    margin-right: -40px;
+    } 
+		.fav-shop .item-box {
+    float: left;
+    text-align: center;
+    height: 205px;
+    position: relative;
+    }
+		.g-sl-r-item {
+    width: 150px;
+    margin-right: 35px;
+    }
+		.fav-shop .item-img-box {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+    }
+		.fav-shop .item {
+    width: 148px;
+    height: 148px;
+    border: #eee 1px solid;
+    margin-bottom: 8px;
+    }
+		.fav-shop .item-img {
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    }
+		.fav-shop .shop-card-side {
+    float: left;
+    padding-left: 6px;
+    padding-right: 17px;
+    height: 190px;
+    width: 50px;
+    }
+		.fav-shop .shop-card .logo {
+    margin-bottom: 8px;
+    }
+		.fav-shop .shop-name {
+    line-height: 25px;
+    margin-bottom: 2px;
+    }
+		.fav-shop .seller {
+    line-height: 29px;
+    margin-bottom: 3px;
+   }
+	 .fav-shop .same-shop-num {
+    line-height: 25px;
+    }
+		</style>
+	</head>
+	<body>
+		<div class="cover">
+			<div class="site-nav">
+				<div class="site-nav-bd">
+					<ul class="site-nav-bd-l">
+						<li>
+							<div class="site-nav-menu-hd">
+								<span class="site-nav-region">中国大陆</span>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-user"> <a></a>
+								</div>
+							</div>
+						</li>
+						<li>
+						</li>
+					</ul>
+					<ul class="site-nav-bd-r">
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>首页</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>我的足迹</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a id="mc-menu-hd">
+									<span>购物车</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>收藏夹</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>个人中心</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="page">
+			<div id="fav-tab">
+				<div id="fav-tab-bd">
+					<div style="float: left;">
+						<h1 class="fav-logo">
+							收藏夹
+						</h1>
+						<a class="item-a-active" v-if="collect_status==0" v-on:click="change_collect_status(0)">宝贝收藏</a>
+						<a class="item-a" v-if="collect_status==0" v-on:click="change_collect_status(1)">店铺收藏</a>
+						<a class="item-a" v-if="collect_status==1" v-on:click="change_collect_status(0)">宝贝收藏</a>
+						<a class="item-a-active" v-if="collect_status==1" v-on:click="change_collect_status(1)">店铺收藏</a>
+					</div>
+				</div>
+				<div class="mercury-cont">
+					<div class="fav-floatbar">
+						<div class="fav-bar-float">
+							<div class="fav-select">
+								<ul>
+									<li class="fav-sel-item">
+										<a id="all-btn" class="fav-sel-link fav-sel-select" v-on:click="nav_onclick(1)">全部宝贝<em>69</em></a>
+									</li>
+									<li class="fav-sel-item">
+										<a id="over-btn" class="fav-sel-link" v-on:click="nav_onclick(2)">失效<em>49</em>
+										</a>
+									</li>
+									<li class="fav-sel-item ">
+										<a id="same-btn" class="fav-sel-link" v-on:click="nav_onclick(3)">
+											同店宝贝
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="fav-tools">
+								<div class="fav-tool-showbtn" v-if="manager_btn==0" v-on:click="domanage(1)">
+									批量管理
+								</div>
+								<ul class="fav-tool-list" v-if="manager_btn==1">
+											<li class="fav-tool-item">
+												<input type="checkbox" />
+												全选
+											</li>
+											<li class="fav-tool-item">
+												<a>删除</a>
+											</li>
+											<li class="fav-tool-item fav-tool-hidebtn" v-on:click="domanage(0)">取消管理</li>
+										</ul>
+							</div>
+						</div>
+					</div>
+					<div class="fav-list">
+						<ul class="img-item-list">
+							<li class="fav-shop" v-if="nav_status==3" style="border: 1px solid #000000;">
+								<div class="shop-card g-sl-l-item">
+									<div class="shop-card-side">
+            <div class="logo">
+                <a target="_blank">
+                    <img class="logo-img">
+                </a>
+            </div>   
+        </div>
+				<div class="shop-name">   
+            <a class="shop-name-link" target="_blank">
+               专车定制
+            </a>
+        </div>
+				<div class="seller">
+            <a class="seller-link" target="_blank">huoxuweidongde</a>
+            <span class="ww-light ww-small"><a  target="_blank" class="ww-inline ww-offline">
+						<span>旺旺离线</span></a></span>
+        </div>
+				<div class="same-shop-num">
+            同店收藏 3
+        </div>
+				<div class="fav-shop-box">
+                <div class="fshop-info-others-f floatleft">
+                    <span>
+                        <span>已收藏</span>
+                    </span>
+                </div>   
+        </div>
+			</div>
+									<div class="item-list-box">
+            <ul class="item-list-ul">
+                <li class="item-box g-sl-r-item">
+                    <div class="item-img-box">
+                        <div class="item">
+                            <a target="_blank" style="width: 150px;height: 150px;">
+                                 <img class="item-img">
+                            </a>
+                        </div>   
+                    </div>
+                        <div class="knockdown">
+                            <div class="knockdown-picon"></div>
+                            <span class="knockdown-tips">宝贝失效了</span>
+                        </div>
+                </li>
+               </ul>
+    </div>
+							</li>
+							<li class="fav-item g-i-item" v-if="nav_status==1">
+								<div class="img-controller-box">
+									</div>
+									<div class="img-item-title">
+									<a class="img-item-title-link">冰狐无声静音无线充电鼠标电脑笔记本电竞无光省电无限游戏鼠标</a></div>
+									<div class="price-container">
+										<div class="g_price-box">
+											<div class="g_price">
+												<span>¥</span>
+												<strong>38.80</strong>
+											</div>
+											<div class="g_price g_price-original">
+												<span>¥</span>
+												<span>98.80</span>
+											</div>
+										</div>
+								</div>
+							</li>
+							<li class="fav-item g-i-item" v-if="nav_status==1"></li>
+							<li class="fav-item g-i-item" v-if="nav_status==1"></li>
+						</ul>
+					</div>
+					<!---->
+				</div>
+			</div>
+		</div>
+		<div id="Footer" style="min-height: 150px">
+			<div class="footer">
+				<div class="footer-hd">
+					<p>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">;;;;;</a>
+						<b>|</b>
+						<a href="">阿里云计算</a>
+						<b>|</b>
+					</p>
+				</div>
+				<div class="footer-bd">
+					<p>
+						<a href="">关于本站</a>
+						<a href="">合作伙伴</a>
+						<a href="">营销中心</a>
+						<a href="">廉正举报</a>
+						<a href="">联系客服</a>
+						<a href="">开放平台</a>
+						<a href="">诚征英才</a>
+						<a href="">联系我们</a>
+						<a href="">网站地图</a>
+						<a href="">法律声明</a>
+						<a href="">隐私权政策</a>
+					</p>
+					<p style="clear: left;">
+						<em>© 2019 Maimai.com 版权所有</em>
+						<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+						<b>|</b>
+						<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+						<b>|</b>
+						<span>信息网络传播视听节目许可证：1109364号</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript">
+		var vm = new Vue({
+			el: '#page',
+			data: {
+				collect_status:0,
+				manager_btn:0,
+				nav_status:1
+			},
+			created:function(){
+				console.log(this.collect_status);
+			},
+			methods: {
+			change_collect_status:function(status){
+				this.collect_status=status;
+			},
+			nav_onclick:function(status){
+				console.log(status);
+				this.nav_status=status;
+				 if(status==1){
+					 $("#all-btn").addClass("fav-sel-select");
+					 $("#over-btn").removeClass("fav-sel-select");
+					 $("#same-btn").removeClass("fav-sel-select");
+				 }else if(status==2){
+					 $("#all-btn").removeClass("fav-sel-select");
+					 $("#over-btn").addClass("fav-sel-select");
+					 $("#same-btn").removeClass("fav-sel-select");
+				 }else if(status==3){
+					 $("#all-btn").removeClass("fav-sel-select");
+					 $("#over-btn").removeClass("fav-sel-select");
+					 $("#same-btn").addClass("fav-sel-select");
+				 }
+				
+			},
+			domanage:function(status){
+				console.log(status);
+				this.manager_btn=status;
+			}
+			}
+		})
+	</script>	
+</html>

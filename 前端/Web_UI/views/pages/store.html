@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>商店页</title>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+	</head>
+	<body>
+		<style>
+		button {
+			border-radius: 0;
+		}
+		#header {
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+		border-bottom: 1px solid #c8baaa;
+		background: #fff;
+		z-index: 1000;
+		height: auto;
+		}	
+		
+		#headerCon {
+    width: 990px;
+    margin: 0 auto;
+    padding: 30px 0 0;
+    height: 85px;
+    font-family: tahoma,arial,"\5b8b\4f53";
+		}
+		
+		.w1190 #headerCon {
+    width: 1190px;
+    margin: 0 auto;
+		}
+		
+		.w1190 #mallSearch {
+    width: 540px !important;
+		}
+		
+		#mallSearch .defaultSearch {
+    border: solid #ff0036;
+    border-width: 3px 0 3px 3px;
+    width: 305px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+		}
+				
+		#shopExtra {
+    float: left;
+    position: relative;
+    padding: 15px 0 0;
+    height: 50px;
+		}
+		
+		#shopExtra .slogo {
+    background: -174px -30px no-repeat;
+    float: left;
+    padding: 0 10px;
+    height: 38px;
+    border-left: 1px solid #f0f0f0;
+    width: auto;
+		}
+		
+		#shopExtra .slogo a {
+    height: 22px;
+    line-height: 19px;
+    overflow: hidden;
+    background-color: #fff;
+    font-size: 12px;
+    font-family: "\5b8b\4f53";
+    color: #333;
+    font-weight: 700;
+		}
+		
+		#shop-info {
+    position: relative;
+    float: left;
+    width: 132px;
+    height: 38px;
+    font-weight: 400;
+    padding: 0 10px;
+    border-left: 1px dotted #f0f0f0;
+		}
+		
+		#shop-info .main-info {
+    overflow: hidden;
+    position: relative;
+		}
+		
+		#shop-info .shopdsr-item {
+    float: left;
+    color: #999;
+    width: 36px;
+    height: 36px;
+    position: relative;
+		}
+		
+		#shop-info .shopdsr-title {
+    text-align: center;
+    font-family: "\5b8b\4f53";
+		}
+		
+		#shop-info .shopdsr-score-down-ctrl {
+    color: #1f7700;
+		}
+		
+		#shop-info .shopdsr-score {
+    color: #ff0036;
+    padding-left: 5px;
+    height: 18px;
+    width: 31px;
+    position: relative;
+    overflow: hidden;
+		}
+		
+		.shopdsr-score-down-ctrl .shopdsr-score-down {
+    color: #1f7700;
+    width: 10px;
+    top: 5px;
+    position: absolute;
+		}
+		
+   .shopwt {
+    float: left;
+    width: 54px;
+    border-left: 1px solid #f0f0f0;
+    padding: 0 10px;
+    margin: 15px 0 0;
+    position: relative;
+		}
+		
+   .shopwt .shopwt-desc {
+    float: left;
+    width: 40px;
+		}
+		
+		.shopwt .slogo-triangle {
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    display: block;
+    margin: 0 0 0 14px;
+    width: 6px;
+    height: 38px;
+    position: relative;
+		}
+		
+		.shopwt .slogo-triangle .icon-triangle {
+    border-color: #ccc #fff #fff;
+    border-style: solid;
+    border-width: 4px;
+    font-size: 0;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    right: 0;
+    top: 15px;
+		}
+		
+		#mallSearch {
+    float: right;
+    width: 390px;
+    overflow: hidden;
+		}
+		
+		#mallSearch .currShopBtn {
+    left: auto;
+    right: 0;
+    top: 0;
+    background: #333;
+    width: 80px;
+    height: 36px;
+		}
+		
+		#mallSearch button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80px;
+    height: 30px;
+    border: 0;
+    font-size: 16px;
+    letter-spacing: 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #ff0036;
+    overflow: hidden;
+    font-family: '\5FAE\8F6F\96C5\9ED1',arial,"\5b8b\4f53";
+		}
+		
+		#mallSearch label {
+    color: #666;
+    font-size: 12px;
+    line-height: 30px;
+    height: 30px;
+    position: absolute;
+    left: 8px;
+    top: 0;
+    z-index: 1;
+		}
+    
+		.s-hot-query {
+    padding: 3px 0 0;
+    margin-left: -13px;
+    height: 16px;
+    overflow: hidden;
+    width: 100%;
+		}
+		
+		.s-hot-query li {
+    display: inline-block;
+    border-left: 1px solid #ccc;
+    line-height: 1.1;
+    padding: 0 12px;
+		}
+		
+		#content {
+			width: 100%;
+    background-color: #FFFFFF;
+		}
+				
+		.s-combobox .s-combobox-input {
+    position: static;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    padding: 7px 3px 7px 5px;
+    margin: 0;
+    color: #000;
+    font-size: 100%;
+    font-weight: 900;
+    vertical-align: middle;
+    overflow-y: visible;
+		}
+		#content #hd {
+    /*max-height: 150px;*/
+    overflow: hidden;
+    padding-bottom: 0;
+    position: relative;
+    z-index: initial;
+		width: 100%;
+		border: 1px solid #000;
+		}
+		.col-main {
+    float:left;
+    width:100%;
+    min-height:1px;
+		}
+		.main-wrap{
+			width: 100%;
+		}
+		.nav {
+    height: 68px;
+    width: 100%;
+    background: #000;
+    color: #FFF;
+    overflow: hidden;
+		}
+		.leftmenu{
+			float: left;
+		}
+		.nav li {
+    font-size: 15px;
+    font-weight: bold;
+    height: 68px;
+    line-height: 68px;
+   /* color: #FFF;*/
+	/*border: 1px solid white;*/
+	 float: left;
+	 width: 50px;
+	 text-align: center;
+		}
+			.nav li :hover{
+			font-size: 15px;
+			font-weight: bold;
+			height: 68px;
+			line-height: 68px;
+		 color: #FFF;
+	/*border: 1px solid white;*/
+		float: left;
+		width: 50px;
+		background-color: white;
+		text-align: center;
+			}
+		.nav li a {
+	text-decoration: none;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 15px;
+	color: white;
+   }
+	 .nav li a:hover{
+		 text-decoration: none;
+		 display: inline-block;
+		 vertical-align: middle;
+		 font-weight: bold;
+		 font-size: 15px;
+		 color: black;
+	 }
+</style>
+<div class="cover">
+				<div class="site-nav">
+					<div class="site-nav-bd">
+						<ul class="site-nav-bd-l">
+							<li>
+								<div class="site-nav-menu-hd">
+									<span class="site-nav-region">中国大陆</span>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-user"> <a></a>
+									</div>
+								</div>
+							</li>
+							<li>
+							</li>
+						</ul>
+						<ul class="site-nav-bd-r">
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>首页</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a>
+										<span>我的足迹</span>
+									</a>
+								</div>
+								</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a id="mc-menu-hd">
+										<span>购物车</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>收藏夹</span>
+									</a>
+								</div>
+							</li>
+							<li>
+								<div class="site-nav-menu-hd">
+									<a href="">
+										<span>个人中心</span>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		<div id="header">
+			<!-- global logo-->
+			<div id="headerCon">
+				<div id="shopExtra">
+					<div class="slogo">
+						<a class="slogo-shopname"><strong>adidas官方旗舰店</strong></a>
+					</div>
+					<div id="shop-info">
+						<div class="main-info">
+							<div class="shopdsr-item">
+								<div class="shopdsr-title">描 述</div>
+								<div class="shopdsr-score shopdsr-score-down-ctrl">
+									<span>4.8</span><s class="shopdsr-score-down"></s></div>
+							</div>
+							<div class="shopdsr-item">
+								<div class="shopdsr-title">服 务</div>
+								<div class="shopdsr-score shopdsr-score-down-ctrl">
+									<span>4.8</span><s class="shopdsr-score-down"></s></div>
+							</div>
+							<div class="shopdsr-item">
+								<div class="shopdsr-title">物 流</div>
+								<div class="shopdsr-score shopdsr-score-up-ctrl">
+									<span>4.8</span><s class="shopdsr-score-up"></s>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="header-extra" data-spm-anchor-id="a1z10.1-b-s.0.i0.43aa599fKyHFUT">
+					<div id="mallSearch" class="mall-search">
+						<div class="mallSearch-input clearfix">
+							<div class="defaultSearch">
+								<div id="s-combobox-380" class="s-combobox">
+									<div class="s-combobox-input-wrap"><input type="text" class="s-combobox-input" title="请输入搜索文字">
+									</div>
+								</div>
+								<button id="J_SearchBtn" type="submit">搜索</button>
+							</div>
+						</div>
+						<ul class="s-hot-query">
+							<li ><a>运动鞋男</a></li>
+							<li ><a>篮球鞋</a></li>
+							<li ><a>阿迪达斯</a></li>
+							<li ><a>运动鞋女</a></li>
+							<li ><a>跑步鞋</a></li>
+							<li ><a>羽绒服男</a></li>
+							<li ><a>双肩包</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="content">
+			<div id="hd">
+					<div class="col-main">
+						<div class="main-wrap">
+											<div class="nav">
+												<ul class="leftmenu">
+													<li><a><img></a></li>
+													<li><a>男子</a></li>
+													<li><a>女子</a></li>
+													<li><a>童装</a></li>
+													<li><span></span></li>
+													<li><a>运动</a></li>
+													<li><a>品牌</a></li>
+													<li><span></span></li>
+													<li><a>新品</a></li>
+													<li><a>SALE</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+							</div>
+					</div>
+					<div id="Footer" style="min-height: 150px">
+						<div class="footer">
+							<div class="footer-hd">
+								<p>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">;;;;;</a>
+									<b>|</b>
+									<a href="">阿里云计算</a>
+									<b>|</b>
+								</p>
+							</div>
+							<div class="footer-bd">
+								<p>
+									<a href="">关于本站</a>
+									<a href="">合作伙伴</a>
+									<a href="">营销中心</a>
+									<a href="">廉正举报</a>
+									<a href="">联系客服</a>
+									<a href="">开放平台</a>
+									<a href="">诚征英才</a>
+									<a href="">联系我们</a>
+									<a href="">网站地图</a>
+									<a href="">法律声明</a>
+									<a href="">隐私权政策</a>
+								</p>
+								<p style="clear: left;">
+									<em>© 2019 Maimai.com 版权所有</em>
+									<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+									<b>|</b>
+									<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+									<b>|</b>
+									<span>信息网络传播视听节目许可证：1109364号</span>
+								</p>
+							</div>
+						</div>
+					</div>
+	</body>
+</html>

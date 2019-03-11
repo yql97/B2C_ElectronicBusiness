@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=GBK">
+		<meta charset="GBK">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<title>欢迎登陆</title>
+		<link type="text/css" rel="stylesheet" href="/public/css/style.css">
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+	</head>
+	<body>
+		<div id="vuebody" style="width: auto;height: auto;">
+			<div class="w">
+				<div id="logo">
+					<b>logo<p>{{test}}</p></b>
+				</div>
+			</div>
+			<div id="content">
+				<div class="login-wrap">
+					<div class="w">
+						<div class="login-form">
+							<div class="login-tab">
+								<b>账户登录</b>
+							</div>
+							<div class="login-box" style="display: block; visibility: visible;">
+								<div class="mt tab-h">
+								</div>
+								
+								<div class="mc">
+									<div class="form">
+											<div class="item item-fore1">
+												<label for="loginname" class="login-label name-label"></label>
+												<input id="loginname" type="text" class="itxt" name="loginname" tabindex="1" autocomplete="off" 
+												placeholder="邮箱/已验证手机号">
+												<span class="clear-btn"></span>
+											</div>
+
+											<div id="entry" class="item item-fore2" style="visibility: visible;">
+												<label class="login-label pwd-label" for="nloginpwd"></label>
+												<input type="password" id="nloginpwd" name="nloginpwd" class="itxt itxt-error" tabindex="2" autocomplete="off"
+												 placeholder="密码">
+												<span class="clear-btn"></span>
+												<span class="capslock" style="display: none;"><b></b>大小写锁定已打开</span>
+											</div>
+											<div class="item item-fore4">
+												<div class="safe">
+													<span></span>
+													<span class="forget-pw-safe">
+														<a class="" target="_blank">忘记密码</a>
+													</span>
+												</div>
+											</div>
+
+											<div class="item item-fore5">
+												<div class="login-btn">
+													<a href="javascript:;" class="btn-img" id="loginsubmit" tabindex="6">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+												</div>
+											</div>
+									</div>
+								</div>
+							</div>
+							<div class="coagent">
+								<ul>
+									<li class="extra-r">
+										<div>
+											<div class="regist-link"><a href="register.html" target="_blank"><b></b>立即注册</a></div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="login-banner">
+						<div class="w">
+							<div id="banner-bg" class="i-inner"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#vuebody',
+			data: {
+				test: "niaho"
+			},
+			created:function(){
+				this.login();
+			},
+			methods: {
+				login: function() {
+					axios.get('http://wx.yinnima.com:8080/store-admin-manager/microStoreGoods/testJSON.do',{
+						 headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+					'Access-Control-Allow-Origin': '*'
+                         }
+					}).then(function(response) {
+							console.log(response);
+						}).catch(function(error) {
+							console.log(error);
+						});
+						
+				}
+			}
+		})
+	</script>
+</html>

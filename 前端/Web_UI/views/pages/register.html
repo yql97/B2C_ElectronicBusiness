@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html class="root61">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+		<title>个人注册</title>
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css">
+		<script src="/public/js/jdSlide.js"></script>
+		<script src="../public/js/vue.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
+		<script src="../public/js/code.js"></script>
+		<link type="text/css" rel="stylesheet" href="../public/css/code.css"/>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<style>
+			.header{
+			height: 110px;
+		}
+		.header .logo-title {
+		float: left;
+		height: 34px;
+		line-height: 34px;
+		font-size: 24px;
+		color: #333;
+		margin-top: 34px;
+		}
+		.header .have-account {
+		font-size: 16px;
+		float: right;
+		margin-top: 55px;
+		color: #999;
+		}
+		.header .have-account a {
+		color: #e22;
+		}
+		.main {
+		    margin: 50px auto 186px;
+		    width: 400px;
+				/*border: 1px solid black;*/
+				height: auto;
+		}
+		.progress-bar {
+		margin: 10px auto;	
+		width: 400px;
+		height: 50px;
+		}
+	   .input-tip {
+		color: #c5c5c5;
+		height: 27px;
+		font-size: 12px;
+		padding-top: 5px;
+		}
+		.btn-register {
+		width: 100%;
+		height: 54px;
+		line-height: 54px;
+		text-align: center;
+		color: #fff;
+		background: #e2231a;
+		border: 0;
+		font-size: 16px;
+		font-family: "Microsoft YaHei","Hiragino Sans GB";
+		cursor: pointer;
+		margin-top: 50px;
+    }
+		ul{
+		list-style: none;
+		}
+		ul li{
+		float: left;
+		}
+.step-index1{ /*绿球*/
+	background: url(../public/images/reg-icon.png) no-repeat;	
+	background-position-x: 0%;
+	background-position-y: 42%;
+	color:#0F0000;
+}
+.step-index2{ /*白球*/
+	background: url(../public/images/reg-icon.png) no-repeat;	
+	background-position-x: 25%;
+	background-position-y: 42%;
+	color: #0F0000;
+}
+.step-index3{ /*完成*/
+	background: url(../public/images/reg-icon.png) no-repeat;	
+	background-position-x: 0%;
+	background-position-y: 0%;
+	color:#0F0000;
+}
+.step-index{
+	float: left;
+	width:24px;
+	height:24px;
+	margin-right: 10px;
+	text-align: center;
+	line-height: 24px;
+	font-size: 12px;
+	font-weight: 700;
+	font-size: 12px;
+}
+.person-pro-line1{ /*白线*/
+background: url(../public/images/reg-icon.png) no-repeat;		
+background-position-x: 0%;
+background-position-y: 20%;
+}
+.person-pro-line2{ /*绿线*/
+background: url(../public/images/reg-icon.png) no-repeat;	
+background-position-x:0%;
+background-position-y:26%;	
+}
+.person-pro-line{
+	float:left;
+	width:130px;	
+	height: 24px;	
+	margin:auto 5px;
+}
+/*
+0-42 绿球 #fff  25-42 白球 #999
+0-26 绿线   0 -20 白线
+00 完成 没有字体
+*/
+.step-desc{
+	height: 20px;
+	color: #999;
+	font-size: 12px;
+}
+.form-item {
+	position: relative;
+	border: solid 1px #ddd;
+	width: 398px;
+	height: 52px;
+	z-index: 0;
+}
+.form-item .field {
+	border: 0 none;
+	font-size: 14px;
+	width: 190px;
+	height: 19px;
+	padding-bottom: 11px;
+	padding-left: 20px;
+	padding-top: 16px;
+}
+.form-item label {
+	float: left;
+	width: 87px;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 20px;
+}
+.form-item .item-input-wrap {
+	float: left;
+	width: 288px;
+	height: 50px;
+	border: solid 1px #ddd;
+}
+.form-item-getcode {
+	line-height: 52px;
+	text-align: center;
+	font-size: 14px;
+	color: #333;
+	cursor: pointer;
+	z-index: 2;
+}
+.item-phone-wrap {
+	height: 86px;
+	position: relative;
+	z-index: 2;
+}
+#msg {
+  width: 100%;
+  line-height: 40px;
+  font-size: 14px;
+  text-align: center;
+}
+.container {
+  width: 398px;
+}
+.mailcode-left{
+  position: absolute;
+}
+.btn-mailcode {
+	position: relative;
+	float: right;
+	width: 118px;
+	height: 52px;
+	border: 1px solid #ddd;
+	border-left: none;
+	background: #fff;
+	color: #333;
+	padding: 0;
+}
+.input-tip {
+	color: #c5c5c5;
+	height: 27px;
+	font-size: 12px;
+	padding-top: 5px;
+}
+ a{
+	cursor: pointer;
+	}
+	a:hover {
+	color: #E4393C;
+	text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+		<div id="vuebody" style="width: auto;height: auto;">
+			<!-- widget header begin -->
+			<div class="header">
+				<div class="logo-con w clearfix">
+					<a class="logo">
+					</a>
+					<div class="logo-title">欢迎注册</div>
+					<div class="have-account">已有账号？ <a href="">请登录&gt;</a></div>
+				</div>
+			</div>
+			<!-- widget header end -->
+			<div class="w">
+				<!-- widget progress-bar begin -->
+				<div class="progress-bar">
+					<div style="float: left;height: 25px;">
+						<div  id="step1" class="step-index step-index1">1</div>
+						<div  id="line1" class="person-pro-line person-pro-line1 "></div>
+					</div>
+					<div style="float: left;height: 25px;">
+						<div id="step2" class="step-index step-index2">2</div>
+						<div id="line2" class="person-pro-line person-pro-line1 "></div>
+					</div>
+					<div style="float: left;height: 25px;">
+						<div id="step3" class="step-index step-index2">3</div>
+					</div>
+				</div>
+				<div class="progress-bar">
+					<div style="float: left;width: 100px;">
+						<div class="step-desc">验证手机号</div>
+					</div>
+					<div style="float: left;margin-left: 50px;width: 100px;">
+						<div class="step-desc">填写账号信息</div>
+					</div>
+					<div style="float: right;width: 80px;">
+						<div class="step-desc">注册成功</div>
+					</div>
+				</div>
+				<!-- widget progress-bar end -->
+
+				<!-- widget reg-steps begin -->
+				<div class="main ">
+					<div class="reg-form">
+							<!--hack end-->
+							<div id="step1-wrap">
+								<div class="item-phone-wrap">
+									<div class="form-item form-item-phone">
+										<label class="select-country" id="select-country" style="border-color: rgb(221, 221, 221);border-style: solid none solid solid; border-width: 1px medium 1px 1px;">
+											中国 0086</label>
+										<div class="item-input-wrap" style="border: 1px solid rgb(221, 221, 221);">
+											<txt style="position: absolute; z-index: 2; line-height: 46px; margin-left: 20px; 
+							margin-top: 1px; font-size: 14px; font-family: MS Shell Dlg \32 ; color: rgb(204, 204, 204); display: inline;">
+												建议使用常用手机号</txt>
+											<input type="text" class="field" id="form-phone" maxlength="11" name="phone" class="field" autocomplete="off">
+										</div>
+										<div class="input-tip"><span></span></div>
+									</div>
+								</div>
+
+								<div class="item-getcode-wrap">
+									<div class="form-item form-item-getcode" v-on:click="showCodeDiv()" id="codeBtn" style="display: block;">
+										点击按钮进行验证
+									</div>
+									<div class="container" style="display: none;">
+									<div id="captcha" style="position: relative"></div>
+									<div id="msg"></div>
+									</div>
+								</div>
+								<div class="input-tip">
+									<span></span>
+								</div>
+								<div id="step1-next" class="btn-register" v-on:click="tostep(2)">下一步</div>
+							</div>
+							<div id="step2-wrap" style="display: none;">
+								<div class="form-item form-item-account" id="form-item-account">
+									<label>用　户　名</label>
+									<input type="text" id="form-account" name="regName" class="field" autocomplete="off" maxlength="20"
+									 placeholder="您的账户名和登录名" default="&lt;i class='i-def'&gt;&lt;/i&gt;支持中文、英文、数字、“-”、“_”的组合，4-20个字符">
+								</div>
+								<div class="input-tip">
+									<span></span>
+								</div>
+								<div class="form-item">
+									<label>设 置 密 码</label>
+									<input autocomplete="off" type="password" name="pwd" id="form-pwd" class="field" maxlength="20" placeholder="建议使用两种或两种以上字符组合"
+									 default="&lt;i class='i-def'&gt;&lt;/i&gt;建议使用字母、数字和符号两种及以上的组合，6-20个字符">
+									<i class="i-status"></i>
+									<i class="i-cancel"></i>
+									<!--<div class="capslock-tip tips">大写已开启<b class="arrow"></b><b class="arrow-inner"></b></div>-->
+								</div>
+								<div class="input-tip">
+									<span></span>
+								</div>
+								<div class="form-item">
+									<label>确 认 密 码</label>
+									<input type="password" name="pwdRepeat" id="form-equalTopwd" class="field" placeholder="请再次输入密码">
+									<!--<div class="capslock-tip tips">大写已开启<b class="arrow"></b><b class="arrow-inner"></b></div>-->
+								</div>
+								<div class="input-tip">
+									<span></span>
+								</div>
+								<div class="item-email-wrap">
+									<div class="form-item">
+										<label>邮 箱 验 证</label>
+										<input type="text" name="email" id="form-email" class="field" autocomplete="off" maxlength="50" placeholder="请输入邮箱"
+										 default="&lt;i class='i-def'&gt;&lt;/i&gt;验证完成后，你可以使用该邮箱登录">
+										<i class="i-status"></i>
+										<ul class="suggest-container email-suggest" style="display: none;">
+											<li class="">
+												<div class="value">@qq.com</div>
+											</li>
+											<li class="">
+												<div class="value">@163.com</div>
+											</li>
+											<li class="">
+												<div class="value">@126.com</div>
+											</li>
+											<li class="">
+												<div class="value">@Gmail.com</div>
+											</li>
+											<li class="">
+												<div class="value">@Sohu.com</div>
+											</li>
+											<li class="suggest-li-last ">
+												<div class="value">@Sina.com</div>
+											</li>
+										</ul>
+									</div>
+									<div class="input-tip">
+										<span></span>
+									</div>
+								</div>
+								<div class="item-mailcode-wrap">
+									<div class="form-item form-item-mailcode">
+										<div class="mailcode-left">
+											<label>邮箱验证码</label>
+											<input type="text" name="mailCode" maxlength="6" autocomplete="off" id="mailCode" class="field mailcode"
+											 placeholder="请输入邮箱验证码">
+											<i class="i-status"></i>
+											<i class="i-cancel"></i>
+										</div>
+										<button id="getMailCode" class="btn-mailcode" type="button">获取验证码</button>
+											<div class="input-tip">
+												<span></span>
+											</div>
+									</div>
+								</div>
+								<div><button class="btn-register" id="form-register" v-on:click="tostep(3)">立即注册</button></div>
+								<div class="input-tip">
+									<span></span>
+								</div>
+						<div class="back-btn" id="back-btn"><a v-on:click="tostep(1)">返回上一步</a></div>
+						</div>
+						<div id="step3-wrap" style="display: none;">
+			       <p style="font-size: 16px;">恭喜您，注册成功</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+</div>
+</body>
+<script type="text/javascript">
+		var vm = new Vue({
+			el: '#vuebody',
+			data: {
+				test: "niaho"
+			},
+			created:function(){
+			},
+			updtaed:function(){
+			},
+			methods: {
+				showCodeDiv: function() {
+					$(".container").css("display","block");
+					$("#codeBtn").css("display","none");
+				},
+				tostep:function(index){
+				console.log(index);
+				if(index==2){
+					$("#step1-wrap").css("display","none");
+					$("#step2-wrap").css("display","block");
+					$("#step1").html("");
+					$("#line1").removeClass("person-pro-line1");
+					$("#line1").addClass("person-pro-line2");
+					$("#step1").removeClass("step-index1");
+					$("#step1").addClass("step-index3");
+					$("#step2").removeClass("step-index2");
+					$("#step2").addClass("step-index1");
+				}else if(index==1){
+					$("#step1-wrap").css("display","block");
+					$("#step2-wrap").css("display","none");
+					$("#line1").removeClass("person-pro-line1");
+					$("#line1").addClass("person-pro-line1");
+					$("#step1").removeClass("step-index3");
+					$("#step1").addClass("step-index1");
+					$("#step2").removeClass("step-index1");
+					$("#step2").addClass("step-index2");
+				}else if(index==3){
+					$("#step2-wrap").css("display","none");
+					$("#step3-wrap").css("display","block");
+					$("#step2").html("");
+					$("#step3").html("");
+					$("#line2").removeClass("person-pro-line1");
+					$("#line2").addClass("person-pro-line2");
+					$("#step2").removeClass("step-index1");
+					$("#step2").addClass("step-index3");
+					$("#step3").removeClass("step-index1");
+					$("#step3").addClass("step-index3");
+				}
+				
+				}
+			}
+		});		
+</script>
+<script type="text/javascript">
+jigsaw.init(document.getElementById('captcha'), function () {
+	document.getElementById('msg').innerHTML = '登录成功！'
+})
+</script>
+</html>

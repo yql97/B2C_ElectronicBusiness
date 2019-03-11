@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
+		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
+		<style>
+			.security-center {
+    margin: 30px auto;
+    width: 1200px;
+    background: #fff;
+}
+.security-center .security-title {
+    border: 1px solid #e4e4e4;
+    border-top: 0;
+    height: 45px;
+    line-height: 45px;
+    background-color: #f9f9f9;
+    padding-left: 25px;
+    color: #a5a5a5;
+    font-size: 14px;
+    border-bottom: none;
+}
+.security-center .security-title strong {
+    color: #474e5d;
+    font-size: 18px;
+}
+.security-center .security-title .extra {
+    color: #5e5e5e;
+}
+.security-center .security-con {
+    border: 1px solid #e4e4e4;
+    min-height: 550px;
+}
+.real-name {
+    padding: 50px 0 80px;
+		height: auto;
+		min-height: 600px;
+}
+.security-form {
+    color: #5e5e5e;
+    font-size: 14px;
+    line-height: 32px;
+	height: auto;
+}
+.security-form .item {
+    padding-bottom: 20px;
+	display: block;
+	height:32px;
+}
+.security-form .label {
+    float: left;
+    width: 180px;
+    padding-right: 10px;
+    text-align: right;
+    height: 32px;
+}
+.security-form .value {
+    float: left;
+    width: 800px;
+}
+.security-form .ui-input {
+    height: 20px;
+    line-height: 20px;
+    padding: 5px 10px;
+    border: 1px solid #e6e6e6;
+    font-size: 14px;
+    vertical-align: middle;
+    background-color: #fff;
+    color: #5e5e5e;
+    font-family: arial,"microsoft yahei";
+}
+.security-form .yzm-btn {
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    background: #f5f5f5;
+    vertical-align: middle;
+    color: #5e5e5e;
+    margin-left: 1px;
+    padding: 0 8px;
+}
+.ui-button {
+    display: inline-block;
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 50px;
+    color: #fff;
+    border: 1px solid #ff5256;
+    background-color: #ff696c;
+    background-repeat: repeat-x;
+    background-image: linear-gradient(to bottom,#ff696c,#ff5256);
+    border-radius: 3px;
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-family: "microsoft yahei";
+}
+ .card-img-upload{
+	 margin: 0 17px 20px 0;
+	 overflow: hidden;
+	 zoom: 1;
+	 /*padding: 48px 0 0 0;*/
+	 text-align: center;
+	 border-radius: 4px;
+	 font-weight: 700;
+	 border: 1px dashed #AACCDD;
+	 background: #FAFAFB;
+	 outline: none;
+	 cursor: pointer;
+	 -webkit-transition: all 0.15s ease-in;
+	 transition: all 0.15s ease-in;
+	 
+ }
+ .upload_div{
+	 position: relative;
+	 display: block;
+ }
+ .file_input {
+				/*因为file-input在部分浏览器中会自带一个输入框，需要双击才可以点击上传,放大后将其定位到div外面就好啦*/
+				width: 215px;
+        height: 135px;
+        position: absolute;
+        left:0px;
+        top: 0;
+        z-index:1;
+       -moz-opacity: 0;
+        -ms-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0;  
+				/*css属性——opcity不透明度，取值0-1*/
+        filter: alpha(opacity=0); /*兼容IE8及以下--filter属性是IE特有的，它还有很多其它滤镜效果，而filter: alpha(opacity=0); 兼容IE8及以下的IE浏览器(如果你的电脑IE是8以下的版本，使用某些效果是可能会有一个允许ActiveX的提示,注意点一下就ok啦)*/
+        cursor: pointer;
+				}
+		</style>
+	</head>
+	<body>
+		<div class="cover">
+			<div class="site-nav">
+				<div class="site-nav-bd">
+					<ul class="site-nav-bd-l">
+						<li>
+							<div class="site-nav-menu-hd">
+								<span class="site-nav-region">中国大陆</span>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-user"> <a></a>
+								</div>
+							</div>
+						</li>
+						<li>
+						</li>
+					</ul>
+					<ul class="site-nav-bd-r">
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>首页</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a>
+									<span>我的足迹</span>
+								</a>
+							</div>
+							</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a id="mc-menu-hd">
+									<span>购物车</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>收藏夹</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="site-nav-menu-hd">
+								<a href="">
+									<span>个人中心</span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="security-center">
+			<div class="security-title">
+				<strong>实名认证</strong>
+				<strong>更改邮箱</strong>
+				<strong>修改手机</strong>
+				<strong>修改登录密码</strong>
+				<strong>设置支付密码</strong>
+			</div>
+			<div class="security-con">
+				<div class="real-name">
+					<ul id="authForm" class="security-form" style="">
+						<li class="item ">
+							<div class="label">真实姓名：</div>
+							<div class="value">
+								<input id="ui-input-holderName" name="name" type="text" class="ui-input short-input" maxlength="25"
+								 autocomplete="off">
+								<span id="span-notify-holderName" class="extra">为确保您的账户安全，请填写您本人的实名认证信息</span>
+								<span id="span-red-holderName" class="error-text"></span>
+							</div>
+						</li>
+						<li class="item ">
+							<div class="label">身份证号：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								 autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入身份证</span>
+							</div>
+						</li>
+            <li class="item">
+							<div class="label">身份证照片:</div>
+							<div class="value" style="height:250px;">
+								<div style="display: block;height:200px;float: left;margin-top: 20px;">
+									<p style="font-size: 12px;line-height: 12px;text-align: center;">人像面</p></span>
+								<div class="upload_div" style="display: block;">
+									<span class="card-img-upload"><img src="../public/images/people_card1.png"/ style="width: 216px;height: 135px;">
+									<input type="file" class="file_input" >
+								</div>
+								<div class="upload_div" style="float: left;display: none;">
+									<span style="margin: 0 17px 20px 0;text-align: center;float: left;">
+										<img src="../public/images/people_card1.png" style="width: 216px;height: 135px;border: 1px solid red;">
+										<p style="font-size: 12px;line-height: 12px;text-align: center;">错误</p>
+										<input type="image" src="../public/images/delete-button.jpg" width="25px" height="" style="margin-top: 10px;">
+									 </span>
+								</div>
+								</div>
+								<div style="display: block;height:200px;float: left;margin-left:20px;margin-top: 20px;">
+									<p style="font-size: 12px;line-height: 12px;text-align: center;">国徽面</p></span>
+								<div class="upload_div" style="display: none;">
+									<span class="card-img-upload"><img src="../public/images/people_card2.png" style="width: 216px;height: 135px;"/>
+									<input type="file" class="file_input" >
+								</div>
+								<div class="upload_div" style="float: left;display: block;">
+									<span style="margin: 0 17px 20px 0;text-align: center;float: left;">
+										<img src="../public/images/people_card1.png" style="width: 216px;height: 135px;border: 1px solid red;">
+										<p style="font-size: 12px;line-height: 12px;text-align: center;">错误</p>
+										<input type="image" src="../public/images/delete-button.jpg" width="25px" height="" style="margin-top:10px;">
+									</span>
+								</div>
+								</div>
+							</div>
+						</li>
+						<li class="item ">
+							<div class="label">&nbsp;</div>
+							<div class="value">
+								<div class="security-form-btn" style="margin-top: 20px;">
+									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">同意协议并确定</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="security-con">、
+				<div class="real-name">
+					<ul id="authForm" class="security-form" style="">
+						<li class="item">
+							<div class="label">请输入当前登陆密码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								 autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入原登录密码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">确认新登陆密码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								 autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入新登录密码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">短信验证码：</div>
+							<div class="value">
+								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
+								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+									 class="yzm-text">获取验证码</span></a>
+								<div href="" class="none-message">
+									<span class="text">没有收到短信？</span>
+								</div>
+								<span id="span-getverfiyCode" class="error-texts"></span>
+							</div>
+						</li>
+						<li class="item ">
+							<div class="label">&nbsp;</div>
+							<div class="value">
+								<div class="security-form-btn">
+									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="security-con">、
+				<div class="real-name">
+					<ul id="authForm" class="security-form" style="">
+						<li class="item">
+							<div class="label">请输入支付密码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="password" class="ui-input long-input" maxlength="18"
+								autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入支付密码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">请再次确认支付密码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="password" class="ui-input long-input" maxlength="18"
+								autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请再次确认支付密码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">短信验证码：</div>
+							<div class="value">
+								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
+								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+									class="yzm-text">获取验证码</span></a>
+								<div href="" class="none-message">
+									<span class="text">没有收到短信？</span>
+								</div>
+								<span id="span-getverfiyCode" class="error-texts"></span>
+							</div>
+						</li>
+						<li class="item ">
+							<div class="label">&nbsp;</div>
+							<div class="value">
+								<div class="security-form-btn">
+									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="security-con">、
+				<div class="real-name">
+				    <ul id="authForm" class="security-form" style="">
+						<li class="item">
+							<div class="label">请输入当前支付密码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入原支付密码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">确认新的支付密码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入新的支付密码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">短信验证码：</div>
+							<div class="value">
+								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
+								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+									class="yzm-text">获取验证码</span></a>
+								<div href="" class="none-message">
+									<span class="text">没有收到短信？</span>
+								</div>
+								<span id="span-getverfiyCode" class="error-texts"></span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">&nbsp;</div>
+							<div class="value">
+								<div class="security-form-btn">
+									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="security-con">、
+				<div class="real-name">
+					<ul id="authForm" class="security-form" style="">
+						<li class="item">
+							<div class="label">当前绑定的手机号码：</div>
+							<div class="value">
+								<span id="span-red-holderId" class="error-text">12345455</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">请输入解绑的短信验证码：</div>
+							<div class="value">
+								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
+								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+									class="yzm-text">获取验证码</span></a>
+								<div href="" class="none-message">
+									<span class="text">没有收到短信？</span>
+								</div>
+								<span id="span-getverfiyCode" class="error-texts"></span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">请输入要绑定的手机号码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入要绑定的手机号码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">请输入绑定的短信验证码：</div>
+							<div class="value">
+								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
+								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+									class="yzm-text">获取验证码</span></a>
+								<div href="" class="none-message">
+									<span class="text">没有收到短信？</span>
+								</div>
+								<span id="span-getverfiyCode" class="error-texts"></span>
+							</div>
+						</li>
+						<li class="item ">
+							<div class="label">&nbsp;</div>
+							<div class="value">
+								<div class="security-form-btn">
+									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="security-con">、
+				<div class="real-name">
+					<ul id="authForm" class="security-form" style="">
+						<li class="item">
+							<div class="label">当前绑定的邮箱号：</div>
+							<div class="value">
+								<span id="span-red-holderId" class="error-text">12345455</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">请输入解绑的邮箱验证码：</div>
+							<div class="value">
+								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
+								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+									class="yzm-text">获取验证码</span></a>
+								<div href="" class="none-message">
+									<span class="text">没有收到？</span>
+								</div>
+								<span id="span-getverfiyCode" class="error-texts"></span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">请输入要绑定的邮箱号码：</div>
+							<div class="value">
+								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								autocomplete="off">
+								<span id="span-red-holderId" class="error-text">请输入要绑定的手机号码</span>
+							</div>
+						</li>
+						<li class="item">
+							<div class="label">请输入绑定的邮箱验证码：</div>
+							<div class="value">
+								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
+								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+									class="yzm-text">获取验证码</span></a>
+								<div href="" class="none-message">
+									<span class="text">没有收到？</span>
+								</div>
+								<span id="span-getverfiyCode" class="error-texts"></span>
+							</div>
+						</li>
+						<li class="item ">
+							<div class="label">&nbsp;</div>
+							<div class="value">
+								<div class="security-form-btn">
+									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			</div>
+			<div id="Footer" style="min-height: 150px">
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">;;;;;</a>
+							<b>|</b>
+							<a href="">阿里云计算</a>
+							<b>|</b>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="">关于本站</a>
+							<a href="">合作伙伴</a>
+							<a href="">营销中心</a>
+							<a href="">廉正举报</a>
+							<a href="">联系客服</a>
+							<a href="">开放平台</a>
+							<a href="">诚征英才</a>
+							<a href="">联系我们</a>
+							<a href="">网站地图</a>
+							<a href="">法律声明</a>
+							<a href="">隐私权政策</a>
+						</p>
+						<p style="clear: left;">
+							<em>© 2019 Maimai.com 版权所有</em>
+							<span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+							<b>|</b>
+							<span>增值电信业务经营许可证：浙B2-20080224-1</span>
+							<b>|</b>
+							<span>信息网络传播视听节目许可证：1109364号</span>
+						</p>
+					</div>
+				</div>
+			</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#vuebody',
+			data: {
+				
+			},
+			created: function() {
+			},
+			methods: {
+				
+			}
+		})
+	</script>
+</html>
