@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/core.css" />
+<link rel="stylesheet" href="./static/css/table.css" />
+<link rel="stylesheet" href="./static/css/button.css" />
+<link rel="stylesheet" href="./static/css/panels.css" />
+<link rel="stylesheet" href="./static/css/misc.css" />
+<style type="text/css">
+#panel{
+margin:50px 50px;
+}
+.ul-btn{
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.ul-btn li{
+margin: 15px auto;
+}
+</style>
+</head>
+<body>
+		<div class="mws-panel" id="panel">
+			<div class="mws-panel-header">
+				<i></i><span class="mws-i-24">物流管理</span>
+			</div>
+			<div class="mws-panel-body">
+			<div class="dataTables_wrapper">
+				<div class="dataTables_filter">
+					<label>商品状态： <select size="1"><option value="10"
+								selected="selected">未出库</option>
+							<option value="25">运输中</option>
+							<option value="50">配送中</option>
+							<option value="100">已完成</option></select></label>
+				</div>
+				<table class="mws-table">
+					<thead>
+						<tr>
+							<th style="">时间</th>
+							<th style="">物流单号</th>
+							<th>发货地址</th>
+							<th>物品信息</th>
+							<th>收获地址</th>
+							<th>状态</th>
+							<th style="width: 8%;">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="gradeX even">
+							<td>2019/4/9
+							</td>
+							<td>
+							<div><p>fghfghfgh</p></div>
+							</td>
+							<td>Win 95+</td>
+							<td class="center">4</td>
+							<td class="center">X</td>
+							<td></td>
+							<td>
+							<div>
+							<ul class="ul-btn">
+							<li><a class="mws-button black">出库</a></li>
+							<li><a class="mws-button red">配送</a></li>
+							<li><a class="mws-button blue">完成</a></li>
+							</ul>
+							</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+            <div class="mws-pagination">
+				<ul>
+					<li><a href="#" class="mws-paging-button disabled">首页</a></li>
+					<li><a href="#" class="mws-paging-button disabled">上一页</a></li>
+					<li><a href="#" class="mws-paging-button current">1</a></li>
+					<li><a href="#" class="mws-paging-button">2</a></li>
+					<li><a href="#" class="mws-paging-button">3</a></li>
+					<li><a href="#" class="mws-paging-button">4</a></li>
+					<li><a href="#" class="mws-paging-button">5</a></li>
+					<li><a href="#" class="mws-paging-button">下一页</a></li>
+					<li><a href="#" class="mws-paging-button">尾页</a></li>
+				</ul>
+			</div>
+			</div>
+			
+		</div>
+</body>
+</html>

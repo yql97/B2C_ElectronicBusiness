@@ -1,0 +1,138 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/core.css" />
+<link rel="stylesheet" href="./static/css/login.css" />
+<link rel="stylesheet" href="./static/css/form.css" />
+<link rel="stylesheet" href="./static/css/button.css" />
+<style type="text/css">
+#mws-logo-wrap{
+color: #ccc;
+}
+#mws-searchbox p{
+color: #ccc;
+font-size: 18px;
+text-align: left;
+padding-left:40px;
+font-weight: 700;
+}
+ .i-order{
+ background-image: url(./static/image/alarm-bell.png);
+ background-repeat: no-repeat;
+ }
+#mws-username{
+ color:orange;
+}
+ #right-html{
+ width: 85%;
+ height: auto;
+ min-height:708px;
+ position:absolute;
+ top:58px;
+ right: 0; 
+ }
+</style>
+</head>
+<body>
+<div id="mws-header">
+    	<div id="mws-logo-container">
+        	<div id="mws-logo-wrap">
+        	  <h2>物流管理平台</h2>
+			</div>
+        </div>
+        <div id="mws-user-tools">
+        	<div id="mws-user-notif" class="mws-dropdown-menu">
+            	<a href="#" class="mws-i-24 i-order mws-dropdown-trigger">Notifications</a>
+                <span class="mws-dropdown-notif">35</span>
+               <!--  <div class="mws-dropdown-box">
+                	<div class="mws-dropdown-content">
+                        <ul class="mws-notifications">
+                        	<li class="read">
+                            	<a href="#">
+                                    <span class="message">
+                                        Lorem ipsum dolor sit amet consectetur adipiscing elit, et al commore
+                                    </span>
+                                    <span class="time">
+                                        January 21, 2012
+                                    </span>
+                                </a>
+                            </li>
+                        	<li class="read">
+                            	<a href="#">
+                                    <span class="message">
+                                        Lorem ipsum dolor sit amet
+                                    </span>
+                                    <span class="time">
+                                        January 21, 2012
+                                    </span>
+                                </a>
+                            </li>
+                        	<li class="unread">
+                            	<a href="#">
+                                    <span class="message">
+                                        Lorem ipsum dolor sit amet
+                                    </span>
+                                    <span class="time">
+                                        January 21, 2012
+                                    </span>
+                                </a>
+                            </li>
+                        	<li class="unread">
+                            	<a href="#">
+                                    <span class="message">
+                                        Lorem ipsum dolor sit amet
+                                    </span>
+                                    <span class="time">
+                                        January 21, 2012
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="mws-dropdown-viewall">
+	                        <a href="#">View All Notifications</a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div id="mws-user-info" class="mws-inset">
+            	<div id="mws-user-photo">
+                	<img src="./static/image/list.jpg">
+                </div>
+                <div id="mws-user-functions">
+                    <div id="mws-username">
+                        Hello, John Doe
+                    </div>
+                    <ul>
+                    	<li><a href="#">Profile</a></li>
+                        <li><a href="#">Change Password</a></li>
+                        <li><a href="index-2.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div id="mws-wrapper" style="min-height:768px;">
+        <div id="mws-sidebar-stitch"></div>
+        <div id="mws-sidebar-bg"></div>
+        <div id="mws-sidebar">
+             <div id="mws-searchbox">
+                <p>功能菜单</p>
+             </div>
+        <div id="mws-navigation">
+           <ul>
+              <li><a href="manage?pageIndex=0" class="mws-i-24">填写物流订单</a></li>
+               <li><a href="manage?pageIndex=1" class="mws-i-24">物流订单列表</a></li>
+              <li><a href="manage?pageIndex=2" class="mws-i-24">更新物流信息</a></li>
+              <li><a href="manage?pageIndex=3" class="mws-i-24 ">填写配送信息</a></li>
+           </ul>
+        </div>
+        </div>
+        <div class="mws-container" id="right-html">
+        <div class="container" th:include="${session.pageURL} :: html"></div>
+        </div>
+      </div>
+</body>
+</html>

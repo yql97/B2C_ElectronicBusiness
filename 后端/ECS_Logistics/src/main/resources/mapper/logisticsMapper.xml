@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Logistics.dao.logisticsMapper">
+<!-- <sql id="orderLogisticsBaseInfo"> 
+select logistics_order_code,logistics_company_name,store_name,shipping_address,goods_main_image,goods.goods_id
+from user_order,logistics_order,store,goods,goods_sku,receiving_address
+where user_order.order_id=logistics_order.order_id  
+and user_order.goods_sku_id=goods_sku.goods_sku_id
+and goods_sku.goods_id=goods.goods_id
+and store.store_id=goods.store_id
+</sql> -->
+</mapper>

@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/core.css" />
+<link rel="stylesheet" href="./static/css/form.css" />
+<link rel="stylesheet" href="./static/css/button.css" />
+<link rel="stylesheet" href="./static/css/panels.css" />
+<style type="text/css">
+#panel{
+margin:50px 50px;
+}
+</style>
+</head>
+<body>
+<div class="mws-panel" id="panel">
+                	<div class="mws-panel-header">
+                    	<span class="mws-i-24 i-list">更新物流信息</span>
+                    </div>
+                    <div class="mws-panel-body">
+                    	<form class="mws-form" action="">
+                    		<div class="mws-form-inline">
+                    			<div class="mws-form-row">
+                    				<label>物流单号：</label>
+                    				<div class="mws-form-item small">
+                    					<input type="text" class="mws-textinput">
+                    				</div>
+                    			</div>
+                    			<div class="mws-form-row">
+                    				<label>物流配送信息：</label>
+                    				<div class="mws-form-item large">
+                    					<input type="text" class="mws-textinput">
+                    				</div>
+                    			</div>
+                    		</div>
+                    		<div class="mws-button-row">
+                    			<input type="submit" value="Submit" class="mws-button blue">
+                    			<input type="submit" value="Disabled" class="mws-button gray" disabled="disabled">
+                    		</div>
+                    	</form>
+                    </div>    	
+</div>
+</body>
+</html>

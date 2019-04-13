@@ -1,0 +1,174 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>物流管理系统</title>
+<link rel="stylesheet" href="./static/css/core.css" />
+<link rel="stylesheet" href="./static/css/login.css" />
+<link rel="stylesheet" href="./static/css/form.css" />
+<link rel="stylesheet" href="./static/css/button.css" />
+<style>
+/* body {
+	background-color: #4e657a;
+}
+
+.background-div {
+	width: 100%;
+	height: 650px;
+	background-color: #4e657a;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+.block-div {
+	position: absolute;
+	background-color: #435c71;
+	width: 600px;
+	height: 400px;
+	top: 15%;
+	left: 25%;
+	border-radius: 5%;
+}  
+  .label-style{
+  color:#fff;
+  font-size:14px;
+  width:150px;
+  height:50px;
+  text-align:right;
+  display: inline-block; 
+  margin-right:20px;
+  }
+  .title-style{
+  color:#f5a623;
+  font-size:24px; 
+  font-weight:700;
+  line-height:24px;
+  text-align: left;
+  margin-left:180px;
+  height: 40px;
+  padding-top:10px;
+  }
+  .input-style{
+    height:30px;
+    width: 200px;
+    margin: 5px auto;
+  }
+  .button-style{
+     width:200px;
+     margin:0;
+     padding:0;
+     height: 50px;
+     font-weight:700;
+  }
+  #code_input{
+     width:100px;
+     height:30px;
+     margin: 5px auto;
+     margin-right: 0px;
+     padding-right: 0px;
+  }
+ #v_container{
+     width:100px;
+     height: 30px;
+     display: inline-block;
+     margin-left: 0;
+     padding-left: 0;
+ } */
+  .label-style{
+  color:#fff;
+  font-size:14px;
+  text-align:left;
+   float:left;
+   height:30px;
+  margin-right:10px;
+  margin-left: 20%;
+  margin-top: 15px;
+  }
+  #code_input{
+     width:30%;
+     height:35px;
+     outline: none;
+     border: 1px solid #323232;
+     box-shadow: inset 0px 1px 3px rgba(128, 128, 128, 0.1);
+     border-radius: 4px;
+      float:left;
+     margin: 5px auto;
+     margin-right: 8px;
+     padding-right: 0px;
+  }
+ #v_container{
+     width:100px;
+     height:38px;
+     float:left;
+     padding:0;
+     margin: 5px auto;
+ }
+</style>
+</head>
+<body>
+	<!-- <div class="background-div">
+		<div class="uk-panel block-div">
+			<h3 class="uk-panel-title title-style">物流管理系统</h3>
+			<form class="uk-form">
+				<div class="uk-form-row">
+					<label class="label-style">账户名:</label>
+					<input class="input-style"  type="text" placeholder="">
+				</div>
+				<div class="uk-form-row">
+					<label class="label-style">密码:</label>
+					<input class="input-style" type="password" placeholder="">
+				</div>
+				<div class="uk-form-row">
+					<label class="label-style">验证码:</label>
+					 <input type="text" id="code_input" placeholder="请输入验证码"/>
+					<div id="v_container" title="看不清,点击换一张"></div>
+				</div>
+				<div class="uk-form-row">
+					<label class="label-style"></label>
+					<input type="submit" class="uk-button uk-button-primary button-style" value="登录">
+				</div>
+			</form>
+		</div>
+	</div> -->
+	<div id="mws-login">
+    	<h1>物流管理系统</h1>
+        <div class="mws-login-lock"><img src="./static/image/locked-2.png" alt=""></div>
+    	<div id="mws-login-form">
+        	<form class="mws-form" action="dashboard.html" method="post">
+                <div class="mws-form-row">
+                	<div class="mws-form-item large">
+                    	<input type="text" class="mws-login-username mws-textinput" placeholder="username">
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                	<div class="mws-form-item large">
+                    	<input type="password" class="mws-login-password mws-textinput" placeholder="password">
+                    </div>
+                </div>
+                <div class="mws-form-row">
+                <label class="label-style">验证码：</label>
+                 <input type="text" id="code_input" placeholder="请输入验证码"/>
+					<div id="v_container" title="看不清,点击换一张"></div>
+                </div>
+                <div class="mws-form-row">
+                	<input type="submit" value="Login" class="mws-button green mws-login-button">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="./static/js/gVerify.js"></script>
+    <script>
+        var verifyCode = new GVerify("v_container");
+       /* document.getElementById("my_button").onclick = function(){
+            var res = verifyCode.validate(document.getElementById("code_input").value);
+            if(res){
+                alert("验证正确");
+            }else{
+                alert("验证码错误");
+            }
+        }*/
+    </script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/core.css" />
+<link rel="stylesheet" href="./static/css/form.css" />
+<link rel="stylesheet" href="./static/css/button.css" />
+<link rel="stylesheet" href="./static/css/panels.css" />
+<style type="text/css">
+#panel{
+margin:50px 50px;
+}
+</style>
+</head>
+<body>
+<div class="mws-panel" id="panel">
+                	<div class="mws-panel-header">
+                    	<span class="mws-i-24 i-list">创建物流订单</span>
+                    </div>
+                    <div class="mws-panel-body">
+                    	<form class="mws-form" action="">
+                    		<div class="mws-form-inline">
+                    			<div class="mws-form-row">
+                    				<label>订单号：</label>
+                    				<div class="mws-form-item small">
+                    					<input type="text" class="mws-textinput">
+                    				</div>
+                    			</div>
+                    			<div class="mws-form-row">
+                    				<label>物流公司：</label>
+                    				<div class="mws-form-item small">
+                    					<select>
+                    						<option>Option 1</option>
+                    						<option>Option 3</option>
+                    						<option>Option 4</option>
+                    						<option>Option 5</option>
+                    					</select>
+                    				</div>
+                    			</div>
+                    			<div class="mws-form-row">
+                    				<label>发货人：</label>
+                    				<div class="mws-form-item large">
+                    					<input type="text" class="mws-textinput">
+                    				</div>
+                    			</div>
+                    			<div class="mws-form-row">
+                    				<label>发货地址：</label>
+                    				<div class="mws-form-item large">
+                    					<textarea rows="100%" cols="100%"></textarea>
+                    				</div>
+                    			</div>
+                    			<div class="mws-form-row">
+                    			<label>身份证号</label>
+                    			    <div class="mws-form-item large">
+                    					<input type="text" class="mws-textinput">
+                    			    </div>
+                    			</div>
+                    			<div class="mws-form-row">
+                    				<label>电话号码</label>
+                    				<div class="mws-form-item small">
+                    					<input type="text" class="mws-textinput">
+                    				</div>
+                    			</div>
+                    		</div>
+                    		<div class="mws-button-row">
+                    			<input type="submit" value="Submit" class="mws-button blue">
+                    			<input type="submit" value="Disabled" class="mws-button gray" disabled="disabled">
+                    		</div>
+                    	</form>
+                    </div>    	
+                </div>
+</body>
+</html>
