@@ -1,0 +1,121 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/report.css">
+<link rel="stylesheet" href="./static/css/panels.css">
+<link rel="stylesheet" href="./static/css/table.css">
+<link rel="stylesheet" href="./static/css/misc.css">
+<script type="text/javascript" src="./static/js/jQuery3.2.1.js"></script>
+<style type="text/css">
+#page {
+	width: 90%;
+	margin: 50px auto;
+}
+.mws-panel-header i {
+	width: 24px;
+	height: 24px;
+	float: left;
+	background-image: url(./static/image/table-1.png);
+}
+.ic-star{
+background-image: url(./static/image/award_star_gold_1.png);
+background-repeat: no-repeat;
+}
+.ic-walk{
+background-image: url(./static/image/walk.png);
+background-repeat: no-repeat;
+}
+.ic-comment{
+background-image: url(./static/image/comments_add.png);
+background-repeat: no-repeat;
+}
+.ic-sellMoney-up{
+background-image: url(./static/image/coins_add.png);
+background-repeat: no-repeat;
+}
+.ic-sellCount-up{
+background-image: url(./static/image/cart_remove.png);
+background-repeat: no-repeat;
+}
+</style>
+</head>
+<body>
+	<div th:fragment="saleStatistics">
+		<div class="mws-panel" id="page">
+			<div class="mws-report-container clearfix">
+				<a class="mws-report" href="#"> <span
+					class="mws-report-icon mws-ic ic-star"></span> <span
+					class="mws-report-content"> <span class="mws-report-title">店铺收藏量</span><br />
+						<span class="mws-report-value">324</span>
+				</span>
+				</a> <a class="mws-report" href="#"> <span
+					class="mws-report-icon mws-ic ic-walk"></span> <span
+					class="mws-report-content"> <span class="mws-report-title">店铺访问量</span><br />
+						<span class="mws-report-value">14</span>
+				</span>
+				</a> <a class="mws-report" href="#"> <span
+					class="mws-report-icon mws-ic ic-comment"></span> <span
+					class="mws-report-content"> <span class="mws-report-title">商品评论量</span><br />
+						<span class="mws-report-value">77</span>
+				</span>
+				</a> <a class="mws-report" href="#"> <span
+					class="mws-report-icon mws-ic ic-sellMoney-up"></span> <span
+					class="mws-report-content"> <span class="mws-report-title">月销量增长率</span><br />
+						<span class="mws-report-value down">74%</span>
+				</span>
+				</a> <a class="mws-report" href="#"> <span
+					class="mws-report-icon mws-ic ic-sellCount-up"></span> <span
+					class="mws-report-content"> <span class="mws-report-title">营业额增长率</span><br />
+						<span class="mws-report-value up">22%</span>
+				</span>
+				</a>
+			</div>
+			<div class="mws-panel-header">
+				<i></i> <span class="mws-i-24">店铺销售统计</span>
+	  </div>
+	  <div class="mws-panel-body">
+			<div class="dataTables_wrapper">
+			<table class="mws-table">
+					<thead>
+						<tr>
+						    <th>商品</th>
+							<th>规格</th>
+							<th>收藏量</th>
+							<th>月销量</th>
+							<th>剩余库存</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="gradeX even">
+						<td><span>2019/4/5</span><br/><span>17:30</span></td>
+						<td><span>12345</span><br/><span>67890</span></td>
+						<td>Win</td>	
+							<td><p>33</p>
+							</td>
+							<td>ffg</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="mws-pagination clearfix">
+				<ul>
+					<li><a href="#" class="mws-paging-button disabled">首页</a></li>
+					<li><a href="#" class="mws-paging-button disabled">上一页</a></li>
+					<li><a href="#" class="mws-paging-button current">1</a></li>
+					<li><a href="#" class="mws-paging-button">2</a></li>
+					<li><a href="#" class="mws-paging-button">3</a></li>
+					<li><a href="#" class="mws-paging-button">4</a></li>
+					<li><a href="#" class="mws-paging-button">5</a></li>
+					<li><a href="#" class="mws-paging-button">下一页</a></li>
+					<li><a href="#" class="mws-paging-button">尾页</a></li>
+				</ul>
+			</div>
+	        </div>
+		</div>
+	</div>
+</body>
+</html>

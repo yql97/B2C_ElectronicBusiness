@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Goods.mapper.favoritesRecordMapper">
+<sql id="getFavoritesGoodsInfo">
+select favorites_id,goods.goods_id, goods_main_image,goods_name,
+goods_now_price,goods_old_price 
+from favorites_record,goods,goods_sku
+where favorites_record.goods_id=goods.goods_id
+and goods_sku.goods_id=goods.goods_id
+</sql>
+<sql id="getFavoritesGoodsByStore">
+    select s.store_id,store.store_name,favorites_id,goods.goods_id, goods_main_image,goods_name,
+goods_now_price,goods_old_price 
+from favorites_record,goods,goods_sku,store,(select store_id from store GROUP BY store_id) as s
+where favorites_record.goods_id=goods.goods_id
+and goods_sku.goods_id=goods.goods_id
+and s.store_id=goods.store_id
+and s.store_id=store.store_id
+</sql>
+<sql id="getFavoritesStore">
+select favorites_id,store.store_id,store_name from  favorites_record,store
+where favorites_record.store_id=store.store_id
+</sql>
+<insert id="addFavoritesRecord" parameterType="ECS_Common.entity.favoritesRecord" 
+useGeneratedKeys="true">
+     insert into favorites_record(store_id,goods_id,user_id,create_time)
+     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="store_id !=null">
+      #{store_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_id !=null">
+      #{goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="user_id != null" >
+        #{user_id,jdbcType=INTEGER},
+      </if> 
+      <if test="createTime !=null">
+      #{createTime,jdbcType=TIMESTAMP},
+      </if>  
+    </trim>
+</insert>
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Goods.mapper.goodsSkuMapper">
+
+<insert id="addGoodsSku" parameterType="ECS_Common.entity.goods_sku">
+insert into goods_sku(goods_sku_id,goods_sku_name,goods_id,goods_now_price,goods_old_price,
+    goods_stroage_balance,goods_stroage_sale_volume,create_time)
+  <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id !=null">
+      #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name !=null">
+      #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_id !=null">
+      #{goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="now_price != null" >
+        #{now_price,jdbcType=DOUBLE},
+      </if> 
+      <if test="old_price !=null">
+         #{old_price,jdbcType=DOUBLE},
+      </if>
+      <if test="stroageBalance !=null">
+         #{stroageBalance,jdbcType=INTEGER},
+      </if>
+      <if test="stroageSaleVolume !=null">
+          #{stroageSaleVolume,jdbcType=INTEGER},
+      </if>
+      <if test="createTime !=null">
+      #{createTime,jdbcType=TIMESTAMP},
+      </if>  
+    </trim>
+</insert>
+<update id="updateGoodsSku" parameterType="ECS_Common.entity.goods_sku">
+update goods_sku 
+<set>
+<trim suffixOverrides=",">
+<if test="now_price !=null">
+    goods_now_price =#{now_price,jdbcType=DOUBLE},
+</if>
+<if test="old_price !=null">
+    goods_old_price =#{old_price,jdbcType=DOUBLE},
+</if>
+<if test="stroageBalance !=null">
+    goods_stroage_balance =#{stroageBalance,jdbcType=INTEGER},
+</if>
+<if test="stroageSaleVolume !=null">
+    goods_stroage_sale_volume =#{stroageSaleVolume,jdbcType=INTEGER},
+</if>
+</trim>
+</set>
+where goods_id= #{goods_id,jdbcType=INTEGER}
+ </update>
+</mapper>

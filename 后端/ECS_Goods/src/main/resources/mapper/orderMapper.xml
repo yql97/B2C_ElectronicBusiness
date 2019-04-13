@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Goods.mapper.orderMapper">
+<resultMap type="ECS_Goods.entity.goodsPropertyInfo" id="goodsPropertyInfo">
+ <result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
+ <result column="goods_property_relate_id" property="goods_property_relate_id" jdbcType="INTEGER"/>
+ <result column="property_name_text" property="goods_property_name" jdbcType="VARCHAR"/>
+ <result column="property_value" property="goods_property_value" jdbcType="VARCHAR"/> 
+</resultMap>
+<resultMap type="ECS_Goods.entity.orderBaseInfo" id="orderBaseResult">
+<result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
+<result column="order_status" property="order_status" jdbcType="INTEGER"/>
+<result column="order_code" property="order_code" jdbcType="INTEGER"/>
+<result column="store_id" property="store_id" jdbcType="INTEGER"/>
+<result column="store_name" property="store_name" jdbcType="VARCHAR"/>
+<result column="goods_id" property="goods_id" jdbcType="INTEGER"/>
+<result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
+<result column="goods_main_image" property="main_image" jdbcType="VARCHAR"/>
+<result column="goods_name" property="goods_name" jdbcType="VARCHAR"/>
+<result column="goods_old_price" property="old_price" jdbcType="DOUBLE"/>
+<result column="goods_now_price" property="new_price" jdbcType="DOUBLE"/>
+<result column="goods_num" property="goods_num" jdbcType="INTEGER"/>
+<result column="logistics_order_id" property="logistics_id" jdbcType="INTEGER"/>
+</resultMap>
+<sql id="orderGoodsProperty">
+select goods_sku.goods_sku_id,goods_property_relate.goods_property_relate_id,
+goods_property_name.property_name_text,goods_property_value.property_value
+from goods_sku,goods_property_relate,goods_property_name,goods_property_value,user_order
+where user_order.goods_sku_id=goods_sku.goods_sku_id
+and goods_property_relate.goods_sku_id=user_order.goods_sku_id
+and goods_property_name.property_name_id=goods_property_relate.goods_property_name_id
+and goods_property_value.property_value_id=goods_property_relate.goods_property_value_id
+</sql>
+<select id="getGoodsProperty" resultMap="goodsPropertyInfo" 
+parameterType="java.lang.Integer">
+<include refid="orderGoodsProperty"></include>
+and user_order.goods_sku_id=#{id,jdbcType=INTEGER}
+</select>
+<sql id="orderGoodsBaseInfo">
+select user_order.create_time,order_status,order_code,store.store_id,
+store_name,goods_sku.goods_id,goods_sku.goods_sku_id,
+goods.goods_main_image,goods_name,goods_old_price,goods_now_price,
+user_order.goods_num,logistics_order_id
+from user_order,goods_sku,goods,store
+where user_order.goods_sku_id=goods_sku.goods_sku_id
+and goods_sku.goods_id=goods.goods_id 
+and store.store_id=goods.store_id
+</sql>
+<select id="getOrderBaseInfo" resultMap="orderBaseResult" parameterType="java.lang.Integer">
+ <include refid="orderGoodsBaseInfo"></include>
+ and user_order.user_id=#{id,jdbcType=INTEGER}
+</select>
+<insert id="addOrder" parameterType="ECS_Common.entity.order" useGeneratedKeys="true">
+insert into user_order(user_id,goods_sku_id,order_code,order_status,logistics_order_id,
+trade_id,buyer_message,receive_address_id,goods_num,create_time)
+<trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="user_id !=null">
+      #{user_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_sku_id !=null">
+      #{goods_sku_id,jdbcType=INTEGER},
+      </if>
+      <if test="order_code != null" >
+        #{order_code,jdbcType=INTEGER},
+      </if> 
+      <if test="status !=null">
+      #{status,jdbcType=INTEGER},
+      </if>
+      <if test="logistics_order_id !=null">
+       #{logistics_order_id,jdbcType=INTEGER},
+      </if>
+      <if test="trade_id !=null">
+       #{trade_id,jdbcType=INTEGER},  
+      </if>
+      <if test="buyer_message !=null">
+       #{buyer_message,jdbcType=CARCHAR},  
+      </if>
+      <if test="receive_address_id !=null">
+       #{receive_address_id,jdbcType=INTEGER},  
+      </if>
+      <if test="goods_num !=null">
+       #{goods_num,jdbcType=INTEGER},  
+      </if>
+      <if test="createTime !=null">
+      #{createTime,jdbcType=TIMESTAMP},
+      </if>  
+    </trim>
+</insert>
+<sql id="storeOrderInfo">
+select order_id,receive_address_id,goods_sku.goods_sku_id,order_code,user_order.create_time,
+goods.goods_name,goods_sku.goods_now_price,user_order.goods_num,user_order.order_status
+from user_order,goods_sku,goods
+where user_order.goods_sku_id=goods_sku.goods_sku_id
+and goods.goods_id=goods_sku.goods_id
+</sql>
+<select id="getStoreOrderList">
+<include refid="storeOrderInfo"></include>
+and goods.store_id=#{id,jdbcType=INTEGER}
+</select>
+</mapper>

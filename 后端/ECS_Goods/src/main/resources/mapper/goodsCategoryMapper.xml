@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="ECS_Goods.mapper.goodsCategoryMapper">
+<resultMap type="ECS_Common.entity.goodsFamily" id="goodsFamilyResult">
+    <result column="goods_family_name"  property="family_name"  jdbcType="VARCHAR"/>
+    <result column="goods_family_sequence" property="family_sequence" jdbcType="INTEGER"/>
+</resultMap>
+<resultMap type="ECS_Common.entity.goodsCategory" id="goodsCategoryResult">
+     <result column="goods_category_name" property="category_name" jdbcType="VARCHAR"/>
+     <result column="goods_family_id" property="family_id" jdbcType="INTEGER"/>
+</resultMap>
+
+<insert id="addGoodsFamily" parameterType="ECS_Common.entity.goodsFamily"
+ useGeneratedKeys="true">
+  insert into goods_family(goods_family_name,goods_family_sequence);
+  <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="family_name !=null">
+      #{famliy_name,jdbcType=VARCHAR},
+      </if>
+      <if test="family_sequence !=null">
+      #{famliy_sequence,jdbcType=INTEGER},
+      </if>
+    </trim>
+</insert>
+<insert id="addGoodsCategory" parameterType="ECS_Common.entity.goodsCategory">
+insert into goods_category(goods_category_id,goods_family_id,goods_category_name)
+<trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id !=null">
+      #{id,jdbcType=INTEGER},
+      </if>
+      <if test="family_id !=null">
+      #{family_id,jdbcType=INTEGER},
+      </if>
+      <if test="category_name !=null">
+      #{category_name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+</insert>
+
+<select id="getGoodsFamilyList"  resultMap="goodsFamilyResult"
+parameterType="java.lang.Integer" resultType="java.util.List">
+  select * from goods_family
+  where goods_family_sequence between 1 and #{sequence,jdbcType=INTEGER}
+</select>
+<select id="getGoodsCategory" resultMap="goodsCategoryResult" 
+   parameterType="ECS_Common.entity.goodsCategory">
+   select * from goods_category
+   <where>
+   <trim prefixOverrides="and" > 
+    <if test="id !=null">
+       and goods_category_id=#{id,jdbcType=INTEGER}
+   </if>
+   <if test="family_id !=null">
+      and goods_family_id  =#{family_id,jdbcType=INTEGER}
+   </if>
+   </trim>
+   </where> 
+</select>
+</mapper>

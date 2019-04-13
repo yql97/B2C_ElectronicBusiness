@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Goods.mapper.goodsMapper">
+
+<resultMap id="goodsResult" type="ECS_Common.entity.goods">
+   <id column="goods_id" property="id" jdbcType="INTEGER"/> 
+   <result column="goods_name" property="name" jdbcType="VARCHAR"/>
+   <result column="goods_title" property="title" jdbcType="VARCHAR"/>
+   <result column="store_id" property="store_id" jdbcType="INTEGER"/>
+   <result column="goods_monthly_sales" property="monthlySales" jdbcType="INTEGER"/>
+   <result column="favoritesVolume" property="favoritesVolume" jdbcType="INTEGER"/>
+   <result column="goods_comment_volume" property="commentVolume" jdbcType="INTEGER"/>
+   <result column="goods_page_views" property="pageViews" jdbcType="INTEGER"/>
+   <result column="goods_total_sales" property="totalSales" jdbcType="INTEGER"/>
+   <result column="status" property="status" jdbcType="INTEGER"/>
+   <result column="goods_category_id" property="category_Id" jdbcType="INTEGER"/>
+   <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+  <!--   <result column="commentVolume" property="deleteTime" jdbcType=""/>-->
+   <result column="goods_main_image" property="main_image" jdbcType="VARCHAR"/>
+   <result column="goods_sku_id_list" property="goods_sku_id_list" jdbcType="VARCHAR"/>
+</resultMap>
+
+   <select id="selectByStoreId" resultMap="goodsResult" parameterType="java.lang.Integer"
+    resultType="java.util.List">
+    select * from goods
+    where store_id=#{id,jdbcType=INTEGER}
+   </select>
+   <sql id="getStoreGoodsInfo">
+     select goods.goods_id,goods_sku.goods_sku_id,goods_name,goods_image_path,goods_old_price,goods_now_price,
+goods_stroage_balance,goods_sku.sku_status
+from goods,goods_sku,goods_images
+where goods.goods_id=goods_sku.goods_id
+and  goods_images.goods_sku_id=goods_sku.goods_sku_id   
+   </sql>
+   <select id="getStoreGoodsList" parameterType="java.lang.Integer"  resultType="java.util.List"> 
+   <include refid="getStoreGoodsInfo"></include>
+   and goods.store_id=#{id,jdbcType=INTEGER}
+   </select>
+   <insert id="insertGoods" parameterType="ECS_Common.entity.goods">
+    insert into goods(goods_id,goods_name,goods_title,store_id,goods_category_id,create_time)
+    <trim prefix="values(" suffix=")" suffixOverrides="," >
+      <if test="id !=null">
+      #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name !=null">
+      #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title !=null">
+      #{title,jdbcType=INTEGER},
+      </if>
+      <if test="store_id != null" >
+        #{store_id,jdbcType=INTEGER},
+      </if>
+       <if test="category_Id != null" >
+        #{category_Id,jdbcType=INTEGER},
+      </if>
+       <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>        
+    </trim>
+    </insert>
+    <sql id="">
+    goods_monthly_sales,
+    goods_comment_volume,goods_favorite_volume,goods_page_views,goods_total_sales,
+    goods_main_image,
+    <if test="monthlySales != null" >
+        #{monthlySales,jdbcType=INTEGER},
+      </if>   
+      <if test="commentVolume != null" >
+        #{commentVolume,jdbcType=INTEGER},
+      </if>   
+      <if test="favoritesVolume != null" >
+        #{favoritesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="pageViews != null" >
+        #{pageViews,jdbcType=INTEGER},
+      </if>   
+      <if test="totalSales != null" >
+        #{totalSales,jdbcType=INTEGER},
+      </if>
+        <if test="main_image != null" >
+        #{main_image,jdbcType=VARCHAR},
+      </if>
+     <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </sql>
+   <update id="updateGoods" 
+   parameterType="ECS_Common.entity.goods">
+   update  goods
+   <set>
+      <if test="title != null" >
+        goods_title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlySales !=null">
+      goods_monthly_sales=#{monthlySales,jdbcType=INTEGER},
+      </if>
+      <if test="commentVolume !=null">
+      goods_comment_volume=#{commentVolume,jdbcType=INTEGER},
+      </if>
+      <if test="favoritesVolume !=null">
+      goods_favorite_volume=#{favoritesVolume,jdbcType=INTEGER},
+      </if>
+      <if test="pageViews !=null">
+      goods_page_views= #{pageViews,jdbcType=INTEGER},
+      </if>
+      <if test="totalSales !=null">
+      goods_total_sales=#{totalSales,jdbcType=INTEGER},
+      </if>
+      <if test="status !=null">
+      status=#{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goods_id=#{id,jdbcType=INTEGER}
+   </update>
+   <delete id="deleteGoods" parameterType="java.lang.Integer"></delete>
+</mapper>

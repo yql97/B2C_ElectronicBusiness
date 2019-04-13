@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Goods.mapper.storeMapper">
+
+<resultMap id="storeResult" type="ECS_Common.entity.store">
+<id column="store_id" property="store_id" jdbcType="INTEGER"/>
+<result column="store_name" property="store_name" jdbcType="VARCHAR"/>
+<result column="store_title" property="store_title" jdbcType="VARCHAR"/>
+<result column="status" property="status" jdbcType="INTEGER"/>
+<result column="category_id" property="category_id" jdbcType="INTEGER"/>
+</resultMap>
+<select id="getStoreInfo" resultMap="storeResult" parameterType="java.lang.Integer">
+     select * from store 
+     where store_id=#{store_id,jdbcType=INTEGER}
+</select>
+<insert id="addStore" parameterType="ECS_Common.entity.store" 
+useGeneratedKeys="true">
+insert into store(store_name,store_title,category_id,status)
+<trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="store_name !=null">
+      #{store_name,jdbcType=VARCHAR},
+      </if>
+      <if test="store_title != null" >
+        #{store_title,jdbcType=VARCHAR},
+      </if> 
+      <if test="category_id !=null">
+      #{category_id,jdbcType=INTEGER},
+      </if>
+      <if test="status !=null">
+      #{status,jdbcType=INTEGER},
+      </if>
+</trim>
+</insert>
+
+</mapper>

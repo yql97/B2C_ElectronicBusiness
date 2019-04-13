@@ -1,0 +1,103 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/panels.css">
+<link rel="stylesheet" href="./static/css/table.css">
+<link rel="stylesheet" href="./static/css/misc.css">
+<link rel="stylesheet" href="./static/css/button.css">
+<style type="text/css">
+#panel{
+	width: 90%;
+	margin: 50px auto;
+}
+.mws-panel-header i {
+	width: 24px;
+	height: 24px;
+	float: left;
+	background-image: url(./static/image/clipboard.png);
+}
+.order-btn-list{
+list-style: none;
+padding:0px;
+}
+.order-btn-list li{
+ margin: 5px auto;
+ height: 29px;
+}
+</style>
+</head>
+<body>
+<div th:fragment="userOrder">
+<div class="mws-panel" id="panel">
+      <div class="mws-panel-header">
+				<i></i> <span class="mws-i-24">订单管理</span>
+	  </div>
+	  <div class="mws-panel-body">
+			<div class="dataTables_wrapper">
+			<div class="dataTables_filter">
+					<label>订单状态： <select size="1"><option value="10"
+								selected="selected">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+							<option value="100">100</option></select></label>
+			</div>
+			<table class="mws-table">
+					<thead>
+						<tr>
+						    <th style="width: 9%">下单时间</th>
+							<th style="width: 8%">订单号</th>
+							<th style="width:8%">买家</th>
+							<th>商品名称</th>
+							<th style="width: 15%">规格</th>
+							<th style="width: 12%">单价/数量/金额</th>
+							<th style="width: 15%">收获地址</th>
+							<th style="width: 8%">状态</th>
+							<th style="width: 11%">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="gradeX even">
+						<td><span>2019/4/5</span><br/><span>17:30</span></td>
+						<td><span>12345</span><br/><span>67890</span></td>
+						<td>Win</td>	
+							<td><p>33</p>
+							</td>
+							<td class="center">4</td>
+							<td class="center">X</td>
+							<td class="center">X</td>
+							<td class="center">未付款</td>
+							<td>
+							<div>
+							<ul class="order-btn-list">
+							<li><a class="mws-button blue">提醒付款</a></li>
+							<li><a class="mws-button orange">标记发货</a></li>
+							<li><a class="mws-button green">提醒收货</a></li>
+							</ul>
+							</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="mws-pagination clearfix">
+				<ul>
+					<li><a href="#" class="mws-paging-button disabled">首页</a></li>
+					<li><a href="#" class="mws-paging-button disabled">上一页</a></li>
+					<li><a href="#" class="mws-paging-button current">1</a></li>
+					<li><a href="#" class="mws-paging-button">2</a></li>
+					<li><a href="#" class="mws-paging-button">3</a></li>
+					<li><a href="#" class="mws-paging-button">4</a></li>
+					<li><a href="#" class="mws-paging-button">5</a></li>
+					<li><a href="#" class="mws-paging-button">下一页</a></li>
+					<li><a href="#" class="mws-paging-button">尾页</a></li>
+				</ul>
+			</div>
+	        </div>
+	  </div>
+</div>
+</body>
+</html>

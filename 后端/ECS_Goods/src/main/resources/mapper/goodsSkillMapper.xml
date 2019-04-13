@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Goods.mapper.goodsSkillMapper">
+
+<sql id="">
+select goods_skill_activity_id,goods.goods_id,goods_name,goods_main_image,
+skill_start_time,skill_end_time,goods_skill_count,goods_now_price,goods_old_price 
+from goods_skill_activity,goods,goods_sku
+where goods.goods_id=goods_skill_activity.goods_skill_activity_id
+and goods.goods_id=goods_sku.goods_id
+</sql>
+
+<insert id="addGoodsSkillActivity" parameterType="ECS_Goods.entity.goodsSkillActivity"
+useGeneratedKeys="true">
+ insert into goods_skill_activity(goods_id,skill_start_time,skill_end_time,
+ goods_skill_price,goods_skill_count)
+  <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goods_id !=null">
+      #{goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="start_time !=null">
+      #{start_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end_time != null" >
+        #{end_time,jdbcType=TIMESTAMP},
+      </if> 
+      <if test="skill_price">
+        #{skill_price,jdbcType=DOUBLE},
+      </if>
+      <if test="skill_count">
+        #{skill_count,jdbcType=INTEGER},
+      </if>
+    </trim>
+</insert>
+</mapper>

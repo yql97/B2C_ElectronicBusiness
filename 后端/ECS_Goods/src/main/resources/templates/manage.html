@@ -1,0 +1,129 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/core.css">
+<link rel="stylesheet" href="./static/css/fluid.css">
+<script src="./static/js/jQuery3.2.1.js"></script>
+<style>
+body {
+ 	background-color: #4e657a;
+ 	height: 100%;
+ 	margin: 0px;
+ 	padding:0px; 
+}
+#common-framework{
+    width: 100%;
+    height:auto;
+}
+.user-function-list{
+text-align: left;
+padding-left: 0px;
+ }
+ #mws-username{
+ color:orange;
+ }
+ #mws-searchbox{
+ margin: 0;
+ padding: 0;
+ }
+ #mws-searchbox p{
+ padding-left:42px;
+ font-size: 18px;
+ font-weight:700;
+ margin: 0px;
+ color: #cccc;
+ }
+ #mws-logo-wrap p{
+ font-weight: 700px;
+ font-size: 24px;
+ margin: 0px;
+ color: #ccc;
+ font-family: inherit;
+ }
+ #right-html{
+ width: 85%;
+ height: auto;
+ min-height:708px;
+ position:absolute;
+ top:58px;
+ right: 0; 
+ }
+ .i-comment{
+ background-image: url(./static/image/user-comment.png);
+ background-repeat: no-repeat;
+ }
+ .i-order{
+ background-image: url(./static/image/alarm-bell.png);
+ background-repeat: no-repeat;
+ }
+</style>
+</head>
+<body>
+<div id="common-framework">
+<div id="mws-header">
+    	<div id="mws-logo-container">
+        	<div id="mws-logo-wrap">
+            	<!-- <img src="images/mws-logo.png" alt="mws admin"> -->
+            	<p>商家后台管理系统</p>
+			</div>
+        </div>
+        
+        <div id="mws-user-tools" class="clearfix">
+        	<div id="mws-user-notif" class="mws-dropdown-menu">
+            	<a href="#" class="mws-i-24 i-order mws-dropdown-trigger">Notifications</a>
+                <span class="mws-dropdown-notif">35</span>
+            </div>
+            <div id="mws-user-message" class="mws-dropdown-menu">
+            	<a href="#" class="mws-i-24 i-comment mws-dropdown-trigger">Messages</a>
+                <span class="mws-dropdown-notif">35</span>
+            </div>
+            <div id="mws-user-info" class="mws-inset">
+            	<div id="mws-user-photo">
+                	<img src="./static/image/list.png">
+                </div>
+                <div id="mws-user-functions">
+                    <div id="mws-username">
+                        Hello, 名字
+                    </div>
+                    <ul class="user-function-list">
+                    	<li ><a href="#">个人信息</a></li>
+                        <li><a href="#">更改密码</a></li>
+                        <li><a href="index-2.html">注销</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mws-wrapper" style="min-height:708px;">
+   <div id="mws-sidebar-stitch"></div>
+   <div id="mws-sidebar-bg"></div>
+    <div id="mws-sidebar" style="min-height: 650px;">
+        	<div id="mws-searchbox">
+                <p>功能菜单</p>
+            </div>
+            <div id="mws-navigation">
+            	<ul>
+            	    <li><a href="manage?pageIndex=0" class="mws-i-24">我的店铺</a></li>
+            	    <li><a href="manage?pageIndex=6" class="mws-i-24">添加售卖商品</a> </li>
+                	<li><a href="manage?pageIndex=1" class="mws-i-24 ">商品入库</a></li>
+                	<li><a href="manage?pageIndex=2" class="mws-i-24">商品管理</a></li>
+                	<li><a href="manage?pageIndex=3" class="mws-i-24">订单管理</a></li>
+                	<li><a href="manage?pageIndex=4" class="mws-i-24">评论管理</a></li>
+                	<li><a href="manage?pageIndex=5" class="mws-i-24">店铺销售统计</a></li>
+                	<li><a href="error.html" class="mws-i-24">问题反馈</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="right-html" th:include="${session.pageURL} :: html"></div>
+    </div> 
+</div>
+</body>
+<script type="text/javascript">
+  /*   var str=$("#pageURL").text();
+    alert(str)
+    $("#pageURL").after("<div id='right-html' th:include="+str+"></div>"); */
+</script>
+</html>

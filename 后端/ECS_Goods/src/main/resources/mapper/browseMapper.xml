@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ECS_Goods.mapper.browseMapper">
+<resultMap type="ECS_Common.entity.browseRecord" id="browseRecordResult">
+<id column="browse_record_id" property="id" jdbcType="INTEGER"/>
+<result column="store_id"/>
+<result column="goods_id"/>
+</resultMap>
+    <sql id="">
+select b.create_time,b.number,goods.goods_id,goods.goods_name,
+goods.goods_main_image,goods_now_price,goods_old_price
+from goods,goods_sku,browse_record,
+(select create_time,count(create_time) as number from browse_record GROUP BY create_time) as b
+where browse_record.goods_id=goods.goods_id
+and goods_sku.goods_id=goods.goods_id
+and b.create_time=browse_record.browse_record_id
+ORDER BY browse_record.create_time DESC
+    </sql>
+  <insert id="addBrowseRecord" parameterType="ECS_Common.entity.browseRecord" useGeneratedKeys="true">
+  insert into browse_record(store_id,goods_id,user_id,create_time)
+  <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="store_id !=null">
+      #{store_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_id !=null">
+      #{goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="user_id != null" >
+        #{user_id,jdbcType=INTEGER},
+      </if> 
+      <if test="createTime !=null">
+      #{createTime,jdbcType=TIMESTAMP},
+      </if>  
+    </trim>
+  </insert>
+  <delete id="deleteBrowseRecord" parameterType="ECS_Common.entity.browseRecord">
+       delete from browse_record
+      <where>
+      <if test="user_id !=null">
+        user_id=#{user_id,jdbcType=INTEGER}
+      </if>
+      <if test="id !=null">
+      and browse_record_id=#{id,jdbcType=INTEGER}
+      </if>
+      </where>
+  </delete>
+</mapper>

@@ -1,0 +1,110 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./static/css/panels.css">
+<link rel="stylesheet" href="./static/css/button.css">
+<style type="text/css">
+#panel {
+	width: 90%;
+	margin: 50px auto;
+	min-height:650px;
+	position: relative;
+}
+.mws-panel-header i {
+	width: 24px;
+	height: 24px;
+	float: left;
+	background-image: url(./static/image/home.png);
+}
+.store{ 
+    width:860px;
+    border: 1px solid red; 
+    padding-top:20px;
+    margin-left:75px;
+    font-size: 16px;
+    min-height:350px; 
+    margin-bottom: 20px;
+ }
+.store-left{
+    float: left;
+ }
+ .store-left img{ 
+    width: 100px;
+    height: 100px;
+    display: block;
+    border: 1px solid red;
+}
+.store-right{
+   margin-left: 220px;
+}
+.store-ul{
+list-style: none;
+padding:0px;
+margin: 0px;
+}
+.store-ul li{
+   margin: 20px auto;
+   line-height: 20px;
+}
+.store-ul li label{
+   width: 150px;
+   display: inline-block;
+   text-align: right;
+}
+.store-nav-list{
+   list-style: none;
+   padding:0px;
+   margin: 0px;
+}
+.store-nav-list li{
+    margin:20px auto;
+}
+</style>
+</head>
+<body>
+	<div th:fragment="store">
+		<div class="mws-panel" id="panel">
+			<div class="mws-panel-header">
+				<i></i><span class="mws-i-24">店铺简介</span>
+			</div>
+			<div class="mws-panel-body">
+			<div class="store">
+			<div class="store-left">
+			<img>
+			</div>
+			<div class="store-right">
+			<ul class="store-ul">
+			<li><label>店铺名称：</label><span>2345434</span></li>
+			<li><label>标题：</label><span>retrtgfgh</span></li>
+			<li><label>店主：</label><span>fdff</span></li>
+			<li><label>店铺状态：</label><span>fdff</span></li>
+			<li><label>经营范围：</label><span>fgdfgfgf</span></li>
+			<li style="height: auto;"><label style="float:left;">店铺分类导航：</label>
+			    <div style="margin-left:150px;">
+			    <ul class="store-nav-list">
+			    <li>1</li> 
+			    <li>2</li>
+			    <li>3</li>
+			    <li>4</li>
+			    </ul>
+			    </div>
+			</li>
+			<li style="clear: left;margin-top:30px;">
+			<label>经营操作：</label>
+			<a class="mws-button blue">更新店铺信息</a>
+			<a class="mws-button red">店铺开张</a>
+			<a class="mws-button gray">暂不营业</a>
+			</li>
+			</ul>
+			</div>
+			</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
