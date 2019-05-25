@@ -5,160 +5,114 @@
 		<title></title>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<script type="text/javascript" src="../public/js/jquery3.2.1.js"></script>
 		<style>
-			.banner {
-				width:1000px;
-				height:600px;
-				margin-top: 13px;
-				border: 1px solid #000000;
-			}
+			.announce-detail {
+    font-size: 12px;
+    padding-bottom: 40px;
+	background-color: #f6f6f6;
+}
+.announce-detail--wrapper {
+    width: 1190px;
+    margin: 0 auto;
+}
+.bread-crumb {
+    height: 60px;
+    line-height: 60px;
+    font-size: 14px;
+}
+.bread-crumb a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #999;
+    max-width: 600px;
+	    overflow: hidden;
+    display: inline-block;
+}
+.bread-crumb span {
+    overflow: hidden;
+    display: inline-block;
+}
 
-			.banner_1 {
-				width: 1000px;
-				height:600px;
-				float: left;
-			}
-
-			#slide {
-				right: 10px;
-				z-index: 2;
-				position: absolute;
-				top: 480px;
-				left: 205px;
-			}
-            #banner a img {
-				float: left;
-			}
-			.red_red {
-				background: red;
-			}
-
-			#slide span {
-				width: 22px;
-				height: 22px;
-				line-height: 22px;
-				display: inline-block;
-				margin: 0 1px;
-				background: #999;
-				text-align: center;
-				color: white;
-				border-radius: 12px;
-				cursor: pointer;
-			}
-			
-			      * {
-            margin: 0;
-            padding: 0;
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
-        nav {
-            width: 750px;
-            height: 170px;
-            border: 1px solid red;
-            margin: 100px auto;
-            overflow: hidden;
-        }
-        
-        ul {
-            width: 200%;
-            height: 100%;
-            animation: picmove 15s linear  infinite forwards;
-        }
-        
-        @keyframes picmove {
-            from {
-                transform: translate(0);
-            }
-            to {
-                transform: translate(-250px);
-            }
-			animation-play-state: paused;
-        }
-        
-        img {
-            width: 250px;
-            height: 170px;
-            float: left;
-        }
-        
-        ul:hover {
-            animation-play-state: paused;
-        }
+.bread-crumb--arrow {
+    font-family: simsun;
+    font-size: 19px;
+    font-weight: 300;
+    margin: 0 10px;
+    color: #999;
+}
+.announce-detail--wrapper_content {
+    background-color: #fff;
+    padding-left: 100px;
+    padding-bottom: 70px;
+}
+.announce-detail--wrapper_content__title {
+    padding-top: 70px;
+    padding-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+    line-height: 1;
+}
+.announce-detail--wrapper_content__info {
+    color: #999;
+}
+.announce-detail--wrapper_content__main {
+    font-size: 14px;
+    padding-right: 100px;
+    color: #666;
+    line-height: 20px;
+    margin-top: 40px;
+}
+.announce-plussystem {
+    display: inline-block;
+    font-size: 12px;
+}
+.announce-detail--wrapper_content__main p {
+    margin-bottom: 30px!important;
+    word-wrap: break-word;
+    line-height: 26px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+}
 		</style>
 	</head>
 	<body>
-		<div class="banner">
-			<script type="text/javascript">
-					/**
-			*自动切换动画图片
-			*/
-			var min = 0;
-			var max = 3;
-			function adAutoChange() {
-				 if (min == max) {
-					 min = 0;
-				 } else {
-					 min++;
-				 }
-				 adChange();
-			}
-			/**
-			*手动切换图片
-			*/
-			function adChange() {
-				 $("#banner a:eq(" + min + ")").show().siblings("a").hide();
-				 $("#banner #slide span:eq(" + min + ")").css("background","red").siblings().css("background","#999");
-			}
-			
-			//#banner的事件加载
-			$(function () {
-				 //显示第一个图片，其他隐藏。数字一背景颜色变为红色。
-				 $("#banner a:not(':first')").hide();
-				 $("#banner #slide span:first").css("background","red");
-				 setInterval("adAutoChange()", "3000"); //自动切换数字和图片
-			
-				 //当鼠标移动到数字对应切换到对应图片
-				 $("#banner #slide span").mousemove(function () {
-					 min = $(this).text() - 1;
-					 adChange();
-				 });
-			});
-				</script>
-		<div class="banner_1">
-			<div id="banner">
-				<a href="#" >
-					<img src="../public/images/example-slide-2.jpg" />
-				</a>
-				<a href="#">
-					<img src="../public/images/example-slide-1.jpg" />
-				</a>
-				<a href="#">
-					<img src="../public/images/example-slide-3.jpg" />
-				</a>
-				<a href="#">
-					<img src="../public/images/example-slide-4.jpg" />
-				</a>
-				<div id="slide">
-					<span>1</span>
-					<span>2</span>
-					<span>3</span>
-					<span>4</span>
+		<div class="announce-detail">
+			<div class="announce-detail--wrapper">
+		<div class="bread-crumb">
+			<a href="//kuaibao.jd.com" target="_blank" clstag="bstxt|title_a">京东快报</a>
+			<span class="bread-crumb--arrow">&gt;</span><a href="//kuaibao.jd.com/noticelist" target="_blank" clstag="bstxt|title_b">公告</a>
+			<span class="bread-crumb--arrow">&gt;</span>
+			<a href="//kuaibao.jd.com/notice?id=715" target="_blank" clstag="" style="color: rgb(51, 51, 51);">瑞士钟表品牌宝齐莱独家入驻京东</a></div>
+		
+		<div class="announce-detail--wrapper_content" clstag="bstxt|main_a">
+			<div>
+				<div class="announce-detail--wrapper_content__title">瑞士钟表品牌宝齐莱独家入驻京东</div>
+				<div class="announce-detail--wrapper_content__info">
+					<div class="announce-plussystem"><span class="announce-plussystem__time">2018-10-19 09:40:09</span><span class="announce-plussystem__plus"
+						 style="border-top: none; border-right: none; border-bottom: none; border-left: 1px solid rgb(153, 153, 153); border-image: initial;">品牌入驻</span></div><span
+					 class="announce-detail--wrapper_content__browse"><span class="announce-detail--wrapper_content__eye"></span>22572人浏览</span>
+				</div>
+				<div class="announce-detail--wrapper_content__main">
+					<p style="margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: 微软雅黑; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">各位亲爱的京东网友：</p>
+					<p style="margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: 微软雅黑; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">享誉国际的瑞士百年制表品牌宝齐莱
+						(Carl F.
+						Bucherer)宣布首次开拓电商领域，于2018年5月30日正式入驻京东平台，开设品牌官方旗舰店。这是宝齐莱全球范围内首次入驻电商平台，与京东联手开启全新电商合作项目，并发售极具品牌特色的京东独家限量表款。未来宝齐莱将会结合线下精品店和线上电商平台，为更多中国消费者带来全方位的购物体验和更细心周到的服务。</p>
+					<p style="margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: 微软雅黑; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">作为一家奢华的独立制表品牌，宝齐莱创立于
+						1888 年，总部设于瑞士琉森（Lucerne），隶属宝嘉尔集团。宝齐莱自主研发时计及机芯，每年生产约 25,000
+						枚腕表；其中，外缘式自动上链摆陀机芯堪称品牌发展的重要里程碑，展现机芯的精密结构，优美做工一览无遗，这是传统自动上链摆陀无法比拟的。此外，宝齐莱是首个率先把外缘式自动上链摆陀机芯量产的腕表品牌，这是品牌历史上的又一里程碑。在品牌的百年发展历程中，宝齐莱始终以品质卓越、风格鲜明、精益求精享誉国际。</p>
+					<p style="margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: 微软雅黑; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">作为京东平台高速发展的重要品类，京东钟表目前已与众多瑞士高级制表品牌开展了长久稳定的合作，并成为越来越多国际高端腕表品牌进入中国市场的首选合作伙伴。京东集团董事局主席兼首席执行官刘强东表示：“京东始终致力于为消费者提供优质的产品和服务，是国际顶尖品牌进入中国市场最值得信赖的渠道。京东将充分发挥自身优势，帮助宝齐莱更快地了解中国用户的消费习惯，从而开辟出前景更为广阔的市场。”</p>
+					<p style="margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: 微软雅黑; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">目前，宝齐莱京东旗舰店已经正式上线，您将不受时间和空间的限制，享受24小时无缝连接的方便舒适购物流程，100%
+						正品保证以及精选表款，为您打造高品质网络购物新体验。</p>
+					<p style="margin: 0px; padding: 0px; color: rgb(102, 102, 102); font-family: 微软雅黑; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">购买链接：<span>&nbsp;</span><a
+						 target="_blank" clstag="bstxt|main_b" href="https://mall.jd.com/index-1000102722.html" onclick="event.stopPropagation &amp;&amp; event.stopPropagation();window.log &amp;&amp; window.log('pc_news', 'basic', 'clk', 'bstxt|main|b', 'null', 'https://mall.jd.com/index-1000102722.html', null, '02-null-null-null' );">https://mall.jd.com/index-1000102722.html</a></p>
+					<p></p>
 				</div>
 			</div>
 		</div>
 		</div>
-		  <nav>
-        <ul>
-            <li><img src="../public/images/example-slide-1.jpg" /></li>
-            <li><img src="../public/images/example-slide-2.jpg" /></li>
-            <li><img src="../public/images/example-slide-3.jpg" /></li>
-            <li><img src="../public/images/example-slide-4.jpg" /></li>
-        </ul>
-    </nav>
+		</div>
 		<div id="Footer" style="min-height: 150px">
 			<div class="footer">
 				<div class="footer-hd">

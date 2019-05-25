@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="http://localhost:3000/">
 		<title>首页</title>
 		<script type="text/javascript" src="../public/js/vue.min.js"></script>
 		<script type="text/javascript" src="../public/js/axios.min.js"></script>
@@ -11,7 +12,7 @@
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
 		<style>
 			#sk{
-				border:1px solid #000000;
+				/* border:1px solid #000000; */
 				height: 275px;
 				margin-top: 30px;
 				margin-bottom: 30px;
@@ -75,7 +76,7 @@
 				/*border-right: solid 1px #f0f0f0;*/
 				height: 275px;
 				overflow: hidden;
-				border: 1px solid #000000;
+			/* 	border: 1px solid #000000; */
 			}
 			.sk_list_inner{
 				position: relative;
@@ -120,11 +121,11 @@
 			}
 			.slider_item_img{
 				position: absolute;
-				width: 140px;
-				height: 140px;
-				left: 50%;
+				width: 160px;
+				height: 180px;
+				left: 45%;
 				margin-left: -70px;
-				top: 40px;
+				top: 15px;
 			}
 			.slider_item_name{
 				position: absolute;
@@ -209,14 +210,6 @@
     -moz-box-shadow: rgba(0,0,0,.1),0,1px,5px;
     box-shadow: rgba(0,0,0,.1),0,1px,5px;
 }
-/*.wrap-fixed .search-bd .search-triggers li {
-    line-height: 38px;
-    height: 38px;
-    float: left;
-    color: #3C3C3C;
-    background-color: #f4f4f4!important;
-    width:54px;
-}*/
 .wrap-fixed .search-bd  .search-panel .search-triggers li{
 	   line-height: 38px;
 	   height: 38px;
@@ -258,7 +251,6 @@
     width: 190px;
     height: 80px;
     float: left;
-    margin-top: 8px;
 }
 .tbh-search {
     background-color: transparent;
@@ -397,7 +389,7 @@
 .screen-outer {
     width: 1190px;
     margin: 0 auto;
-    height: 400px;/*398*/
+    height: 400px;
 }
 .main {
     float: left;
@@ -421,7 +413,7 @@
 		height: 100%;
 }
 .service-bd {
-    border: 1px solid #ff5000;
+    /* border: 1px solid #ff5000; */
     border-top: none;
     padding-top: 5px;
     padding-bottom: 3px;
@@ -449,7 +441,7 @@
     width: 290px;
     height: 100%;
     margin-top: 10px;
-	border: 1px solid ##0F0000;
+	/* border: 1px solid ##0F0000; */
 }
 .tbh-member {
     background-size: 290px 145px;
@@ -476,9 +468,11 @@
 .member-logout {
     height: 25px;
     margin-top: 8px;
+		text-align: center;
 }
 .member-logout .btn-login {
     width: 92px;
+		margin-left: 20px;
 }
 
 .member-logout a {
@@ -505,8 +499,7 @@
 }
 .member-bd .member-nick-info {
     display: block;
-    line-height: 17px;
-    height: 17px;
+		text-align: center;
 }
 .member .member-nick {
     font-weight: 400;
@@ -563,7 +556,7 @@ height: 352px;
 .shell-img{
   width: 197px;
   height: 197px;
-	border: 1px solid #000000;
+/* 	border: 1px solid #000000; */
 	margin:0px;
 }
 .shell-text1{
@@ -593,103 +586,10 @@ color: #999;
     line-height: 22px;
     overflow: hidden;
 }
-	    #slides .slidesjs-navigation {
-	      margin-top:5px;
-	    }
-	
-	    a.slidesjs-next{
-				background-image: url(/public/images/btns-next-prev.png);
-				background-repeat: no-repeat;
-				display:block;
-				width:12px;
-				height:18px;
-				text-indent: -9999px;
-				position: absolute;
-				right:0;
-				top:50%;
-				z-index: 999;
-			}
-	    a.slidesjs-previous{
-				background-image: url(/public/images/btns-next-prev.png);
-				background-repeat: no-repeat;
-				display:block;
-				width:12px;
-				height:18px;
-				text-indent: -9999px;
-				position: absolute;
-				left:0;
-				top:50%;
-				z-index:999;
-			}
-	    a.slidesjs-next {
-	      margin-right:10px;
-	      background-position: -12px 0;
-	    }
-	
-	    a:hover.slidesjs-next {
-	      background-position: -12px -18px;
-	    }
-	
-	    a.slidesjs-previous {
-	      background-position: 0 0;
-	    }
-	
-	    a:hover.slidesjs-previous {
-	      background-position: 0 -18px;
-	    }
-	    .slidesjs-pagination {
-	   /* margin: 7px 0 0;
-	      float: right;*/
-	      list-style: none;
-				position: absolute;
-				top:95%;
-				left:45%;
-				z-index: 999;
-	    }
-	
-	    .slidesjs-pagination li {
-	      float: left;
-	      margin: 0 1px;
-	    }
-	
-	    .slidesjs-pagination li a {
-	      display: block;
-	      width: 13px;
-	      height: 0;
-	      padding-top: 13px;
-	      background-image: url(/public/images/pagination.png);
-	      background-position: 0 0;
-	      float: left;
-	      overflow: hidden;
-	    }
-	
-	    .slidesjs-pagination li a.active,
-	    .slidesjs-pagination li a:hover.active {
-	      background-position: 0 -13px
-	    }
-	
-	    .slidesjs-pagination li a:hover {
-	      background-position: 0 -26px
-	    }
-	
-	    #slides a:link,
-	    #slides a:visited {
-	      color: #333
-	    }
-	
-	    #slides a:hover,
-	    #slides a:active {
-	      color: #9e2020
-	    }
-	
 	    .navbar {
 	      overflow: hidden
 	    }
-			
-    .container {
-			width:100%;
-      margin: 0 auto;
-    }
+		
     .type_list p{
 		height: 104px;
     overflow: hidden;
@@ -708,10 +608,113 @@ color: #999;
 			color:#FF5000;
 			background-color: #ffe4dc;
 		}
+		
+		
+		.banner {
+						width:708px;
+						height: 100%;
+						float: left;
+						position: relative;overflow: hidden;
+					}
+		
+					.banner_1 {
+						width:708px;
+						height: 100%;
+						float: left;
+					}
+		
+					#slide {
+						right: 10px;
+						z-index: 2;
+						position: absolute;
+						top: 370px;
+						left: 250px;
+					}
+		            #banner a img {
+						float: left;
+					}
+					.red_red {
+						background: red;
+					}
+		
+					#slide span {
+						width: 22px;
+						height: 22px;
+						line-height: 22px;
+						display: inline-block;
+						margin: 0 1px;
+						background: #999;
+						text-align: center;
+						color: white;
+						border-radius: 12px;
+						cursor: pointer;
+					}
+					.slider_control {
+    position: absolute;
+    z-index: 1;
+    width: 24px;
+    height: 40px;
+    background-color: rgba(0,0,0,.2);
+    color: hsla(0,0%,100%,.4);
+    line-height: 40px;
+    text-align: center;
+}
+					
 </style>
 	</head>
+	
 	<body>
-		<div id="indexbody" style="width:100%;height:100%;color: #3C3C3C;
+		<script type="text/javascript">
+							/**
+					*自动切换动画图片
+					*/
+					var min = 0;
+					var max = 3;
+					var time=0;
+					function adAutoChange() {
+						 if (min == max) {
+							 min = 0;
+						 } else {
+							 min++;
+						 }
+						 adChange();
+					}
+					/**
+					*手动切换图片
+					*/
+					function adChange() {
+						 $("#banner a:eq(" + min + ")").show().siblings("a").hide();
+						 $("#banner #slide span:eq(" + min + ")").css("background","red").siblings().css("background","#999");
+					}
+					function previous(){
+						min--;
+						adChange();
+					}
+					function next(){
+						min++;
+						adChange();
+					}
+					function stopChange(){
+						clearInterval(time);
+					}
+					function startChange(){
+						time =setInterval("adAutoChange()", "5000"); //自动切换数字和图片
+		
+					}
+					//#banner的事件加载
+					$(function () {
+						 //显示第一个图片，其他隐藏。数字一背景颜色变为红色。
+						 $("#banner a:not(':first')").hide();
+						 $("#banner #slide span:first").css("background","red");
+					     startChange();
+						 //当鼠标移动到数字对应切换到对应图片
+						 $("#banner #slide span").mousemove(function () {
+							 min = $(this).text() - 1;
+							 adChange();
+						 });
+					});
+						</script>
+		<div id="indexbody" style="width:100%;height:auto;color: #3C3C3C;
     background-color: #f4f4f4;">
 			<div class="cover">
 				<div class="site-nav">
@@ -724,7 +727,8 @@ color: #999;
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<div class="site-nav-sign" style="display: none;"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-sign" style="display: none;"><a href="/web_ui/login.html">亲，请登录</a>
+									<a href="/web_ui/register.html">免费注册</a> </div>
 									<div class="site-nav-user"> <a>123</a>
 									</div>
 								</div>
@@ -742,28 +746,28 @@ color: #999;
 								</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a>
+									<a href="/web_ui/browseHistory.html">
 										<span>我的足迹</span>
 									</a>
 								</div>
 								</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a id="mc-menu-hd">
+									<a id="mc-menu-hd" href="/web_ui/shoppingCart.html">
 										<span>购物车</span>
 									</a>
 								</div>
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a href="">
+									<a href="/web_ui/favorites.html">
 										<span>收藏夹</span>
 									</a>
 								</div>
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a href="">
+									<a href="/web_ui/user.html">
 										<span>个人中心</span>
 									</a>
 								</div>
@@ -776,11 +780,8 @@ color: #999;
 
 				<div class="top-wrap ">
 					<div class="tbh-logo tb-pass">
-						<div class="logo" style="border: 1px solid #000000;">
-							<h1>
-								<a href="" role="img" class="logo-bd ">淘宝网</a>
-							</h1>
-							<h2><a class="" href="">淘宝网</a></h2>
+						<div class="logo">
+							<img src="http://192.168.6.128:8088/filepath/uugai.com_1555988194556.png" width="192px" height="80px">
 						</div>
 					</div>
 					<div class="tbh-search">
@@ -857,52 +858,66 @@ color: #999;
 						<div class="tbh-service">
 							<div class="service">
 								<ul class="service-bd">
-									<li class="a-all" v-for="item in list" @mouseover="show_typediv()" @mouseout="hide_typediv()">
-										<a>学习</a> /
-										<a>卡券</a> /
-										<a>本地服务</a>
+									<li class="a-all" v-for="(item,index) in allParentCategory" v-if="(index+1)%3==0"  @mouseover="show_typediv(item.family_sequence)" @mouseout="hide_typediv()">
+										<a>{{allParentCategory[index-2].family_name}}</a> /
+										<a>{{allParentCategory[index-1].family_name}}</a> /
+										<a>{{item.family_name}}</a>
 									</li>
 								</ul>
 							</div>
 						</div>
 						<div id="type_div" style="width:708px;height: 100%;border:1px solid #000000;position: relative;overflow: hidden; float: left;display: none;">
 							<div style="margin-right:18px;margin-left:20px;margin-top:10px;">
-								<div v-for="item in list3" style="width:670px;height:120px;margin-bottom:10px; border: 1px solid #0033CC;">
-									<h2 style="position: relative;height: 36px;line-height: 36px;font-size: 16px;color: #333;">{{item}}标题</h2>
+								<div v-for="item in familyCategory" style="width:670px;height:120px;margin-bottom:10px; border: 1px solid #0033CC;">
+									<h2 style="position: relative;height: 36px;line-height: 36px;font-size: 16px;color: #333;">{{item.family_name}}</h2>
 									<div class="type_list" style="width: 100%;height: 100%;">
 										<p>
-											<a>963</a>
-											<a>852</a>
-											<a>741</a>
-											<a>159</a>
+											<a v-for="item2 in Category">{{item2.category_name}}</a>
 										</p>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div id="slides_div" style="width:708px;height: 100%;border:1px solid #000000;position: relative;overflow: hidden; float: left;">
-							<div class="container">
-								<div id="slides">
-									<img src="/public/images/example-slide-1.jpg">
-									<img src="/public/images/example-slide-2.jpg">
-									<img src="/public/images/example-slide-3.jpg">
-									<img src="/public/images/example-slide-4.jpg">
-								</div>
+					<div class="banner" id="slides_div">
+					<div class="banner_1">
+						<button onclick="previous()" class="slider_control" style="position: absolute;top:50%;left:0;"><</button>
+						<div id="banner" onmouseover="stopChange()" onmouseout="startChange()">
+							<a href="#">
+								<img width="708px" src="../public/images/1.jpg" />
+							</a>
+							<a href="#"  >
+								<img width="708px" src="../public/images/2.jpg" />
+							</a>
+							<a href="#" >
+								<img width="708px" src="../public/images/6.jpg" />
+							</a>
+							<a href="#">
+								<img width="708px" src="../public/images/4.jpg" />
+							</a>
+							<div id="slide">
+								<span>1</span>
+								<span>2</span>
+								<span>3</span>
+								<span>4</span>
 							</div>
 						</div>
+						<button onclick="next()" class="slider_control" style="position: absolute;top:50%;right:0;">></button>
 					</div>
-					<div class="col-right" style="">
+					</div>
+					</div>
+					<div class="col-right">
 						<div class="tbh-member">
 							<div class="member-bd">
 								<span class="member-nick-info">
-									<img src="" width="60px" height="60px" />
-									Hi! <strong class="member-nick">你好</strong>
+									<img src="http://192.168.6.128:8088/filepath/uugai.com-1555988642742.png"
+									  style="text-align: center;" width="100px" height="100px" />
+									<!-- <p class="member-nick">Hi! 你好</p> -->
 								</span>
 							</div>
 							<div class="member-ft">
 								<div class="member-logout">
-									<a class="btn-login">登录</a>
-									<a>注册</a>
+									<a class="btn-login" href="/web_ui/login.html">登录</a>
+									<a href="/web_ui/register.html">注册</a>
 								</div>
 							</div>
 						</div>
@@ -941,11 +956,11 @@ color: #999;
 					<div style="float: left;">
 						<div class="sk_list">
 							<div class="sk_list_inner">
-								<button class="slider_control" style="left:0;">《</button>
+								<button class="slider_control" style="left:0;"><</button>
 								<div class="slider_list">
 									<div class="slider_item" v-for="item in list1">
-										<a class="slide_item_sk">
-											<div class="slider_item_img"><img></div>
+										<a class="slide_item_sk" v-on:click="toGoods(item.goods_id)" href="">
+											<div class="slider_item_img"><img  src="../public/images/adidas.jpg" width="160px" height="180px"></div>
 											<p class="slider_item_name">9996545</p>
 											<div class="slider_item_price">
 												<span class="new_sk_price">666</span>
@@ -954,7 +969,7 @@ color: #999;
 										</a>
 									</div>
 								</div>
-								<button class="slider_control" style="right: 0;">》</button>
+								<button class="slider_control" style="right: 0;">></button>
 							</div>
 						</div>
 						<!--<div style="position: relative;float: left;width: 180px;height: 260px;padding: 8px 10px 7px;"></div>-->
@@ -964,14 +979,14 @@ color: #999;
 			<div class="layer" style="min-height:747px;">
 				<div class="J_Module">
 					<h3>热卖单品</h3>
-					<div class="shell-content" v-for="item2 in list2">
-						<div class="shell-item" v-for="item1 in list1">
-							<a>
-								<div class="shell-img"></div>
-								<div class="shell-text1"><span>包邮</span>{{item2}}{{item1}}</div>
-								<div class="shell-text2">评价&emsp;<em>{{item1}}</em>&emsp;收藏&emsp;<em>{{item2}}</em></div>
-								<div class="shell-text3"><span style="float: left;font-style: normal;">￥<span style="font-size: 22px;">{{item1}}</span>
-									</span><span style="float: right;color: #999;display: block;margin-top: 3px;">月销{{item1}}笔</span></div>
+					<div class="shell-content" v-for="(item0,index0) in GoodsList" v-if="index0%5==0">
+						<div class="shell-item"  v-for="(item,index) in GoodsList" v-if="index>=index0&&index<(Math.floor((index0)/5)+1)*5">
+							<a v-on:click="toGoods(item.goods_id)">
+								<div class="shell-img"><img :src="item.goods_image" width="200px"/></div>
+								<div class="shell-text1"><span>包邮</span>{{item.goods_name}}</div>
+								<div class="shell-text2">评价&emsp;<em>{{item.goods_comment_volume}}</em>&emsp;收藏&emsp;<em>{{item.goods_favorite_volume}}</em></div>
+								<div class="shell-text3"><span style="float: left;font-style: normal;">￥<span style="font-size: 22px;">{{item.goods_now_price}}</span>
+									</span><span style="float: right;color: #999;display: block;margin-top: 3px;">月销{{item.goods_month_sales}}笔</span></div>
 							</a>
 						</div>
 					</div>
@@ -981,16 +996,16 @@ color: #999;
 				<div class="layer-inner ">
 					<div class="J_Module">
 						<h3>猜你喜欢</h3>
-						<div class="shell-content" v-for="item2 in list2">
-							<div class="shell-item" v-for="item1 in list1">
-								<a>
-									<div class="shell-img"></div>
+						<div class="shell-content" v-for="(item0,index0) in GoodsList" v-if="index0%5==0">
+							<div class="shell-item" v-for="(item,index) in GoodsList" v-if="index>=index0&&index<(Math.floor((index0)/5)+1)*5">
+								<a v-on:click="toGoods(item.goods_id)">
+									<div class="shell-img"><img :src="item.goods_image" width="200px"/></div>
 									<div class="shell-text1" style="height: 44px;">
-										<h4><span>包邮</span>{{item2}}{{item1}}</h4>
+										<h4><span>包邮</span>{{item.goods_name}}</h4>
 									</div>
 									<div class="shell-text3" style="height: 24px;margin-top: 24px;line-height: 24px;"><span style="float: left;font-style: normal;">￥<span
-											 style="font-size: 22px;">{{item1}}</span>
-										</span><span style="float: right;color: #999;display: block;margin-top: 3px;">月销{{item1}}笔</span></div>
+											 style="font-size: 22px;">{{item.goods_now_price}}</span>
+										</span><span style="float: right;color: #999;display: block;margin-top: 3px;">月销{{item.goods_month_sales}}笔</span></div>
 								</a>
 							</div>
 						</div>
@@ -1054,7 +1069,9 @@ color: #999;
 			</div>
 		</div>
 	</body>
-	<script src="/public/js/jquery.slides.min.js"></script>
+	<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?ak=PlhFWpA02aoURjAOpnWcRGqw7AI8EEyO&v=2.0&services=false"></script>
+	<script type="text/javascript" src="../public/js/getNowCity.js"> </script> -->
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
 	<script type="text/javascript">
 		var vm = new Vue({
 			el: '#indexbody',
@@ -1062,34 +1079,100 @@ color: #999;
 				list: [0, 1, 2, 3, 4, 5],
 				list1: [0, 1, 2, 3, 4],
 				list2: [0, 1],
-				list3: [1, 2, 3]
+				list3: [1, 2, 3],
+				allParentCategory:[],
+				familyCategory:[],
+				Category:[],
+				GoodsList:[],
+				low:2,
 			},
-			created: {},
+			created(){
+				this.getAllParentCategoryList();
+				this.getAllGoods();
+				this.getLoginUser();
+			},
 			methods: {
-				show_typediv: function() {
+				show_typediv: function(id) {
+					console.log(id);
+					this.getFamilyCategory(id);
+					this.getCategoryList(id);
 					$("#slides_div").css("display", "none");
 					$("#type_div").css("display", "block");
 				},
 				hide_typediv: function() {
 					$("#type_div").css("display", "none");
 					$("#slides_div").css("display", "block");
-				}
+					this.Category=null;
+					this.familyCategory=null;
+				},
+				getAllParentCategoryList(){
+					var self=this;
+					 axios.get('http://127.0.0.1:8888/ECS_Goods/getAllParentCategory '
+						)
+          .then(function (response) {
+						self.allParentCategory=response.data.result_object;
+						console.log(self.allParentCategory[0].family_name);
+        }).catch(function (error) {
+          console.log(error);
+        });
+				 return this.allParentCategory;
+				 },
+				 getFamilyCategory(id){
+					 	var self=this;
+					
+					 	axios.get('http://127.0.0.1:8888/ECS_Goods/getParentCategoryList',{params: {
+         id: id
+         }}).then(function (response) {
+					 		console.log(response.data);
+					 		self.familyCategory=response.data.result_object;
+					 }).catch(function (error) {
+					 	console.log(error);
+					 });
+				 },
+				getCategoryList(id){
+					var self=this;
+					 /* var data=new FormData();
+					data.append("id",id); */
+					axios.get('http://127.0.0.1:8888/ECS_Goods/getCategory',{params: {
+         id: id
+         }}).then(function (response) {
+						console.log(response.data);
+						self.Category=response.data.result_object;
+				}).catch(function (error) {
+					console.log(error);
+				});
 			},
-			updated: function() {},
-			mounted() {},
-			computed: {}
+			getAllGoods(){
+					var self=this;
+					axios.get('http://127.0.0.1:8888/ECS_Goods/getAllGoodsList').then(function (response) {
+						console.log(response.data);
+						self.GoodsList=response.data.result_object;
+						//console.log(self.GoodsList.length);
+						self.row=Math.ceil(self.GoodsList.length/5);
+					 //  console.log(self.row);
+				}).catch(function (error) {
+					console.log(error);
+				});
+			},
+			getLoginUser(){
+			/* 	var self=this;
+				 axios.get('http://127.0.0.1:8080/ECS_User/getLoginUser.action',{headers:{
+					 withCredentials:true,
+					 "Authorization":cookie.get("JSESSIONID")
+				 }}).then(function (response) {
+						console.log(response.data);
+				}).catch(function (error) {
+					console.log(error);
+				}); */
+			},
+			toGoods(id){
+				console.log(id);
+			 window.location.href="/web_ui/goodsInfo.html?ID="+id;
+			}
+			}
 		});
+		
 		$(function() {
-			$('#slides').slidesjs({
-				width: 708,
-				height: 398, //322
-				play: {
-					active: true,
-					auto: true,
-					interval: 3000,
-					swap: true
-				}
-			});
 			window.onscroll = function() {
 				var t = document.documentElement.scrollTop || document.body.scrollTop;
 				var top_div = document.getElementById("top-div");
@@ -1100,59 +1183,5 @@ color: #999;
 				}
 			}
 		});
-	</script>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?ak=PlhFWpA02aoURjAOpnWcRGqw7AI8EEyO&v=2.0&services=false"></script>
-	 <script type="text/javascript"> 
-	  var map; 
-	  var gpsPoint; 
-	  var baiduPoint; 
-	 var gpsAddress; 
-	 var baiduAddress; 
-	  var x;
-	 var y;
-	  function getLocation() { 
-	//根据IP获取城市 
-	 var myCity = new BMap.LocalCity(); 
-	 myCity.get(getCityByIP); 
-	 
-	 //获取GPS坐标 
-	 if (navigator.geolocation) { 
-	 navigator.geolocation.getCurrentPosition(showMap, handleError, { enableHighAccuracy: true, maximumAge: 1000 }); 
-	 } else { 
-	 //alert("您的浏览器不支持使用HTML5来获取地理位置服务"); 
-	 console.log("您的浏览器不支持使用HTML5来获取地理位置服务");
-	 } 
-	 } 
-	 //根据IP获取城市 
-	 function getCityByIP(rs) { 
-	 var cityName = rs.name; 
-	 //alert("根据IP定位您所在的城市为:" + cityName); 
-	 $("#ip_position").text(cityName);
-	 } 
-	 
-	 function handleError(value) { 
-	 switch (value.code) { 
-	 case 1: 
-	 console.log("位置服务被拒绝");
-	// alert("位置服务被拒绝"); 
-	 break; 
-	 case 2: 
-	 console.log("暂时获取不到位置信息");
-	// alert("暂时获取不到位置信息"); 
-	 break; 
-	 case 3: 
-	 console.log("获取信息超时");
-	// alert("获取信息超时"); 
-	 break; 
-	 case 4: 
-	 console.log("未知错误");
-	// alert("未知错误"); 
-	 break; 
-	 } 
-	 } 
-	 function init() { 
-	 getLocation(); 
-	 } 
-	 window.onload = init; 
 	</script>
 </html>

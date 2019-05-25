@@ -110,7 +110,7 @@ a:hover {
 }
 
 .w {
-	width: 990px;
+	width: 1190px;
 	margin: 0 auto
 }
 
@@ -655,7 +655,7 @@ a:hover {
 }
 
 .login-form .login-box .login-btn {
-	border: 1px solid #cb2a2d;
+	border: 1px solid #0033CC;
 	margin: 0 auto;
 	height: 32px;
 	width: 99%;
@@ -663,10 +663,10 @@ a:hover {
 }
 
 .login-form .login-box .login-btn .btn-img {
-	border: 1px solid #e85356;
+	border: 1px solid #005EA7;
 	display: block;
 	width: 302px;
-	background: #e4393c;
+	background: #0033CC;
 	height: 31px;
 	line-height: 31px;
 	color: #fff;
@@ -837,12 +837,12 @@ div.safetips {
 }
 
 .coagent .regist-link {
-	color: #b61d1d;
+	color: #3366CC;
 	font-size: 14px
 }
 
 .coagent .regist-link a {
-	color: #b61d1d
+	color: #3366CC;
 }
 
 .coagent .regist-link b {
@@ -870,7 +870,7 @@ div.safetips {
 	top: 0;
 	width: 100%;
 	height: 475px;
-	background: #e93854
+	background: #00AAEE;
 }
 
 .login-wrap .i-inner {
@@ -881,7 +881,7 @@ div.safetips {
 
 .login-wrap .login-form {
 	float: right;
-	top: 10px
+	top: 50px;
 }
 .step {
 	width: 350px;

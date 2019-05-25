@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script type="text/javascript" src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
@@ -222,6 +225,7 @@
 		</style>
 	</head>
 	<body>
+		<div id="indexbody" style="width: auto;height: auto;">
 		<div class="cover">
 			<div class="site-nav">
 				<div class="site-nav-bd">
@@ -233,7 +237,7 @@
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 								<div class="site-nav-user"> <a></a>
 								</div>
 							</div>
@@ -244,35 +248,35 @@
 					<ul class="site-nav-bd-r">
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="/web_UI/">
 									<span>首页</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="browseHistory.html">
 									<span>我的足迹</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
+								<a id="mc-menu-hd" href="shoppingCart.html">
 									<span>购物车</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="favorites.html">
 									<span>收藏夹</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="user.html">
 									<span>个人中心</span>
 								</a>
 							</div>
@@ -305,63 +309,21 @@
 					<div class="reds-list">
 						<div class="line-mask"></div>
 						<div class="item-list J_redsList">
-                <div class="goods-date">
+               <!-- <div class="goods-date">
 									<span class="date J_date">
 										<i class="month-lite">02</i>.
 										<i class="day-lite">11<del class="del J_del" data-date="2019-02-11" style="display: none;">删除当天</del> </i>
 										<i class="date-desc">前天</i>
-										<i class="count">4</i>件宝贝
+										<i class="count">{{}}</i>件宝贝
 									</span>
 									<s class="line"></s>
-								</div>
-							<div class="item-box J_goods" data-date="2019-02-13" data-count="3" data-uniqueid="1549987200000_567375779930">
-								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=567375779930&amp;last_time=1550044768"
+								</div> -->
+							<div class="item-box J_goods" v-for="data in browseList">
+								<p>{{formatDate(data.create_time)}}</p>
+								<div class="img-box J_box"><a class="item" href=""
 									 target="_blank">
-										<img alt="" src="//img.alicdn.com/bao/uploaded/i4/62003509/O1CN0118lnMx1bnAHvuHxJi_!!62003509.jpg_200x200q90.jpg_.webp">
-									</a><a class="icon-content J_icon" data-uniqueid="1549987200000_567375779930" data-date="2019-02-13" style="display: none;">
-										<span class="iconfont icon-lajitongshanchu"></span>
-									</a>
-									<div class="del-content J_area" style="display: none;">
-
-									</div>
-								</div>
-								<div class="item-info">
-									<div class="price-box">
-										<span class="price-new"><i>¥</i>19.9</span>
-										<span class="price-old">¥19.89</span>
-									</div>
-									<div class="title">
-										班服定制纯棉短袖T恤装diy工作服订做同学聚会衣服文化衫印字logo
-									</div>
-								</div>
-							</div>
-							<div class="item-box J_goods" data-date="2019-02-12" data-count="2" data-uniqueid="1549900800000_565094755199">
-								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=565094755199&amp;last_time=1549961596"
-									 target="_blank">
-										<img alt="" src="//img.alicdn.com/bao/uploaded/i3/613968296/O1CN012B9cEJzkLvRAUl4_!!0-item_pic.jpg_200x200q90.jpg_.webp">
-
-									</a><a class="icon-content J_icon" data-uniqueid="1549900800000_565094755199" data-date="2019-02-12" style="display: none;">
-										<span class="iconfont icon-lajitongshanchu"></span>
-									</a>
-									<div class="del-content J_area" style="display: none;">
-
-									</div>
-								</div>
-								<div class="item-info">
-									<div class="price-box">
-										<span class="price-new"><i>¥</i>299</span>
-										<span class="price-old">¥499.0</span>
-									</div>
-									<div class="title">
-										李宁运动套装男士新款训练系列长袖茄克长裤防泼水运动服
-									</div>
-								</div>
-							</div>
-							<div class="item-box J_goods" data-date="2019-02-13" data-count="3" data-uniqueid="1549987200000_567074881943">
-								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=567074881943&amp;last_time=1550044741"
-									 target="_blank">
-										<img alt="" src="//img.alicdn.com/bao/uploaded/i4/2361868183/O1CN016XWEDq2AJrUMvnfOA_!!0-item_pic.jpg_200x200q90.jpg_.webp">
-									</a><a class="icon-content J_icon" data-uniqueid="1549987200000_567074881943" data-date="2019-02-13" style="display: none;">
+										<img alt="" :src="data.goods_main_image">
+									</a><a class="icon-content J_icon"  style="display: none;">
 										<span class="iconfont icon-lajitongshanchu"></span>
 									</a>
 									<div class="del-content J_area" style="display: none;">
@@ -369,51 +331,11 @@
 								</div>
 								<div class="item-info">
 									<div class="price-box">
-										<span class="price-new"><i>¥</i>26</span>
-										<span class="price-old">¥51.0</span>
+										<span class="price-new"><i>¥</i>{{data.now_price}}</span>
+										<span class="price-old">¥{{data.old_price}}</span>
 									</div>
 									<div class="title">
-										纯棉班服广告文化衫订做工作衣服同学聚会T恤定制diy印字LOGO短袖
-									</div>
-								</div>
-							</div>
-							<div class="item-box J_goods" data-date="2019-02-13" data-count="3" data-uniqueid="1549987200000_43590451756">
-								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=43590451756&amp;last_time=1550043719"
-									 target="_blank">
-										<img alt="" src="//img.alicdn.com/bao/uploaded/i2/729513733/O1CN01Ib0Z5U1dRkzLiDftU_!!0-item_pic.jpg_200x200q90.jpg_.webp">
-									</a><a class="icon-content J_icon" data-uniqueid="1549987200000_43590451756" data-date="2019-02-13" style="display: none;">
-										<span class="iconfont icon-lajitongshanchu"></span>
-									</a>
-									<div class="del-content J_area" style="display: none;">
-									</div>
-								</div>
-								<div class="item-info">
-									<div class="price-box">
-										<span class="price-new"><i>¥</i>148</span>
-										<span class="price-old">¥158.0</span>
-									</div>
-									<div class="title">
-										全聚德烤鸭北京烤鸭中华老字号北京特产百年经典烤鸭礼盒
-									</div>
-								</div>
-							</div>
-							<div class="item-box J_goods" data-date="2019-02-12" data-count="2" data-uniqueid="1549900800000_565094755199">
-								<div class="img-box J_box"><a class="item" href="//item.taobao.com/item.htm?scm=1007.13982.82927.0&amp;id=565094755199&amp;last_time=1549961596"
-									 target="_blank">
-										<img alt="" src="//img.alicdn.com/bao/uploaded/i3/613968296/O1CN012B9cEJzkLvRAUl4_!!0-item_pic.jpg_200x200q90.jpg_.webp">
-									</a><a class="icon-content J_icon" data-uniqueid="1549900800000_565094755199" data-date="2019-02-12" style="display: none;">
-										<span class="iconfont icon-lajitongshanchu"></span>
-									</a>
-									<div class="del-content J_area" style="display: none;">
-									</div>
-								</div>
-								<div class="item-info">
-									<div class="price-box">
-										<span class="price-new"><i>¥</i>299</span>
-										<span class="price-old">¥499.0</span>
-									</div>
-									<div class="title">
-										李宁运动套装男士新款训练系列长袖茄克长裤防泼水运动服
+										{{data.goods_name}}
 									</div>
 								</div>
 							</div>
@@ -477,5 +399,48 @@
 				</div>
 			</div>
 		</div>
+		</div>
 	</body>
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
+	<script>
+	var vm = new Vue({
+		el: '#indexbody',
+		data: {
+			browseList:[]
+		},
+		created(){
+			this.getBrowseGoodsList();
+		},
+		methods: {
+			getBrowseGoodsList(){
+					var self=this;
+					axios.get('http://127.0.0.1:8888/ECS_Goods/getBrowseRecordList',{headers:{
+						withCredentials:true,
+						"Authorization":cookie.get("JSESSIONID")
+					}}).then(function (response) {
+						console.log(response.data);	
+						self.browseList=response.data.result_object;
+				}).catch(function (error) {
+					console.log(error);
+				});
+			},
+				formatDate(data) {
+					var date=new Date(data);
+			var myyear = date.getFullYear();
+			var mymonth = date.getMonth() + 1;
+			var myweekday = date.getDate();
+			var hour= date.getHours();
+			var minutes =date.getMinutes();
+			var miao =date.getSeconds();
+			if (mymonth < 10) {
+					mymonth = "0" + mymonth;
+			}
+			if (myweekday < 10) {
+					myweekday = "0" + myweekday;
+			}
+			return (myyear + "年" + mymonth + "月" + myweekday+"日"+" "+hour+":"+minutes+":"+miao);
+			}
+		}
+		});
+	</script>
 </html>

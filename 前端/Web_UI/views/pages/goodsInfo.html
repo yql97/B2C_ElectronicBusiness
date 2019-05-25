@@ -542,9 +542,9 @@
     color: #666;
 }
 .col-main {
-    float: left;
+    /*float: left;*/
     width: 100%;
-    min-height: 1px;
+    min-height: 100px;
 }
 .col-main #mainwrap {
     width:1190px;
@@ -628,6 +628,9 @@
     color: #ccc;
     cursor: not-allowed;
 }
+.tb-selected{
+	    border: 2px solid #000;
+}
 		</style>
 	</head>
 	<body>
@@ -643,7 +646,7 @@
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 									<div class="site-nav-user"> <a></a>
 									</div>
 								</div>
@@ -654,35 +657,35 @@
 						<ul class="site-nav-bd-r">
 							<li>
 								<div class="site-nav-menu-hd">
-									<a>
+									<a href="/web_UI/">
 										<span>首页</span>
 									</a>
 								</div>
 								</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a>
+									<a href="browseHistory.html">
 										<span>我的足迹</span>
 									</a>
 								</div>
 								</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a id="mc-menu-hd">
+									<a id="mc-menu-hd" href="shoppingCart.html">
 										<span>购物车</span>
 									</a>
 								</div>
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a href="">
+									<a href="favorites.html">
 										<span>收藏夹</span>
 									</a>
 								</div>
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a href="">
+									<a href="user.html">
 										<span>个人中心</span>
 									</a>
 								</div>
@@ -698,7 +701,7 @@
 							<div class="tb-wrap">
 								<div class="tb-detail-hd">
 									<h1>
-										安踏童鞋男童鞋运动鞋2019秋冬季新款儿童篮球鞋男官网中大童鞋子
+										{{selectGoods.goods_name}}
 									</h1>
 									<!--<p class="newp">
 											官方旗舰 爆款热卖
@@ -708,11 +711,11 @@
 								<div class="tm-fcs-panel">
 									<dl class="tm-price-panel" id="J_StrPriceModBox">
 										<dt class="tb-metatit">价格</dt>
-										<dd><em class="tm-yen">¥</em> <span class="tm-price">299.00-319.00</span></dd>
+										<dd><em class="tm-yen">¥</em> <span class="tm-price">{{selectGoods.now_price}}</span></dd>
 									</dl>
 									<dl class="tm-promo-panel tm-promo-cur" id="J_PromoPrice" data-label="促销价"><dt class="tb-metatit">促销价</dt>
 										<dd>
-											<div class="tm-promo-price"> <em class="tm-yen">¥</em> <span class="tm-price">199.00-219.00</span>
+											<div class="tm-promo-price"> <em class="tm-yen">¥</em> <span class="tm-price">{{selectGoods.old_price}}</span>
 												&nbsp;&nbsp; </div>
 											<p> </p>
 										</dd>
@@ -720,34 +723,23 @@
 									<dl class="tm-shopPromo-panel"></dl>
 								</div>
 								<div class="tb-meta">
-									<dl class="tm-delivery-panel" id="J_RSPostageCont"><dt class="tb-metatit">运费</dt>
-										<dd>
-											<div class="tb-postAge"><span class="tb-deliveryAdd" id="J_deliveryAdd">福建泉州</span>至
-												<!--<span id="J_AddrSelectTrigger" class="mui_addr_tri"><span role="button" tabindex="0" aria-haspopup="true"
-														 data-code="411700" class="mui_addr_tri_1">驻马店<i class="mui_addr_icon"></i></span></span>-->
-												<div class="tb-postAge-info">
-													<p> <span>快递: 0.00 </span> </p>
-												</div>
-											</div>
-										</dd>
-									</dl>
+								 <label style="margin-left:10px;">运费：</label><b>快递：0.00元</b>
 								</div>
-								<ul class="tm-ind-panel">
+								<!-- <ul class="tm-ind-panel">
 									<li class="tm-ind-item tm-ind-sellCount" data-label="月销量">
 										<div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">5028</span></div>
 									</li>
 									<li class="tm-ind-item tm-ind-reviewCount canClick tm-line3" id="J_ItemRates">
 										<div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">18595</span></div>
 									</li>
-								</ul>
+								</ul> -->
 								<div class="tb-key">
 									<div class="tb-skin">
 										<div class="tb-sku">
 											<dl class="tb-prop ">
 												<dt class="tb-metatit">尺码</dt>
 												<dd>
-													<ul data-property="尺码">
-
+													<!--<ul data-property="尺码">
 														<li data-value="20549:662626364">
 															<a href="#" role="button" tabindex="0">
 																<span>33</span>
@@ -758,80 +750,28 @@
 																<span>34</span>
 															</a>
 														</li>
-														<li data-value="20549:296172561">
-															<a href="#" role="button" tabindex="0">
-																<span>35</span>
-															</a>
-														</li>
-														<li data-value="20549:59280855">
-															<a href="#" role="button" tabindex="0">
-																<span>36</span>
-															</a>
-														</li>
-														<li data-value="20549:72380707">
-															<a href="#" role="button" tabindex="0">
-																<span>37</span>
-															</a>
-														</li>
-														<li data-value="20549:103189693">
-															<a href="#" role="button" tabindex="0">
-																<span>38</span>
-															</a>
-														</li>
-														<li data-value="20549:418624880">
-															<a href="#" role="button" tabindex="0">
-																<span>39</span>
-															</a>
-														</li>
-														<li data-value="20549:229418985">
-															<a href="#" role="button" tabindex="0">
-																<span>40</span>
-															</a>
-														</li>
-														<li data-value="20549:28390">
-															<a href="#" role="button" tabindex="0">
-																<span>41</span>
-															</a>
-														</li>
-													</ul>
+													</ul>-->
 												</dd>
 											</dl>
-											<dl class="tb-prop" style="clear:left">
+											<!--<dl class="tb-prop" style="clear:left">
 												<dt class="tb-metatit">颜色分类</dt>
 												<dd>
 													<ul data-property="颜色分类" class="tm-clear J_TSaleProp tb-img     ">
 														<li>
 															<a href="#" style="width: 38px;height: 38px;">
-																<!--<span>黑/大红/安踏白-4131-2</span>-->
-															</a>
-														</li>
-														<li>
-															<a style="width: 38px;height: 38px;">
-																<!--<span>黑/大红/安踏白-4131-2</span>-->
-															</a>
-														</li>
-														<li>
-															<a style="width: 38px;height: 38px;">
-																<!--<span>黑/大红/安踏白-4131-2</span>-->
-															</a>
-														</li>
-														<li>
-															<a style="width: 38px;height: 38px;">
-																<!--<span>黑/大红/安踏白-4131-2</span>-->
 															</a>
 														</li>
 													</ul>
 												</dd>
-											</dl>
+											</dl>-->
 											<dl class="tb-amount" style="clear: left;">
 												<dt class="tb-metatit">数量</dt>
 												<dd id="J_Amount">
 								          <span>
-													<div class="choose-amount ">
-															<input class="text buy-num" onkeyup="setAmount.modify('#buy-num');" id="buy-num" value="1" data-max="200">
-															<a class="btn-reduce disabled" onclick="setAmount.reduce('#buy-num')" href="#none" data-disabled="1">-</a>
-															<a class="btn-add" onclick="setAmount.add('#buy-num')" href="#none" data-disabled="1">+</a>
-													</div>
+														<input class="text" id="buy-num" value="1">
+												<!-- 	<div class="choose-amount ">
+															<input class="text" id="buy-num" value="1">
+													</div> -->
 													<span class="mui-amount-unit">件</span>
 													<em id="J_EmStock" class="tb-hidden" style="display: inline;">库存25472件</em>
 													<span id="J_StockTips">
@@ -840,9 +780,9 @@
 											</dl>
 											<div class="tb-action">
 												<div class="tb-btn-buy tb-btn-sku">
-													<a href="#">立即购买</a>
+													<a href="javascript:void(0);" v-on:click="createOrder()">立即购买</a>
 												</div>
-												<div class="tb-btn-basket tb-btn-sku"><a href="#">加入购物车</a></div>
+												<div class="tb-btn-basket tb-btn-sku"><a href="javascript:void(0);" v-on:click="putShopCart()">加入购物车</a></div>
 											</div>
 										</div>
 									</div>
@@ -867,31 +807,15 @@
 						<div class="tb-gallery">
 							<div class="tb-booth">
 								<a href="javascript:void(0);">
-									<img id="J_ImgBooth" alt="安踏童鞋男童鞋运动鞋2019秋冬季新款儿童篮球鞋男官网中大童鞋子" src="https://img.alicdn.com/imgextra/i1/1745656365/O1CN019d8tGe1wtDSEUfPuT_!!0-item_pic.jpg_430x430q90.jpg">
+									<img id="BigImg"  :src="selectGoods.goods_image" width="420px">
 								</a>
 							</div>
 							<div class="tb-thumb-warp ">
 								<!--<a class="tb-thumb-left"><</a>-->
 								<div class="tb-thumb-content">
-									<ul class="tb-thumb">
-										<li class="tb-selected">
-											<a href="#"><img src="//img.alicdn.com/imgextra/i1/1745656365/O1CN019d8tGe1wtDSEUfPuT_!!0-item_pic.jpg_60x60q90.jpg"
-												 alt="商品预览图"></a>
-										</li>
-										<li class="">
-											<a href="#"><img src="//img.alicdn.com/imgextra/i1/1745656365/O1CN015jOlfg1wtDRwdnApI_!!0-item_pic.jpg_60x60q90.jpg"
-												 alt="商品预览图"></a>
-										</li>
-										<li class="">
-											<a href="#"><img src="//img.alicdn.com/imgextra/i4/1745656365/O1CN01yaJ1qs1wtDS3nWjeZ_!!1745656365.jpg_60x60q90.jpg"
-												 alt="商品预览图"></a>
-										</li>
-										<li class="">
-											<a href="#"><img src="//img.alicdn.com/imgextra/i3/1745656365/O1CN018bnIpJ1wtDSBUDhJQ_!!1745656365.jpg_60x60q90.jpg"
-												 alt="商品预览图"></a>
-										</li>
-										<li class="">
-											<a href="#"><img src="//img.alicdn.com/imgextra/i2/1745656365/O1CN01qYXykP1wtDS1Ewa1w_!!0-item_pic.jpg_60x60q90.jpg"
+									<ul class="tb-thumb" >
+								 	<li   v-for="item in goodsList">
+											<a href="javascript:void(0);" v-on:click=""><img  :src="item.goods_image"
 												 alt="商品预览图"></a>
 										</li>
 									</ul>
@@ -982,7 +906,7 @@
 										<div id="J_Reviews">
 											<!--<h4 class="hd">累计评价 <em class="J_ReviewsCount" style="display: inline;">138</em></h4>-->
 											<div class="tm-rate">
-												<div style="display: block;">
+												<!-- <div style="display: block;">
 													<div class="rate-score" style="">
 														<h4>与描述相符</h4><strong>4.9</strong>
 														<p><span class="score-value-no score-value-4d9"><em></em></span></p>
@@ -993,7 +917,7 @@
 																	 data-id="10120">态度不错(4)<s></s></a></span></div>
 														</div>
 													</div>
-												</div>
+												</div> -->
 												<div class="rate-compose"></div>
 												<div class="rate-subject"></div>
 												<div class="rate-charts"></div>
@@ -1239,21 +1163,82 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
 	<script type="text/javascript">
+		var goods_id=0;
 		var vm = new Vue({
 			el: '#vuebody',
 			data: {
-				goodsInfo_status: 0
+				goodsInfo_status: 0,
+				goods_id:0,
+				goodsList:null,
+				selectGoods:{}
 			},
 			created: function() {
+				UrlSearch();
+				  this.goods_id=goods_id;
 				console.log(this.goodsInfo_status);
+				console.log(this.goods_id);
+				this.getGoodsInfo(this.goods_id);
 			},
 			methods: {
 				change_goodsInfo_status: function(status) {
 					this.goodsInfo_status = status;
 					console.log(this.goodsInfo_status);
+				},
+				getGoodsInfo(id){
+					var self=this;
+					axios.get('http://127.0.0.1:8888/ECS_Goods/getGoodsBaseInfo',{params: {
+         goods_id: id
+         }},{headers:{
+						withCredentials:true
+					/* 	"Authorization":cookie.get("JSESSIONID") */
+					}}).then(function (response) {
+							//console.log(response.data);
+							self.goodsList=response.data.result_object;
+							self.selectGoods=response.data.result_object[0];
+					}).catch(function (error) {
+						console.log(error);
+					}); 
+				},
+				createOrder(){
+					var num=$("#buy-num").val();
+				  var goods_sku_id=this.selectGoods.goods_sku_id;
+					window.location.href="/web_ui/order.html?ID="+goods_sku_id+"&&NUM="+num;
+				},
+				putShopCart(){
+					var num=$("#buy-num").val();
+					var params = new URLSearchParams();
+					params.append("buynum",num);
+					params.append("goods_sku_id",this.selectGoods.goods_sku_id);
+					axios.post('http://127.0.0.1:8888/ECS_Goods/putShopCart',params,{headers:{
+						withCredentials:true,
+						"Authorization":cookie.get("JSESSIONID")
+					}}).then(function (response) {
+							console.log(response.data);
+							if(response.data.result_object=="成功"){
+								alert("加入购物车成功");
+							}
+					}).catch(function (error) {
+						console.log(error);
+					});	
 				}
 			}
-		})
+		});
+		function UrlSearch() {
+			var str=location.href; //取得整个地址栏
+			var num=str.indexOf("?")
+			str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+			var arr=str.split("&"); //各个参数放到数组里
+			//  console.log(arr)
+			for(var i=0;i < arr.length;i++){
+						num=arr[i].indexOf("=");
+						if(num>0){
+								name=arr[i].substring(0,num);
+								value=arr[i].substr(num+1);
+								if(name=="ID") this.goods_id=value;
+						}
+			}
+				}		
 	</script>
 </html>

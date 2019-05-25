@@ -3,37 +3,18 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
 		<style>
 			.tabs-mod-tabs-nav {
-				position: absolute;
-				left: 20px;
-				z-index: 50;
+				width: 100%;
 			}
 
-			.tabs-mod-tabs-nav li {
-				float: left;
-				width: 130px;
-				height: 27px;
-				margin-right: 3px;
-				padding-top: 8px;
-				line-height: 21px;
-				text-align: center;
-				background: url( //assets.alicdn.com/app/trade/img/tabview_bg.gif) 0 6px no-repeat;
-					background-position-x: 0px;
-				background-position-y: 6px;
-				cursor: pointer;
-			}
-
-			.tabs-mod-tabs-nav li a {
-				display: block;
-				width: 130px;
-				font-weight: 700;
-				font-size: 14px;
-				color: #333;
-			}
+			
 
 			.tabs-mod-tabs-panels {
 				position: relative;
@@ -45,7 +26,7 @@
 			}
 
 			.order-panel-mod-item-detail {
-				width: 910px;
+				width: 1190px;
 				font-size: 12px;
 			}
 
@@ -97,6 +78,9 @@
 				border-spacing: 0;
 				line-height: 30px;
 				padding-left: 37px;
+				display: block;
+				width: 100%;
+				height: auto;
 			}
 
 			.misc-info-mod-misc-info .misc-info-mod-nv {
@@ -127,6 +111,9 @@
 			}
 
 			.order-info-mod-order-info {
+				width: 90%;
+				display: block;
+				clear: left;
 				padding-top: 10px;
 			}
 
@@ -186,7 +173,7 @@
 				padding-top: 15px;
 				line-height: 23px;
 				text-align: right;
-				margin-right: 5px;
+				margin-right: 50px;
 			}
 
 			.pay-info-mod-pay-info span.pay-info-mod-name {
@@ -202,7 +189,7 @@
 
 			/**123456**/
 			#content {
-				width: 990px;
+				width: 1190px;
 				margin: 0 auto 10px auto;
 				color: #333;
 			}
@@ -210,12 +197,12 @@
 			.tb-path {
 				line-height: 24px;
 				margin: 0 auto 10px auto;
-				width: 990px;
+				width: 1190px;
 			}
 
 			.order-detail {
 				border: 1px solid #e2e2e2;
-				width: 990px;
+				width: 1190px;
 				margin: 0 auto;
 				font: 12px/1.5 tahoma, arial, "Hiragino Sans GB", simsun, sans-serif;
 				color: #333;
@@ -256,6 +243,7 @@
 
 			.package-status {
 				padding: 18px 0 0 0;
+				font-size: 12px;
 			}
 
 			.package-cainiao {
@@ -326,7 +314,7 @@
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+									<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 									<div class="site-nav-user"> <a></a>
 									</div>
 								</div>
@@ -337,35 +325,35 @@
 						<ul class="site-nav-bd-r">
 							<li>
 								<div class="site-nav-menu-hd">
-									<a>
+									<a href="/web_UI/">
 										<span>首页</span>
 									</a>
 								</div>
 								</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a>
+									<a href="browseHistory.html">
 										<span>我的足迹</span>
 									</a>
 								</div>
 								</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a id="mc-menu-hd">
+									<a id="mc-menu-hd" href="shoppingCart.html">
 										<span>购物车</span>
 									</a>
 								</div>
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a href="">
+									<a href="favorites.html">
 										<span>收藏夹</span>
 									</a>
 								</div>
 							</li>
 							<li>
 								<div class="site-nav-menu-hd">
-									<a href="">
+									<a href="user.html">
 										<span>个人中心</span>
 									</a>
 								</div>
@@ -374,147 +362,147 @@
 					</div>
 				</div>
 			</div>
-			<ul class="tabs-mod-tabs-nav">
-				<li class="tabs-mod-current"><a href="javascript:;">订单信息</a></li>
-			</ul>
-			<div class="tabs-mod-tabs-panels">
-				<div style="display:block;">
-					<div class="order-panel-mod-item-detail">
-						<div class="address-memo-mod-address-note">
-							<div>
-								<dl class="address-memo-mod-an-box">
-									<dt>收货地址：</dt>
-									<dd>岳秋林，18703622974，河南省 郑州市 新郑市 城关乡 官刘庄东侧社区(居易新城社区:8号楼，1层西户) ，451150</dd>
-								</dl>
-								<dl class="address-memo-mod-an-box"><dt>新收货地址：</dt>
-									<dd>岳秋林，18703622974，河南省 郑州市 新郑市 城关乡 官刘庄东侧社区(居易新城社区:8号楼，1层西户)，451150</dd>
-								</dl>
-								<dl class="address-memo-mod-an-box" style="display:block;"><dt></dt>
-									<dd></dd>
-								</dl>
-								<dl class="address-memo-mod-an-box"><dt>运送方式：</dt>
-									<dd>快递</dd>
-								</dl>
-								<dl class="address-memo-mod-an-box"></dl>
-								<dl class="address-memo-mod-an-box"></dl>
-							</div>
-							<div><span></span></div>
-						</div>
-						<hr>
-						<div>
-							<div class="concat-info-mod-concat-info">
+	
+		<div id="content">
+			<div class="tb-path clearfix">
+				<div class="fleft">
+					您的位置：<a >首页</a> &gt; <a href="https://i.taobao.com/my_taobao.htm">我的淘宝</a> &gt; <a
+					 href="">已买到的宝贝</a> &gt; <em class="lightText">物流详情</em>
+				</div>
+			</div>
+			<div><h1>订单详情</h1>
+				<div class="tabs-mod-tabs-panels">
+					<div style="display:block;">
+						<div class="order-panel-mod-item-detail">
+							<div class="address-memo-mod-address-note">
 								<div>
-									<h3>卖家信息</h3>
+									<dl class="address-memo-mod-an-box">
+										<dt>收货地址：</dt>
+										<dd>岳秋林，18703622974，河南省 郑州市 新郑市 城关乡 官刘庄东侧社区(居易新城社区:8号楼，1层西户) ，451150</dd>
+									</dl>
+									<dl class="address-memo-mod-an-box"><dt>新收货地址：</dt>
+										<dd>岳秋林，18703622974，河南省 郑州市 新郑市 城关乡 官刘庄东侧社区(居易新城社区:8号楼，1层西户)，451150</dd>
+									</dl>
+									<dl class="address-memo-mod-an-box" style="display:block;"><dt></dt>
+										<dd></dd>
+									</dl>
+									<dl class="address-memo-mod-an-box"><dt>运送方式：</dt>
+										<dd>快递</dd>
+									</dl>
+									<dl class="address-memo-mod-an-box"></dl>
+									<dl class="address-memo-mod-an-box"></dl>
+								</div>
+								<div><span></span></div>
+							</div>
+							<hr>
+							<div>
+								<div class="concat-info-mod-concat-info">
+									<div>
+										<h3>卖家信息</h3>
+										<table>
+											<tbody>
+												<tr>
+													<td><label class="concat-info-mod-label">昵称：</label>
+														<span title="点此可以直接和卖家交流，或相互交流网购体验，还支持语音视频噢。">
+															<span>佳宇科技2015</span></span></td>
+													<td><label class="concat-info-mod-label">真实姓名：</label><span class="concat-info-mod-content"><span>赖**</span><span>&nbsp;</span><span></span></span></td>
+													<td><label class="concat-info-mod-label">城市：</label><span class="concat-info-mod-content">广东
+															深圳</span></td>
+												</tr>
+												<tr>
+													<td><label class="concat-info-mod-label">联系电话：</label><span class="concat-info-mod-content">18938929447</span></td>
+													<td><label class="concat-info-mod-label">邮件：</label><span class="concat-info-mod-content"><span>3***</span><span>&nbsp;</span>
+														</span></td>
+													<td><label class="concat-info-mod-label">支&nbsp;付&nbsp;宝：</label><span class="concat-info-mod-content">3***</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<hr>
+							</div>
+							<div class="order-info-container-mod-order-info-container">
+								<h3>订单信息</h3>
+								<div class="misc-info-mod-misc-info">
+									<div class="misc-info-mod-misc-box">
+										<span class="misc-info-mod-nv misc-info-mod-no-bt">
+											<span class="misc-info-mod-label">订单编号:</span><span
+											class="misc-info-mod-content"><span>307984832399734320</span>
+											</span></span><span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">支付宝交易号:</span><span
+											class="misc-info-mod-content-1i"><span>2018122722001111650533738822</span></span></span>
+										<span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">创建时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
+													16:46:05</span></span></span><span class="misc-info-mod-nv">
+											<span class="misc-info-mod-label">发货时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
+													20:12:43</span></span></span><span class="misc-info-mod-nv">
+											<span class="misc-info-mod-label">付款时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
+													16:46:20</span></span></span><span class="misc-info-mod-nv">
+											<span class="misc-info-mod-label">成交时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-30
+													11:54:56</span></span></span></div>
+								</div>
+								<div class="order-info-mod-order-info">
 									<table>
 										<tbody>
 											<tr>
-												<td><label class="concat-info-mod-label">昵称：</label>
-													<span title="点此可以直接和卖家交流，或相互交流网购体验，还支持语音视频噢。">
-														<span>佳宇科技2015</span></span></td>
-												<td><label class="concat-info-mod-label">真实姓名：</label><span class="concat-info-mod-content"><span>赖**</span><span>&nbsp;</span><span></span></span></td>
-												<td><label class="concat-info-mod-label">城市：</label><span class="concat-info-mod-content">广东
-														深圳</span></td>
+												<th>宝贝</th>
+												<th>宝贝属性</th>
+												<th>状态</th>
+												<th>单价</th>
+												<th>数量</th>
+												<th>优惠</th>
+												<th>商品总价</th>
 											</tr>
-											<tr>
-												<td><label class="concat-info-mod-label">联系电话：</label><span class="concat-info-mod-content">18938929447</span></td>
-												<td><label class="concat-info-mod-label">邮件：</label><span class="concat-info-mod-content"><span>3***</span><span>&nbsp;</span>
-													</span></td>
-												<td><label class="concat-info-mod-label">支&nbsp;付&nbsp;宝：</label><span class="concat-info-mod-content">3***</span></td>
+											<tr class="order-item">
+												<td class="item-mod-item">
+													<div class="item-mod-pic-info"><a href="//trade.taobao.com/trade/detail/tradeSnap.htm?trade_id=307984832399734320"
+														target="_blank" rel="noopener noreferrer" title="商品图片"><img src="//img.alicdn.com/imgextra/i3/2488378564/O1CN012D8MMXxj6WMkwiZ_!!2488378564.jpg_sum.jpg"
+															alt="查看宝贝详情"></a></div>
+													<div class="item-mod-text-info">
+														<div class="desc">
+															<div class="name"><a href="//trade.taobao.com/trade/detail/tradeSnap.htm?trade_id=307984832399734320"
+																target="_blank" rel="noopener noreferrer">送蓝牙耳机Meizu/魅族
+																	魅蓝Note6全网通4G 双摄八核5.5大屏幕手机</a></div>
+														</div>
+													</div>
+												</td>
+												<td class="sku-mod-sku">
+													<div><span class="sku-mod-namevalue"><span class="">机身颜色：</span><span class=""><span>曜石黑</span></span></span><span
+														class="sku-mod-namevalue"><span class="">套餐类型：</span><span class=""><span>官方标配</span></span></span><span
+														class="sku-mod-namevalue"><span class="">存储容量：</span><span class=""><span>32GB</span></span></span><span
+														class="sku-mod-namevalue"><span class="">版本类型：</span><span class=""><span>中国大陆</span></span></span></div>
+												</td>
+												<td>
+													<div><span>已确认收货</span></div>
+												</td>
+												<td><span>1075.00</span></td>
+												<td>1</td>
+												<td class="promotion-mod-promotion">
+													<div><span>卖家促销:省
+															336.00 元</span></div>
+												</td>
+												<td>
+													<div>
+														<div><span>739.00</span></div>
+														<div></div>
+														<div><span>(快递:
+																0.00)</span></div>
+													</div>
+												</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
-							<hr>
-						</div>
-						<div class="order-info-container-mod-order-info-container">
-							<h3>订单信息</h3>
-							<div class="misc-info-mod-misc-info">
-								<div class="misc-info-mod-misc-box"></div>
-								<div class="misc-info-mod-misc-box"><span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">订单编号:</span><span
-										 class="misc-info-mod-content"><span>307984832399734320</span>
-										</span></span><span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">支付宝交易号:</span><span
-										 class="misc-info-mod-content-1i"><span>2018122722001111650533738822</span></span></span>
-									<span class="misc-info-mod-nv misc-info-mod-no-bt"><span class="misc-info-mod-label">创建时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
-												16:46:05</span></span></span><span class="misc-info-mod-nv">
-										<span class="misc-info-mod-label">发货时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
-												20:12:43</span></span></span><span class="misc-info-mod-nv">
-										<span class="misc-info-mod-label">付款时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-27
-												16:46:20</span></span></span><span class="misc-info-mod-nv">
-										<span class="misc-info-mod-label">成交时间:</span><span class="misc-info-mod-content-1i"><span>2018-12-30
-												11:54:56</span></span></span></div>
-							</div>
-							<div class="order-info-mod-order-info">
-								<table>
-									<tbody>
-										<tr>
-											<th>宝贝</th>
-											<th>宝贝属性</th>
-											<th>状态</th>
-											<th>单价</th>
-											<th>数量</th>
-											<th>优惠</th>
-											<th>商品总价</th>
-										</tr>
-										<tr class="order-item">
-											<td class="item-mod-item">
-												<div class="item-mod-pic-info"><a href="//trade.taobao.com/trade/detail/tradeSnap.htm?trade_id=307984832399734320"
-													 target="_blank" rel="noopener noreferrer" title="商品图片"><img src="//img.alicdn.com/imgextra/i3/2488378564/O1CN012D8MMXxj6WMkwiZ_!!2488378564.jpg_sum.jpg"
-														 alt="查看宝贝详情"></a></div>
-												<div class="item-mod-text-info">
-													<div class="desc">
-														<div class="name"><a href="//trade.taobao.com/trade/detail/tradeSnap.htm?trade_id=307984832399734320"
-															 target="_blank" rel="noopener noreferrer">送蓝牙耳机Meizu/魅族
-																魅蓝Note6全网通4G 双摄八核5.5大屏幕手机</a></div>
-													</div>
-												</div>
-											</td>
-											<td class="sku-mod-sku">
-												<div><span class="sku-mod-namevalue"><span class="">机身颜色：</span><span class=""><span>曜石黑</span></span></span><span
-													 class="sku-mod-namevalue"><span class="">套餐类型：</span><span class=""><span>官方标配</span></span></span><span
-													 class="sku-mod-namevalue"><span class="">存储容量：</span><span class=""><span>32GB</span></span></span><span
-													 class="sku-mod-namevalue"><span class="">版本类型：</span><span class=""><span>中国大陆</span></span></span></div>
-											</td>
-											<td>
-												<div><span>已确认收货</span></div>
-											</td>
-											<td><span>1075.00</span></td>
-											<td>1</td>
-											<td class="promotion-mod-promotion">
-												<div><span>卖家促销:省
-														336.00 元</span></div>
-											</td>
-											<td>
-												<div>
-													<div><span>739.00</span></div>
-													<div></div>
-													<div><span>(快递:
-															0.00)</span></div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay-info-mod-pay-info">
-							<div class="pay-info-mod-get-money">
-								<div class="pay-info-mod-fee-wrapper">
-									<div class="pay-info-mod-right"></div>
-									<div class="pay-info-mod-left"><span class="pay-info-mod-name"><span>订单总金额</span><span>：</span></span><span
-										 class="pay-info-mod-value"><strong>739.00</strong><span> 元</span></span></div>
+							<div class="pay-info-mod-pay-info">
+								<div class="pay-info-mod-get-money">
+									<div class="pay-info-mod-fee-wrapper">
+										<div class="pay-info-mod-right"></div>
+										<div class="pay-info-mod-left"><span class="pay-info-mod-name"><span>订单总金额</span><span>：</span></span><span
+											class="pay-info-mod-value"><strong>739.00</strong><span> 元</span></span></div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div id="content">
-			<div class="tb-path clearfix">
-				<div class="fleft">
-					您的位置：<a href="https://www.taobao.com/">首页</a> &gt; <a href="https://i.taobao.com/my_taobao.htm">我的淘宝</a> &gt; <a
-					 href="https://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm">已买到的宝贝</a> &gt; <em class="lightText">物流详情</em>
 				</div>
 			</div>
 			<!-- tms 1863309-->
@@ -524,18 +512,6 @@
 				</div>
 				<div class="detail-complaint" id="complaintDiv"></div>
 				<div class="detail-content">
-					<div id="progressbar" class="cainiao">
-						<ul class="progressbar-cainiao cainiao-progressbar-wms">
-							<li class="step-1-done" data-spm-anchor-id="a2d00.7723416.0.i2.28d7781b9mWleE"></li>
-							<li class="step-2-done"></li>
-							<li class="step-3-done"></li>
-							<li class="step-4-done"></li>
-							<li class="last step-5-current">
-								<div class="arrow"></div>
-							</li>
-						</ul>
-						<div style="display:none" class="guoguo guoguo-step-5"><img src="//img.alicdn.com/tps/TB1d4h1IpXXXXciXpXXXXXXXXXX.gif"></div>
-					</div>
 					<div class="detail-panel">
 						<div class="panel-package">
 							<div class="package-title">
@@ -546,7 +522,7 @@
 								</h3>
 							</div>
 							<div class="package-status">
-								<div class="status-box" id="status_list">
+								<div class="status-box" style="margin-left: 20px;">
 									<ul id="J_listtext2" class="status-list">
 										<li><span class="date">2019-01-08</span><span class="week">周二</span><span class="time">10:10:05</span><span
 											 class="text">仓库已接单</span></li>
@@ -667,7 +643,7 @@
 									<li>
 										<div class="pic">
 											<a target="_blank" href="https://trade.taobao.com//trade/detail/trade_snap.htm?trade_id=262605676018734320">
-												<img src="./物流详情-理想生活上天猫_files/TB1OLVUobSYBuNjSspfXXcZCpXa_!!0-item_pic.jpg_sum.jpg" alt="买6盒送润喉糖】九芝堂六味地黄丸360粒肾虚遗精补肾六位地黄丸">
+												<img src="./物流详情-理想生活上天猫_files/TB1OLVUobSYBuNjSspfXXcZCpXa_!!0-item_pic.jpg_sum.jpg" >
 											</a>
 										</div>
 										<span class="text">69.00 x 1</span>
@@ -678,6 +654,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<div id="Footer" style="min-height: 150px">
 			<div class="footer">

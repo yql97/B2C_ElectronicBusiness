@@ -313,65 +313,65 @@
 		</style>
 	</head>
 	<body>
-		<div class="cover">
-			<div class="site-nav">
-				<div class="site-nav-bd">
-					<ul class="site-nav-bd-l">
-						<li>
-							<div class="site-nav-menu-hd">
-								<span class="site-nav-region">中国大陆</span>
+	<div class="cover">
+		<div class="site-nav">
+			<div class="site-nav-bd">
+				<ul class="site-nav-bd-l">
+					<li>
+						<div class="site-nav-menu-hd">
+							<span class="site-nav-region">中国大陆</span>
+						</div>
+					</li>
+					<li>
+						<div class="site-nav-menu-hd">
+							<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
+							<div class="site-nav-user"> <a></a>
 							</div>
+						</div>
+					</li>
+					<li>
+					</li>
+				</ul>
+				<ul class="site-nav-bd-r">
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="/web_UI/">
+								<span>首页</span>
+							</a>
+						</div>
 						</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
-								<div class="site-nav-user"> <a></a>
-								</div>
-							</div>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="browseHistory.html">
+								<span>我的足迹</span>
+							</a>
+						</div>
 						</li>
-						<li>
-						</li>
-					</ul>
-					<ul class="site-nav-bd-r">
-						<li>
-							<div class="site-nav-menu-hd">
-								<a>
-									<span>首页</span>
-								</a>
-							</div>
-							</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a>
-									<span>我的足迹</span>
-								</a>
-							</div>
-							</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
-									<span>购物车</span>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a href="">
-									<span>收藏夹</span>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a href="">
-									<span>个人中心</span>
-								</a>
-							</div>
-						</li>
-					</ul>
-				</div>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a id="mc-menu-hd" href="shoppingCart.html">
+								<span>购物车</span>
+							</a>
+						</div>
+					</li>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="favorites.html">
+								<span>收藏夹</span>
+							</a>
+						</div>
+					</li>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="user.html">
+								<span>个人中心</span>
+							</a>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</div>
 		<div id="page">
 			<div id="fav-tab">
 				<div id="fav-tab-bd">
@@ -459,7 +459,7 @@
                     <div class="item-img-box">
                         <div class="item">
                             <a target="_blank" style="width: 150px;height: 150px;">
-                                 <img class="item-img">
+                                 <img class="item-img" src='../public/images/adidas.jpg'>
                             </a>
                         </div>   
                     </div>
@@ -473,6 +473,7 @@
 							</li>
 							<li class="fav-item g-i-item" v-if="nav_status==1">
 								<div class="img-controller-box">
+									<img class="item-img" src='../public/images/adidas.jpg'>
 									</div>
 									<div class="img-item-title">
 									<a class="img-item-title-link">冰狐无声静音无线充电鼠标电脑笔记本电竞无光省电无限游戏鼠标</a></div>
@@ -562,7 +563,7 @@
 				nav_status:1
 			},
 			created:function(){
-				console.log(this.collect_status);
+				console.log(123);
 			},
 			methods: {
 			change_collect_status:function(status){

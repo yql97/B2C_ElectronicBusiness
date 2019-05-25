@@ -3,15 +3,20 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
 		<style>
 			.order-ext{
-				
+				font-size:12px;
 			}
 			.sub-th{
-				
+				font-size: 14px;
+				font-weight: 400px;
+				padding-left: 30px;
 			}
 			.main-container {
 			 border-top: 3px solid #a6a6a6;
@@ -63,6 +68,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-right: 15px;
+}
+.row-basic .channel-name {
+    width: 135px;
+    float: left;
+    min-height: 20px;
 }
 .row-basic .card-number {
     width: 65px;
@@ -117,41 +127,44 @@
 		font-size: 14px;
 		float: left;
 }
-.sixDigitPassword {
-    cursor: text;
-    background: #fff;
-    outline: none;
-    padding: 8px 0;
-    height: 14px;
-    border: 1px solid #cccccc;
-    border-radius: 2px;
-		position: absolute;
-		left: 0;
-		box-sizing: content-box;	
-		float: left;
-}
-.sixDigitPassword i {
-    float: left;
-    display: block;
-    padding: 4px 0;
-    height: 7px;
-    border-left: 1px solid #cccccc;
-}
-.alieditContainer {
-    display:block;
-    width: 184px;
-    height: 24px;
-    position: relative;
-		vertical-align: bottom;
-		float: left;
-}
+
 .edit-link a {
     line-height: 24px;
 		color: #0ae;
 }
+
+.pwd-wrap{
+    width: 100%;
+    height: 29px;
+    padding-bottom: 1px;
+    margin: 0 auto;
+    background: #fff;
+    cursor: pointer;
+  }
+  .pwd-wrap li{
+		height:30px;
+		width: 29px;
+		float: left;
+    list-style-type:none;
+    text-align: center;
+    line-height: 44px;
+    border-right:1px solid #ddd;
+  }
+  .pwd-wrap li:last-child{
+    border-right: 0;
+  }
+  .pwd-wrap li i{
+    height: 10px;
+    width: 10px;
+		margin: 7px auto;
+    border-radius:50% ;
+    background: #000;
+    display: inline-block;
+  }
 		</style>
 	</head>
 	<body>
+		<div id="vuebody" style="width: auto;height: auto;">
 		<div class="cover">
 			<div class="site-nav">
 				<div class="site-nav-bd">
@@ -163,7 +176,7 @@
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 								<div class="site-nav-user"> <a></a>
 								</div>
 							</div>
@@ -174,35 +187,35 @@
 					<ul class="site-nav-bd-r">
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="/web_UI/">
 									<span>首页</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="browseHistory.html">
 									<span>我的足迹</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
+								<a id="mc-menu-hd" href="shoppingCart.html">
 									<span>购物车</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="favorites.html">
 									<span>收藏夹</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="user.html">
 									<span>个人中心</span>
 								</a>
 							</div>
@@ -211,106 +224,94 @@
 				</div>
 			</div>
 		</div>
-		<div style="margin: 0 auto;width: 950px;margin-bottom: 20px;">
+		<div style="margin: 50px auto;width: 1190px;border:1px solid #a6a6a6;">
 			<div class="order-ext">
-				<table>
+				<div style="padding: 15px 30px;height: 29px;background-repeat: repeat-x;background-position: 0 0;border-bottom: 1px solid #afbedf;">
+				<h1 style="color: #4d4d4d;font: 700 18px/28px 微软雅黑;">订单详情</h1></div>
+				<table style="margin-top: 20px;">
 					<tbody>
 						<tr>
 							<th class="sub-th">交易号：</th>
-							<td>2019021122001111651026735239</td>
+							<td>{{order.order_code}}</td>
 						</tr>
 						<tr>
 							<th class="sub-th">卖家昵称：</th>
-							<td>采青小城</td>
+							<td>{{order.store_name}}</td>
 						</tr>
 						<tr>
 							<th class="sub-th">商品名称：</th>
 							<td>
 								<ul>
-									<li>
-										花花公子长袖t恤青年圆领卫衣体2018秋冬季保暖男装加绒加厚上衣T
+									<li>{{order.goods_name}}
 									</li>
 								</ul>
 							</td>
 						</tr>
 						<tr>
 							<th class="sub-th">交易金额：</th>
-							<td>109.00元</td>
+							<td>{{order.new_price*order.goods_num}}元</td>
 						</tr>
 						<tr>
 							<th class="sub-th">购买时间：</th>
-							<td>2019年02月11日 19:47:42</td>
+							<td>{{formatDate(order.create_time)}}</td>
 						</tr>
 						<tr>
 							<th class="sub-th">交易类型：</th>
-							<td class="type">
+							<td >
 								<span>在线交易</span>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<div style="padding: 15px 30px;height: 29px;background-repeat: repeat-x;background-position: 0 0;border-bottom: 1px solid #afbedf;">
+			<h1 style="color: #4d4d4d;font: 700 18px/28px 微软雅黑;">选择支付方式</h1></div>
 		<div  class="main-container">
 			<div>
 				<div>
 					<ul class="saved-card-list" id="J_SavecardList">
-						<li class="row-container">
+						<li class="channel-bank row-container fn-clear">
 							<div class="row-basic fn-clear">
-								<input class="channel-input" id="comm907-4" name="apiCode" type="radio"><label class="channel-label" for="comm907-4"><span
-									 class="pay-amount">
+								<input class="channel-input"  name="paywayCode" checked="checked" value="1" type="radio">
+								<label class="channel-label">
+									<span class="pay-amount">
+								<span class="amount fn-hide"><span>支付</span><em class="amount-font-R16">109.00</em>
+								<span> 元</span></span></span>
+								<span class="channel-name">账户余额：{{payway.balance}}</span><span class="card-info">余额不足</span></label></div>
+						</li>
+						<li class="row-container" v-for="(item,index) in payway.bankCardList ">
+							<div class="row-basic fn-clear">
+								<input class="channel-input" id="comm907-4" name="paywayCode"  :value="item.bank_card_code" type="radio"><label class="channel-label" for="comm907-4">
+								<span class="pay-amount">
 										<span class="amount"><span data-reactid=".0.2.$4.$/=10.0.0.0.0">支付</span><em class="amount-font-R16">109.00</em>
-											<span> 元</span></span></span><span class="channel-tit channel-icon icon banklogo-COMM_s"></span><span class="channel-name"
-									 title="交通银行">交通银行</span><span class="card-number">**1828</span>
+											<span> 元</span></span></span>
+											<span class="channel-name">{{item.bank_name}}</span><span class="card-number">**{{item.bank_card_code.substring(14,18)}}</span>
 									<span class="card-type">储蓄卡 | 快捷</span><span class="card-info"></span></label></div>
-						</li>
-						<li class="channel-bank row-container fn-clear">
-							<div class="row-basic fn-clear">
-								<input class="channel-input" id="comm907-4" name="apiCode" type="radio">
-								<label class="channel-label" for="icbc906-5"><span class="pay-amount"><span class="amount fn-hide">
-											<span>支付</span><em class="amount-font-R16">109.00</em><span> 元</span></span></span><span class="channel-tit channel-icon icon banklogo-ICBC_s"></span><span
-									 class="channel-name" title="中国工商银行">中国工商银行</span><span class="card-number">**6880
-									</span><span class="card-type">储蓄卡 | 快捷</span><span class="card-info"></span></label></div>
-						</li>
-						<li class="channel-bank row-container fn-clear">
-							<div class="row-basic fn-clear">
-								<input class="channel-input" id="comm907-4" name="apiCode" type="radio">
-								<label class="channel-label" for="hnrcunucc907-6"><span class="pay-amount"><span class="amount fn-hide"><span>支付</span><em
-											 class="amount-font-R16">109.00</em><span> 元</span></span></span><span class="channel-tit channel-icon icon banklogo-HNRCU_s"></span><span
-									 class="channel-name" title="河南省农村信用社">河南省农村信用社</span><span class="card-number">**1151</span><span class="card-type">储蓄卡
-										| 快捷</span><span class="card-info"></span></label></div>
-						</li>
-						<li class="channel-balance row-container fn-clear row-container-disabled">
-							<div class="row-basic fn-clear">
-								<input class="channel-input" id="comm907-4" name="apiCode" type="radio">
-								<label class="channel-label"><span class="channel-tit channel-icon icon icon-gray banklogo-BALANCE_s"></span><span
-									 class="fn-mr-20"><span class="channel-name">账户余额</span><em>0
-											元</em></span><span class="pay-amount"><span class="amount fn-hide"><span>支付</span><em class="amount-font-R16">109.00</em><span>
-												元</span></span><span>金额不足，可先充值</span></span></label></div>
 						</li>
 					</ul>
 				</div>
 			</div>
-			<div class="ui-securitycore J-securitycoreMain">
-				<div class="edit-section">
+			<div style="margin-top: 20px;">
+				<div >
 					<div class="ui-form-item">
 						<label class="ui-label">
 							支付宝支付密码：
 						</label>
-						<span class="alieditContainer">
-							<input type="password" class="sixDigitPassword">
-							<div class="sixDigitPassword" tabindex="0" style="width: 180px;">
-								<i class="" style="width: 29px; border-color: transparent;">
-									<b style="visibility: hidden;"></b></i><i style="width: 29px;"><b style="visibility: hidden;"></b></i>
-								<i style="width: 29px;"><b style="visibility: hidden;"></b></i><i style="width: 29px;">
-									<b style="visibility: hidden;"></b></i><i style="width: 29px;"><b style="visibility: hidden;"></b></i>
-								<i style="width: 29px;"><b style="visibility: hidden;"></b></i>
-							</div>
-						</span>
+						<div style="width: 180px;height: 30px;border: 1px solid #000000; float: left;">
+					  <input  id="paypassword" @input="showBlack()"  type="password" maxlength="6"  style="position: absolute;width: 180px;height: 30px;opacity: 0"/>
+    <ul class="pwd-wrap" v-on:click="focus">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul></div>
 						<span class="edit-link">
-							<a target="_blank" href="https://lab.alipay.com/user/passwordfind/index.htm?type=P" seed="sc_edit_forgetPwd">忘记密码？</a>
+							<a target="_blank">忘记密码？</a>
 						</span>
-						<div class="ui-form-explain">
-							<p id="J_edit_prompt_default" class="">
+						<div style="margin-top: 10px;margin-left: 150px;">
+							<p>
 								请输入6位数字支付密码
 							</p>
 						</div>
@@ -318,7 +319,7 @@
 				</div>
 			</div>
 			<div id="J-rcSubmit">
-				<div class="ui-fm-item ui-fm-action j-submit" data-reactid=".1"><input class="ui-button-lblue" type="submit" value="确认付款">
+				<div class="ui-fm-item ui-fm-action j-submit"><input class="ui-button-lblue" v-on:click="pay()" type="submit" value="确认付款">
 				</div>
 				</form>
 			</div>
@@ -379,5 +380,140 @@
 					</div>
 				</div>
 			</div>
+			</div>
 	</body>
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
+	<script>
+		var orderid=1;
+	var vm = new Vue({
+			el: '#vuebody',
+			data:{
+         payway:{},
+				 order:{}
+    },
+    created() {
+			UrlSearch();
+			this.getPayWayList();
+			console.log(orderid);
+			this.getOrderInfo();
+    },
+    computed: {
+    },
+    watch:{
+      msg(){
+				console.log(this.password);
+      },
+    },
+    methods: {
+      focus(){
+					$("#paypassword").val("");
+					$("#paypassword").focus();
+					$(".pwd-wrap li").text("");
+      },
+			showBlack(){
+				var number = 6;   //定义输入最大值
+				var pw = $("#paypassword").val(); //定义pw为name是password的input框的输入值
+				var list = $(".pwd-wrap li");  //定义list是li
+				for(var i = 0; i < number ; i++){    //for循环遍历将·放入li标签
+					if(pw[i]){
+						$(list[i]).html("<i>");
+					}else{
+						$(list[i]).text("");
+					};
+				};
+			},
+			getPayWayList(){
+				var self=this;
+				axios.get('http://127.0.0.1:8080/ECS_User/getPayWayList.action',{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data);
+						if(response.data.result_code==400){
+							alert("请先登录");
+						}
+						self.payway=response.data.result_object;
+				}).catch(function (error) {
+					console.log(error);
+				}); 
+			},
+			getOrderInfo(){
+				var self=this;
+				var params = new URLSearchParams();
+				params.append("orderid",orderid);
+				axios.post('http://127.0.0.1:8888/ECS_Goods/getUserOrderInfo',params,{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data);
+						if(response.data.result_code==400){
+							alert("请先登录");
+						}
+						self.order=response.data.result_object;
+				}).catch(function (error) {
+					console.log(error);
+				}); 
+			},
+			pay(){
+				  var payCode =$("input[name='paywayCode']:checked").val();
+					var paypassword=$("#paypassword").val();
+				console.log(payCode);
+				console.log(paypassword);
+				var self=this;
+				var params = new URLSearchParams();
+				params.append("orderid",orderid);
+				params.append("payCode",payCode);
+				params.append("password",paypassword)
+				axios.post('http://127.0.0.1:8888/ECS_Goods/remindPayment',params,{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data);
+						if(response.data.result_object=="去登录"){
+							alert("请先登录");
+						}
+						if(response.data.result_object=="支付密码错误"){
+							alert("支付密码错误");
+						}
+						if(response.data.result_code==200){
+						window.location.href="/web_ui/myOrder.html";}
+						//self.order=response.data.result_object;
+				}).catch(function (error) {
+					console.log(error);
+				}); 
+			},
+			formatDate(data) {
+				var date=new Date(data);
+    var myyear = date.getFullYear();
+    var mymonth = date.getMonth() + 1;
+    var myweekday = date.getDate();
+		var hour= date.getHours();
+		var minutes =date.getMinutes();
+    var miao =date.getSeconds();
+    if (mymonth < 10) {
+        mymonth = "0" + mymonth;
+    }
+    if (myweekday < 10) {
+        myweekday = "0" + myweekday;
+    }
+    return (myyear + "年" + mymonth + "月" + myweekday+"日"+" "+hour+":"+minutes+":"+miao);
+    }
+    }
+  });
+function UrlSearch() {
+		   var str=location.href; //取得整个地址栏
+		   var num=str.indexOf("?")
+		   str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+		   var arr=str.split("&"); //各个参数放到数组里
+		  //  console.log(arr)
+		   for(var i=0;i < arr.length;i++){
+		        num=arr[i].indexOf("=");
+		        if(num>0){
+		             name=arr[i].substring(0,num);
+		             value=arr[i].substr(num+1);
+								 if(name=="ID") this.orderid=value;
+		        }
+		   }
+		    }	
+</script>
 </html>

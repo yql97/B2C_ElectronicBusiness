@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>订单结算</title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
@@ -29,31 +32,17 @@
 	position: relative;
 	margin-left: 0;
 }
-		/*	.order-stepbar .buy-logo {
-    padding: 26px 0 12px;
-    display: inline-block;
-     }
-		 .order-stepbar .buy-logo a {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    width: 170px;
-    height: 35px;
-    font-size: 35px;
-    color: #fff;
-}*/
+		
 		 .order-stepbar .tb-stepbar {
 			 margin-left: 0;
-    /*position: absolute;
-    top: 40px;
-    left: 0;*/
+  
 }
 .order-stepbar .tb-stepbar .stepbar-first {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
 }
 .order-stepbar .tb-stepbar .stepbar-current {
-    background-color: #f40;
+    background-color: red;
     color: #fff;
 }
 .order-stepbar .tb-stepbar .stepbar-last {
@@ -67,8 +56,7 @@
     font-size: 14px;
     position: relative;
 		margin-left: 0;
-   /* float: left;*/
-   /* background: url(//img.alicdn.com/tps/i2/TB1kJUdGFXXXXcyaXXX08VS7pXX-176-1320.png) 100% -1040px no-repeat #e4e4e4;*/
+   
     color: #404040;
     font-weight: 700;
     -webkit-box-sizing: border-box;
@@ -92,7 +80,7 @@
     font-weight: 400;
 }
 .order-address .order-address-wrap .address-list li.selected {
-    border-color: #f40;
+    border-color: red;
     background-color: #fff0e8;
     margin: 5px 0 7px;
     line-height: 32px;
@@ -108,7 +96,7 @@
     position: absolute;
     top: 0;
     left: 30px;
-    color: #f40;
+    color: red;
     font-weight: 700;
 }
 .order-address .order-address-wrap .address-list li label {
@@ -275,7 +263,7 @@
 }
 .order-itemPay .simple-price {
     font-weight: 700;
-    color: #f40;
+    color: red;
     padding-right: 10px;
 }
 .order-item .seperator {
@@ -357,7 +345,7 @@
 .order-deliveryMethod .delivery-select .select-item .select-price {
     width:35%;
     text-align: right;
-    color: #f40;
+    color: red;
     font: 700 12px tahoma;
 }
 .orderPay {
@@ -374,7 +362,7 @@
     font-size: 16px;
     font-weight: bolder;
     vertical-align: middle;
-		color: #f40;
+		color: red;
 }
 .order-payInfo {
     text-align: right;
@@ -382,7 +370,7 @@
 }
 .order-payInfo .payInfo-wrapper {
     display: inline-block;
-    border: 1px solid #f40;
+    border: 1px solid red;
 }
 .order-payInfo .payInfo-wrapper .payInfo-shadow {
     border: 3px solid #fff0e8;
@@ -400,7 +388,7 @@
 		font-family: verdana,arial;
 }
 .order-realPay .realPay-price {
-    color: #f40;
+    color: red;
     font: 700 26px tahoma;
 }
 .order-confirmAddr {
@@ -430,12 +418,13 @@
     text-align: center;
     font-size: 14px;
     font-weight: 700;
-    background: #f40;
+    background: red;
     color: #fff;
 }
 		</style>
 	</head>
 	<body>
+		<div id="vuebody" style="width: auto;height: auto;">
 		<div class="cover">
 			<div class="site-nav">
 				<div class="site-nav-bd">
@@ -447,7 +436,7 @@
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 								<div class="site-nav-user"> <a></a>
 								</div>
 							</div>
@@ -458,35 +447,35 @@
 					<ul class="site-nav-bd-r">
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="/web_UI/">
 									<span>首页</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="browseHistory.html">
 									<span>我的足迹</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
+								<a id="mc-menu-hd" href="shoppingCart.html">
 									<span>购物车</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="favorites.html">
 									<span>收藏夹</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="user.html">
 									<span>个人中心</span>
 								</a>
 							</div>
@@ -495,12 +484,12 @@
 				</div>
 			</div>
 		</div>
-		<div style="width: 990px;margin: auto;">
+		<div style="width: 1190px;margin:20px auto;">
 			<div class="order-stepbar">
 				<!--<h1 class="buy-logo"><a href="//www.taobao.com" target="_top" title="淘宝网"><i></i>
 						<span>淘宝网</span></a></h1>-->
 				<ol class="tb-stepbar">
-					<li class="stepbar-4 stepbar-first stepbar-current">1. 确认订单信息</li>
+					<li class="stepbar-4 stepbar-first stepbar-current">确认订单信息</li>
 					<!--<li class="stepbar-4">2. 付款到支付宝</li>
 					<li class="stepbar-4">3. 确认收货</li>
 					<li class="stepbar-4 stepbar-last">4. 双方互评</li>-->
@@ -511,7 +500,7 @@
 					<h3><span>确认收货地址</span><span class="manage-address"><a href="//member1.taobao.com/member/fresh/deliver_address.htm"
 							 target="_blank" title="管理我的收货地址">管理收货地址</a></span></h3>
 					<ul class="address-list">
-						<li class="address-wrap selected" style="font-weight: 700;">
+						<!-- <li class="address-wrap selected" style="font-weight: 700;">
 							<div class="addressBox">
 								<div><span class="marker-tip">寄送至</span></div><label class="addressInfo">
 									<input type="radio" name="address">
@@ -520,23 +509,17 @@
 									 class="tips"><em class="default">默认地址</em></span>
 									<a class="modify" href="javascript:void(0);">修改本地址</a></label>
 							</div>
-						</li>
-						<li class="address-wrap">
-							<div class="addressBox"><label class="addressInfo"><input type="radio" name="address">
-									<span class="user-address"><span>江苏省
-											南京市 玄武区 锁金村街道 </span><span>南京市玄武区锁金村街道龙蟠路159号南京林业大学</span><span>（</span>
-										<span>岳玉娇</span><span> 收）</span><em>18751957115</em></span><span class="tips">
+						</li> -->
+						 <li class="address-wrap" v-for="data in receive_address">
+							<div class="addressBox"><label class="addressInfo">
+							<input type="radio" name="address" v-if="data.is_default=='1'" :value="data.receiving_address_id" checked="checked" v-on:click="chanceReceiveAddress()">
+							<input type="radio" name="address" :value="data.receiving_address_id" v-if="data.is_default=='0'" v-on:click="chanceReceiveAddress()">
+									<span class="user-address"><span>{{data.district}} </span><span>{{data.detailedAddress}}</span><span>（</span>
+										<span>{{data.receiverName}}</span><span> 收）</span><em>{{data.receiverPhone}}</em></span>&emsp;&emsp;<span class="tips">
 										<a class="set-default" href="javascript:void(0);">设置为默认收货地址</a></span></label></div>
-						</li>
-						<li class="address-wrap">
-							<div class="addressBox"><label class="addressInfo"><input type="radio" name="address"><span class="user-address">
-										<span>河南省
-											郑州市 新郑市 城关乡 </span><span>官刘庄东侧社区(居易新城社区:8号楼，1层西户)</span><span>（</span>
-										<span>岳秋林</span><span> 收）</span><em>18703622974</em></span><span class="tips">
-										<a class="set-default" href="javascript:void(0);">设置为默认收货地址</a></span></label></div>
-						</li>
+						</li> 
 					</ul>
-					<div class="btn-bar"><a class="newAddrBtn">使用新地址</a></div>
+					<div class="btn-bar"><a class="newAddrBtn" href="user.html">使用新地址</a></div>
 				</div>
 			</div>
 			<div class="order-orderDesc">
@@ -550,33 +533,34 @@
 				</div>
 			</div>
 			<div class="order-order">
-				<div class="order-orderInfo">
+				<!-- <div class="order-orderInfo">
 					<img src="//img.alicdn.com/tps/i2/TB1wopUHVXXXXXyXpXXAAT2HVXX-63-63.png" class="shopIcon"><span class="shop-name">店铺:&nbsp;</span><a
 					 target="_blank">酷美包包</a><span class="shop-seller">
-						<span>卖家:&nbsp;</span><a target="_blank">单车恋人_3</a></span></div>
+						<span>卖家:&nbsp;</span><a target="_blank">单车恋人_3</a></span></div> -->
 				<div class="order-item order-item-column-4">
 					<div class="order-itemInfo">
 						<div class="info-detail info-cell">
-							<div class="info-cell"><a class="info-img" href="//item.taobao.com/item.htm?id=522057938823" target="_blank"><img
-									 class="info-img" src="//img.alicdn.com/imgextra/i1/51435673/TB2fal_fpXXXXaYXXXXXXXXXXXX_!!51435673.jpg_100x100q90.jpg"></a></div>
-							<div class="info-cell info-msg"><a href="//item.taobao.com/item.htm?id=522057938823" class="info-title" target="_blank">
-									男士休闲旅行软皮双肩包韩版街头潮学生书包牛皮运动男包时尚背包</a>
+							<div class="info-cell"><a class="info-img" href="" target="_blank"><img
+									 class="info-img" :src="goods.goods_image"></a></div>
+							<div class="info-cell info-msg"><a href="" class="info-title" target="_blank">
+									{{goods.goods_name}}</a>
 							</div>
 						</div>
 						<div class="info-sku info-cell">
-							<p><span class="hd"><span>颜色分类</span><span>：</span></span><span class="bd">黑色</span></p>
+							<p v-for="item in goodsProperty"><span class="hd"><span>{{item.goods_property_name}}</span><span>：</span></span>
+							<span class="bd">{{item.goods_property_value}}</span></p>
 						</div>
-						<div class="info-price info-cell">708.00</div>
+						<div class="info-price info-cell">{{goods.now_price}}</div>
 					</div>
 					<div class="order-quantity" id="quantity_b9dcce618c274f584161f8406c54dcc3">
-						<div class="quantity-inner"><span class="operate left grey">-</span><input class="amount" value="1" pattern=""><span
+						<div class="quantity-inner"><span class="operate left grey">-</span><input class="amount" :value="buynum" ><span
 							 class="operate right">+</span></div><span></span><span></span>
 					</div>
-					<div class="order-itemPay"><span class="simple-price">188.00</span></div>
+					<div class="order-itemPay"><span class="simple-price">{{goods.now_price}}</span></div>
 					<div class="order-orderExt">
 						<div class="order-extUser">
 							<div class="order-memo"><label class="memo-name">给卖家留言：</label>
-								<div class="memo-detail"><textarea class="text-area-input memo-input" placeholder="选填:填写内容已和卖家协商确认"></textarea>
+								<div class="memo-detail"><textarea id="remark" class="text-area-input memo-input" placeholder="选填:填写内容已和卖家协商确认"></textarea>
 								</div>
 							</div>
 						</div>
@@ -597,38 +581,34 @@
 							</div>
 						</div>
 					</div>
-					<div class="orderPay"><span>店铺合计</span><span>(含运费)</span><span class="price g_price"><span>￥</span><em class="style-middle-bold-red J_ShopTotal">188.00</em></span></div>
+					<div class="orderPay"><span>店铺合计</span><span>(含运费)</span><span class="price g_price"><span>￥</span>
+					<em class="style-middle-bold-red J_ShopTotal">{{goods.now_price}}</em></span></div>
 				</div>
-				<div class="order-payInfo" id="payInfo_1" data-reactid=".0.$confirmOrder_1.$payInfo_1">
-					<div class="payInfo-wrapper" data-reactid=".0.$confirmOrder_1.$payInfo_1.0">
-						<div class="payInfo-shadow" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0">
-							<div class="order-realPay" id="realPay_1" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1">
-								<div data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2"><span class="realPay-title" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2.0">实付款：</span><span
-									 class="order-price" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2.1">￥</span><span class="realPay-price"
-									 data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$realPay_1.2.2">188.00</span></div>
+				<div class="order-payInfo" id="payInfo_1">
+					<div class="payInfo-wrapper" >
+						<div class="payInfo-shadow" >
+							<div class="order-realPay" id="realPay_1" >
+								<div ><span class="realPay-title" >实付款：</span><span
+									 class="order-price" >￥</span><span class="realPay-price">{{goods.now_price}}</span></div>
 							</div>
-							<div class="order-confirmAddr" id="confirmAddr_1" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1">
-								<div class="confirmAddr-addr" title="江干区下沙街道 浙江水利水电学院/杭州下沙高教园学林街583号" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr"><span
-									 class="confirmAddr-title" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.0">寄送至：</span><span
-									 class="confirmAddr-addr-bd" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1"><span
-										 class="prov" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.0">浙江省</span><span
-										 class="city" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.1">杭州市</span><span
-										 class="dist" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.3">江干区</span><span
-										 class="town" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.4">下沙街道</span><span
-										 class="street" data-street="浙江水利水电学院/杭州下沙高教园学林街583号" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$addr.1.5">浙江水利水电学院/杭州下沙高教园学林街583号</span></span></div>
-								<div class="confirmAddr-addr-user" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user"><span
-									 class="confirmAddr-title" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.0">收货人：</span><span
-									 class="confirmAddr-addr-bd" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.1"><span
-										 data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.1.0">岳秋林</span><span data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmAddr_1.$user.1.1">18069863726</span></span></div>
+							<div class="order-confirmAddr" id="confirmAddr_1">
+								<div class="confirmAddr-addr"><span
+									 class="confirmAddr-title" >寄送至：</span><span
+									 class="confirmAddr-addr-bd" ><span
+										 class="prov" id="district">{{selectedReceiveAddress.district}}</span><span
+										 class="street" id="detailedAddress">{{selectedReceiveAddress.detailedAddress}}</span></span></div>
+								<div class="confirmAddr-addr-user" ><span
+									 class="confirmAddr-title" >收货人：</span><span
+									 class="confirmAddr-addr-bd" ><span id="receiverName">{{selectedReceiveAddress.receiverName}}</span>
+									 <span id="receiverPhone">{{selectedReceiveAddress.receiverPhone}}</span></span></div>
 							</div>
-							<div data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.0:$confirmEticket_1"></div>
-							<div class="order-confirmAddr" data-reactid=".0.$confirmOrder_1.$payInfo_1.0.0.1"></div>
+							<div ></div>
+							<div class="order-confirmAddr" ></div>
 						</div>
 					</div>
 				</div>
-				<div class="order-submitOrder" id="submitOrder_1" data-reactid=".0.$confirmOrder_1.$submitOrder_1">
-					<div class="wrapper" data-reactid=".0.$confirmOrder_1.$submitOrder_1.0"><a role="button" title="提交订单" class="go-btn"
-						 data-reactid=".0.$confirmOrder_1.$submitOrder_1.0.3">提交订单</a></div>
+				<div class="order-submitOrder">
+					<div class="wrapper" ><a role="button" title="提交订单" v-on:click="createOrder()" class="go-btn">提交订单</a></div>
 				</div>
 			</div>
 			</div>
@@ -687,5 +667,122 @@
 					</div>
 				</div>
 			</div>
+			</div>
 	</body>
+<script type="text/javascript" src="../public/js/cookie.js"></script>
+<script type="text/javascript">
+	var goods_sku_id=0;
+	var num=0;
+	var vm = new Vue({
+		el: '#vuebody',
+		data: {
+			goods:{},
+			goodsProperty:{},
+			buynum:1,
+			receive_address:[],
+			selectedReceiveAddress:{}
+		},
+		created: function() {
+			UrlSearch();
+			this.buynum=num;
+			this.getOrderGoods();
+			this.getReceiveAddress();
+		},
+			methods: {
+		createOrder(){
+		var params = new URLSearchParams();
+		var text=$("#remark").text();
+		//console.log(text);
+		if(text=="") text="无";
+		params.append("remark",text);
+		params.append("buynum",num);
+		params.append("goods_sku_id",this.goods.goods_sku_id);
+		//console.log(this.selectedReceiveAddress.receiving_address_id)
+		params.append("receive_address_id",this.selectedReceiveAddress.receiving_address_id);
+		axios.post('http://127.0.0.1:8888/ECS_Goods/createOrder',params,{headers:{
+			withCredentials:true,
+			"Authorization":cookie.get("JSESSIONID")
+		}}).then(function (response) {
+				console.log(response.data);
+				if(response.data.result_object=="去登录"){
+					alert("请先登录");
+				}
+				if(response.data.result_code==200){
+					alert("下单成功,跳转支付界面");
+					var orderid=response.data.result_object;
+					console.log(orderid);
+					window.location.href="/web_ui/paymoney.html?ID="+orderid;
+				}
+		}).catch(function (error) {
+			console.log(error);
+		});	
+		},
+		getOrderGoods(){
+			console.log(goods_sku_id+num);
+			var self=this;
+			axios.get('http://127.0.0.1:8888/ECS_Goods/getGoodsToOrder',{params: {
+			goods_sku_id: goods_sku_id
+			}},{headers:{
+				withCredentials:true
+				/*"Authorization":cookie.get("JSESSIONID") */
+			}}).then(function (response) {
+					console.log(response.data);
+					self.goods=response.data.result_object.goodsInfo;
+					 self.goodsProperty=response.data.result_object.goodsProperty;
+			}).catch(function (error) {
+				console.log(error);
+			}); 
+		},
+		getReceiveAddress(){
+			var self=this;
+			axios.get('http://127.0.0.1:8080/ECS_User/getReceiveAddressList.action',{headers:{
+				withCredentials:true,
+				"Authorization":cookie.get("JSESSIONID")
+			}}).then(function (response) {
+					console.log(response.data);
+					if(response.data.result_code==200){
+						var data=response.data.result_object;
+						self.receive_address=data;
+						for(var i=0;i<data.length;i++){
+							   if(data[i].is_default==1){
+									 self.selectedReceiveAddress=data[i];
+								 }
+						}
+					}
+			}).catch(function (error) {
+				console.log(error);
+			}); 
+		},
+		chanceReceiveAddress(){
+			  var addressid=$("input[name='address']:checked").val();
+				console.log(addressid);
+				for(var i=0;i<this.receive_address.length;i++){
+						if(this.receive_address[i].receiving_address_id==addressid){
+							self.selectedReceiveAddress=this.receive_address[i];
+							$("#district").html(this.receive_address[i].district);
+							$("#detailedAddress").html(this.receive_address[i].detailedAddress);
+							$("#receiverName").html(this.receive_address[i].receiverName);
+							$("#receiverPhone").html(this.receive_address[i].receiverPhone);
+						}
+				}
+		}
+		}
+		});
+		function UrlSearch() {
+			var str=location.href; //取得整个地址栏
+			var num=str.indexOf("?")
+			str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+			var arr=str.split("&"); //各个参数放到数组里
+			//  console.log(arr)
+			for(var i=0;i < arr.length;i++){
+						num=arr[i].indexOf("=");
+						if(num>0){
+								name=arr[i].substring(0,num);
+								value=arr[i].substr(num+1);
+								if(name=="ID") this.goods_sku_id=value;
+								if(name=="NUM") this.num=value;
+						}
+			}
+				}	
+	</script>
 </html>

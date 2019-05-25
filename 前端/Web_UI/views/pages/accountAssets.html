@@ -3,6 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>我的资产</title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
@@ -19,9 +22,8 @@
 				text-decoration: none;
 			}
 			.ui-container {
-    width: 990px;
+    width: 1190px;
     margin: 0 auto;
-    background: #EFF0F1;
 }
 .asset-breadcrumb {
     display: block;
@@ -43,7 +45,7 @@
     color: #4D4D4D;
 }
 .ui-grid-25 {
-    width: 990px;
+    width: 1190px;
 	margin: 0 10px 10px 0;
     float: left;
     display: inline;
@@ -51,9 +53,7 @@
 .main-form {
 	padding-top: 10px;
     min-height: 300px;
-    padding: 60px 9px 9px 9px;
-    background: #fff;
-    border: 1px solid #E6E6E6;
+    padding: 0px 9px 9px 9px;
 }
 .ui-form-bg {
     background: #fff;
@@ -66,11 +66,7 @@
 .ui-form .fn-ml20 {
     margin-left: 20px;
 }
-.ui-tiptext-container {
-    padding: 8px 12px;
-    position: relative;
-    margin: 19px 20px 0 20px;
-}
+
 .ui-form-item .ui-label {
     margin-left: -320px;
     width: 320px;
@@ -86,10 +82,11 @@ text-align: right;
     border: 1px solid #ccc;
     background: #f2f2f2;
 }
-.ui-form-item {
-    padding: 10px 5px 10px 320px;
+
+.main-form .ui-form-item {
+    padding: 15px 5px 10px 320px;
 }
-.ui-form-item .ui-label {
+.main-form .ui-form-item .ui-label {
     margin-left: -320px;
     width: 320px;
 }
@@ -118,6 +115,7 @@ text-align: right;
     height: 35px;
 	vertical-align: middle;
 	background-color: orangered;
+	border:1px solid rgb(230, 230, 230);
 }
 #submitBtn {
     margin-left: 10px;
@@ -126,45 +124,15 @@ text-align: right;
 .i-banner-portrait{
 display: inline;
 float: left;
-width: 86px;}
-.i-banner-portrait a {
-    width: 80px;
-    height: 80px;
-	border-radius: 50%;
-background-clip: padding-box;
-overflow: hidden;
-border: 2px solid #e1e1e1;
-display: block;
-}
-.i-banner-main {
-    display: inline;
-    float: left;
-    width: 904px;
-}
-.i-banner-main-hello {
-    padding-left: 20px;
-}
-.i-banner-main-hello .userName {
-    font-size: 16px;
-    line-height: 16px;
-	margin:10px auto;
-}
-.i-banner-main-detail {
-	margin-top: 0px;
-    padding-top: 12px;
-    padding-left: 20px;
-    position: relative;
-	display: block;height:40px;
+width: 86px;
 }
 .i-assets-content{
-    margin: 10px 20px 20px 30px;
 }
 .i-assets-header {
-    margin-bottom: 15px;
-    line-height: 16px;
 	display: block;
-	border:  1px solid #0033CC;
-	height: 40px;
+	padding: 15px 30px;
+    height: 29px;
+	border-bottom: 1px solid #afbedf;
 }
 .i-assets-balance-amount {
     line-height: 24px;
@@ -179,9 +147,7 @@ display: block;
     font-size: 12px;
 	padding: 0 9px;
 }
-.i-assets-header h3 {
-    font-size: 14px;
-}
+
 .i-assets-balance-amount {
     line-height: 24px;
     margin-right: 20px;
@@ -203,14 +169,14 @@ display: block;
 }
 .card-box-list {
     overflow: hidden;
-    padding: 2px 0 0 2px;
+    padding: 20px 0 0 30px;
 }
 .card-box-list .card-box {
     float: left;
     overflow: hidden;
-    width: 230px;
+    width: 265px;
     height: 160px;
-    margin: 0 17px 20px 0;
+    margin: 0 20px 20px 0;
     background: #EFF0F1;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -230,7 +196,7 @@ display: block;
 .card-box-name .bank-name {
     position: absolute;
     top: 12px;
-    left: 33px;
+    left: 13px;
     overflow: hidden;
     width: 84px;
     text-overflow: ellipsis;
@@ -239,11 +205,11 @@ display: block;
 .card-box-name .bank-num4 {
     position: absolute;
     top: 12px;
-    right: 60px;
+    right: 13px;
 }
 .add-card {
     float: left;
-    width: 232px;
+    width: 265px;
     margin: 0 17px 20px 0;
 }
 .add-card a{
@@ -265,7 +231,7 @@ display: block;
 }
 .card-box-list .card-box .card-box-express {
     height:80px;
-    margin: 0 0 15px 0;
+    margin: 0 0 5px 0;
     background: #CFD2D4;
     border-top: 1px solid #ABADAF;
 }
@@ -342,26 +308,6 @@ text-align: center;
     line-height: 18px;
     border: 1px solid #c1c1c1;
 }
-.sixDigitPassword {
-    cursor: text;
-    background: #fff;
-    outline: none;
-    padding: 8px 0;
-    height: 14px;
-    border: 1px solid #cccccc;
-    border-radius: 2px;
-		position: absolute;
-		left: 0;
-		box-sizing: content-box;	
-		float: left;
-}
-.sixDigitPassword i {
-    float: left;
-    display: block;
-    padding: 4px 0;
-    height: 7px;
-    border-left: 1px solid #cccccc;
-}
 .alieditContainer {
     display:block;
     width: 184px;
@@ -378,7 +324,7 @@ text-align: center;
     border: 1px solid #bcccf0;
     background: #fcfcfd;
     height: auto;
-    width: 990px;
+    width: 1190px;
 		margin: 0 auto;
 }
 .withdraw-cnt-tit {
@@ -411,15 +357,15 @@ text-align: center;
 .withdraw-cnt-det {
     padding: 15px 15px;
 }
-.ui-form {
-    margin-top: 30px;
+.applay{
+	margin-top: 20px;
 }
-.ui-form-item {
+.applay .ui-form-item {
     padding-left: 190px;
     padding-bottom: 35px;
 		padding: 0 5px 15px 170px;
 		}
-		.ui-label {
+		.applay .ui-form-item .ui-label {
     width: 160px;
     margin-left: -190px;
     font-size: 14px;
@@ -430,15 +376,15 @@ text-align: center;
 .choose {
     width: 745px;
     position: relative;
-    height: auto;
-    min-height: 55px;
-    height: 55px;
+    min-height: 110px;
+		margin-bottom: 50px;
 }
 .choose-list {
-    position: absolute;
+   /* position: absolute; */
     width: 731px;
     height: 32px;
     padding: 7px 6px;
+		margin: 10px auto;
     border: 1px solid #ececec;
     border-radius: 3px 3px;
     background: #fcfcfd;
@@ -490,10 +436,37 @@ text-align: center;
     font-size: 12px;
     padding: 7px 0;
 }
+.bread-crumb {
+	width: 1190px;
+	margin: 0 auto;
+    height: 60px;
+    line-height: 60px;
+    font-size: 14px;
+}
+.bread-crumb a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #999;
+    max-width: 600px;
+	    overflow: hidden;
+    display: inline-block;
+}
+.bread-crumb span {
+    overflow: hidden;
+    display: inline-block;
+}
 
+.bread-crumb--arrow {
+    font-family: simsun;
+    font-size: 19px;
+    font-weight: 300;
+    margin: 0 10px;
+    color: #999;
+}
 		</style>
 	</head>
 	<body>
+	<div id="vuebody" style="width: auto;height: auto;">
 		<div class="cover">
 			<div class="site-nav">
 				<div class="site-nav-bd">
@@ -505,7 +478,7 @@ text-align: center;
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 								<div class="site-nav-user"> <a></a>
 								</div>
 							</div>
@@ -516,35 +489,35 @@ text-align: center;
 					<ul class="site-nav-bd-r">
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="/web_UI/">
 									<span>首页</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="browseHistory.html">
 									<span>我的足迹</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
+								<a id="mc-menu-hd" href="shoppingCart.html">
 									<span>购物车</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="favorites.html">
 									<span>收藏夹</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="user.html">
 									<span>个人中心</span>
 								</a>
 							</div>
@@ -553,373 +526,118 @@ text-align: center;
 				</div>
 			</div>
 		</div>
-		<div style="  width: 990px;
-    margin: auto;">
-	
-			头部
-			<ul class="asset-breadcrumb">
-				<li><a href="https://zht.alipay.com/asset/newIndex.htm">我的账户</a>
-				</li>
-				<li class="asset-breadcrumb-active">添加银行卡</li>
-			</ul>
-		</div>
-		<div class="ui-container" style="display: block;">
-			<div style="height:100px;display: block;width: 100%;padding-top:10px;clear: left;">
-				<div class="i-banner-portrait">
-					<a href="" class="userInfo-portrait">
-						<img src="./我的支付宝 － 支付宝_files/T1AV8pXlReXXXXXXXX" id="J-portrait-user" alt="当前LOGO"></a>
-				</div>
-				<div class="i-banner-main">
-					<div class="i-banner-main-hello fn-clear">
-						<p class="userName fn-left">
-							晚上好, <a href="https://lab.alipay.com/user/myAccount/index.htm" target="_blank" seed="account-name-myalipay-v1"
-							 title="岳秋林">岳秋林</a>
-						</p>
-					</div>
-					<div class="i-banner-main-detail fn-clear">
-						<div style="float: left;margin-right: 5px;">
-							账户名：
-							<a href="https://lab.alipay.com/user/myAccount/index.htm" seed="account-zhangh-myalipay-v1" target="_blank"
-							 title="187******74" id="J-userInfo-account-userEmail">187******74</a>
-						</div>
-						<i style="float: left;font-style: normal;color: #ccc;margin-left: 20px;margin-right: 20px;">|</i>
-						<div style="float: left;">
-							上次登录时间：2019.03.02 20:18:16
-						</div>
-					</div>
-				</div>
-			</div>
-			<div style="display: block;">
+		<div class="bread-crumb">
+			<a href="" >我的账户</a>
+			<span class="bread-crumb--arrow">&gt;</span><a>银行卡管理</a>
+			<span class="bread-crumb--arrow">&gt;</span>
+			<a href="" v-if="this.status==1" style="color: rgb(51, 51, 51);">添加银行卡</a>
+			<a href=""  v-if="this.status==2" style="color: rgb(51, 51, 51);">提现</a>
+			<a href=""  v-if="this.status==3" style="color: rgb(51, 51, 51);">充值</a>
+	  </div>
+		
+		<div class="ui-container" style="display: block;border: 1px solid #bcccf0;background: #fcfcfd;" v-if="this.status==0">
 				<div class="i-assets-container ui-bookblock-item" style="display: block;height: auto;border: 1px solid #e1e1e1;">
 					<div class="i-assets-content">
-						<div class="i-assets-header">
-							<h3 style="float: left;">
-								账户余额
-							</h3>
-							<p id="showAccountAmount" class="hide-amount" style="margin-left: 10px;display: inline;float: left;">
-								<a class="show-text" href="javascript:void(0)">显示金额</a>
-								<a class="hide-text" href="javascript:void(0)">隐藏金额</a>
-							</p>
-						</div>
-						<div style="clear: left; display: block;height: 40px;">
-							<div class="i-assets-balance-amount">
-								<strong>
-									<span>**.**</span> 元
-								</strong>
-							</div>
-							<ul class="i-assets-balance-actions">
-								<li>
-									<a class="ui-button ui-button-swhite j-deposit-link" title="充值" target="_blank" href="https://shenghuo.alipay.com/transfer/deposit/depositPreprocessGw.htm"
-									 seed="app-recharge-myalipay-yue-v1">充 值</a>
-								</li>
-								<li>
-									<a class="ui-button ui-button-swhite" title="提现" target="_blank" href="https://memberprod.alipay.com/fund/withdraw/apply.htm"
-									 seed="app-draw-myalipay-yue-v1">提 现</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="i-assets-container ui-bookblock-item" style="display: block;height: auto;border: 1px solid #e1e1e1;">
-					<div class="i-assets-content">
-						<div class="i-assets-header">
-							<h3 style="float: left;">
+						<div class="withdraw-cnt-tit">
+							<h2 class="title">
 								银行卡管理
-							</h3>
+							</h2>
 						</div>
 						<div style="clear: left; display: block;height:auto;">
-							<div class="card-box-list J-card-box">
-								<div class="card-box">
+							<div class="card-box-list">
+								<div class="card-box" v-for="item in bankcard_list">
 									<div class="card-box-name">
-										<span class="bank-logo"><a href="#"><img alt="" width="16" height="16"></a></span>
-										<span class="bank-name" title="河南省农村信用社">河南省农村信用社</span>
-										<span class="bank-num4">尾号1151</span>
-										<span class="card-type card-type-DC"></span>
+										<span class="bank-name" title="河南省农村信用社">{{item.bank_name}}</span>
+										<span class="bank-num4">尾号：{{item.bank_card_code.substring(12,18)}}</span>
 									</div>
 									<div class="card-box-express">
-										<div><span>快捷支付</span></span> <span>已开通</span></div>
-										<div class="card-detail">
+										<div style="padding-left: 13px;padding-top: 5px;"><span style="margin-right: 150px;">快捷支付</span></span><span>已开通</span></div>
+										<div style="padding-left: 13px;padding-top: 5px;">
 											<p style="font-size: 12px;font-weight: 400;color: #666666;">银行预留手机：180****3726</p>
 											<p style="font-size: 12px;font-weight: 400;color: #666666;">开通时间：2019.02.26</p>
 										</div>
 									</div>
-									<div class="express-else">
+									<div style="padding-left: 13px;">
 										<!--background: #F3F3F3;-->
-										<a href="" style="color: #0088cc;font-weight: 400;padding: 0 9px 0;height: 19px;
+										<a href="" style="color: #0088cc;font-weight: 400;height: 19px;
 										line-height: 19px;">解除绑定</a></div>
 								</div>
-								<div class="card-box">
-									<div class="card-box-name">
-										<span class="bank-logo"><a href="#"><img alt="" width="16" height="16"></a></span>
-										<span class="bank-name" title="交通银行">交通银行</span>
-										<span class="bank-num4">尾号1828</span>
-										<span class="card-type card-type-DC"></span>
-									</div>
-									<div class="card-box-express">
-										<div><span>快捷支付</span></span> <span>已开通</span></div>
-										<div class="card-detail">
-											<p style="font-size: 12px;font-weight: 400;color: #666666;">银行预留手机：180****3726</p>
-											<p style="font-size: 12px;font-weight: 400;color: #666666;">开通时间：2019.02.26</p>
-										</div>
-									</div>
-									<div class="express-else">
-										<!--background: #F3F3F3;-->
-										<a href="" style="color: #0088cc;font-weight: 400;padding: 0 9px 0;height: 19px;
-										line-height: 19px;">解除绑定</a></div>
-								</div>
-								<div class="card-box">
-									<div class="card-box-name">
-										<span class="bank-logo"><a href="#">
-												<img alt="" width="16" height="16"></a></span>
-										<span class="bank-name" title="中国建设银行">中国建设银行</span>
-										<span class="bank-num4">尾号8063</span>
-										<span class="card-type card-type-DC"></span>
-									</div>
-									<div class="card-box-express">
-										<div><span>快捷支付</span></span> <span>已开通</span></div>
-										<div class="card-detail">
-											<p style="font-size: 12px;font-weight: 400;color: #666666;">银行预留手机：180****3726</p>
-											<p style="font-size: 12px;font-weight: 400;color: #666666;">开通时间：2019.02.26</p>
-										</div>
-									</div>
-									<div class="express-else">
-										<!--background: #F3F3F3;-->
-										<a href="" style="color: #0088cc;font-weight: 400;padding: 0 9px 0;height: 19px;
-									line-height: 19px;">解除绑定</a></div>
-								</div>
-								<div class="card-box">
-									<div class="card-box-name">
-										<span class="bank-logo"><a href="#">
-												<img width="16" height="16"></a></span>
-										<span class="bank-name" title="中国工商银行">中国工商银行</span>
-										<span class="bank-num4">尾号6880</span>
-										<span class="card-type card-type-DC"></span>
-									</div>
-									<div class="card-box-express">
-										<div><span>快捷支付</span></span> <span>已开通</span></div>
-										<div class="card-detail">
-											<p style="font-size: 12px;font-weight: 400;color: #666666;">银行预留手机：180****3726</p>
-											<p style="font-size: 12px;font-weight: 400;color: #666666;">开通时间：2019.02.26</p>
-										</div>
-									</div>
-									<div class="express-else">
-										<!--background: #F3F3F3;-->
-										<a href="" style="color: #0088cc;font-weight: 400;padding: 0 9px 0;height: 19px;
-								line-height: 19px;">解除绑定</a></div>
-								</div>
-								<div class="add-card J-add-card">
-									<a target="_blank"><i class="iconfont">+</i>添加银行卡</a>
+								<div class="add-card">
+									<a  href="accountAssets.html?status=1"><i class="iconfont">+</i>添加银行卡</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
-		<div class="ui-grid-row" style="display: block;  width: 990px;margin:0 auto;">
+		<div style="display: block;  width: 1190px;margin:0 auto;height: 500px;border: 1px solid #bcccf0;background: #fcfcfd;" v-if="this.status==1">
 			<div class="ui-grid-25">
 				<div class="main-form">
-					<div class="ui-tiptext-container ui-tiptext-container-message fn-ml20">
-						<p class="ui-tiptext ui-tiptext-message">
-							<!--<i class="ui-tiptext-icon iconfont" title="提示"></i>-->
-							请填写以下信息，用于开通快捷支付等功能。
-						</p>
-					</div>
-					<div class="ui-form-item ui-form-name">
+					<div class="withdraw-cnt-tit">
+						<h2 class="title">添加银行卡</h2>
+						</div>
+					<div class="ui-form-item" style="margin-top: 20px;">
 						<label class="ui-label">真实姓名</label>
-						<input id="J_CardHolderName" name="cardHolderName" value="岳秋林" disabled="" class="ui-input ui-input-pl10 ui-input-disable"
-						 seed="JBankBindForm-J_CardHolderName"> </div>
-					<div class="ui-form-item ui-form-idcard">
+						<input id="J_CardHolderName" name="cardHolderName" :value="realName" disabled="" class="ui-input ui-input-pl10 ui-input-disable"> </div>
+					<div class="ui-form-item">
 						<label class="ui-label">身份证号</label>
-						<input id="J_CertNo" name="certNo" value="4****************2" disabled="" class="ui-input ui-input-pl10 ui-input-disable"
-						 seed="JBankBindForm-J_CertNo">
+						<input id="J_CertNo" name="certNo" :value="peopleCardNum" disabled="" class="ui-input ui-input-pl10 ui-input-disable">
 					</div>
 					<div class="ui-form-item ui-bank-con ui-form-item-error" style="z-index: 98;">
 						<label for="J-bankid" class="ui-label">银行卡卡号</label>
-						<input id="J-bankid" class="ui-input ui-input-bankid J-input-zoom" type="text">
+						<input id="bankcardnum" class="ui-input ui-input-bankid J-input-zoom" type="text" @change="getBankName()">
 					</div>
 					<div class="ui-form-item ui-form-item-error" style="z-index: 98;">
-						<label for="J-mobilenum" class="ui-label">手机号码</label>
-						<input id="J-mobilenum" name="mobileNo" class="ui-input ui-input-pl10" type="text" value="">
-						<!--<p class="fn-ml10 ft-grey">请填写您在银行预留的手机号码，以验证银行卡是否属于您本人</p>
-						<div id="J-pop-mobileNo" class="ui-form-explain fn-hide" style="z-index: 98; width: 101px; top: 10px; left: 562px; zoom: 1; display: block; position: absolute;"><em
-							class="ui-form-arrow" style="position: absolute; left: -7px; top: 10px;"></em>请填写手机号码。</div>-->
+						<label for="J-mobilenum" class="ui-label">所属银行</label>
+						<input id="bankname" name="mobileNo" class="ui-input ui-input-pl10" disabled="" type="text" value="">
 					</div>
 					<div class="ui-form-item">
-						<label class="ui-label">验证码</label>
-						<input class="ui-input" />
+						<label class="ui-label">邮箱验证码</label>
+						<input class="ui-input" id="code"/>
 						<button style="display: inline-block;height: 32px;line-height: 32px;text-align: center;border: 1px solid #e6e6e6;
-						background: #f5f5f5;vertical-align: middle;color: #5e5e5e;margin-left: 1px;padding: 0 8px;">获取验证码</button>
+						background: #f5f5f5;vertical-align: middle;color: #5e5e5e;margin-left: 1px;padding: 0 8px;"
+						 v-on:click="getCode()">获取验证码</button>
 					</div>
-					<div class="ui-form-item fn-pt20">
+					<div class="ui-form-item">
 						<div id="submitBtn" class="ui-button ui-button-lorange">
-							<input type="submit" class="ui-button-text" value="同意协议并确定">
-						</div>
-						<!--<span class="ui-form-confirm"><span class="loading-text fn-hide">正在提交信息</span></span>-->
-					</div>
-				</div>
-			</div>
-		</div>
-		<div style="width: 990px;margin: 0 auto;background: #fff;">
-			<div class="ui-tab-deposit-type fn-clear">
-				<h3 class="ui-tab-title">充值到<strong>余额 </strong><em>0.00</em>元</h3>
-			</div>
-			<div class="cashier-channel-box ui-form">
-				<div class="ui-fm-item">
-					<label class="ui-fm-label">充值方式：</label>
-					<p class="ui-fm-row">
-						<span>中国建设银行</span>
-						<span class="fn-left">
-							**8063
-						</span>
-					</p>
-					<div id="J-limitTable" class="tb-inner tb-bank-intro">
-						<table>
-							<caption>
-								<p class="bank-tip">快捷支付充值限额如下</p>
-							</caption>
-							<thead>
-								<tr>
-									<th>1万</th>
-									<th>5万</th>
-									<th>10万</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td> 单笔限额(元) </td>
-									<td> 每日限额(元) </td>
-									<td>每月限额(元) </td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="ui-fm-item  ">
-					<label class="ui-fm-label" for="J-depositAmount">充值金额：</label>
-					<input type="text" id="J-depositAmount" class="ui-input ui-input-amount"> 元
-					（剩余可用额度<span class="ft-red" id="J-deposit-max-amount">10000.00</span>元）
-					<div class="ui-fm-explain"></div>
-				</div>
-				<div class="ui-securitycore J-securitycoreMain">
-					<div class="edit-section">
-						<div class="ui-form-item">
-							<label class="ui-label">
-								支付宝支付密码：
-							</label>
-							<span class="alieditContainer">
-								<input type="password" class="sixDigitPassword">
-								<div class="sixDigitPassword" tabindex="0" style="width: 180px;">
-									<i class="" style="width: 29px; border-color: transparent;">
-										<b style="visibility: hidden;"></b></i><i style="width: 29px;"><b style="visibility: hidden;"></b></i>
-									<i style="width: 29px;"><b style="visibility: hidden;"></b></i><i style="width: 29px;">
-										<b style="visibility: hidden;"></b></i><i style="width: 29px;"><b style="visibility: hidden;"></b></i>
-									<i style="width: 29px;"><b style="visibility: hidden;"></b></i>
-								</div>
-							</span>
-							<span class="edit-link">
-								<a target="_blank" href="https://lab.alipay.com/user/passwordfind/index.htm?type=P">忘记密码？</a>
-							</span>
-							<div class="ui-form-explain">
-								<p id="J_edit_prompt_default" class="">
-									请输入6位数字支付密码
-								</p>
-							</div>
+							<input type="submit" v-on:click="bindBankCard()" class="ui-button-text" value="同意协议并确定">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="withdraw-cnt">
+		<div class="withdraw-cnt" v-if="this.status==2">
 			<div class="withdraw-cnt-tit fn-clear">
 				<h2 class="title">提取余额到银行卡</h2>
-				<p class="amount">余额：<span class="number">0.00</span>元</p>
+				<p class="amount">余额：<span class="number">{{balance}}</span>元</p>
 				<div class="link">
-					<a class="add J-addBank" href="#" seed="link-add" smartracker="on">添加银行卡</a>
+					<a class="add J-addBank" href="#" seed="link-add" smartracker="on" href="accountAssets.html?status=1">添加银行卡</a>
 					<span class="ui-separator">|</span>
-					<a href="https://lab.alipay.com:443/consume/record/draw.htm" title="提现记录" target="_blank" class="record" seed="link-record"
+					<a href="" title="提现记录"  class="record" seed="link-record"
 					 smartracker="on">提现记录</a>
 				</div>
 			</div>
 			<div class="withdraw-cnt-det">
 				<div class="applay">
-					<form name="withdrawForm" action="https://shenghuo.alipay.com:443/transfercore/withdraw/preConfirm.htm" method="POST"
-					 class="ui-form" id="J-apply-form">
-						<input type="hidden" name="_form_token" value="acd883a1f7e5270483ff4e0d209f4f2ebc0665c88a114d03815183390127c827GZ00">
-						<input type="hidden" name="newLimit" value="">
 						<div class="ui-form-item ui-form-item-bank" id="J-bankcard-item">
-							<label class="ui-label ui-label-forbank" for="">选择银行卡:</label>
-							<div class="choose fn-clear" id="J-choose" style="height: 220px;">
-								<div class="choose-list J-choose-item fn-clear" style="z-index: 90;">
+							<label class="ui-label">选择银行卡:</label>
+							<div class="choose" >
+								<div class="choose-list" style="z-index: 90;" v-for="(item,index) in bankcard_list">
 									<div class="b-raido">
-										<input type="radio" class="J-choose-radio" name="bankAccountId" value="1507266570731460" seed="bRaido-bankAccountId"
-										 smartracker="on">
+										<input type="radio" name="bankAccountId" v-if="index==0" checked="checked" :value="item.bank_card_code">
+										<input type="radio" name="bankAccountId" v-if="index!=0" :value="item.bank_card_code">
 									</div>
 									<div class="b-logo">
 										<div class="bank">
 											<span class="icon icon-bank icon-cashier-HNRCU_s" data-id="HNRCU_s"></span>
-											<span title="河南省农村信用社"> 河南省农村信…</span>
+											<span> {{item.bank_name}}</span>
 										</div>
 										<div class="num">
-											尾号：<span>1151</span>
-										</div>
-										<div class="katong">
-											<span>快捷</span>
+											尾号：<span>{{item.bank_card_code.substring(14,18)}}</span>
 										</div>
 									</div>
 									<div class="b-time">
 										<div class="ui-pentagon"><span class="ui-pentagon-text" data-text="预计次日到账">2小时</span></div>
-										<div class="ui-pentagon"><span class="ui-pentagon-text" data-text="预计次日到账">次日</span></div>
-									</div>
-									<div class="b-amount">
-										<span title="单笔50000.00元，单日无限额">单笔50000.00元，单日…</span>
-									</div>
-								</div>
-								<div class="choose-list J-choose-item fn-clear" style="z-index: 89; top: 55px;">
-									<div class="b-raido">
-										<input type="radio" class="J-choose-radio" name="bankAccountId" value="1812212074847994">
-									</div>
-									<div class="b-logo">
-										<div class="bank">
-											<span class="icon icon-bank icon-cashier-COMM_s" data-id="COMM_s"></span>
-											<span title="交通银行">交通银行</span>
-										</div>
-										<div class="num">
-											尾号：<span>1828</span>
-										</div>
-										<div class="katong">
-											<span>快捷</span>
-										</div>
-									</div>
-									<div class="b-time">
-										<div class="ui-pentagon"><span class="ui-pentagon-text" data-text="预计次日到账">2小时</span></div>
-										<div class="ui-pentagon"><span class="ui-pentagon-text" data-text="预计次日到账">次日</span></div>
-									</div>
-
-									<div class="b-amount">
-										<span title="单笔50000.00元，单日无限额">单笔50000.00元，单日…</span>
-
-									</div>
-								</div>
-								<div class="choose-list J-choose-item fn-clear" style="z-index: 88; top: 110px;">
-									<div class="b-raido">
-										<input type="radio" class="J-choose-radio" name="bankAccountId" value="1902262300322184">
-									</div>
-									<div class="b-logo">
-										<div class="bank">
-											<span class="icon icon-bank icon-cashier-CCB_s" data-id="CCB_s"></span>
-											<span title="中国建设银行">中国建设银行</span>
-										</div>
-										<div class="num">
-											尾号：<span>8063</span>
-										</div>
-										<div class="katong">
-											<span>快捷</span>
-										</div>
-									</div>
-									<div class="b-time">
-										<div class="ui-pentagon"><span class="ui-pentagon-text" data-text="预计次日到账">2小时</span></div>
-										<div class="ui-pentagon"><span class="ui-pentagon-text" data-text="预计次日到账">次日</span></div>
 									</div>
 									<div class="b-amount">
 										<span title="单笔50000.00元，单日无限额">单笔50000.00元，单日…</span>
@@ -927,8 +645,8 @@ text-align: center;
 								</div>
 						</div>
 						<div class="ui-form-item ui-form-item-amount">
-							<label class="ui-label" for="amount">提现金额:</label>
-							<input value="" name="totleFee" id="J-amount" class="ui-input ui-input-140" placeholder="输入金额" >
+							<label class="ui-label" >提现金额:</label>
+							<input name="totleFee" id="number" class="ui-input ui-input-140" placeholder="输入金额" >
 							<span class="ui-form-other-yuan">元</span>
 							<span id="J-fee" style="color:#ff5243;position:relative;top:1px;left:10px;"></span>
 							<div class="ui-form-explain"></div>
@@ -937,33 +655,90 @@ text-align: center;
  ui-form-double  fn-clear " id="J-arrived-time">
 							<input type="hidden" name="withdrawType" value="" id="J-account-time">
 							<label for="" class="ui-label">到账时间:</label>
-							<div id="J-tenmin" class="ui-doubleradio-item-other fn-hide">
-								<label for="">最快<span class="text-red">10</span>分钟到账<span class="text-small"></span></label>
+							<div style="padding-top: 10px;">
+								<label>最快10分钟到账</label>
 							</div>
 						</div>
-						<div class="ui-form-item ui-form-item-phone  fn-hide " id="J-mobile-check">
-							<label for="J-needphone" class="ui-label-special">
-								<input type="checkbox" value="" name="isSend" id="J-needphone" seed="JMobileCheck-JNeedphone" smartracker="on">
-								<span>到账后短信通知我（免费）</span>
-							</label>
-						</div>
-						<div class="ui-form-item fn-hide" id="J-mobile">
-							<label class="ui-label ui-label-gray" for="J-mobile-num">手机号码:</label>
-							<input type="text" value="" class="ui-input ui-input-140" name="smsNO" id="J-mobile-num" placeholder="请输入手机号码">
+						<div class="ui-form-item">
+							<label class="ui-label">支付密码:</label>
+							<input type="password"  id="paypassword" class="ui-input " name="smsNO" placeholder="请输入支付密码">
 							<div class="ui-form-explain"></div>
 						</div>
-						<div class="ui-form-item ui-form-submit">
+						<div class="ui-form-item">
 							<div class="ui-form-item-submit">
-								<div class="ui-button  ui-button-morange ">
-									<input id="nextBtn" type="submit" value="下一步" class="ui-button-text">
+								<div class="ui-button">
+									<input type="submit" v-on:click="withdraw()" value="完成">
 								</div>
 							</div>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>
 		</div>
+		<div class="withdraw-cnt" v-if="this.status==3">
+					<div class="withdraw-cnt-tit fn-clear">
+						<h2 class="title">账户充值</h2>
+						<p class="amount">余额：<span class="number">{{balance}}</span>元</p>
+						<div class="link">
+							<a class="add J-addBank" href="accountAssets.html?status=3" seed="link-add" smartracker="on" >添加银行卡</a>
+							<span class="ui-separator">|</span>
+							<a href="https://lab.alipay.com:443/consume/record/draw.htm" title="提现记录" target="_blank" class="record" seed="link-record"
+							 smartracker="on">充值记录</a>
+						</div>
+					</div>
+					<div class="withdraw-cnt-det">
+						<div class="applay">
+								<div class="ui-form-item ui-form-item-bank">
+									<label class="ui-label " >选择银行卡:</label>
+									<div class="choose" id="J-choose" >
+										<div class="choose-list " style="z-index: 90;" v-for="(item,index) in bankcard_list">
+											<div class="b-raido">
+												<input type="radio"  name="bankAccountId" v-if="index==0" checked="checked" :value="item.bank_card_code">
+												<input type="radio"  name="bankAccountId" v-if="index!=0" :value="item.bank_card_code">
+											</div>
+											<div class="b-logo">
+												<div class="bank">
+													<span>{{item.bank_name}}</span>
+												</div>
+												<div class="num">
+													尾号：<span>{{item.bank_card_code.substring(14,18)}}</span>
+												</div>
+												<div class="katong">
+													<span>快捷</span>
+												</div>
+											</div>
+											<div class="b-time">
+												<div class="ui-pentagon"><span class="ui-pentagon-text" data-text="预计次日到账">2小时</span></div>
+											</div>
+											<div class="b-amount">
+												<span title="单笔50000.00元，单日无限额">单笔50000.00元，单日…</span>
+											</div>
+										</div>
+								</div>
+								<div class="ui-form-item ui-form-item-amount">
+									<label class="ui-label" for="amount">充值金额:</label>
+									<input value="" name="totleFee" id="number" class="ui-input ui-input-140" placeholder="输入金额" >
+									<span class="ui-form-other-yuan">元</span>
+									<span id="J-fee" style="color:#ff5243;position:relative;top:1px;left:10px;"></span>
+									<div class="ui-form-explain"></div>
+								</div>	
+								<div class="ui-form-item">
+									<label class="ui-label">支付密码:</label>
+									<input type="password"  id="paypassword" class="ui-input " name="smsNO" placeholder="请输入支付密码">
+									<div class="ui-form-explain"></div>
+								</div>				
+								<div class="ui-form-item ui-form-submit">
+									<div class="ui-form-item-submit">
+										<div class="ui-button  ui-button-morange ">
+											<input id="nextBtn" type="submit"  v-on:click="recharge()" value="确认" class="ui-button-text">
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				</div>
 		<div id="Footer" style="min-height: 150px">
 			<div class="footer">
 				<div class="footer-hd">
@@ -1019,5 +794,193 @@ text-align: center;
 				</div>
 			</div>
 		</div>
+		</div>
 	</body>
+	
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
+	<script type="text/javascript" src="../public/js/identificationBankType.js"></script>
+<script type="text/javascript"><!--- 0 银行卡管理 1绑定银行卡 2提现 3 充值--->
+	var status=-1;
+	var vm = new Vue({
+		el: '#vuebody',
+		data: {
+	        status:0,
+					user:null,
+					bankcard_list:null,
+					balance:0,
+					realName:"",
+					peopleCardNum:""
+		},
+		created: function() {
+		UrlSearch();
+		console.log(status);
+		this.status=status;
+		this.getLoginUser();
+		this.getBindBankCardList();
+		this.getUserAccount();
+		this.getUserAuthInfo();
+		},
+		methods: {
+			bindBankCard(){
+				var bankcardnum=$("#bankcardnum").val();
+				var bankname=$("#bankname").val();
+				var code=$("#code").val();
+				console.log(bankcardnum);
+				console.log(bankname);
+				console.log(code);
+				var params = new URLSearchParams();
+				params.append("bank_name",bankname);
+				params.append("bank_card_code",bankcardnum);
+				params.append("code",code);
+				axios.post('http://127.0.0.1:8080/ECS_User/bindingBankCard.action',params,{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data);
+						if(response.data.result_object=="成功"){
+							alert("添加成功");
+						}
+				}).catch(function (error) {
+					console.log(error);
+				});	
+			},
+			getBindBankCardList(){
+				var self=this;
+				axios.get('http://127.0.0.1:8080/ECS_User/getBankCardList.action',{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data);
+						self.bankcard_list=response.data.result_object;
+				}).catch(function (error) {
+					console.log(error);
+				}); 
+			},
+			withdraw(){//提现
+			var bankcardnum=$("input[name='bankAccountId']:checked").val();
+		   var  num=$("#number").val();
+			 var password=$("#paypassword").val();
+				var params = new URLSearchParams();
+				params.append("bankCard_code",bankcardnum);
+				params.append("paypassword",password);
+				params.append("number",num);
+				axios.post('http://127.0.0.1:8080/ECS_User/withdrawAccount.action',params,{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data);
+						if(response.data.result_object=="成功"){
+							alert("提现成功");
+						}
+						if(response.data.result_object=="余额不足"){
+							alert("余额不足");
+						}
+						if(response.data.result_object=="密码错误"){
+							alert("密码错误");
+						}
+				}).catch(function (error) {
+					console.log(error);
+				});	
+			},
+			recharge(){//充值
+			var bankcardnum=$("input[name='bankAccountId']:checked").val();
+			var  num=$("#number").val();
+			var password=$("#paypassword").val();
+				var params = new URLSearchParams();
+				params.append("bankCard_code",bankcardnum);
+				params.append("paypassword",password);
+				params.append("number",num);
+				axios.post('http://127.0.0.1:8080/ECS_User/rechargeAccount.action',params,{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data);
+						if(response.data.result_object=="成功"){
+							alert("充值成功");
+						}
+						if(response.data.result_object=="余额不足"){
+							alert("余额不足");
+						}
+						if(response.data.result_object=="密码错误"){
+							alert("密码错误");
+						}
+				}).catch(function (error) {
+					console.log(error);
+				});	
+			},
+			getCode(){
+				var self=this;
+				axios.get('http://127.0.0.1:8080/ECS_User/getCode.action',{
+					params:{
+						"mail":self.user.mailnumber
+					}
+				}).then(function(response) {
+						console.log(response);
+						if(response.data.result_object=="成功"){
+							console.log("获取验证码成功");
+						}
+					}).catch(function(error) {
+						console.log(error);
+					});
+			},	
+			getLoginUser(){
+				var self=this;
+				axios.get('http://127.0.0.1:8080/ECS_User/getLoginUser.action',{headers:{
+					withCredentials:true,
+					"Authorization":cookie.get("JSESSIONID")
+				}}).then(function (response) {
+						console.log(response.data.result_object);
+						self.user=response.data.result_object;
+				}).catch(function (error) {
+					console.log(error);
+				}); 
+			},
+		getUserAccount(){
+			var self=this;
+			axios.get('http://127.0.0.1:8080/ECS_User/getUserAccount.action',{headers:{
+				withCredentials:true,
+				"Authorization":cookie.get("JSESSIONID")
+			}}).then(function (response) {
+					console.log(response.data);
+					self.balance=response.data.result_object.balance;
+			}).catch(function (error) {
+				console.log(error);
+			}); 
+		},
+		getUserAuthInfo(){
+			var self=this;
+			axios.get('http://127.0.0.1:8080/ECS_User/getAuthInfo.action',{headers:{
+				withCredentials:true,
+				"Authorization":cookie.get("JSESSIONID")
+			}}).then(function (response) {
+					console.log(response.data);
+					self.realName=response.data.result_object.real_name;
+					self.peopleCardNum=response.data.result_object.people_card_num;
+			}).catch(function (error) {
+				console.log(error);
+			}); 
+		},
+			getBankName(){
+				var num=$("#bankcardnum").val();
+			 var data=bankCardAttribution(num);
+			   $("#bankname").val(data.bankName);
+			}
+		}
+	});
+	function UrlSearch() {
+		var str=location.href; //取得整个地址栏
+		var num=str.indexOf("?")
+		str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+		var arr=str.split("&"); //各个参数放到数组里
+		//  console.log(arr)
+		for(var i=0;i < arr.length;i++){
+					num=arr[i].indexOf("=");
+					if(num>0){
+							name=arr[i].substring(0,num);
+							value=arr[i].substr(num+1);
+							if(name=="status") this.status=value;
+					}
+		}
+			}		
+</script>
 </html>

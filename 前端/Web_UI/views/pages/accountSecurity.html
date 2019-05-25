@@ -12,7 +12,7 @@
 		<style>
 			.security-center {
     margin: 30px auto;
-    width: 1200px;
+    width: 1190px;
     background: #fff;
 }
 .security-center .security-title {
@@ -144,80 +144,83 @@
 		</style>
 	</head>
 	<body>
-		<div class="cover">
-			<div class="site-nav">
-				<div class="site-nav-bd">
-					<ul class="site-nav-bd-l">
-						<li>
-							<div class="site-nav-menu-hd">
-								<span class="site-nav-region">中国大陆</span>
+		<div id="vuebody" style="width: auto;height: auto;">
+			<input type="hidden" id="div_status" name="status" value="12"/>
+	<div class="cover">
+		<div class="site-nav">
+			<div class="site-nav-bd">
+				<ul class="site-nav-bd-l">
+					<li>
+						<div class="site-nav-menu-hd">
+							<span class="site-nav-region">中国大陆</span>
+						</div>
+					</li>
+					<li>
+						<div class="site-nav-menu-hd">
+							<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
+							<div class="site-nav-user"> <a></a>
 							</div>
+						</div>
+					</li>
+					<li>
+					</li>
+				</ul>
+				<ul class="site-nav-bd-r">
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="/web_UI/">
+								<span>首页</span>
+							</a>
+						</div>
 						</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
-								<div class="site-nav-user"> <a></a>
-								</div>
-							</div>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="browseHistory.html">
+								<span>我的足迹</span>
+							</a>
+						</div>
 						</li>
-						<li>
-						</li>
-					</ul>
-					<ul class="site-nav-bd-r">
-						<li>
-							<div class="site-nav-menu-hd">
-								<a>
-									<span>首页</span>
-								</a>
-							</div>
-							</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a>
-									<span>我的足迹</span>
-								</a>
-							</div>
-							</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
-									<span>购物车</span>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a href="">
-									<span>收藏夹</span>
-								</a>
-							</div>
-						</li>
-						<li>
-							<div class="site-nav-menu-hd">
-								<a href="">
-									<span>个人中心</span>
-								</a>
-							</div>
-						</li>
-					</ul>
-				</div>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a id="mc-menu-hd" href="shoppingCart.html">
+								<span>购物车</span>
+							</a>
+						</div>
+					</li>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="favorites.html">
+								<span>收藏夹</span>
+							</a>
+						</div>
+					</li>
+					<li>
+						<div class="site-nav-menu-hd">
+							<a href="user.html">
+								<span>个人中心</span>
+							</a>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</div>
+	</div>
 		<div class="security-center">
 			<div class="security-title">
-				<strong>实名认证</strong>
-				<strong>更改邮箱</strong>
-				<strong>修改手机</strong>
-				<strong>修改登录密码</strong>
-				<strong>设置支付密码</strong>
+				<strong v-if="this.status==0">实名认证</strong>
+				<strong v-if="this.status==1">修改登录密码</strong>
+				<strong v-if="this.status==2">设置支付密码</strong>
+				<strong v-if="this.status==3">修改支付密码</strong>
+				<strong v-if="this.status==4">更改手机</strong>
+				<strong v-if="this.status==5">修改邮箱</strong>
 			</div>
-			<div class="security-con">
+			<div class="security-con" v-if="this.status==0">
 				<div class="real-name">
 					<ul id="authForm" class="security-form" style="">
 						<li class="item ">
 							<div class="label">真实姓名：</div>
 							<div class="value">
-								<input id="ui-input-holderName" name="name" type="text" class="ui-input short-input" maxlength="25"
+								<input id="ui-input-holderName" id="realname" name="name" type="text" class="ui-input short-input" maxlength="25"
 								 autocomplete="off">
 								<span id="span-notify-holderName" class="extra">为确保您的账户安全，请填写您本人的实名认证信息</span>
 								<span id="span-red-holderName" class="error-text"></span>
@@ -226,19 +229,19 @@
 						<li class="item ">
 							<div class="label">身份证号：</div>
 							<div class="value">
-								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
+								<input  id="peopleNum" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
 								 autocomplete="off">
 								<span id="span-red-holderId" class="error-text">请输入身份证</span>
 							</div>
 						</li>
-            <li class="item">
+            <li class="item" style="height:250px;">
 							<div class="label">身份证照片:</div>
 							<div class="value" style="height:250px;">
 								<div style="display: block;height:200px;float: left;margin-top: 20px;">
 									<p style="font-size: 12px;line-height: 12px;text-align: center;">人像面</p></span>
 								<div class="upload_div" style="display: block;">
-									<span class="card-img-upload"><img src="../public/images/people_card1.png"/ style="width: 216px;height: 135px;">
-									<input type="file" class="file_input" >
+									<span class="card-img-upload"><img src="../public/images/people_card1.png" style="width: 216px;height: 135px;"></span>
+									<input type="file" class="file_input" @change="upload1" >
 								</div>
 								<div class="upload_div" style="float: left;display: none;">
 									<span style="margin: 0 17px 20px 0;text-align: center;float: left;">
@@ -250,11 +253,11 @@
 								</div>
 								<div style="display: block;height:200px;float: left;margin-left:20px;margin-top: 20px;">
 									<p style="font-size: 12px;line-height: 12px;text-align: center;">国徽面</p></span>
-								<div class="upload_div" style="display: none;">
-									<span class="card-img-upload"><img src="../public/images/people_card2.png" style="width: 216px;height: 135px;"/>
-									<input type="file" class="file_input" >
+								<div class="upload_div" style="display: block;">
+									<span class="card-img-upload"><img src="../public/images/people_card2.png" style="width: 216px;height: 135px;"/></span>
+									<input type="file" class="file_input"  @change="upload2">
 								</div>
-								<div class="upload_div" style="float: left;display: block;">
+								<div class="upload_div" style="float: left;display: none;">
 									<span style="margin: 0 17px 20px 0;text-align: center;float: left;">
 										<img src="../public/images/people_card1.png" style="width: 216px;height: 135px;border: 1px solid red;">
 										<p style="font-size: 12px;line-height: 12px;text-align: center;">错误</p>
@@ -268,14 +271,14 @@
 							<div class="label">&nbsp;</div>
 							<div class="value">
 								<div class="security-form-btn" style="margin-top: 20px;">
-									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">同意协议并确定</a>
+									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" v-on:click="peopleAuth()">同意协议并确定</a>
 								</div>
 							</div>
 						</li>
 					</ul>
 				</div>
 			</div>
-			<div class="security-con">、
+			<div class="security-con" v-if="this.status==1">、
 				<div class="real-name">
 					<ul id="authForm" class="security-form" style="">
 						<li class="item">
@@ -306,10 +309,10 @@
 								<span id="span-getverfiyCode" class="error-texts"></span>
 							</div>
 						</li>
-						<li class="item ">
-							<div class="label">&nbsp;</div>
+						<li class="item">
+							<div class="label" style="clear: left;">&nbsp;</div>
 							<div class="value">
-								<div class="security-form-btn">
+								<div class="security-form-btn" style="margin-top: 20px;">
 									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
 								</div>
 							</div>
@@ -317,13 +320,13 @@
 					</ul>
 				</div>
 			</div>
-			<div class="security-con">、
+			<div class="security-con" v-if="this.status==2">、
 				<div class="real-name">
 					<ul id="authForm" class="security-form" style="">
 						<li class="item">
 							<div class="label">请输入支付密码：</div>
 							<div class="value">
-								<input id="ui-input-holderId" name="credentialsNo" type="password" class="ui-input long-input" maxlength="18"
+								<input  id="paypassword1" name="credentialsNo" type="password" class="ui-input long-input" maxlength="18"
 								autocomplete="off">
 								<span id="span-red-holderId" class="error-text">请输入支付密码</span>
 							</div>
@@ -331,16 +334,16 @@
 						<li class="item">
 							<div class="label">请再次确认支付密码：</div>
 							<div class="value">
-								<input id="ui-input-holderId" name="credentialsNo" type="password" class="ui-input long-input" maxlength="18"
+								<input id="paypassword2" name="credentialsNo" type="password" class="ui-input long-input" maxlength="18"
 								autocomplete="off">
 								<span id="span-red-holderId" class="error-text">请再次确认支付密码</span>
 							</div>
 						</li>
 						<li class="item">
-							<div class="label">短信验证码：</div>
+							<div class="label">邮箱验证码：</div>
 							<div class="value">
 								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
-								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
+								<a href="javascript:" v-on:click="getCode()"  id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
 									class="yzm-text">获取验证码</span></a>
 								<div href="" class="none-message">
 									<span class="text">没有收到短信？</span>
@@ -349,17 +352,17 @@
 							</div>
 						</li>
 						<li class="item ">
-							<div class="label">&nbsp;</div>
+							<div class="label" style="clear: left;">&nbsp;</div>
 							<div class="value">
-								<div class="security-form-btn">
-									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
+								<div class="security-form-btn" style="margin-top: 20px;">
+									<a id="authSubmit" v-on:click="bindPayPassword()" href="javascript:" class="ui-button btn-disable" >确定</a>
 								</div>
 							</div>
 						</li>
 					</ul>
 				</div>
 			</div>
-			<div class="security-con">、
+			<div class="security-con" v-if="this.status==3">、
 				<div class="real-name">
 				    <ul id="authForm" class="security-form" style="">
 						<li class="item">
@@ -391,9 +394,9 @@
 							</div>
 						</li>
 						<li class="item">
-							<div class="label">&nbsp;</div>
+							<div class="label" style="clear: left;">&nbsp;</div>
 							<div class="value">
-								<div class="security-form-btn">
+								<div class="security-form-btn" style="margin-top: 20px;">
 									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
 								</div>
 							</div>
@@ -401,25 +404,13 @@
 					</ul>
 				</div>
 			</div>
-			<div class="security-con">、
+			<div class="security-con" v-if="this.status==4">、
 				<div class="real-name">
 					<ul id="authForm" class="security-form" style="">
 						<li class="item">
 							<div class="label">当前绑定的手机号码：</div>
 							<div class="value">
 								<span id="span-red-holderId" class="error-text">12345455</span>
-							</div>
-						</li>
-						<li class="item">
-							<div class="label">请输入解绑的短信验证码：</div>
-							<div class="value">
-								<input type="text" id="input-card-verifycode" class="ui-input short-input" maxlength="6" autocomplete="off">
-								<a href="javascript:" id="auth-getAuthVerifyCode" class="yzm-btn"><span class="yzm-countdown"></span><span
-									class="yzm-text">获取验证码</span></a>
-								<div href="" class="none-message">
-									<span class="text">没有收到短信？</span>
-								</div>
-								<span id="span-getverfiyCode" class="error-texts"></span>
 							</div>
 						</li>
 						<li class="item">
@@ -443,9 +434,9 @@
 							</div>
 						</li>
 						<li class="item ">
-							<div class="label">&nbsp;</div>
+							<div class="label" style="clear: left;">&nbsp;</div>
 							<div class="value">
-								<div class="security-form-btn">
+								<div class="security-form-btn" style="margin-top: 20px;">
 									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
 								</div>
 							</div>
@@ -453,7 +444,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="security-con">、
+			<div class="security-con" v-if="this.status==5">、
 				<div class="real-name">
 					<ul id="authForm" class="security-form" style="">
 						<li class="item">
@@ -475,7 +466,7 @@
 							</div>
 						</li>
 						<li class="item">
-							<div class="label">请输入要绑定的邮箱号码：</div>
+							<div class="label" style="clear: left;">请输入要绑定的邮箱号码：</div>
 							<div class="value">
 								<input id="ui-input-holderId" name="credentialsNo" type="text" class="ui-input long-input" maxlength="18"
 								autocomplete="off">
@@ -495,9 +486,9 @@
 							</div>
 						</li>
 						<li class="item ">
-							<div class="label">&nbsp;</div>
+							<div class="label" style="clear: left;">&nbsp;</div>
 							<div class="value">
-								<div class="security-form-btn">
+								<div class="security-form-btn" style=" margin-top: 20px;">
 									<a id="authSubmit" href="javascript:" class="ui-button btn-disable" clstag="jr|keycount|Realname|Realname_smrz1">确定</a>
 								</div>
 							</div>
@@ -561,18 +552,121 @@
 					</div>
 				</div>
 			</div>
+			</div>
 	</body>
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
 	<script type="text/javascript">
+     var status=-1;
 		var vm = new Vue({
 			el: '#vuebody',
 			data: {
-				
+				status:0,
+				peopleFile1:null,
+				peopleFile2:null,
+				user:null
 			},
 			created: function() {
+				 UrlSearch();
+				 console.log(status);
+				 this.status=status;	
+				 this.getLoginUser();
 			},
 			methods: {
-				
-			}
-		})
+				upload1(e){
+					let file=e.target.files[0];
+					this.peopleFile1=file;
+				},
+				upload2(e){
+					let file=e.target.files[0];
+					this.peopleFile2=file;
+				},
+				peopleAuth(){
+						var params = new FormData();
+						var realname=$("#realname").val();
+						var card_num=$("#peopleNum").val();
+						console.log(this.peopleFile2.name);
+						console.log(this.peopleFile1.name);
+						
+						params.append("back_image",this.peopleFile2);
+						params.append("front_image",this.peopleFile1);	
+						params.append("realName",realname);
+						params.append("card_num",card_num);	 
+						axios.post('http://127.0.0.1:8080/ECS_User//authenticPeopleCard.action',params,{headers:{
+							withCredentials:true,
+							"Content-Type":"multipart/form-data",
+							"Authorization":cookie.get("JSESSIONID")
+						}}).then(function(response) {
+							console.log(response.data);
+							if(response.data.result_code==200){
+								alert("实名认证资料保存成功");
+							}
+						}).catch(function(error) {
+								console.log(error);
+							});
+					},
+				bindPayPassword(){
+					var password1=$("#paypassword1").val();
+					var password2=$("#paypassword2").val();
+					console.log(password2);
+					var code=$("#input-card-verifycode").val();
+					var params = new URLSearchParams();
+					params.append("paypassword",password2);
+					params.append("code",code);
+					axios.post('http://127.0.0.1:8080/ECS_User/setPayPassword.action',params,{headers:{
+						withCredentials:true,
+						"Authorization":cookie.get("JSESSIONID")
+					}}).then(function (response) {
+							console.log(response.data);
+							if(response.data.result_object=="成功"){
+								alert("添加成功");
+							}
+					}).catch(function (error) {
+						console.log(error);
+					});	
+				},
+				getCode(){
+					var self=this;
+					 axios.get('http://127.0.0.1:8080/ECS_User/getCode.action',{
+						 params:{
+							 "mail":self.user.mailnumber
+						 }
+					 }).then(function(response) {
+							console.log(response);
+							if(response.data.result_object=="成功"){
+								console.log("获取验证码成功");
+							}
+						}).catch(function(error) {
+							console.log(error);
+						});
+				},	
+				getLoginUser(){
+					var self=this;
+					axios.get('http://127.0.0.1:8080/ECS_User/getLoginUser.action',{headers:{
+						withCredentials:true,
+						"Authorization":cookie.get("JSESSIONID")
+					}}).then(function (response) {
+							console.log(response.data.result_object);
+							self.user=response.data.result_object;
+					}).catch(function (error) {
+						console.log(error);
+					}); 
+				}
+				}
+		});
+		function UrlSearch() {
+		   var str=location.href; //取得整个地址栏
+		   var num=str.indexOf("?")
+		   str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+		   var arr=str.split("&"); //各个参数放到数组里
+		  //  console.log(arr)
+		   for(var i=0;i < arr.length;i++){
+		        num=arr[i].indexOf("=");
+		        if(num>0){
+		             name=arr[i].substring(0,num);
+		             value=arr[i].substr(num+1);
+								 if(name=="status") this.status=value;
+		        }
+		   }
+		    }		
 	</script>
 </html>

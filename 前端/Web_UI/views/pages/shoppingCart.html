@@ -3,12 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<title>购物车</title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
 		<style>
 			.w {
-    width: 990px;
+    width: 1190px;
+		
     margin: 0 auto;
 		padding: 10px 0 0;
 		height: auto;
@@ -16,7 +20,7 @@
 .header {
     padding: 20px 0 40px;
     height: 35px;
-		width: 990px;
+		width: 1190px;
     margin: 0 auto;
 }
 .logo{
@@ -24,7 +28,7 @@
     height: 35px;
     font-size: 35px;
     line-height: 35px;
-    color: #f50;
+    color:#C91623;
     position: relative;
     display: inline-block;
 }
@@ -144,7 +148,6 @@
     border: 1px solid #eee;
     float: left;
     overflow: hidden;
-    /*background: #fff url(//gtd.alicdn.com/tps/i3/T1b1m3XkVpXXXXXXXX-32-32.gif) no-repeat 50% 50%;*/
 }
 .item-content .item-title {
     font-size: 12px;
@@ -245,7 +248,7 @@
     height: 50px;
 }
 .float-bar{
-    width: 990px;
+    width: 1190px;
     margin: 0 auto;
 }
 .float-bar-wrapper {
@@ -309,7 +312,7 @@
 .amount-sum em {
     line-height: 50px;
     padding: 0 5px;
-		color: #f40;
+		color: red;
     font-weight: 700;
     font-size: 18px;
 		float: left;
@@ -322,7 +325,7 @@
     line-height: 48px;
 }
 .float-bar .price-sum .price {
-    color: #f40;
+    color: red;
     font-weight: 400;
     font-size: 18px;
     line-height: 48px;
@@ -365,6 +368,7 @@
 </style>
 	</head>
 	<body>
+		<div id="vuebody" style="width: auto;height: auto;">
 		<div class="cover">
 			<div class="site-nav">
 				<div class="site-nav-bd">
@@ -376,7 +380,7 @@
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 								<div class="site-nav-user"> <a></a>
 								</div>
 							</div>
@@ -387,35 +391,35 @@
 					<ul class="site-nav-bd-r">
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="/web_UI/">
 									<span>首页</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="browseHistory.html">
 									<span>我的足迹</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
+								<a id="mc-menu-hd" href="shoppingCart.html">
 									<span>购物车</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="favorites.html">
 									<span>收藏夹</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="user.html">
 									<span>个人中心</span>
 								</a>
 							</div>
@@ -425,9 +429,9 @@
 			</div>
 		</div>
 		<div class="w">
-			<div class="header" style="border: 1px solid #000000;">
-				<div id="logo-div" style="border: 1px solid #000000;width: 20%;float: left;height:38px; ">
-					<a href="http://www.jd.com/" class="logo">购物车</a>
+			<div class="header" >
+				<div id="logo-div" style="width: 20%;float: left;height:38px; ">
+					<a  class="logo">购物车</a>
 				</div>
 				<div class="cart-search">
 					<div class="form">
@@ -439,37 +443,6 @@
 			<div class="cart-content">
 				<div class="cart">
 					<div id="J_CartMain" class="cart-main">
-						<!--<div class="cart-table-th">
-							<div class="wp">
-								<div class="th th-chk">
-									<div id="J_SelectAll1" class="select-all J_SelectAll">
-										<div class="cart-checkbox"><input class="J_CheckBoxShop" id="J_SelectAllCbx1" type="checkbox" name="select-all"
-											 value="true"><label for="J_SelectAllCbx1">勾选购物车内所有商品</label></div>&nbsp;&nbsp;全选
-									</div>
-								</div>
-								<div class="th th-item">
-									<div class="td-inner">商品信息</div>
-								</div>
-								<div class="th th-info">
-									<div class="td-inner">&nbsp;</div>
-								</div>
-								<div class="th th-price">
-									<div class="td-inner">单价</div>
-								</div>
-								<div class="th th-amount">
-									<div class="td-inner">数量</div>
-								</div>
-								<div class="th th-sum">
-									<div class="td-inner">金额</div>
-								</div>
-								<div class="th th-op">
-									<div class="td-inner">操作</div>
-								</div>
-								<div class="th th-vil hidden">
-									<div class="td-inner">购买客户信息</div>
-								</div>
-							</div>
-						</div>-->
 						<div class="cart-thead">
 							<!-- 我的冰箱 -->
 							<div class="column t-checkbox">
@@ -478,26 +451,26 @@
 								</div>
 								全选
 							</div>
-							<div class="column" style="width:100px ;">商品</div>
-							<div class="column" style="width:100px ;"></div>
-							<div class="column" style="width:100px ;">单价</div>
-							<div class="column" style="width:100px ;">数量</div>
-							<div class="column" style="width:100px ;">小计</div>
-							<div class="column" style="width:100px ;">操作</div>
+							<div class="column" style="width:25%;">商品</div>
+							<div class="column" style="width:15%;">规格</div>
+							<div class="column" style="width:10%;">单价</div>
+							<div class="column" style="width:10%;">数量</div>
+							<div class="column" style="width:10%;">小计</div>
+							<div class="column" style="width:10%;">操作</div>
 						</div>
 						<div>
 							<div style="height: auto;">
 								<div style="margin-bottom: 15px;">
+									<div  v-for="data in shopCartList">
 									<div class="shop">
 										<div class="shop-info">
 											<div class="cart-checkbox">
 												<input class="jdcheckbox" type="checkbox" style="margin-left: 16px;"></div>
 											&nbsp;&nbsp;<span class="shop-icon icon-B"></span>
-											店铺：<a href="" target="_blank" class="J_MakePoint">李宁集团官方折扣</a>
+											店铺：<a href="" target="_blank" class="J_MakePoint">{{data.goodsInfo.store_name}}</a>
 										</div>
 									</div>
 									<div class="order-content">
-										<div>
 											<div class="bundle  bundle-last ">
 												<div class="bundle-main">
 													<div>
@@ -512,28 +485,26 @@
 																	<li class="td" style="width: 302px;">
 																		<div class="td-inner">
 																			<div class="item-pic J_ItemPic img-loaded"><a href="" target="_blank">
-																					<img src="https://img.alicdn.com/bao/uploaded/i3/613968296/TB2su3tc4TpK1RjSZFMXXbG_VXa_!!613968296.jpg_80x80.jpg"
-																					 class="itempic J_ItemImg"></a></div>
+																					<img :src="data.goodsInfo.goods_image_path" width="80px" class="itempic J_ItemImg"></a></div>
 																			<div class="item-info">
 																				<div class="item-basic-info"> <a href="//detail.tmall.com/item.htm?id=565094755199" target="_blank"
-																					 class="item-title J_MakePoint" data-point="tbcart.8.11">【活动价】
-																						李宁运动套装男士新款训练系列长袖茄克长裤防泼水冬季运动服</a>
+																					 class="item-title J_MakePoint">{{data.goodsInfo.goods_name}}</a>
 																				</div>
 																			</div>
 																		</div>
 																	</li>
 																	<li class="td" style="width: 172px;padding-right: 20px;">
 																		<div class="p-props-new">
-																			<p class="props-txt" tabindex="0">颜色分类：公牛红/标准黑</p>
-																			<p class="props-txt" tabindex="0">尺码：L</p>
+																			<p class="props-txt" v-for="item in data.goodsProperty">
+																			{{item.goods_property_name}}：{{item.goods_property_value}}</p>
 																		</div>
 																	</li>
 																	<li class="td" style="width: 120px;">
 																		<div class="td-inner">
 																			<div class="item-price">
 																				<div class="price-content">
-																					<div class="price-line"><em class="price-original">￥499.00</em></div>
-																					<div class="price-line"><em class="price-now" tabindex="0">￥278.00</em></div>
+																					<div class="price-line"><em class="price-original">￥{{data.goodsInfo.goods_old_price}}</em></div>
+																					<div class="price-line"><em class="price-now" tabindex="0">￥{{data.goodsInfo.goods_now_price}}</em></div>
 																				</div>
 																			</div>
 																		</div>
@@ -541,12 +512,13 @@
 																	<li class="td" style="width:120px;">
 																		<div class="td-inner">
 																			<div class="quantity-form">
-																				<a href="#" class="minus">-</a><input type="text" value="1" class="itxt" data-max="5" data-now="1"
-																				 autocomplete="off"><a href="#" class="increment">+</a></div>
+																				<a href="#" class="minus">-</a><input type="text" :value="data.goodsInfo.goods_num" class="itxt" >
+																				<a href="#" class="increment">+</a></div>
 																		</div>
 																	</li>
 																	<li class="td" style="width: 105px;">
-																		<div class="td-inner"><em tabindex="0" style="color: #f40;font-weight: 700;text-align: -webkit-match-parent;">￥278.00</em>
+																		<div class="td-inner"><em tabindex="0" style="color:red;font-weight: 700;text-align: -webkit-match-parent;">
+																		￥{{data.goodsInfo.goods_now_price}}</em>
 																		</div>
 																	</li>
 																	<li class="td" style="width: 84px;padding: 0 0 0 15px;">
@@ -557,7 +529,7 @@
 																</ul>
 															</div>
 														</div>
-													</div>
+												</div>
 												</div>
 											</div>
 										</div>
@@ -579,7 +551,7 @@
 													<div class="price-sum"><span class="txt">合计（不含运费）：</span><strong class="price"><em id="J_Total"><span
 																 class="total-symbol">&nbsp;</span>0.00</em></strong></div>
 													<div class="btn-area"><a href="javascript:void(0)" id="J_Go" class="submit-btn submit-btn-disabled"
-														 aria-label="请注意如果没有选择宝贝，将无法结算"><span>结&nbsp;算</span><b></b></a></div>
+													 v-on:click="createOrder()"  disabled="true"><span>结&nbsp;算</span><b></b></a></div>
 												</div>
 											</div>
 										</div>
@@ -646,5 +618,36 @@
 				</div>
 			</div>
 		</div>
+		</div>
 	</body>
+<script type="text/javascript" src="../public/js/cookie.js"></script>
+<script type="text/javascript">
+		var status=1;
+	var vm = new Vue({
+			el: '#vuebody',
+			data: {
+				shopCartList:[]
+			},
+			created: function() {		
+				this.getShopCart();
+			},
+			methods: {
+				getShopCart(){
+					var self=this;
+					axios.get('http://127.0.0.1:8888/ECS_Goods/getShopCartList',{headers:{
+						withCredentials:true,
+					 	"Authorization":cookie.get("JSESSIONID") 
+					}}).then(function (response) {
+							console.log(response.data);
+							if(response.data.result_code==200){self.shopCartList=response.data.result_object;}
+					}).catch(function (error) {
+						console.log(error);
+					}); 
+				},
+				createOrder(){
+					alert(123);
+				}
+			}
+			});
+			</script>
 </html>

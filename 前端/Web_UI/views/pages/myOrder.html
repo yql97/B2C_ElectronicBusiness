@@ -3,12 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script type="text/javascript" src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/top.css" />
 		<style>
 			.index{
     background-color: #fff;
+	margin-top: 20px;
 }
 .nav-mod-tabs {
     margin-top: 22px;
@@ -240,6 +244,7 @@
     </style>
 	</head>
 	<body>
+	<div id="vuebody" style="width: auto;height: auto;">	
 		<div class="cover">
 			<div class="site-nav">
 				<div class="site-nav-bd">
@@ -251,7 +256,7 @@
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<div class="site-nav-sign"> <a>亲，请登录</a> <a href="">免费注册</a> </div>
+								<div class="site-nav-sign"> <a href="login.html">亲，请登录</a> <a href="register.html">免费注册</a> </div>
 								<div class="site-nav-user"> <a></a>
 								</div>
 							</div>
@@ -262,35 +267,35 @@
 					<ul class="site-nav-bd-r">
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="/web_UI/">
 									<span>首页</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a>
+								<a href="browseHistory.html">
 									<span>我的足迹</span>
 								</a>
 							</div>
 							</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a id="mc-menu-hd">
+								<a id="mc-menu-hd" href="shoppingCart.html">
 									<span>购物车</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="favorites.html">
 									<span>收藏夹</span>
 								</a>
 							</div>
 						</li>
 						<li>
 							<div class="site-nav-menu-hd">
-								<a href="">
+								<a href="user.html">
 									<span>个人中心</span>
 								</a>
 							</div>
@@ -299,23 +304,25 @@
 				</div>
 			</div>
 		</div>
-		<div id="main" style="margin:0 auto;min-height: 600px;width: 80%;">
+		<div id="main" style="margin:0 auto;min-height: 600px;width:1190px;">
+			<div style="padding: 15px 30px;height: 29px;background-repeat: repeat-x;background-position: 0 0;border-bottom: 1px solid #afbedf;">
+			<h1 style="color: #4d4d4d;font: 700 18px/28px 微软雅黑;">我的订单</h1></div>
 			<div id="tp-bought-root" class="index">
 				<div class="nav-mod-tabs">
 					<div class="tabs-mod-main">
 						<div class="tabs-mod-tab">
-							<span class="nav-mod-tab"><span class="nav-mod-text">所有订单</span>
+							<span class="nav-mod-tab"><span class="nav-mod-text" id="status0" v-on:click="getOrderByStatus(0)">所有订单</span>
 								<span class="nav-mod-count"></span></span>
 							<span class="tabs-mod-sep">|</span></div>
 						<div class="tabs-mod-tab">
-							<span class="nav-mod-tab"><span class="nav-mod-text">待付款</span><span class="nav-mod-count"></span></span>
+							<span class="nav-mod-tab"><span class="nav-mod-text" id="status1" v-on:click="getOrderByStatus(1)">待付款</span><span class="nav-mod-count"></span></span>
 							<span class="tabs-mod-sep">|</span></div>
-						<div class="tabs-mod-tab"><span class="nav-mod-tab"><span class="nav-mod-text">待发货</span><span class="nav-mod-count"></span></span><span
+						<div class="tabs-mod-tab"><span class="nav-mod-tab"><span class="nav-mod-text" id="status2" v-on:click="getOrderByStatus(2)">待发货</span><span class="nav-mod-count"></span></span><span
 							 class="tabs-mod-sep">|</span></div>
-						<div class="tabs-mod-tab"><span class="nav-mod-tab"><span class="nav-mod-text">待收货</span><span class="nav-mod-count"></span></span><span
+						<div class="tabs-mod-tab"><span class="nav-mod-tab"><span class="nav-mod-text" id="status3" v-on:click="getOrderByStatus(3)">待收货</span><span class="nav-mod-count"></span></span><span
 							 class="tabs-mod-sep">|</span></div>
-						<div class="tabs-mod-tab tabs-mod__selected___2DHDY"><span class="nav-mod-tab"><span class="nav-mod-text">待评价</span><span
-								 class="nav-mod-count">4</span></span><span class="tabs-mod-sep">|</span></div>
+						<div class="tabs-mod-tab tabs-mod__selected___2DHDY"><span class="nav-mod-tab"><span class="nav-mod-text" id="status4" v-on:click="getOrderByStatus(4)">待评价</span>
+						<span class="nav-mod-count"></span></span><span class="tabs-mod-sep">|</span></div>
 					</div>
 					<div class="tabs-mod-minors">
 						<div class="tabs-mod-tab"><span id="recycleTab" class="nav-mod-tab nav-mod-recycle">
@@ -338,7 +345,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="index-mod-order-container">
+				<div class="index-mod-order-container"  v-for="data in orderList ">
 					<div class="bought-wrapper-mod-trade-order bought-wrapper-mod-closed">
 						<table class="bought-table-mod-table bought-wrapper-mod-table">
 							<tbody class="bought-wrapper-mod-head">
@@ -346,11 +353,11 @@
 									<td style="width: 30%;">
 										<label class="bought-wrapper-mod-checkbox-label"><span class="bought-wrapper-mod-checkbox">
 												<input type="checkbox"></span><span class="bought-wrapper-mod-create-time">2019-02-10</span></label><span>
-											<span>订单号</span><span>: </span><span>273509772200734320</span></span></td>
+											<span>订单号</span><span>: </span><span>{{data.order_code}}</span></span></td>
 									<td colspan="2" style="width: 30%" class="bought-wrapper-mod-seller-container"><span class="seller-mod-container"><img
 											 src="//gtd.alicdn.com/tps/i2/TB1aJQKFVXXXXamXFXXEDhGGXXX-32-32.png" class="seller-mod-icon">
-											<a href="//store.taobao.com/shop/view_shop.htm?user_number_id=814074396" class="seller-mod-name" title="君宝话费充值专营店"
-											 target="_blank" rel="noopener noreferrer">君宝话费充值专营店</a></span></td>
+											<a href="//store.taobao.com/shop/view_shop.htm?user_number_id=814074396" class="seller-mod-name"
+											 target="_blank" rel="noopener noreferrer">{{data.store_name}}</a></span></td>
 									<td colspan="3" style="width: 40%;" class="bought-wrapper-mod-thead-operations-container">
 										<a href="###" class="bought-wrapper-mod-th-operation always-visible" title="删除订单" target="_blank" rel="noopener noreferrer"
 										 action="a7" id="delOrder"><i style="height:17px;width:1px;padding-left:17px;overflow:hidden;vertical-align:middle;font-size:0px;display:inline-block;visibility:visible;background:url(//img.alicdn.com/tps/i1/TB1heyGFVXXXXXpXXXXR3Ey7pXX-550-260.png) no-repeat -239px -176px;"></i></a></td>
@@ -360,14 +367,13 @@
 								<tr>
 									<td>
 										<div class="ml-mod-container production-mod-production suborder-mod-production">
-											<div class="ml-mod-media" style="width:80px;"><a href="//buy.taobao.com/auction/buy_now.jhtml?item_id_num=15034360642&amp;quantity=1"
-												 class="production-mod-pic" target="_blank"><img src="//img.alicdn.com/imgextra/i4/T1s_mgXdRiXXbr5z78_100959.jpg_80x80.jpg"><span>
+											<div class="ml-mod-media" style="width:80px;"><a href=""
+												 class="production-mod-pic" target="_blank">
+												 <img :src="data.goods_image_path" width="80px"><span>
 													</span></a></div>
 											<div style="margin-left:90px;">
-												<p><a href="//buy.taobao.com/auction/buy_now.jhtml?item_id_num=15034360642&amp;quantity=1" target="_blank"><span></span><span
-														 style="line-height:16px;">浙江电信20元手机充值
-															快充 即时到帐 自动充值 支持固话充值</span><span>
-														</span></a><span></span><span></span></p>
+												<p><a href="" target="_blank"><span
+														 style="line-height:16px;">{{data.goods_name}}</span></a><span></span></p>
 												<p><a href="//www.taobao.com/go/act/315/xfzbz_rsms.php?ad_id=&amp;am_id=130011830696bce9eda3&amp;cm_id=&amp;pm_id="
 													 title="如实描述" type="3" style="margin-right:8px;" target="_blank">
 														<img src="//img.alicdn.com/tps/TB1PDB6IVXXXXaVaXXXXXXXXXXX.png"></a>
@@ -378,41 +384,44 @@
 									</td>
 									<td>
 										<div class="price-mod-price">
-											<p><span>￥</span><span>20.00</span></p>
+											<p><span>￥</span><span>{{data.new_price}}</span></p>
 										</div>
 									</td>
 									<td>
 										<div>
-											<p>1</p>
+											<p>{{data.goods_num}}</p>
 										</div>
 									</td>
 									<td>
 										<div>
 											<div class="price-mod-price">
-												<p><strong><span>￥</span><span>20.00</span></strong></p>
+												<p><strong><span>￥</span><span>{{data.new_price*data.goods_num}}</span></strong></p>
 											</div>
-											<p style="color:#6c6c6c;font-family:verdana;"><span></span><span>(自动充值)</span><span></span><span></span></p>
+											<!-- <p style="color:#6c6c6c;font-family:verdana;"><span></span><span>(自动充值)</span><span></span><span></span></p>
 											<div style="font-family:verdana;">
 												<div></div>
-											</div>
-											<p><a href="http://www.taobao.com/m?sprefer=symj28" title="手机订单" style="margin-right:5px;" target="_blank"><img
-													 src="//img.alicdn.com/tps/i1/T1xRBqXdNAXXXXXXXX-46-16.png"></a></p>
+											</div> -->
 										</div>
 									</td>
 									<td>
 										<div>
-											<p style="margin-bottom:3px;"><span class="text-mod-link">充值成功</span></p>
+											<p style="margin-bottom:3px;"><span class="text-mod-link">交易成功</span></p>
 											<div>
-												<p style="margin-bottom:3px;"><a href="//buyertrade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=273509772200734320"
-													 class="text-mod-link text-mod-hover" target="_blank" rel="noopener noreferrer" id="viewDetail">订单详情</a></p>
+												<p style="margin-bottom:3px;"><a href="" class="text-mod-link text-mod-hover" target="_blank" rel="noopener noreferrer" 
+												id="viewDetail" v-if="data.order_status!=0&&data.order_status!=1">订单详情</a></p>
 											</div>
 										</div>
 									</td>
 									<td>
 										<div>
-											<p style="margin-bottom:3px;"><a href="//rate.taobao.com/remarkSeller.jhtml?spm=a1z09.2.0.0.74a22e8dylfJSe&amp;tradeID=273509772200734320&amp;returnURL=https://buyertrade.taobao.com/trade/itemlist/list_bought_items.htm"
-												 class="button-mod-button button-mod-default button-mod-button" target="_blank" id="rateOrder">评价</a></p>
-											<p style="margin-bottom:3px;"><span class="text-mod-link text-mod-hover" action="a1">再次购买</span></p>
+											<p style="margin-bottom:3px;"><a href="" v-if="data.order_status==4"
+												 class="button-mod-button button-mod-default button-mod-button" target="_blank" id="rateOrder">评价</a>
+											<a href="" v-if="data.order_status==0"
+												class="button-mod-button button-mod-default button-mod-button"id="rateOrder">去支付</a>
+											<a href="" v-if="data.order_status==3"
+												class="button-mod-button button-mod-default button-mod-button"  id="rateOrder">确认收货</a>		 
+													 </p>
+											<!-- <p style="margin-bottom:3px;"><span class="text-mod-link text-mod-hover">再次购买</span></p> -->
 										</div>
 									</td>
 								</tr>
@@ -500,5 +509,98 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</body>
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
+	<script type="text/javascript">
+		var status=0;
+		var vm = new Vue({
+			el: '#vuebody',
+			data: {
+				orderList:[],
+				orderStatus:0
+			},
+			created:function() {
+				UrlSearch();
+				this.orderStatus=status;
+				this.getOrderByStatus(this.orderStatus);
+			},
+			methods: {
+				getOrderByStatus(status){
+					console.log(status);
+					for(var i=0;i<=4;i++){
+						console.log(i==status);
+						if(status==i){
+							$("#status"+i).css("color","red");
+							console.log(123);
+						}
+						if(status!=i){
+							$("#status"+i).css("color","black");
+							console.log(321);
+						}
+					}
+					/* switch (status){
+						case 0:
+							break;
+						case 1:
+							break;
+						case 2:
+							break;
+						case 3:
+							break;
+						case 4:
+							break;				
+						default:
+							break;
+					} */
+					this.getOrderList(status);
+				},
+				getOrderList(status){
+					var self=this;
+					axios.get('http://127.0.0.1:8888/ECS_Goods/getUserOrderList?status='+status,{headers:{
+						withCredentials:true,
+						"Authorization":cookie.get("JSESSIONID")
+					}}).then(function (response) {
+							console.log(response.data);
+							if(response.data.result_code==200){
+								self.orderList=response.data.result_object;
+							}
+					}).catch(function (error) {
+						console.log(error);
+					}); 
+				},
+				confirmGet(id){
+					var self=this;
+					var params = new URLSearchParams();
+					params.append("orderid",id);
+					axios.post('http://127.0.0.1:8888/ECS_Goods/remindReceipt',params,{headers:{
+						withCredentials:true,
+						"Authorization":cookie.get("JSESSIONID")
+					}}).then(function (response) {
+							console.log(response.data);
+							if(response.data.result_code==200){
+								self.orderList=response.data.result_object;
+							}
+					}).catch(function (error) {
+						console.log(error);
+					}); 
+				}
+            }
+		});
+		function UrlSearch() {
+			var str=location.href; //取得整个地址栏
+			var num=str.indexOf("?")
+			str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+			var arr=str.split("&"); //各个参数放到数组里
+			//  console.log(arr)
+			for(var i=0;i < arr.length;i++){
+						num=arr[i].indexOf("=");
+						if(num>0){
+								name=arr[i].substring(0,num);
+								value=arr[i].substr(num+1);
+								if(name=="status") this.status=value;
+						}
+			}
+				}	
+		</script>
 </html>

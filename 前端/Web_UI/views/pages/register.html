@@ -7,13 +7,14 @@
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css">
 		<script src="/public/js/jdSlide.js"></script>
 		<script src="../public/js/vue.min.js"></script>
+		<script type="text/javascript" src="../public/js/axios.min.js"></script>
 		<script src="../public/js/jQuery3.2.1.js"></script>
-		<script src="../public/js/code.js"></script>
-		<link type="text/css" rel="stylesheet" href="../public/css/code.css"/>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
 		<style>
 			.header{
+			width:1190px;
+			margin:  0 auto;
 			height: 110px;
 		}
 		.header .logo-title {
@@ -134,8 +135,8 @@ background-position-y:26%;
 .form-item .field {
 	border: 0 none;
 	font-size: 14px;
-	width: 190px;
-	height: 19px;
+	width: 270px;
+	height: 25px;
 	padding-bottom: 11px;
 	padding-left: 20px;
 	padding-top: 16px;
@@ -153,14 +154,7 @@ background-position-y:26%;
 	height: 50px;
 	border: solid 1px #ddd;
 }
-.form-item-getcode {
-	line-height: 52px;
-	text-align: center;
-	font-size: 14px;
-	color: #333;
-	cursor: pointer;
-	z-index: 2;
-}
+
 .item-phone-wrap {
 	height: 86px;
 	position: relative;
@@ -184,7 +178,7 @@ background-position-y:26%;
 	width: 118px;
 	height: 52px;
 	border: 1px solid #ddd;
-	border-left: none;
+/* 	border-left: none; */
 	background: #fff;
 	color: #333;
 	padding: 0;
@@ -208,11 +202,11 @@ background-position-y:26%;
 		<div id="vuebody" style="width: auto;height: auto;">
 			<!-- widget header begin -->
 			<div class="header">
-				<div class="logo-con w clearfix">
+				<div class="logo-con">
 					<a class="logo">
 					</a>
 					<div class="logo-title">欢迎注册</div>
-					<div class="have-account">已有账号？ <a href="">请登录&gt;</a></div>
+					<div class="have-account">已有账号？ <a href="login.html">请登录&gt;</a></div>
 				</div>
 			</div>
 			<!-- widget header end -->
@@ -233,7 +227,7 @@ background-position-y:26%;
 				</div>
 				<div class="progress-bar">
 					<div style="float: left;width: 100px;">
-						<div class="step-desc">验证手机号</div>
+						<div class="step-desc">验证邮箱号</div>
 					</div>
 					<div style="float: left;margin-left: 50px;width: 100px;">
 						<div class="step-desc">填写账号信息</div>
@@ -249,27 +243,29 @@ background-position-y:26%;
 					<div class="reg-form">
 							<!--hack end-->
 							<div id="step1-wrap">
-								<div class="item-phone-wrap">
-									<div class="form-item form-item-phone">
-										<label class="select-country" id="select-country" style="border-color: rgb(221, 221, 221);border-style: solid none solid solid; border-width: 1px medium 1px 1px;">
-											中国 0086</label>
-										<div class="item-input-wrap" style="border: 1px solid rgb(221, 221, 221);">
-											<txt style="position: absolute; z-index: 2; line-height: 46px; margin-left: 20px; 
-							margin-top: 1px; font-size: 14px; font-family: MS Shell Dlg \32 ; color: rgb(204, 204, 204); display: inline;">
-												建议使用常用手机号</txt>
-											<input type="text" class="field" id="form-phone" maxlength="11" name="phone" class="field" autocomplete="off">
-										</div>
-										<div class="input-tip"><span></span></div>
+								<div class="item-email-wrap">
+									<div class="form-item">
+										<label>邮 箱 验 证</label>
+										<input type="text" name="email" id="form-email" class="field" autocomplete="off" maxlength="50" placeholder="请输入邮箱">
+									</div>
+									<div class="input-tip">
+										<span></span>
 									</div>
 								</div>
-
-								<div class="item-getcode-wrap">
-									<div class="form-item form-item-getcode" v-on:click="showCodeDiv()" id="codeBtn" style="display: block;">
-										点击按钮进行验证
-									</div>
-									<div class="container" style="display: none;">
-									<div id="captcha" style="position: relative"></div>
-									<div id="msg"></div>
+								<div class="item-mailcode-wrap">
+									<div class="form-item form-item-mailcode">
+										<div class="mailcode-left">
+											<label>邮箱验证码</label>
+											<input type="text" name="mailCode" maxlength="6" autocomplete="off" id="mailCode"
+											 class="field "
+											placeholder="请输入邮箱验证码">
+											<i class="i-status"></i>
+											<i class="i-cancel"></i>
+										</div>
+										<button id="getMailCode" class="btn-mailcode" type="button" v-on:click="getCode()">获取验证码</button>
+											<div class="input-tip">
+												<span></span>
+											</div>
 									</div>
 								</div>
 								<div class="input-tip">
@@ -278,6 +274,21 @@ background-position-y:26%;
 								<div id="step1-next" class="btn-register" v-on:click="tostep(2)">下一步</div>
 							</div>
 							<div id="step2-wrap" style="display: none;">
+								<div class="item-phone-wrap">
+									<div class="form-item form-item-phone">
+										<label class="select-country" id="select-country" style="border-color: rgb(221, 221, 221);border-style: solid none solid solid; border-width: 1px medium 1px 1px;">
+											中国 0086</label>
+										<div class="item-input-wrap" style="border: 1px solid rgb(221, 221, 221);">
+											<input type="text"  style="height: 23px;width: 268px;"
+											class="field" placeholder="建议使用常用手机号" id="form-phone" maxlength="11" 
+											name="phone" class="field" autocomplete="off">
+										</div>
+										<div class="input-tip"><span></span></div>
+									</div>
+								</div>
+								<div class="input-tip">
+									<span></span>
+								</div>
 								<div class="form-item form-item-account" id="form-item-account">
 									<label>用　户　名</label>
 									<input type="text" id="form-account" name="regName" class="field" autocomplete="off" maxlength="20"
@@ -305,57 +316,11 @@ background-position-y:26%;
 								<div class="input-tip">
 									<span></span>
 								</div>
-								<div class="item-email-wrap">
-									<div class="form-item">
-										<label>邮 箱 验 证</label>
-										<input type="text" name="email" id="form-email" class="field" autocomplete="off" maxlength="50" placeholder="请输入邮箱"
-										 default="&lt;i class='i-def'&gt;&lt;/i&gt;验证完成后，你可以使用该邮箱登录">
-										<i class="i-status"></i>
-										<ul class="suggest-container email-suggest" style="display: none;">
-											<li class="">
-												<div class="value">@qq.com</div>
-											</li>
-											<li class="">
-												<div class="value">@163.com</div>
-											</li>
-											<li class="">
-												<div class="value">@126.com</div>
-											</li>
-											<li class="">
-												<div class="value">@Gmail.com</div>
-											</li>
-											<li class="">
-												<div class="value">@Sohu.com</div>
-											</li>
-											<li class="suggest-li-last ">
-												<div class="value">@Sina.com</div>
-											</li>
-										</ul>
-									</div>
-									<div class="input-tip">
-										<span></span>
-									</div>
-								</div>
-								<div class="item-mailcode-wrap">
-									<div class="form-item form-item-mailcode">
-										<div class="mailcode-left">
-											<label>邮箱验证码</label>
-											<input type="text" name="mailCode" maxlength="6" autocomplete="off" id="mailCode" class="field mailcode"
-											 placeholder="请输入邮箱验证码">
-											<i class="i-status"></i>
-											<i class="i-cancel"></i>
-										</div>
-										<button id="getMailCode" class="btn-mailcode" type="button">获取验证码</button>
-											<div class="input-tip">
-												<span></span>
-											</div>
-									</div>
-								</div>
 								<div><button class="btn-register" id="form-register" v-on:click="tostep(3)">立即注册</button></div>
 								<div class="input-tip">
 									<span></span>
 								</div>
-						<div class="back-btn" id="back-btn"><a v-on:click="tostep(1)">返回上一步</a></div>
+					<!-- 	<div class="back-btn" id="back-btn"><a v-on:click="tostep(1)">返回上一步</a></div> -->
 						</div>
 						<div id="step3-wrap" style="display: none;">
 			       <p style="font-size: 16px;">恭喜您，注册成功</p>
@@ -424,29 +389,93 @@ background-position-y:26%;
 		var vm = new Vue({
 			el: '#vuebody',
 			data: {
-				test: "niaho"
+				test: "niaho",
+				mail:""
 			},
 			created:function(){
 			},
 			updtaed:function(){
 			},
 			methods: {
-				showCodeDiv: function() {
-					$(".container").css("display","block");
-					$("#codeBtn").css("display","none");
+				register(){
+					var mail=this.mail;
+					var phone=$("#form-phone").val();
+					var username=$("#form-account").val();
+					var password0=$("#form-pwd").val();
+					var password=$("#form-equalTopwd").val();
+					if(password0==password){
+					var params = new URLSearchParams();
+					params.append("username",username);
+					params.append("userpassword",password);	
+					 params.append("phonenumber",phone);
+					 params.append("mailnumber",mail);	 	 
+					axios.post('http://127.0.0.1:8080/ECS_User/register.action',params).then(function(response) {
+							console.log(response);
+							if(response.data.result_object=="成功"){
+							$("#step2-wrap").css("display","none");
+							$("#step3-wrap").css("display","block");
+							$("#step2").html("");
+							$("#step3").html("");
+							$("#line2").removeClass("person-pro-line1");
+							$("#line2").addClass("person-pro-line2");
+							$("#step2").removeClass("step-index1");
+							$("#step2").addClass("step-index3");
+							$("#step3").removeClass("step-index1");
+							$("#step3").addClass("step-index3");}
+						}).catch(function(error) {
+							console.log(error);
+						}); }
+				},
+				getCode(){
+					 var mail=$("#form-email").val();
+					 console.log(mail);
+					 axios.get('http://127.0.0.1:8080/ECS_User/getCode.action',{
+						 params:{
+							 "mail":mail
+						 }
+					 }).then(function(response) {
+							console.log(response);
+							if(response.data.result_object=="成功"){
+								console.log("获取验证码成功");
+							}
+						}).catch(function(error) {
+							console.log(error);
+						});
+				},
+				checkCode(){
+					var self=this;
+					var mail=$("#form-email").val();
+					var code=$("#mailCode").val();
+					console.log(mail+code);
+					var params = new URLSearchParams();
+					params.append("mail",mail);
+					params.append("code",code);
+					axios.post('http://127.0.0.1:8080/ECS_User/checkCode.action',params).then(function(response) {
+							console.log(response);
+							if(response.data.result_object=="成功"){
+								console.log("验证码校检成功");
+								$("#step1-wrap").css("display","none");
+								$("#step2-wrap").css("display","block");
+								$("#step1").html("");
+								$("#line1").removeClass("person-pro-line1");
+								$("#line1").addClass("person-pro-line2");
+								$("#step1").removeClass("step-index1");
+								$("#step1").addClass("step-index3");
+								$("#step2").removeClass("step-index2");
+								$("#step2").addClass("step-index1");
+								self.mail=mail;
+							}else{
+								alert("验证码错误");
+							}
+						}).catch(function(error) {
+							console.log(error);
+						});
+						 return status;
 				},
 				tostep:function(index){
 				console.log(index);
 				if(index==2){
-					$("#step1-wrap").css("display","none");
-					$("#step2-wrap").css("display","block");
-					$("#step1").html("");
-					$("#line1").removeClass("person-pro-line1");
-					$("#line1").addClass("person-pro-line2");
-					$("#step1").removeClass("step-index1");
-					$("#step1").addClass("step-index3");
-					$("#step2").removeClass("step-index2");
-					$("#step2").addClass("step-index1");
+					 this.checkCode();
 				}else if(index==1){
 					$("#step1-wrap").css("display","block");
 					$("#step2-wrap").css("display","none");
@@ -457,25 +486,10 @@ background-position-y:26%;
 					$("#step2").removeClass("step-index1");
 					$("#step2").addClass("step-index2");
 				}else if(index==3){
-					$("#step2-wrap").css("display","none");
-					$("#step3-wrap").css("display","block");
-					$("#step2").html("");
-					$("#step3").html("");
-					$("#line2").removeClass("person-pro-line1");
-					$("#line2").addClass("person-pro-line2");
-					$("#step2").removeClass("step-index1");
-					$("#step2").addClass("step-index3");
-					$("#step3").removeClass("step-index1");
-					$("#step3").addClass("step-index3");
+					this.register();
 				}
-				
 				}
 			}
 		});		
-</script>
-<script type="text/javascript">
-jigsaw.init(document.getElementById('captcha'), function () {
-	document.getElementById('msg').innerHTML = '登录成功！'
-})
 </script>
 </html>

@@ -2,20 +2,41 @@
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=GBK">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
 		<meta charset="GBK">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<title>欢迎登陆</title>
 		<link type="text/css" rel="stylesheet" href="/public/css/style.css">
+		<link type="text/css" rel="stylesheet" href="../public/css/code.css"/>
+		<!-- <script src="../public/js/code.js"></script> -->
 		<script type="text/javascript" src="../public/js/vue.min.js"></script>
 		<script type="text/javascript" src="../public/js/axios.min.js"></script>
+		<script type="text/javascript" src="../public/js/jQuery3.2.1.js"></script>
 		<link type="text/css" rel="stylesheet" href="/public/css/base.css" />
 		<link type="text/css" rel="stylesheet" href="/public/css/foot.css" />
+		<style>
+			.form-item {
+				position: relative;
+				border: solid 1px #ddd;
+				width: 398px;
+				height: 52px;
+				z-index: 0;
+			}
+			.form-item-getcode {
+				line-height: 52px;
+				text-align: center;
+				font-size: 14px;
+				color: #333;
+				cursor: pointer;
+				z-index: 2;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="vuebody" style="width: auto;height: auto;">
 			<div class="w">
 				<div id="logo">
-					<b>logo<p>{{test}}</p></b>
+					<b><p style="font-size: 36px;font-weight: 400;">欢迎登陆</p></b>
 				</div>
 			</div>
 			<div id="content">
@@ -30,7 +51,7 @@
 								</div>
 								
 								<div class="mc">
-									<div class="form">
+									<div class="form" style="margin-top:30px;">
 											<div class="item item-fore1">
 												<label for="loginname" class="login-label name-label"></label>
 												<input id="loginname" type="text" class="itxt" name="loginname" tabindex="1" autocomplete="off" 
@@ -40,7 +61,7 @@
 
 											<div id="entry" class="item item-fore2" style="visibility: visible;">
 												<label class="login-label pwd-label" for="nloginpwd"></label>
-												<input type="password" id="nloginpwd" name="nloginpwd" class="itxt itxt-error" tabindex="2" autocomplete="off"
+												<input type="password" id="loginpwd" name="loginpwd" class="itxt itxt-error" tabindex="2" autocomplete="off"
 												 placeholder="密码">
 												<span class="clear-btn"></span>
 												<span class="capslock" style="display: none;"><b></b>大小写锁定已打开</span>
@@ -53,10 +74,18 @@
 													</span>
 												</div>
 											</div>
-
+									<!-- <div class="item-getcode-wrap">
+									<div class="form-item form-item-getcode" v-on:click="showCodeDiv()" id="codeBtn" style="display: block;">
+										点击按钮进行验证
+									</div>
+									<div class="container" style="display: none;">
+									<div id="captcha" style="position: relative"></div>
+									<div id="msg"></div>
+									</div>
+										</div> -->
 											<div class="item item-fore5">
 												<div class="login-btn">
-													<a href="javascript:;" class="btn-img" id="loginsubmit" tabindex="6">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+													<a href="javascript:;" class="btn-img"  v-on:click="login()" tabindex="6">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
 												</div>
 											</div>
 									</div>
@@ -137,6 +166,7 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript" src="../public/js/cookie.js"></script>
 	<script type="text/javascript">
 		var vm = new Vue({
 			el: '#vuebody',
@@ -144,23 +174,40 @@
 				test: "niaho"
 			},
 			created:function(){
-				this.login();
+				//this.login();
 			},
 			methods: {
+				showCodeDiv: function() {
+					$(".container").css("display","block");
+					$("#codeBtn").css("display","none");
+				},
 				login: function() {
-					axios.get('http://wx.yinnima.com:8080/store-admin-manager/microStoreGoods/testJSON.do',{
-						 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-					'Access-Control-Allow-Origin': '*'
-                         }
-					}).then(function(response) {
+					var self =this;
+					var username=$("#loginname").val();
+					var password=$("#loginpwd").val();
+					var params = new URLSearchParams();
+					params.append("username",username);
+					params.append("userpassword",password);	 
+					 axios.post('http://127.0.0.1:8080/ECS_User/login.action',params).then(function(response) {
 							console.log(response);
+							if(response.data.result_code==200){
+								 var sessionId=response.data.result_object.sessionID;
+								 cookie.set("JSESSIONID",sessionId); 
+								// console.log(cookie.get("sessionID"));
+								 window.location.href ="/web_UI/";
+							}
 						}).catch(function(error) {
 							console.log(error);
-						});
+						}); 
+						
 						
 				}
 			}
 		})
 	</script>
+	<!-- <script type="text/javascript">
+	jigsaw.init(document.getElementById('captcha'), function () {
+		document.getElementById('msg').innerHTML = '登录成功！'
+	})
+	</script> -->
 </html>
