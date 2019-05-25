@@ -21,16 +21,14 @@ public class imageService {
 	 @Autowired
      private imageMapper im;
 	 
-	  public String upLoadImage() { 
-		  return "";
-	  }
 	  public int addImage(goodsImages image) {
 		   int row=im.addImages(image);
 		   if(row>0) return row;
 		  return 0;
 	  }
-	  public List<goodsImages> selectImage(Integer goods_id) {
-		 return  im.selectImages(goods_id);
+	  public goodsImages selectImage(Integer goods_id) {
+		  goodsImages gi=im.selectImages(goods_id);
+		 return gi;
 	  }
 	  public goodsImages getImage(Integer id) {
 		  return im.getImage(id);

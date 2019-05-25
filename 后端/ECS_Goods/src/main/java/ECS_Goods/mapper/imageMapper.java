@@ -16,7 +16,7 @@ import ECS_Common.entity.goodsImages;
 @Mapper
 public interface imageMapper {
        public int addImages(goodsImages image);
-       public List<goodsImages> selectImages(Integer goods_id);
+       public goodsImages selectImages(Integer id);
        public goodsImages  getImage(Integer id);
        public int deleteImages(Integer id);
 }

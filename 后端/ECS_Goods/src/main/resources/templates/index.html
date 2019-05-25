@@ -80,14 +80,14 @@ body {
 	<div class="background-div">
 		<div class="uk-panel block-div">
 			<h3 class="uk-panel-title title-style">商家后台管理系统</h3>
-			<form class="uk-form">
+			<form class="uk-form" action="login" method="POST">
 				<div class="uk-form-row">
 					<label class="label-style">账户名:</label>
-					<input class="input-style"  type="text" placeholder="">
+					<input class="input-style" name="username"  type="text" placeholder="请输入用户名">
 				</div>
 				<div class="uk-form-row">
 					<label class="label-style">密码:</label>
-					<input class="input-style" type="password" placeholder="">
+					<input class="input-style" type="password"  name="password" placeholder="请输入密码">
 				</div>
 				<div class="uk-form-row">
 					<label class="label-style">验证码:</label>
@@ -96,7 +96,7 @@ body {
 				</div>
 				<div class="uk-form-row">
 					<label class="label-style"></label>
-					<input type="submit" class="uk-button uk-button-primary button-style" value="登录">
+					<input type="submit" id="my_button" class="uk-button uk-button-primary button-style" value="登录">
 				</div>
 			</form>
 		</div>
@@ -105,13 +105,18 @@ body {
 <script src="./static/js/gVerify.js"></script>
     <script>
         var verifyCode = new GVerify("v_container");
-       /* document.getElementById("my_button").onclick = function(){
+        document.getElementById("my_button").onclick = function(){
+        	if(document.getElementById("code_input").value==""||document.getElementById("code_input").value==null){
+        		alert("验证码不能为空");
+        	return false;	
+        	}
             var res = verifyCode.validate(document.getElementById("code_input").value);
             if(res){
-                alert("验证正确");
+                return true;
             }else{
-                alert("验证码错误");
+            	alert("验证码错误");
+            	return false;
             }
-        }*/
+        }
     </script>
 </html>

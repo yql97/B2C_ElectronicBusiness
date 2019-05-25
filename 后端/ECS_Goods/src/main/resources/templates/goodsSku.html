@@ -93,10 +93,11 @@ clear: left;
 					<div class="mws-form-inline">
 						<div class="mws-form-row">
 							<label>入库商品：</label>
+							<input type="hidden" id="goodsId" name="goods_id">
 							<div class="mws-form-item small">
-								<select>
-								<option>1</option>
-								<option>2</option>
+								<select class="goodsNameList">
+								<option th:each="data: ${session.goodsList}" th:value="${data.id}"
+								 th:text="${data.name}"></option>
 								</select>
 							</div>
 						</div>
@@ -105,20 +106,15 @@ clear: left;
 							<input type="hidden" id="propertyNameValue_list" name="propertyNameValue_list" value="">
 							<input type="hidden" id="add_property_list" name="add_property_list" value="">
 							<ul  class="property-ul" id="property-list">
-								<li class="choose-property" data-id="12"><span class="property-label">尺寸：</span>
-									<span class="property-select">
-									<select class="select-list" >
-									<option>1</option>
-									<option>2</option>
-									</select></span>
-									</li>
-								<li class="choose-property" data-id="12"><span class="property-label">尺寸：</span>
+								<li class="choose-property" th:value="${data.propertyName_id}" th:each="data: ${session.propertyNameList}">
+								<span class="property-label" th:text="${data.propertyName_text}">尺寸：</span>
 									<span class="property-select">
 									<select class="select-list">
-									<option>1</option>
-									<option>2</option>
+									<option th:each="data2: ${session.propertyValueList}" 
+									 th:value="${data2.propertyValue_id}"
+									th:text="${data2.propertyValue_text}"></option>
 									</select></span>
-								</li>	
+									</li>
 								<li id="property-list-last"><span class="property-label">自定义规格组：</span>
 									<span class="property-check">规格组名：<input type="text" id="add-p-name" class="mws-textinput"></span>
 									<span class="property-check">属性值：<input type="text" id="add-p-value" class="mws-textinput"></span>
@@ -164,6 +160,7 @@ clear: left;
 var add_num=0;
 $("#add_property_list").val("");
 $("#propertyNameValue_list").val("");
+$("#goodsId").val($(".goodsNameList").val());
  chooseproperty();
 function chooseproperty(){
 	var property_count= $("#property-list").children(".choose-property").length;
@@ -173,7 +170,7 @@ function chooseproperty(){
  		//console.log($("#property-list").find(".choose-property"));
 		  console.log(i);
 			var object=$("#property-list").find(".choose-property").eq(i);
-			var id=object.attr("data-id");
+			var id=object.attr("value");
 			console.log(id);
 			 var select = object.find("select");
 			 console.log(select.val());
@@ -193,6 +190,9 @@ function chooseproperty(){
 $(".select-list").change(function(){
 	chooseproperty();
 });
+ $(".goodsNameList").change(function(){
+	$("#goodsId").val($(".goodsNameList").val());
+}); 
 function addproperty(){
 	if(add_num>=3){ alert("请勿重复点击");
 	}else{

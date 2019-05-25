@@ -4,6 +4,7 @@
 
 <mapper namespace="ECS_Goods.mapper.goodsCategoryMapper">
 <resultMap type="ECS_Common.entity.goodsFamily" id="goodsFamilyResult">
+    <result column="goods_family_id" property="id" jdbcType="INTEGER"/>
     <result column="goods_family_name"  property="family_name"  jdbcType="VARCHAR"/>
     <result column="goods_family_sequence" property="family_sequence" jdbcType="INTEGER"/>
 </resultMap>
@@ -42,20 +43,28 @@ insert into goods_category(goods_category_id,goods_family_id,goods_category_name
 <select id="getGoodsFamilyList"  resultMap="goodsFamilyResult"
 parameterType="java.lang.Integer" resultType="java.util.List">
   select * from goods_family
-  where goods_family_sequence between 1 and #{sequence,jdbcType=INTEGER}
+  where goods_family_sequence = #{sequence,jdbcType=INTEGER}
 </select>
 <select id="getGoodsCategory" resultMap="goodsCategoryResult" 
    parameterType="ECS_Common.entity.goodsCategory">
    select * from goods_category
    <where>
    <trim prefixOverrides="and" > 
-    <if test="id !=null">
+    <if test="id !=0">
        and goods_category_id=#{id,jdbcType=INTEGER}
    </if>
-   <if test="family_id !=null">
+   <if test="family_id !=0">
       and goods_family_id  =#{family_id,jdbcType=INTEGER}
    </if>
    </trim>
    </where> 
+</select>
+<select id="getCategoryBySequence" resultMap="goodsCategoryResult" parameterType="java.lang.Integer" >
+select * from goods_category where 
+goods_category.goods_family_id in (select goods_family_id from goods_family 
+where goods_family.goods_family_sequence=#{id,jdbcType=INTEGER})
+</select>
+<select id="getAllGoodsFamily"  resultMap="goodsFamilyResult" resultType="java.util.List">
+select * from goods_family
 </select>
 </mapper>

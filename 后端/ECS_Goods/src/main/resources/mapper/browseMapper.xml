@@ -2,20 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ECS_Goods.mapper.browseMapper">
-<resultMap type="ECS_Common.entity.browseRecord" id="browseRecordResult">
-<id column="browse_record_id" property="id" jdbcType="INTEGER"/>
-<result column="store_id"/>
-<result column="goods_id"/>
+<resultMap id="browseGoodsRecord" type="ECS_Goods.entity.browseRecordInfo">
+<result column="create_time"  property="create_time"  jdbcType="TIMESTAMP"/>
+<result column="number"  property="record_num"  jdbcType="INTEGER"/>
+<result column="goods_id"  property="goods_id"  jdbcType="INTEGER"/>
+<result column="goods_name"  property="goods_name"  jdbcType="VARCHAR"/>
+<result column="goods_main_image"  property="goods_main_image"  jdbcType="VARCHAR"/>
+<result column="goods_now_price"  property="now_price"  jdbcType="DOUBLE"/>
+<result column="goods_old_price"  property="old_price"  jdbcType="DOUBLE"/>
 </resultMap>
-    <sql id="">
+<select id="getUserBrowseGoods" parameterType="java.lang.Integer" resultMap="browseGoodsRecord" 
+resultType="java.util.List">
+<include refid="getBrowseGoods"></include>
+and browse_record.user_id=#{id,jdbcType=INTEGER}
+ORDER BY browse_record.create_time DESC
+</select>
+    <sql id="getBrowseGoods">
 select b.create_time,b.number,goods.goods_id,goods.goods_name,
 goods.goods_main_image,goods_now_price,goods_old_price
 from goods,goods_sku,browse_record,
 (select create_time,count(create_time) as number from browse_record GROUP BY create_time) as b
 where browse_record.goods_id=goods.goods_id
 and goods_sku.goods_id=goods.goods_id
-and b.create_time=browse_record.browse_record_id
-ORDER BY browse_record.create_time DESC
     </sql>
   <insert id="addBrowseRecord" parameterType="ECS_Common.entity.browseRecord" useGeneratedKeys="true">
   insert into browse_record(store_id,goods_id,user_id,create_time)

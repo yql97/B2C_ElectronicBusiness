@@ -9,11 +9,11 @@ package ECS_Goods.entity;
  */
 public class goodsBaseInfo {
              private int goods_id;
+             private int goods_sku_id;
              private String goods_name;
              private String goods_image;
              private double now_price;
              private double old_price;
-             
 			public int getGoods_id() {
 				return goods_id;
 			}
@@ -43,6 +43,18 @@ public class goodsBaseInfo {
 			}
 			public void setOld_price(double old_price) {
 				this.old_price = old_price;
+			}
+			public int getGoods_sku_id() {
+				return goods_sku_id;
+			}
+			public void setGoods_sku_id(int goods_sku_id) {
+				this.goods_sku_id = goods_sku_id;
+			}
+			@Override
+			public String toString() {
+				return "goodsBaseInfo [goods_id=" + goods_id + ", goods_sku_id=" + goods_sku_id + ", goods_name="
+						+ goods_name + ", goods_image=" + goods_image + ", now_price=" + now_price + ", old_price="
+						+ old_price + "]";
 			}
              
 }

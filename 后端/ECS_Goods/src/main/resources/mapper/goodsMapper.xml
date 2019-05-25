@@ -16,25 +16,41 @@
    <result column="status" property="status" jdbcType="INTEGER"/>
    <result column="goods_category_id" property="category_Id" jdbcType="INTEGER"/>
    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-  <!--   <result column="commentVolume" property="deleteTime" jdbcType=""/>-->
    <result column="goods_main_image" property="main_image" jdbcType="VARCHAR"/>
    <result column="goods_sku_id_list" property="goods_sku_id_list" jdbcType="VARCHAR"/>
 </resultMap>
-
+     <resultMap id="storeGoodsResult" type="ECS_Goods.entity.storeGoodsInfo">
+     <result column="goods_id" property="goods_id" jdbcType="INTEGER"/>
+     <result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
+     <result column="goods_name" property="goods_name" jdbcType="VARCHAR"/>
+     <result column="goods_image_path" property="image_url" jdbcType="VARCHAR"/>
+     <result column="goods_old_price" property="old_price" jdbcType="DOUBLE"/>
+     <result column="goods_now_price" property="new_price" jdbcType="DOUBLE"/> 
+     <result column="goods_stroage_balance" property="stroage_balance" jdbcType="INTEGER"/>
+     <result column="sku_status" property="status" jdbcType="INTEGER"/>
+     </resultMap>
+     <sql id="getStoreGoodsInfo">
+     select goods.goods_id,goods_sku.goods_sku_id,goods_name,goods_image_path,goods_old_price,goods_now_price,
+	goods_stroage_balance,goods_sku.sku_status
+	from goods,goods_sku,goods_images
+   </sql>
+     <select id="getAllGoods" resultMap="goodsResult"  resultType="java.util.List">
+ 	    select * from goods
+     </select>  
    <select id="selectByStoreId" resultMap="goodsResult" parameterType="java.lang.Integer"
     resultType="java.util.List">
     select * from goods
     where store_id=#{id,jdbcType=INTEGER}
    </select>
-   <sql id="getStoreGoodsInfo">
-     select goods.goods_id,goods_sku.goods_sku_id,goods_name,goods_image_path,goods_old_price,goods_now_price,
-goods_stroage_balance,goods_sku.sku_status
-from goods,goods_sku,goods_images
-where goods.goods_id=goods_sku.goods_id
-and  goods_images.goods_sku_id=goods_sku.goods_sku_id   
-   </sql>
-   <select id="getStoreGoodsList" parameterType="java.lang.Integer"  resultType="java.util.List"> 
+   <select id="getGoodsById" resultMap="goodsResult" parameterType="java.lang.Integer">
+    select * from goods
+    where goods_id=#{id,jdbcType=INTEGER}
+   </select>
+   <select id="getStoreGoodsList" parameterType="java.lang.Integer"  resultMap="storeGoodsResult"
+    resultType="java.util.List"> 
    <include refid="getStoreGoodsInfo"></include>
+ where goods_images.goods_sku_id=goods_sku.goods_sku_id  
+   and goods.goods_id =goods_sku.goods_id
    and goods.store_id=#{id,jdbcType=INTEGER}
    </select>
    <insert id="insertGoods" parameterType="ECS_Common.entity.goods">

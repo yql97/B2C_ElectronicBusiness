@@ -12,7 +12,7 @@ public class shopCartBaseInfo {
 	private int goods_sku_id;
 	private int store_id;
 	private String store_name;
-	private String goods_main_image;
+	private String goods_image_path;
 	private String goods_name;
 	private double goods_old_price;
 	private double goods_now_price;
@@ -42,12 +42,6 @@ public class shopCartBaseInfo {
 	public void setStore_name(String store_name) {
 		this.store_name = store_name;
 	}
-	public String getGoods_main_image() {
-		return goods_main_image;
-	}
-	public void setGoods_main_image(String goods_main_image) {
-		this.goods_main_image = goods_main_image;
-	}
 	public String getGoods_name() {
 		return goods_name;
 	}
@@ -71,6 +65,12 @@ public class shopCartBaseInfo {
 	}
 	public void setGoods_num(int goods_num) {
 		this.goods_num = goods_num;
+	}
+	public String getGoods_image_path() {
+		return goods_image_path;
+	}
+	public void setGoods_image_path(String goods_image_path) {
+		this.goods_image_path = goods_image_path;
 	}
 	
 	

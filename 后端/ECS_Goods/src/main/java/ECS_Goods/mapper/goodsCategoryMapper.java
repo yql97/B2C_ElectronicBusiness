@@ -20,4 +20,6 @@ public interface goodsCategoryMapper {
        public int addGoodsCategory(goodsCategory gc);
        public List<goodsFamily> getGoodsFamilyList(Integer sequence); 
        public List<goodsCategory> getGoodsCategory(goodsCategory gc);
+       public List<goodsFamily> getAllGoodsFamily();
+       public List<goodsCategory> getCategoryBySequence(Integer id);
 }

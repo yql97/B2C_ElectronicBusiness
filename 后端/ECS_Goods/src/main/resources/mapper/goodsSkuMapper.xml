@@ -2,7 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ECS_Goods.mapper.goodsSkuMapper">
-
+<resultMap type="ECS_Common.entity.goods_sku" id="goodsSkuResult">
+     <id column="goods_sku_id" property="id" jdbcType="INTEGER"/> 
+   <result column="goods_sku_name" property="name" jdbcType="VARCHAR"/>
+   <result column="goods_id" property="goods_id" jdbcType="INTEGER"/>
+    <result column="goods_old_price" property="old_price" jdbcType="DOUBLE"/>
+    <result column="goods_now_price" property="now_price" jdbcType="DOUBLE"/>
+    <result column="goods_stroage_balance" property="stroageBalance" jdbcType="INTEGER"/>
+    <result column="goods_stroage_sale_volume" property="stroageSaleVolume" jdbcType="INTEGER"/>
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+</resultMap>
+<resultMap id="goodsBaseInfo" type="ECS_Goods.entity.goodsBaseInfo">
+ <result column="goods_id" property="goods_id" jdbcType="INTEGER"/>
+  <result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
+   <result column="goods_name" property="goods_name" jdbcType="VARCHAR"/>
+   <result column="goods_image_path" property="goods_image" jdbcType="VARCHAR"/>
+    <result column="goods_old_price" property="old_price" jdbcType="DOUBLE"/> 
+    <result column="goods_now_price" property="now_price" jdbcType="DOUBLE"/>  
+</resultMap>
+<select id="getAllGoodsSkuList" resultMap="goodsSkuResult"  resultType="java.util.List">
+select * from goods_sku
+</select>
+ <select id="getGoodsSkuList" resultMap="goodsSkuResult" parameterType="java.lang.Integer"
+   resultType="java.util.List">
+    select * from goods_sku
+    where goods_id=#{id,jdbcType=INTEGER}
+   </select>
+    <select id="getGoodsSku" resultMap="goodsSkuResult" parameterType="java.lang.Integer"
+   resultType="ECS_Common.entity.goods_sku">
+    select * from goods_sku
+    where goods_sku_id=#{id,jdbcType=INTEGER}
+   </select>
+   <select id="getGoodsBaseInfo" resultMap="goodsBaseInfo" parameterType="java.lang.Integer"
+   resultType="java.util.List">
+   select goods.goods_id,goods_sku.goods_sku_id,goods_name,goods_images.goods_image_path,
+   goods_now_price,goods_old_price 
+from goods,goods_sku,goods_images
+where goods.goods_id=goods_sku.goods_id
+and goods_sku.goods_sku_id=goods_images.goods_sku_id
+and goods_sku.goods_sku_id=#{id,jdbcType=INTEGER}
+   </select>
 <insert id="addGoodsSku" parameterType="ECS_Common.entity.goods_sku">
 insert into goods_sku(goods_sku_id,goods_sku_name,goods_id,goods_now_price,goods_old_price,
     goods_stroage_balance,goods_stroage_sale_volume,create_time)

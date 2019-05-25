@@ -13,7 +13,7 @@ public class browseRecordInfo {
              private Date create_time;
              private int record_num;
              private int goods_id;
-             private int goods_name;
+             private String goods_name;
              private String goods_main_image;
              private double now_price;
              private double old_price;
@@ -36,10 +36,10 @@ public class browseRecordInfo {
 			public void setGoods_id(int goods_id) {
 				this.goods_id = goods_id;
 			}
-			public int getGoods_name() {
+			public String getGoods_name() {
 				return goods_name;
 			}
-			public void setGoods_name(int goods_name) {
+			public void setGoods_name(String goods_name) {
 				this.goods_name = goods_name;
 			}
 			public String getGoods_main_image() {

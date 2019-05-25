@@ -59,25 +59,30 @@ margin: 5px auto;
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="gradeX even">
+						<tr class="odd" th:each="data: ${session.storeGoodsList}">
 							<td>
 								<div style="width: 220px;">
 									<div
 										style="width: 80px; height: 80px; display: block; border: 1px solid red; float: left;">
-										<img alt="" src="">
+										<img alt=""  th:src="${data.goodsInfo.image_url}" >
 									</diV>
 									<div
 										style="margin-left: 90px; display: block; text-align: left; word-break: break-all;">
-										<p>vbhkvhkjhkdfsdckjhfsdcjhkxsdxjh名字</p>
+										<p th:text="${data.goodsInfo.goods_name}"></p>
 									</div>
 								</div>
 							</td>
 							<td>
-							<div><p>fghfghfgh</p></div>
+							<div><p th:each="data2: ${data.goodsProperty}">
+							<span th:text="${data2.goods_property_name}"></span>
+							<span th:text="${data2.goods_property_value}"></span>
+							</p></div>
 							</td>
-							<td>Win 95+</td>
-							<td class="center">4</td>
-							<td class="center">X</td>
+							<td><p th:text="${data.goodsInfo.old_price}"></p>
+							<p th:text="${data.goodsInfo.new_price}"></p>
+							</td>
+							<td class="center"><span th:text="${data.goodsInfo.stroage_balance}"></span></td>
+							<td class="center"><span th:text="${data.goodsInfo.status}"></span></td>
 							<td>
 							<div>
 							<ul class="ul-btn">
@@ -86,7 +91,7 @@ margin: 5px auto;
 							</ul >
 							<ul class="ul-btn">
 							<li><a class="mws-button orange">上架</a></li>
-							<li><a class="mws-button green">上架</a></li>
+							<li><a class="mws-button green">下架</a></li>
 							</ul>
 							</div>
 							</td>

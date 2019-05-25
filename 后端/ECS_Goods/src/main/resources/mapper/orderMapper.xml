@@ -16,12 +16,23 @@
 <result column="store_name" property="store_name" jdbcType="VARCHAR"/>
 <result column="goods_id" property="goods_id" jdbcType="INTEGER"/>
 <result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
-<result column="goods_main_image" property="main_image" jdbcType="VARCHAR"/>
+<result column="goods_image_path" property="goods_image_path" jdbcType="VARCHAR"/>
 <result column="goods_name" property="goods_name" jdbcType="VARCHAR"/>
 <result column="goods_old_price" property="old_price" jdbcType="DOUBLE"/>
 <result column="goods_now_price" property="new_price" jdbcType="DOUBLE"/>
 <result column="goods_num" property="goods_num" jdbcType="INTEGER"/>
 <result column="logistics_order_id" property="logistics_id" jdbcType="INTEGER"/>
+</resultMap>
+<resultMap type="ECS_Goods.entity.storeOrderInfo" id="storeOrderResult">
+<result column="order_id" property="order_id" jdbcType="INTEGER"/>
+<result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
+<result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
+<result column="order_code" property="order_code" jdbcType="INTEGER"/>
+<result column="goods_name" property="goods_name" jdbcType="INTEGER"/>
+<result column="goods_now_price" property="price" jdbcType="DOUBLE"/>
+<result column="goods_num" property="buy_num" jdbcType="INTEGER"/>
+<result column="receive_address_id" property="receive_address_id" jdbcType="INTEGER"/>
+<result column="order_status" property="status" jdbcType="INTEGER"/>
 </resultMap>
 <sql id="orderGoodsProperty">
 select goods_sku.goods_sku_id,goods_property_relate.goods_property_relate_id,
@@ -40,21 +51,25 @@ and user_order.goods_sku_id=#{id,jdbcType=INTEGER}
 <sql id="orderGoodsBaseInfo">
 select user_order.create_time,order_status,order_code,store.store_id,
 store_name,goods_sku.goods_id,goods_sku.goods_sku_id,
-goods.goods_main_image,goods_name,goods_old_price,goods_now_price,
+goods_images.goods_image_path,goods_name,goods_old_price,goods_now_price,
 user_order.goods_num,logistics_order_id
-from user_order,goods_sku,goods,store
+from user_order,goods_sku,goods,store,goods_images
 where user_order.goods_sku_id=goods_sku.goods_sku_id
 and goods_sku.goods_id=goods.goods_id 
 and store.store_id=goods.store_id
+and goods_images.goods_sku_id=goods_sku.goods_sku_id
 </sql>
 <select id="getOrderBaseInfo" resultMap="orderBaseResult" parameterType="java.lang.Integer">
  <include refid="orderGoodsBaseInfo"></include>
- and user_order.user_id=#{id,jdbcType=INTEGER}
+ and user_order.order_id=#{id,jdbcType=INTEGER}
 </select>
 <insert id="addOrder" parameterType="ECS_Common.entity.order" useGeneratedKeys="true">
-insert into user_order(user_id,goods_sku_id,order_code,order_status,logistics_order_id,
+insert into user_order(order_id,user_id,goods_sku_id,order_code,order_status,logistics_order_id,
 trade_id,buyer_message,receive_address_id,goods_num,create_time)
 <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id !=null">
+       #{id,jdbcType=INTEGER},
+      </if>
       <if test="user_id !=null">
       #{user_id,jdbcType=INTEGER},
       </if>
@@ -67,21 +82,21 @@ trade_id,buyer_message,receive_address_id,goods_num,create_time)
       <if test="status !=null">
       #{status,jdbcType=INTEGER},
       </if>
-      <if test="logistics_order_id !=null">
+      <!-- <if test="logistics_order_id !=null"> -->
        #{logistics_order_id,jdbcType=INTEGER},
-      </if>
-      <if test="trade_id !=null">
+      <!-- </if> -->
+    <!--   <if test="trade_id !=null"> -->
        #{trade_id,jdbcType=INTEGER},  
-      </if>
-      <if test="buyer_message !=null">
-       #{buyer_message,jdbcType=CARCHAR},  
-      </if>
-      <if test="receive_address_id !=null">
+     <!--  </if> -->
+     <!--  <if test="buyer_message !=null"> -->
+       #{buyer_message,jdbcType=VARCHAR},  
+     <!--  </if> -->
+     <!--  <if test="receive_address_id !=null"> -->
        #{receive_address_id,jdbcType=INTEGER},  
-      </if>
-      <if test="goods_num !=null">
+     <!--  </if> -->
+     <if test="goods_num !=null">
        #{goods_num,jdbcType=INTEGER},  
-      </if>
+     </if>
       <if test="createTime !=null">
       #{createTime,jdbcType=TIMESTAMP},
       </if>  
@@ -94,8 +109,20 @@ from user_order,goods_sku,goods
 where user_order.goods_sku_id=goods_sku.goods_sku_id
 and goods.goods_id=goods_sku.goods_id
 </sql>
-<select id="getStoreOrderList">
+<select id="getStoreOrderList" resultMap="storeOrderResult" 
+ resultType="java.util.List" parameterType="java.lang.Integer">
 <include refid="storeOrderInfo"></include>
 and goods.store_id=#{id,jdbcType=INTEGER}
 </select>
+<select id="getOrderList" parameterType="java.lang.Integer" 
+resultMap="orderBaseResult" resultType="java.util.List">
+<include refid="orderGoodsBaseInfo"></include>
+ and user_order.user_id=#{id,jdbcType=INTEGER}
+ and user_order.order_status=#{status,jdbcType=INTEGER}
+</select>
+<update id="updateOrder" parameterType="java.lang.Integer">
+   update user_order
+   set user_order.order_status=#{status,jdbcType=INTEGER}
+   where user_order.order_code=#{id,jdbcType=INTEGER}
+</update>
 </mapper>

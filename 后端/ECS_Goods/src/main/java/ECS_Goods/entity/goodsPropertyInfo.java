@@ -13,6 +13,13 @@ public class goodsPropertyInfo {
        private String goods_property_name;
        private String goods_property_value;
        
+	@Override
+	public String toString() {
+		return "goodsPropertyInfo [goods_sku_id=" + goods_sku_id + ", goods_property_relate_id="
+				+ goods_property_relate_id + ", goods_property_name=" + goods_property_name + ", goods_property_value="
+				+ goods_property_value + "]";
+	}
+	
 	public int getGoods_sku_id() {
 		return goods_sku_id;
 	}

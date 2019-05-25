@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -45,10 +47,8 @@
 							<label>商品所属父类：</label>
 							<div class="mws-form-item small">
 								<select name="goods_family_id">
-									<option value="1">Option 1</option>
-									<option value="2">Option 3</option>
-									<option value="3">Option 4</option>
-									<option value="4">Option 5</option>
+									<option  th:each="data: ${session.goodsFamilyList}" 
+									th:value="${data.id}" th:text="${data.family_name}"></option>
 								</select>
 							</div>
 						</div>

@@ -2,13 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ECS_Goods.mapper.storeMapper">
-
 <resultMap id="storeResult" type="ECS_Common.entity.store">
 <id column="store_id" property="store_id" jdbcType="INTEGER"/>
 <result column="store_name" property="store_name" jdbcType="VARCHAR"/>
 <result column="store_title" property="store_title" jdbcType="VARCHAR"/>
 <result column="status" property="status" jdbcType="INTEGER"/>
 <result column="category_id" property="category_id" jdbcType="INTEGER"/>
+</resultMap>
+<resultMap type="ECS_Goods.entity.storeGoodsSaleInfo" id="storeGoodsSaleResult">
+<result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
+<result column="goods_name" property="goods_name" jdbcType="VARCHAR"/>
+<result column="goods_now_price" property="now_price" jdbcType="DOUBLE"/>
+<result column="goods_favorite_volume" property="favorites_volume" jdbcType="INTEGER"/>
+<result column="goods_stroage_sale_volume" property="stroage_sales" jdbcType="INTEGER"/>
+<result column="goods_stroage_balance" property="stroage_balance" jdbcType="INTEGER"/>
+</resultMap>
+<resultMap type="ECS_Goods.entity.commentInfo" id="commentInfoResult">
+<result column="comment_id" property="comment_id" jdbcType="INTEGER" />
+<result column="create_time" property="create_time" jdbcType="TIMESTAMP" />
+<result column="goods_id" property="goods_id" jdbcType="INTEGER" />
+<result column="goods_name" property="goods_name" jdbcType="VARCHAR" />
+<result column="user_nickname" property="username" jdbcType="VARCHAR" />
+<result column="comment_text" property="comment_text" jdbcType="VARCHAR" />
+<result column="comment_image" property="comment_image" jdbcType="VARCHAR" />
 </resultMap>
 <select id="getStoreInfo" resultMap="storeResult" parameterType="java.lang.Integer">
      select * from store 
@@ -32,5 +48,29 @@ insert into store(store_name,store_title,category_id,status)
       </if>
 </trim>
 </insert>
-
+<sql id="getGoodsSaleInfo">
+select goods_sku.goods_sku_id,goods_name,goods_sku.goods_now_price,
+goods.goods_favorite_volume,goods_stroage_sale_volume,goods_stroage_balance
+from user_order,goods,goods_sku
+where goods.goods_id=goods_sku.goods_id
+and user_order.goods_sku_id=goods_sku.goods_sku_id 
+</sql>
+<select id="getGoodsSaleList" parameterType="java.lang.Integer" 
+resultMap="storeGoodsSaleResult" resultType="java.util.List">
+<include refid="getGoodsSaleInfo"></include>
+and goods.store_id=#{id,jdbcType=INTEGER}
+</select>
+<sql id="getStoreCommentInfo">
+select goods_comment.comment_id,goods.goods_id,goods.goods_name,
+goods_comment.create_time,user_info.user_nickname,comment_text,comment_image
+from goods_comment,users,user_info,goods
+where goods.goods_id=goods_comment.goods_id
+and users.user_id=user_info.user_id
+and user_info.user_id=goods_comment.user_id
+</sql>
+<select id="getStoreCommentList" parameterType="java.lang.Integer" resultMap="commentInfoResult" 
+resultType="java.util.List">
+<include refid="getStoreCommentInfo"></include>
+and  goods.store_id=#{id,jdbcType=INTEGER}
+</select>
 </mapper>

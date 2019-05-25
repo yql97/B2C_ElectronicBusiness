@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="./static/css/table.css">
 <link rel="stylesheet" href="./static/css/misc.css">
 <link rel="stylesheet" href="./static/css/button.css">
+<script type="text/javascript" src="./static/js/jQuery3.2.1.js"></script>
 <style type="text/css">
 #panel{
 	width: 90%;
@@ -60,22 +61,38 @@ padding:0px;
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="gradeX even">
-						<td><span>2019/4/5</span><br/><span>17:30</span></td>
-						<td><span>12345</span><br/><span>67890</span></td>
-						<td>Win</td>	
-							<td><p>33</p>
+						<tr class="gradeX even" th:each="data: ${session.storeOrder}">
+						<td><span th:text="${#calendars.format(data.goodsInfo.create_time,'yyyy-MM-dd HH:mm:ss')}"></span></td>
+						<td><span th:text="${data.goodsInfo.order_code}"></span></td>
+						<td><span th:text="${data.goodsInfo.buyer_name}"></span></td>	
+							<td><p th:text="${data.goodsInfo.goods_name}"></p>
 							</td>
-							<td class="center">4</td>
-							<td class="center">X</td>
-							<td class="center">X</td>
-							<td class="center">未付款</td>
+							<td class="center">
+							<p th:each="data2: ${data.goodsProperty}">
+							<span th:text="${data2.goods_property_name}"></span>
+							<span th:text="${data2.goods_property_value}"></span>
+							</p>
+							</td>
+							<td class="center"><p th:text="${data.goodsInfo.price}"></p>
+							<p th:text="${data.goodsInfo.buy_num}"></p>
+							<p th:text="${data.goodsInfo.price*data.goodsInfo.buy_num}"></p>
+							</td>
+							<td class="center"><p th:text="${data.goodsInfo.receive_address.address}"></p>
+							<p th:text="${data.goodsInfo.receive_address.receiverName}"></p>
+							<p th:text="${data.goodsInfo.receive_address.receiverPhone}"></p></td>
+							<td class="center"><span th:if="${data.goodsInfo.status==0}">未付款</span>
+							<span th:if="${data.goodsInfo.status==1}">未发货</span>
+							<span th:if="${data.goodsInfo.status==2}">已发货</span>
+							<span th:if="${data.goodsInfo.status==3}">未收货</span>
+							<span th:if="${data.goodsInfo.status==4}">已收货,未评价</span>
+							</td>
 							<td>
 							<div>
 							<ul class="order-btn-list">
-							<li><a class="mws-button blue">提醒付款</a></li>
-							<li><a class="mws-button orange">标记发货</a></li>
-							<li><a class="mws-button green">提醒收货</a></li>
+							<li><a class="mws-button blue" th:if="${data.goodsInfo.status==0}">提醒付款</a></li>
+							<li><a class="mws-button orange" th:if="${data.goodsInfo.status==1}" th:href="@{'markShipping?id='+${data.goodsInfo.order_code}}">标记发货</a></li>
+							<li><a class="mws-button green" th:if="${data.goodsInfo.status==2}">查看物流</a></li>
+							<li><a class="mws-button green" th:if="${data.goodsInfo.status==3}">提醒收货</a></li>
 							</ul>
 							</div>
 							</td>
@@ -99,5 +116,7 @@ padding:0px;
 	        </div>
 	  </div>
 </div>
+<script type="text/javascript">
+</script>
 </body>
 </html>

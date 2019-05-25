@@ -78,11 +78,11 @@ margin: 0px;
 			</div>
 			<div class="store-right">
 			<ul class="store-ul">
-			<li><label>店铺名称：</label><span>2345434</span></li>
-			<li><label>标题：</label><span>retrtgfgh</span></li>
-			<li><label>店主：</label><span>fdff</span></li>
-			<li><label>店铺状态：</label><span>fdff</span></li>
-			<li><label>经营范围：</label><span>fgdfgfgf</span></li>
+			<li><label>店铺名称：</label><span th:text="${session.storeInfo.store_name}"></span></li>
+			<li><label>标题：</label><span th:text="${session.storeInfo.store_title}"></span></li>
+			<li><label>店主：</label><span th:text="${session.username}"></span></li>
+			<li><label>店铺状态：</label><span th:if="${session.storeInfo.status==1}">正常营业</span></li>
+			<li><label>经营范围：</label><span>...</span></li>
 			<li style="height: auto;"><label style="float:left;">店铺分类导航：</label>
 			    <div style="margin-left:150px;">
 			    <ul class="store-nav-list">

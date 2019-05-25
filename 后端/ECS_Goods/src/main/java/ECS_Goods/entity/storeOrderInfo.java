@@ -3,7 +3,9 @@
  */
 package ECS_Goods.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author yueqiulin
@@ -19,6 +21,28 @@ public class storeOrderInfo {
              private Integer buy_num;
              private Integer receive_address_id;
              private Integer status;
+             private Map<String,String> receive_address;
+             private String buyer_name;
+             
+			public String getBuyer_name() {
+				return buyer_name;
+			}
+			public void setBuyer_name(String buyer_name) {
+				this.buyer_name = buyer_name;
+			}
+			public Map<String, String> getReceive_address() {
+				return receive_address;
+			}
+			public void setReceive_address(Map<String, String> receive_address) {
+				this.receive_address = receive_address;
+			}
+			@Override
+			public String toString() {
+				return "storeOrderInfo [order_id=" + order_id + ", goods_sku_id=" + goods_sku_id + ", create_time="
+						+ create_time + ", order_code=" + order_code + ", goods_name=" + goods_name + ", price=" + price
+						+ ", buy_num=" + buy_num + ", receive_address_id=" + receive_address_id + ", status=" + status
+						+ "]";
+			}
 			public Integer getOrder_id() {
 				return order_id;
 			}
@@ -30,6 +54,7 @@ public class storeOrderInfo {
 			}
 			public void setCreate_time(Date create_time) {
 				this.create_time = create_time;
+			//	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 			}
 			public Integer getOrder_code() {
 				return order_code;

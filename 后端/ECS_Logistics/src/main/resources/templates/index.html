@@ -136,15 +136,15 @@
     	<h1>物流管理系统</h1>
         <div class="mws-login-lock"><img src="./static/image/locked-2.png" alt=""></div>
     	<div id="mws-login-form">
-        	<form class="mws-form" action="dashboard.html" method="post">
+        	<form class="mws-form" action="login" method="POST" >
                 <div class="mws-form-row">
                 	<div class="mws-form-item large">
-                    	<input type="text" class="mws-login-username mws-textinput" placeholder="username">
+                    	<input type="text" name="username"  class="mws-login-username mws-textinput" placeholder="username">
                     </div>
                 </div>
                 <div class="mws-form-row">
                 	<div class="mws-form-item large">
-                    	<input type="password" class="mws-login-password mws-textinput" placeholder="password">
+                    	<input type="password"  name="password" class="mws-login-password mws-textinput" placeholder="password">
                     </div>
                 </div>
                 <div class="mws-form-row">
@@ -153,7 +153,7 @@
 					<div id="v_container" title="看不清,点击换一张"></div>
                 </div>
                 <div class="mws-form-row">
-                	<input type="submit" value="Login" class="mws-button green mws-login-button">
+                	<input type="submit" id="my_button" value="Login" class="mws-button green mws-login-button">
                 </div>
             </form>
         </div>
@@ -162,13 +162,19 @@
 <script src="./static/js/gVerify.js"></script>
     <script>
         var verifyCode = new GVerify("v_container");
-       /* document.getElementById("my_button").onclick = function(){
+        var verifyCode = new GVerify("v_container");
+        document.getElementById("my_button").onclick = function(){
+        	if(document.getElementById("code_input").value==""||document.getElementById("code_input").value==null){
+        		alert("验证码不能为空");
+        	return false;	
+        	}
             var res = verifyCode.validate(document.getElementById("code_input").value);
             if(res){
-                alert("验证正确");
+                return true;
             }else{
-                alert("验证码错误");
+            	alert("验证码错误");
+            	return false;
             }
-        }*/
+        }
     </script>
 </html>

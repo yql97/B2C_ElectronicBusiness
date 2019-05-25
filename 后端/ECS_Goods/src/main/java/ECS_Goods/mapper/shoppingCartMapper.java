@@ -3,6 +3,8 @@
  */
 package ECS_Goods.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import ECS_Common.entity.shopCart;
@@ -16,7 +18,8 @@ import ECS_Goods.entity.goodsPropertyInfo;
 @Mapper
 public interface shoppingCartMapper {
       public int addShopCart(shopCart sc);
-      public shopCartBaseInfo getGoodsBaseInfo(Integer user_id);
-      public goodsPropertyInfo  getGoodsProperty(Integer id);
+      public List<shopCartBaseInfo> getShopCartList(Integer user_id);
+      public shopCartBaseInfo getShopCartGoods(Integer id);
+      public List<goodsPropertyInfo>  getGoodsProperty(Integer id);
       public int deleteShopCart(Integer id);
 }

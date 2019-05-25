@@ -17,7 +17,7 @@ public class orderBaseInfo {
        private String store_name;
        private int goods_id;
        private int goods_sku_id;
-       private String main_image;
+       private String goods_image_path;
        private String goods_name;
        private double old_price;
        private double new_price;
@@ -67,11 +67,12 @@ public class orderBaseInfo {
 	public void setGoods_sku_id(int goods_sku_id) {
 		this.goods_sku_id = goods_sku_id;
 	}
-	public String getMain_image() {
-		return main_image;
+	
+	public String getGoods_image_path() {
+		return goods_image_path;
 	}
-	public void setMain_image(String main_image) {
-		this.main_image = main_image;
+	public void setGoods_image_path(String goods_image_path) {
+		this.goods_image_path = goods_image_path;
 	}
 	public String getGoods_name() {
 		return goods_name;
@@ -102,6 +103,14 @@ public class orderBaseInfo {
 	}
 	public void setLogistics_id(int logistics_id) {
 		this.logistics_id = logistics_id;
+	}
+	@Override
+	public String toString() {
+		return "orderBaseInfo [create_time=" + create_time + ", order_status=" + order_status + ", order_code="
+				+ order_code + ", store_id=" + store_id + ", store_name=" + store_name + ", goods_id=" + goods_id
+				+ ", goods_sku_id=" + goods_sku_id + ", main_image=" + goods_image_path + ", goods_name=" + goods_name
+				+ ", old_price=" + old_price + ", new_price=" + new_price + ", goods_num=" + goods_num
+				+ ", logistics_id=" + logistics_id + "]";
 	}
        
 }

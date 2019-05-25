@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ECS_Goods.mapper.goodsPropertyMapper">
+<resultMap id="goodsPropertyResult" type="ECS_Goods.entity.goodsPropertyInfo">
+<result column="goods_sku_id" property="goods_sku_id" jdbcType="INTEGER"/>
+<result column="goods_property_relate_id" property="goods_property_relate_id" jdbcType="INTEGER"/>
+<result column="property_name_text" property="goods_property_name" jdbcType="VARCHAR"/>
+<result column="property_value" property="goods_property_value" jdbcType="VARCHAR"/>
+</resultMap>
+<resultMap id="PropertyNameResult" type="ECS_Common.entity.goodsPropertyName">
+<result column="propertyName_id" property="property_name_id" jdbcType="INTEGER"/>
+<result column="goodsCategory_id" property="goods_category_id" jdbcType="INTEGER"/>
+<result column="propertyName_text" property="property_name_text" jdbcType="VARCHAR"/>
+</resultMap>
+<resultMap id="PropertyValueResult" type="ECS_Common.entity.goodsPropertyValue">
+<result column="propertyValue_id" property="property_value_id" jdbcType="INTEGER"/>
+<result column="propertyName_id" property="goods_property_name_id" jdbcType="INTEGER"/>
+<result column="propertyValue_text" property="property_value" jdbcType="VARCHAR"/>
+</resultMap>
 <sql id="GoodsProperty">
 select goods_sku.goods_sku_id,goods_property_relate.goods_property_relate_id,
 goods_property_name.property_name_text,goods_property_value.property_value
@@ -10,7 +26,21 @@ where goods_property_relate.goods_sku_id=goods_sku.goods_sku_id
 and goods_property_name.property_name_id=goods_property_relate.goods_property_name_id
 and goods_property_value.property_value_id=goods_property_relate.goods_property_value_id
 </sql>
-
+<select id="getGoodsPropertyList" parameterType="java.lang.Integer" resultMap="goodsPropertyResult"
+    resultType="java.util.List">
+<include refid="GoodsProperty"></include>
+  and goods_sku.goods_sku_id=#{id,jdbcType=INTEGER}
+</select>
+<select id="getPropertyNameList" parameterType="java.lang.Integer" resultMap="PropertyNameResult"
+    resultType="java.util.List">
+    select * from goods_property_name
+    where goods_property_name.goods_category_id =#{id,jdbcType=INTEGER}
+</select>
+<select id="getPropertyValueList" parameterType="java.lang.Integer" resultMap="PropertyValueResult"
+    resultType="java.util.List">
+    select * from goods_property_value
+    where goods_property_value.goods_property_name_id =#{id,jdbcType=INTEGER}
+</select>
 <insert id="addGoodsProperty" parameterType="ECS_Common.entity.goodsPropertyName">
   insert into goods_property_name(property_name_id,goods_category_id,property_name_text)
   <trim prefix="values(" suffix=")" suffixOverrides="," >

@@ -10,4 +10,46 @@ and user_order.goods_sku_id=goods_sku.goods_sku_id
 and goods_sku.goods_id=goods.goods_id
 and store.store_id=goods.store_id
 </sql> -->
+<insert id="addLogisticsOrder" parameterType="ECS_Logistics.entity.logisticsOrder">
+insert into logistics_order
+(logistics_company_name,order_id,shipping_info_id,logistics_order_code)
+ <trim prefix="values (" suffix=")" suffixOverrides="," >
+       <if test="commpany_name!=null">
+      #{commpany_name,jdbcType=VARCHAR},
+      </if>
+      <if test="order_id !=null">
+      #{order_id,jdbcType=INTEGER},
+      </if>
+      <if test="shipping_info_id !=null">
+      #{shipping_info_id,jdbcType=INTEGER},
+      </if>
+      <if test="logistics_order_code != null" >
+        #{logistics_order_code,jdbcType=INTEGER},
+      </if> 
+      
+    </trim>
+</insert>
+<insert id="addShippingInfo" parameterType="ECS_Logistics.entity.shippingInfo">
+insert into shipping_info
+(shipping_info_id,shipper_name,shipping_address,shipper_phone)
+ <trim prefix="values (" suffix=")" suffixOverrides="," >
+       <if test="id!=null">
+      #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shipper_name !=null">
+      #{shipper_name,jdbcType=VARCHAR},
+      </if>
+      <if test="shipping_address !=null">
+      #{shipping_address,jdbcType=VARCHAR},
+      </if>
+      <if test="shipper_phone != null" >
+        #{shipper_phone,jdbcType=VARCHAR},
+      </if>  
+    </trim>
+</insert>
+<update id="updateOrder" parameterType="java.lang.Integer">
+   update user_order
+   set user_order.order_status=#{status,jdbcType=INTEGER}
+   where user_order.order_code=#{id,jdbcType=INTEGER}
+</update>
 </mapper>

@@ -33,5 +33,11 @@ public class goodsCategoryService {
        public List<goodsCategory>  getGoodsCategory(goodsCategory gc){
     	   return gcm.getGoodsCategory(gc);
        }
+       public List<goodsFamily> getAllGoodsFamily(){
+    	   return gcm.getAllGoodsFamily();
+       }
+       public List<goodsCategory> getCategoryBySequence(Integer id){
+    	   return gcm.getCategoryBySequence(id);
+       }
        
 }

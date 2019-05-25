@@ -16,6 +16,8 @@ import ECS_Common.entity.goodsPropertyRelate;
 import ECS_Common.entity.goodsPropertyValue;
 import ECS_Common.entity.goods_sku;
 import ECS_Common.util.randomID;
+import ECS_Goods.entity.goodsBaseInfo;
+import ECS_Goods.entity.goodsPropertyInfo;
 import ECS_Goods.entity.storeGoodsInfo;
 import ECS_Goods.mapper.goodsMapper;
 import ECS_Goods.mapper.goodsPropertyMapper;
@@ -34,6 +36,24 @@ public class goodsService {
       @Autowired
       private goodsPropertyMapper gpm;
       
+      public List<goods> getAllGoods(){
+    	  return gm.getAllGoods();
+      }
+      public List<goods_sku> getAllGoodsSku(){
+    	  return gsm.getAllGoodsSkuList();
+      }
+      public goods getGoods(Integer id) {
+    	  return gm.getGoodsById(id);
+      }
+      public goods_sku getGoodsSku(Integer id) {
+    	return gsm.getGoodsSku(id)  ;
+      }
+      public List<goods_sku> getGoodsSkuList(Integer id){//根据goodsid
+    	  return gsm.getGoodsSkuList(id);
+      }
+      public goodsBaseInfo getGoodsBaseInfo(Integer id) {
+    	  return gsm.getGoodsBaseInfo(id);
+      }
       public  int addGoods(goods g) {
     	  gm.insertGoods(g);
     	  return 0;
@@ -56,12 +76,19 @@ public class goodsService {
       public List<storeGoodsInfo> getStroeGoodsList(Integer id){
     	  return gm.getStoreGoodsList(id);
       }
+ 	 public List<goodsPropertyName> getPropertyNameList(Integer id){
+ 		 return gpm.getPropertyNameList(id);
+ 	 }
+ 	 public List<goodsPropertyValue> getPropertyValueList(Integer id){
+ 		 return gpm.getPropertyValueList(id);
+ 	 }
       public int addNewsGoodsProperty(String propertyList ,Integer goods_sku_id) {
+    	  if(propertyList.equals("")) return 1;
+    	  if(propertyList!=null&&propertyList!="") {
     	  for(String str:propertyList.split(",")) {
-    		  System.out.println(str);
     		  int index=str.indexOf("_");
     		  String property_name=str.substring(0,index);
-    		  String property_value=str.substring(index+1);
+    		  String property_value=str.substring(index+1,str.length());
     		  goodsPropertyName gpn=new goodsPropertyName(randomID.createRandomID(),412135950,property_name);
     		  goodsPropertyValue gpv=new goodsPropertyValue(randomID.createRandomID(),
     				  property_value,gpn.getPropertyName_id());
@@ -71,18 +98,23 @@ public class goodsService {
 						if(status==1) status=status+gpm.addPropertyValue(gpv);
 						if(status==2) status=status+gpm.addPropertyRelate(gpr);
 						if(status==3) return 1;
-					}
+					}}
     	  return 1;
       }
       public int addOldGoodsProperty(String propertyList,Integer goods_sku_id) {
+    	  if(propertyList.equals("")) return 1;
+    	  if(propertyList!=null&&propertyList!="") {
     	  for(String str:propertyList.split(",")) {
-    		  System.out.println(str);
-    		  int index=str.indexOf("_");
+    		  int index=str.indexOf('_');
+    		  System.out.println(index);
     		  Integer name_id=Integer.valueOf(str.substring(0,index));
-    		  Integer value_id=Integer.valueOf(str.substring(index+1));
+    		  Integer value_id=Integer.valueOf(str.substring(index+1,str.length()));
     		  goodsPropertyRelate gpr=new goodsPropertyRelate(goods_sku_id,name_id,value_id);
     		  gpm.addPropertyRelate(gpr);
-    	  }
+    	  }}
     	  return 1;
+      }
+      public List<goodsPropertyInfo> getGoodsPropertyList(Integer id){
+    	  return gpm.getGoodsPropertyList(id);
       }
 }

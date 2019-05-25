@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="ECS_Goods.mapper.shopCartMapper">
-
+<mapper namespace="ECS_Goods.mapper.shoppingCartMapper">
 <resultMap type="ECS_Goods.entity.shopCartBaseInfo" id="goodsBaseResult">
 <result column="shop_cart_id" property="shopCart_id"  jdbcType="INTEGER"/>
 <result column="goods_sku_id" property="goods_sku_id"  jdbcType="INTEGER"/>
 <result column="store_id" property="store_id"  jdbcType="INTEGER"/>
 <result column="store_name" property="store_name"  jdbcType="VARCHAR"/>
-<result column="goods_main_image" property="goods_main_image"  jdbcType="VARCHAR"/>
+<result column="goods_image_path" property="goods_image_path"  jdbcType="VARCHAR"/>
 <result column="goods_name" property="goods_name"  jdbcType="VARCHAR"/>
 <result column="goods_old_price" property="goods_old_price"  jdbcType="DOUBLE"/>
 <result column="goods_now_price" property="goods_now_price"  jdbcType="DOUBLE"/>
@@ -20,16 +19,22 @@
  <result column="property_name_text" property="goods_property_name" jdbcType="VARCHAR"/>
  <result column="property_value" property="goods_property_value" jdbcType="VARCHAR"/> 
 </resultMap>
+<select id="getShopCartGoods" resultMap="goodsBaseResult" 
+   parameterType="java.lang.Integer">
+  <include refid="getShopCartGoodsBaseInfo"></include>
+  and shop_cart.shop_cart_id=#{id,jdbcType=INTEGER}
+</select>
 <sql id="getShopCartGoodsBaseInfo">
-select shop_cart_id,goods_sku.goods_sku_id,store.store_id,store.store_name,
-goods.goods_main_image,goods.goods_name,goods_sku.goods_old_price,
+select shop_cart.shop_cart_id,goods_sku.goods_sku_id,store.store_id,store.store_name,
+goods_images.goods_image_path,goods.goods_name,goods_sku.goods_old_price,
 goods_sku.goods_now_price,shop_cart.goods_num
-from shop_cart,goods_sku,goods,store
+from shop_cart,goods_sku,goods,store,goods_images
 where shop_cart.goods_sku_id=goods_sku.goods_sku_id
 and goods_sku.goods_id=goods.goods_id 
 and store.store_id=goods.store_id
+and goods_sku.goods_sku_id=goods_images.goods_sku_id
 </sql>
-   <select id="getGoodsBaseInfo" resultMap="goodsBaseResult" 
+   <select id="getShopCartList" resultMap="goodsBaseResult" 
    parameterType="java.lang.Integer"
     resultType="java.util.List">
    <include refid="getShopCartGoodsBaseInfo"></include>

@@ -9,6 +9,7 @@ from favorites_record,goods,goods_sku
 where favorites_record.goods_id=goods.goods_id
 and goods_sku.goods_id=goods.goods_id
 </sql>
+
 <sql id="getFavoritesGoodsByStore">
     select s.store_id,store.store_name,favorites_id,goods.goods_id, goods_main_image,goods_name,
 goods_now_price,goods_old_price 

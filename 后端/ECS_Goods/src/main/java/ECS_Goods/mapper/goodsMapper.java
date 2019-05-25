@@ -16,8 +16,10 @@ import ECS_Goods.entity.storeGoodsInfo;
  */
 @Mapper
 public interface goodsMapper {
+	   public  List<goods> getAllGoods(); 
        public int insertGoods(goods g);
        public List<goods> selectByStoreId(Integer id);
+       public goods getGoodsById(Integer id);
        public int updateGoods(goods g);
        public int deleteGoods(Integer goods_id);
        public List<storeGoodsInfo> getStoreGoodsList(Integer id);

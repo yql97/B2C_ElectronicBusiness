@@ -20,47 +20,42 @@ margin:50px 50px;
                     	<span class="mws-i-24 i-list">创建物流订单</span>
                     </div>
                     <div class="mws-panel-body">
-                    	<form class="mws-form" action="">
+                    	<form class="mws-form" action="addLogistics" method="POST">
                     		<div class="mws-form-inline">
                     			<div class="mws-form-row">
                     				<label>订单号：</label>
                     				<div class="mws-form-item small">
-                    					<input type="text" class="mws-textinput">
+                    					<input type="text" name="order_id" class="mws-textinput">
                     				</div>
                     			</div>
                     			<div class="mws-form-row">
                     				<label>物流公司：</label>
                     				<div class="mws-form-item small">
-                    					<select>
-                    						<option>Option 1</option>
-                    						<option>Option 3</option>
-                    						<option>Option 4</option>
-                    						<option>Option 5</option>
-                    					</select>
+                    					<input class="mws-textinput" name="commpany_name">
                     				</div>
                     			</div>
                     			<div class="mws-form-row">
                     				<label>发货人：</label>
                     				<div class="mws-form-item large">
-                    					<input type="text" class="mws-textinput">
+                    					<input type="text" name="shipper_name" class="mws-textinput">
                     				</div>
                     			</div>
                     			<div class="mws-form-row">
                     				<label>发货地址：</label>
                     				<div class="mws-form-item large">
-                    					<textarea rows="100%" cols="100%"></textarea>
+                    					<textarea rows="100%" cols="100%" name="shipping_address"></textarea>
                     				</div>
                     			</div>
-                    			<div class="mws-form-row">
+                    			<!-- <div class="mws-form-row">
                     			<label>身份证号</label>
                     			    <div class="mws-form-item large">
                     					<input type="text" class="mws-textinput">
                     			    </div>
-                    			</div>
+                    			</div> -->
                     			<div class="mws-form-row">
                     				<label>电话号码</label>
                     				<div class="mws-form-item small">
-                    					<input type="text" class="mws-textinput">
+                    					<input type="text" name="shipper_phone" class="mws-textinput">
                     				</div>
                     			</div>
                     		</div>

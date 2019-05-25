@@ -85,18 +85,18 @@ background-repeat: no-repeat;
 						    <th>商品</th>
 							<th>规格</th>
 							<th>收藏量</th>
-							<th>月销量</th>
+							<th>销量</th>
 							<th>剩余库存</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="gradeX even">
-						<td><span>2019/4/5</span><br/><span>17:30</span></td>
-						<td><span>12345</span><br/><span>67890</span></td>
-						<td>Win</td>	
-							<td><p>33</p>
+						<tr class="gradeX even" th:each="data: ${session.storeSaleStatistics}">
+						<td><span th:text="${data.goods_name}"></span></td>
+						<td><span th:text="${data.now_price}">12345</span><br/><span>67890</span></td>
+						<td><span th:text="${data.favorites_volume}"></span></td>	
+							<td><span th:text="${data.stroage_sales}"></span>
 							</td>
-							<td>ffg</td>
+							<td><span th:text="${data.stroage_balance}"></span></td>
 						</tr>
 					</tbody>
 				</table>

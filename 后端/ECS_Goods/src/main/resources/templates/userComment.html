@@ -45,23 +45,21 @@
 							<tr>
 								<th>评论内容</th>
 								<th style="width: 17%;">商品信息</th>
-								<th style="width: 17%;">商品属性</th>
 								<th style="width: 10%;">评论人</th>
 								<th style="width: 20%;">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="gradeX even">
+							<tr class="gradeX even" th:each="data: ${session.storeComment}">
 								<td>
 									<div class="comment-div">
-										<div class="comment-date">ttthhgh</div>
-										<div class="comment-text">12234534654654</div>
+										<div class="comment-date" th:text="${#calendars.format(data.create_time,'yyyy-MM-dd HH:mm:ss')}"></div>
+										<div class="comment-text">
+										<p th:text="${data.comment_text}"></p><span th:text="${data.comment_image}"></span></div>
 									</div>
 								</td>
-								<td><span>12345</span><br />
-								<span>67890</span></td>
-								<td>Win</td>
-								<td class="center">未付款</td>
+								<td><span th:text="${data.goods_name}">12345</span></td>
+								<td class="center"><span th:text="${data.username}"></span></td>
 								<td>
 									<div>
 										<textarea rows="" cols=""></textarea>
